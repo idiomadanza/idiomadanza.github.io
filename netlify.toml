@@ -1,0 +1,8 @@
+[build]
+  # Behebt den 404 Fehler: Sagt Netlify, wo die fertige Astro-Seite liegt
+  command = "npm run build"
+  publish = "dist"
+
+[build.environment]
+  # Behebt den Build-Fehler: Zwingt Netlify dazu, Node.js Version 24 (statt 18) zu verwenden
+  NODE_VERSION = "24"
