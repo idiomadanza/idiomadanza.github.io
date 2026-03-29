@@ -1,0 +1,213 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout 
+  title="Kontakt & Anmeldung | Idiomadanza e.V. – Tanzverein Regensburg"
+  description="Kontaktiere Idiomadanza e.V. in Regensburg: Probestunde anfragen, Mitglied werden oder Workshop-Infos erhalten. Wir freuen uns auf dich!"
+>
+  <!-- HERO SECTION -->
+  <section class="relative py-20 overflow-hidden bg-brand-dark">
+    <div class="absolute inset-0 z-0">
+      <img src="/images/testimonials/bg.png" alt="Contact Background" class="w-full h-full object-cover opacity-20 blur-[1px]">
+      <div class="absolute inset-0 bg-gradient-to-b from-brand-dark/90 via-brand-dark/60 to-brand-dark"></div>
+    </div>
+    
+    <div class="container mx-auto px-4 relative z-10 text-center">
+      <h1 class="font-display text-5xl md:text-7xl font-bold text-white mb-6 drop-shadow-2xl">
+        Sag <span class="text-brand-rose">Hola!</span>
+      </h1>
+      <p class="max-w-xl mx-auto text-xl text-white/80 leading-relaxed font-light">
+        Wir freuen uns darauf, von dir zu hören. Egal ob Fragen zu Kursen, Probestunden oder Mitgliedschaft.
+      </p>
+    </div>
+  </section>
+
+  <!-- CONTACT GRID -->
+  <section class="py-24 bg-brand-light dark:bg-brand-dark">
+    <div class="container mx-auto px-4">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-16 max-w-6xl mx-auto">
+        
+        <!-- Contact Info -->
+        <div class="lg:col-span-5 space-y-12">
+          <div class="space-y-4">
+            <h2 class="text-3xl font-display font-bold dark:text-white">Finde den Weg zu uns</h2>
+            <div class="w-20 h-1 bg-brand-rose rounded-full"></div>
+            <p class="opacity-70 dark:text-brand-light/70 leading-relaxed pt-2">
+              Besuche uns in unseren Locations oder melde dich direkt über WhatsApp, Telefon oder E-Mail. Wir antworten in der Regel innerhalb von 24 Stunden.
+            </p>
+          </div>
+
+          <div class="space-y-8">
+            <div class="flex items-start gap-4 group">
+              <div class="w-12 h-12 rounded-full bg-brand-rose/10 flex items-center justify-center text-brand-rose text-xl shadow-glow-rose group-hover:scale-110 transition-transform">
+                📍
+              </div>
+              <div>
+                <h4 class="font-bold mb-1 dark:text-white">Locations</h4>
+                <p class="text-sm opacity-60 dark:text-brand-light/60">
+                  Dienstag: Fortuna, Regensburg<br>
+                  Mittwoch: Raum für Engagement, Regensburg
+                </p>
+              </div>
+            </div>
+
+            <div class="flex items-start gap-4 group">
+              <div class="w-12 h-12 rounded-full bg-brand-glow/10 flex items-center justify-center text-brand-glow text-xl shadow-glow-amber group-hover:scale-110 transition-transform">
+                📞
+              </div>
+              <div>
+                <h4 class="font-bold mb-1 dark:text-white">Nachricht per WhatsApp</h4>
+                <a href="https://wa.me/+4915678659226?text=Hallo%20Idiomadanza,%20ich%20habe%20weitere%20Fragen%20zu%20..." class="text-sm text-brand-rose hover:text-brand-glow font-bold transition-colors flex items-center gap-2">
+                  <span>💬</span> Chat on WhatsApp
+                </a>
+              </div>
+            </div>
+
+            <div class="flex items-start gap-4 group">
+              <div class="w-12 h-12 rounded-full bg-brand-rose/10 flex items-center justify-center text-brand-rose text-xl shadow-glow-rose group-hover:scale-110 transition-transform">
+                📧
+              </div>
+              <div>
+                <h4 class="font-bold mb-1 dark:text-white">Email</h4>
+                <a href="mailto:mail@idiomadanza.de" class="text-sm text-brand-rose hover:text-brand-glow font-bold transition-colors">mail [at] idiomadanza.de</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Socials -->
+          <div class="flex gap-4 pt-4">
+            <a href="https://instagram.com/idiomadanza" target="_blank" rel="noopener noreferrer" class="w-12 h-12 rounded-full border border-white/10 flex items-center justify-center hover:bg-brand-rose hover:border-brand-rose transition-all group shadow-glass" aria-label="Folge uns auf Instagram">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="group-hover:scale-110 transition-transform"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- Contact Form -->
+        <div class="lg:col-span-7">
+          <div class="p-8 md:p-12 bg-white/70 dark:bg-white/5 backdrop-blur-xl rounded-idioma border border-white/20 dark:border-white/10 shadow-glass">
+            <h3 class="text-2xl font-display font-bold mb-8 dark:text-white">Nachricht schreiben</h3>
+            
+            <form action="#" class="space-y-6">
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="space-y-2">
+                  <label class="text-xs font-bold uppercase tracking-widest opacity-60 dark:text-white">Name</label>
+                  <input type="text" placeholder="Dein Name" class="w-full bg-white dark:bg-brand-dark/50 border border-brand-dark/10 dark:border-white/10 rounded-idioma px-4 py-3 focus:border-brand-rose focus:ring-1 focus:ring-brand-rose outline-none transition-all dark:text-white">
+                </div>
+                <div class="space-y-2">
+                  <label class="text-xs font-bold uppercase tracking-widest opacity-60 dark:text-white">E-Mail</label>
+                  <input type="email" placeholder="mail@example.com" class="w-full bg-white dark:bg-brand-dark/50 border border-brand-dark/10 dark:border-white/10 rounded-idioma px-4 py-3 focus:border-brand-rose focus:ring-1 focus:ring-brand-rose outline-none transition-all dark:text-white">
+                </div>
+              </div>
+              <div class="space-y-2">
+                <label class="text-xs font-bold uppercase tracking-widest opacity-60 dark:text-white">Interesse</label>
+                <select class="w-full bg-white dark:bg-brand-dark/50 border border-brand-dark/10 dark:border-white/10 rounded-idioma px-4 py-3 focus:border-brand-rose focus:ring-1 focus:ring-brand-rose outline-none transition-all dark:text-white appearance-none">
+                  <option>Probestunde anfragen</option>
+                  <option>Mitgliedschaft</option>
+                  <option>Allgemeine Frage</option>
+                  <option>Workshop Infos</option>
+                </select>
+              </div>
+              <div class="space-y-2">
+                <label class="text-xs font-bold uppercase tracking-widest opacity-60 dark:text-white">Nachricht</label>
+                <textarea rows="4" placeholder="Wie können wir dir helfen?" class="w-full bg-white dark:bg-brand-dark/50 border border-brand-dark/10 dark:border-white/10 rounded-idioma px-4 py-3 focus:border-brand-rose focus:ring-1 focus:ring-brand-rose outline-none transition-all dark:text-white mb-4"></textarea>
+              </div>
+
+              <div class="flex items-start gap-4 mb-8">
+                <input type="checkbox" id="privacy-consent" name="privacy-consent" required class="mt-1 w-5 h-5 rounded border-gray-300 text-brand-rose focus:ring-brand-rose cursor-pointer">
+                <label for="privacy-consent" class="text-xs opacity-60 dark:text-white/60 leading-relaxed cursor-pointer select-none">
+                  Ich habe die <a href="/datenschutz" class="underline hover:text-brand-rose transition-colors font-bold">Datenschutzerklärung</a> gelesen und bin damit einverstanden, dass meine eingegebenen Daten zum Zweck der Kontaktaufnahme gespeichert und verarbeitet werden. *
+                </label>
+              </div>
+              
+              <button type="submit" class="w-full py-4 bg-brand-rose text-white font-bold rounded-full shadow-glow-rose hover:-translate-y-1 transition-all disabled:opacity-50 disabled:cursor-not-allowed">Nachricht absenden</button>
+            </form>
+          </div>
+        </div>
+      </div>
+
+      <!-- GOOGLE MAPS SECTION -->
+      <div class="mt-24 max-w-6xl mx-auto space-y-8 animate-fade-in">
+        <div class="flex flex-col md:flex-row justify-between items-end gap-6 mb-8">
+          <div>
+            <h3 class="text-3xl font-display font-bold dark:text-white">Unsere <span class="text-brand-rose">Standorte</span></h3>
+            <p class="opacity-60 dark:text-brand-light/60 mt-2">Wir tanzen an zwei zentralen Orten in Regensburg.</p>
+          </div>
+          <div class="flex gap-4">
+            <a href="https://maps.app.goo.gl/3YF5Xq6Z6vWv8q9T7" target="_blank" rel="noopener noreferrer" class="px-6 py-2 bg-white/10 backdrop-blur-md rounded-full border border-white/20 text-xs font-bold uppercase tracking-widest text-brand-rose hover:bg-brand-rose hover:text-white transition-all shadow-glow-rose">Fortuna (Di)</a>
+            <a href="https://maps.app.goo.gl/9yZ6Xq6Z6vWv8q9T7" target="_blank" rel="noopener noreferrer" class="px-6 py-2 bg-white/10 backdrop-blur-md rounded-full border border-white/20 text-xs font-bold uppercase tracking-widest text-brand-glow hover:bg-brand-glow hover:text-white transition-all shadow-glow-amber">Raum für Engagement (Mi)</a>
+          </div>
+        </div>
+
+        <div id="maps-placeholder" class="relative bg-brand-dark h-[500px] rounded-idioma overflow-hidden border border-white/10 shadow-glass flex items-center justify-center p-8 text-center hidden">
+          <div class="max-w-md">
+            <div class="text-4xl mb-4">📍</div>
+            <h3 class="text-xl font-bold text-white mb-2 italic">Interaktive Karte deaktiviert</h3>
+            <p class="text-sm text-white/60 mb-8 leading-relaxed">
+              Um unsere Standorte auf der Karte zu sehen, musst die Nutzung von **externen Medien** erlauben. Deine Privatsphäre ist uns wichtig!
+            </p>
+            <button id="map-enable" class="px-8 py-3 bg-brand-rose text-white text-xs font-bold uppercase tracking-widest rounded-full shadow-glow-rose hover:-translate-y-1 transition-all">Karte laden & Cookies akzeptieren</button>
+          </div>
+        </div>
+
+        <div id="maps-iframe-container" class="relative bg-brand-dark h-[500px] rounded-idioma overflow-hidden border border-white/10 shadow-glass group">
+          <iframe 
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2611.859664539665!2d12.11585231267812!3d49.032225888062135!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x479fc177f525505b%3A0xe7a50567be4e0cb9!2sFortuna%20Regensburg!5e0!3m2!1sde!2sde!4v1711400000000!5m2!1sde!2sde" 
+            class="absolute inset-0 w-full h-full border-0 grayscale opacity-70 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-700" 
+            allowfullscreen="" 
+            loading="lazy" 
+            referrerpolicy="no-referrer-when-downgrade"
+            title="Idiomadanza Location: Fortuna Regensburg"
+          ></iframe>
+          
+          <!-- Map Overlay Detail Card -->
+          <div class="absolute bottom-10 left-10 p-8 bg-brand-dark/80 backdrop-blur-xl border border-white/10 rounded-idioma shadow-glow-rose hidden md:block max-w-sm transform group-hover:-translate-y-2 transition-transform duration-500">
+             <div class="flex items-center gap-3 mb-4">
+               <span class="w-8 h-8 rounded-full bg-brand-rose flex items-center justify-center text-sm shadow-glow-rose">📍</span>
+               <h4 class="text-xl font-bold text-white">Hauptstandort</h4>
+             </div>
+             <p class="text-sm text-white/70 mb-1 font-bold">Fortuna Regensburg</p>
+             <p class="text-sm text-white/50 mb-6">Isarstr. 85, 93057 Regensburg<br>(Jeden Dienstag ab 18 Uhr)</p>
+             <a href="https://maps.app.goo.gl/3YF5Xq6Z6vWv8q9T7" target="_blank" rel="noopener noreferrer" class="text-brand-rose font-bold text-xs uppercase tracking-widest hover:text-brand-glow transition-colors">Route berechnen →</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    function updateMap() {
+      const placeholder = document.getElementById('maps-placeholder');
+      const container = document.getElementById('maps-iframe-container');
+      const banner = document.getElementById('cookie-banner');
+      
+      const saved = localStorage.getItem('idioma-cookie-consent');
+      const settings = saved ? JSON.parse(saved) : null;
+
+      if (settings && settings.maps) {
+        placeholder?.classList.add('hidden');
+        container?.classList.remove('hidden');
+      } else {
+        placeholder?.classList.remove('hidden');
+        container?.classList.add('hidden');
+      }
+    }
+
+    // Initial check
+    updateMap();
+
+    // Listen for enable button
+    document.getElementById('map-enable')?.addEventListener('click', () => {
+      const settings = {
+        essential: true,
+        maps: true,
+        timestamp: new Date().getTime()
+      };
+      localStorage.setItem('idioma-cookie-consent', JSON.stringify(settings));
+      window.location.reload(); // Reload to apply everywhere
+    });
+
+    // Re-check periodically or on storage changes
+    window.addEventListener('storage', updateMap);
+  </script>
+</Layout>

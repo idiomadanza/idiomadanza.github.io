@@ -1,0 +1,162 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+// Beispielhafte Blog-Daten
+const posts = [
+  {
+    title: "Neuer Bachata Anfängerkurs startet im Mai!",
+    excerpt: "Endlich wieder Foundations: Ab dem 05. Mai 2026 um 20:00 Uhr öffnen wir unsere Türen für alle Neu-Einsteiger im Fortuna.",
+    category: "Events",
+    date: "25. März 2026",
+    image: "/images/testimonials/bg.png",
+    author: "Idioma Vorstand"
+  },
+  {
+    title: "Bachata Sensual: Tipps für den Social Dance Floor",
+    excerpt: "Wie du mit Gefühl und Verbindung glänzt, ohne dich in komplexen Figuren zu verlieren.",
+    category: "Tutorials",
+    date: "20. März 2024",
+    image: "/images/about/action.png",
+    author: "Stephan Lopez"
+  },
+  {
+    title: "Social Night: Rückblick & Fotos vom letzten Event",
+    excerpt: "Was für eine Nacht! Über 100 Tänzer haben Fortuna zum Beben gebracht. Hier sind die besten Momente.",
+    category: "Events",
+    date: "15. März 2024",
+    image: "/images/testimonials/bg.png",
+    author: "Patricia"
+  },
+  {
+    title: "Neu im Team: Willkommen Vicky & Katharina",
+    excerpt: "Lerne unsere neuen Bachata-Trainerinnen kennen und erfahre mehr über ihren Tanzstil.",
+    category: "Community",
+    date: "10. März 2024",
+    image: "/images/about/action.png",
+    author: "Idioma Vorstand"
+  }
+];
+---
+
+<Layout 
+  title="Blog & News | Bachata & Salsa Szene Regensburg – Idiomadanza e.V."
+  description="Aktuelles aus der Regensburger Tanzszene: Tutorials, Event-Rückblicke, Interviews und Community-News von Idiomadanza e.V."
+>
+  <!-- HERO SECTION -->
+  <section class="relative py-24 overflow-hidden bg-brand-dark">
+    <div class="absolute inset-0 z-0">
+      <img src="/images/testimonials/bg.png" alt="Blog Background" class="w-full h-full object-cover opacity-20 blur-md scale-110">
+      <div class="absolute inset-0 bg-gradient-to-b from-brand-dark/95 via-brand-dark/70 to-brand-dark"></div>
+    </div>
+    
+    <div class="container mx-auto px-4 relative z-10 text-center">
+      <span class="inline-block py-1 px-4 rounded-full bg-brand-rose/20 text-brand-rose text-sm font-bold tracking-widest uppercase mb-4 backdrop-blur-sm border border-brand-rose/30">News & Events</span>
+      <h1 class="font-display text-5xl md:text-7xl font-bold text-white mb-6">Idioma <span class="text-brand-rose underline decoration-brand-glow/30">Journal</span></h1>
+      <p class="max-w-2xl mx-auto text-xl text-white/80 leading-relaxed font-light">
+        Dein Einblick in die Regensburger Tanzszene. News, Tipps und Updates direkt aus dem Verein.
+      </p>
+    </div>
+  </section>
+
+  <!-- FEATURED POST -->
+  <section class="py-12 bg-brand-dark relative z-10 -mt-20">
+    <div class="container mx-auto px-4">
+      <div class="bg-white/10 backdrop-blur-2xl rounded-idioma border border-white/20 overflow-hidden shadow-glow-rose group max-w-6xl mx-auto">
+        <div class="grid grid-cols-1 lg:grid-cols-2">
+          <div class="aspect-video lg:aspect-auto h-full overflow-hidden relative">
+            <img src="/images/about/action.png" alt="Featured Post" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+            <div class="absolute top-4 left-4">
+               <span class="px-4 py-1.5 bg-brand-rose text-white text-xs font-bold uppercase tracking-widest rounded-full shadow-lg">Featured Story</span>
+            </div>
+          </div>
+          <div class="p-8 md:p-12 flex flex-col justify-center space-y-6">
+            <span class="text-brand-glow font-bold text-sm uppercase tracking-[0.2em]">Community News</span>
+            <h2 class="text-3xl md:text-5xl font-display font-bold text-white group-hover:text-brand-rose transition-colors">Wie Tanzen das Leben in Regensburg verändert.</h2>
+            <p class="text-white/60 text-lg leading-relaxed">Warum Bachata & Salsa mehr als nur Sport sind und wie wir gemeinsam eine neue Art der Gemeinschaft in unserer Stadt aufbauen.</p>
+            <div class="flex items-center gap-4 pt-4 border-t border-white/10">
+               <div class="w-10 h-10 rounded-full bg-brand-rose/20 border border-brand-rose flex items-center justify-center text-brand-rose font-bold">SL</div>
+               <div class="text-xs">
+                 <p class="text-white font-bold uppercase tracking-widest">Stephan Lopez</p>
+                 <p class="text-white/40">25. März 2024 • 5 min Lesezeit</p>
+               </div>
+            </div>
+            <a href="#" class="inline-block pt-4 text-brand-rose font-bold group-hover:translate-x-2 transition-transform">Weiterlesen →</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CATEGORIES SUB-NAV -->
+  <section class="py-12 bg-brand-light dark:bg-brand-dark">
+    <div class="container mx-auto px-4">
+      <div class="flex flex-wrap justify-center gap-4 md:gap-8 border-b border-brand-dark/5 dark:border-white/5 pb-8">
+        {['Alle Beiträge', 'Events', 'Tutorials', 'Community', 'Interviews'].map((cat, idx) => (
+          <button class={`text-sm font-bold uppercase tracking-widest px-4 py-2 rounded-full transition-all ${idx === 0 ? 'bg-brand-rose text-white shadow-glow-rose' : 'opacity-50 hover:opacity-100 hover:text-brand-rose'}`}>
+            {cat}
+          </button>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- BLOG FEED -->
+  <section class="py-24 bg-brand-light dark:bg-brand-dark">
+    <div class="container mx-auto px-4">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 max-w-6xl mx-auto">
+        {posts.map((post) => (
+          <article class="group relative flex flex-col h-full bg-white/70 dark:bg-brand-dark/50 backdrop-blur-md rounded-idioma border border-white/20 dark:border-white/10 overflow-hidden shadow-glass hover:shadow-glow-rose transition-all duration-500">
+            <!-- Image Area -->
+            <div class="h-64 relative overflow-hidden">
+               <img src={post.image} alt={post.title} class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+               <div class="absolute inset-0 bg-gradient-to-t from-brand-dark/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+               <div class="absolute bottom-4 left-4">
+                 <span class="px-3 py-1 bg-brand-glow text-brand-dark text-[10px] font-black uppercase tracking-widest rounded-full">{post.category}</span>
+               </div>
+            </div>
+
+            <!-- Content Area -->
+            <div class="p-8 flex-grow space-y-4">
+              <span class="text-[10px] uppercase font-bold tracking-widest opacity-40 dark:text-white">{post.date}</span>
+              <h3 class="text-2xl font-display font-bold text-brand-dark dark:text-white leading-tight underline decoration-transparent group-hover:decoration-brand-rose transition-all duration-300">{post.title}</h3>
+              <p class="text-sm opacity-70 dark:text-white/70 leading-relaxed line-clamp-3">{post.excerpt}</p>
+            </div>
+
+            <!-- Footer Area -->
+            <div class="px-8 pb-8 pt-4 flex items-center justify-between border-t border-brand-dark/5 dark:border-white/5">
+               <div class="flex items-center gap-2">
+                  <div class="w-6 h-6 rounded-full bg-brand-rose/20 border border-brand-rose flex items-center justify-center text-[10px] text-brand-rose font-bold">I</div>
+                  <span class="text-[10px] uppercase font-bold opacity-60 dark:text-white">{post.author}</span>
+               </div>
+               <a href="#" class="text-brand-rose font-black text-xs group-hover:mr-2 transition-all">READ</a>
+            </div>
+          </article>
+        ))}
+      </div>
+
+      <!-- PAGINATION -->
+      <div class="mt-20 flex justify-center gap-4">
+        <button class="w-12 h-12 rounded-full border border-brand-rose/20 flex items-center justify-center opacity-50 hover:bg-brand-rose hover:text-white transition-all">←</button>
+        <button class="w-12 h-12 rounded-full bg-brand-rose text-white shadow-glow-rose flex items-center justify-center font-bold">1</button>
+        <button class="w-12 h-12 rounded-full border border-brand-rose/20 flex items-center justify-center opacity-50 hover:bg-brand-rose hover:text-white transition-all">2</button>
+        <button class="w-12 h-12 rounded-full border border-brand-rose/20 flex items-center justify-center opacity-50 hover:bg-brand-rose hover:text-white transition-all">→</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- NEWSLETTER SIGNUP -->
+  <section class="py-24 bg-brand-dark text-white relative overflow-hidden">
+     <div class="absolute -right-40 -bottom-40 w-96 h-96 bg-brand-rose/10 rounded-full blur-[100px]"></div>
+     <div class="container mx-auto px-4 relative z-10 text-center">
+        <div class="max-w-2xl mx-auto space-y-8">
+           <h2 class="text-4xl font-display font-bold">Nichts mehr <span class="text-brand-rose">verpassen</span></h2>
+           <p class="opacity-60">Abonniere unseren Newsletter und erhalte alle Infos zu neuen Workshops, Socials und Tutorials direkt in dein Postfach.</p>
+           <form class="flex flex-col sm:flex-row gap-4">
+              <input type="email" placeholder="Deine E-Mail Adresse" class="flex-grow bg-white/5 border border-white/10 rounded-full px-8 py-4 focus:border-brand-rose outline-none">
+              <button class="bg-brand-rose px-10 py-4 rounded-full font-bold shadow-glow-rose hover:-translate-y-1 transition-all">Abonnieren</button>
+           </form>
+           <p class="text-[10px] opacity-30">Kein Spam. Nur Tanzliebe. Deine Daten sind bei uns sicher.</p>
+        </div>
+     </div>
+  </section>
+</Layout>

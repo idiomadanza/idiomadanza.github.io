@@ -1,0 +1,469 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const siteUrl = "https://idiomadanza.de";
+
+const reviewSchema = {
+  "@context": "https://schema.org",
+  "@type": "DanceSchool",
+  "name": "Idiomadanza e.V.",
+  "url": siteUrl,
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "5",
+    "bestRating": "5",
+    "ratingCount": "4",
+    "reviewCount": "4"
+  },
+  "review": [
+    {
+      "@type": "Review",
+      "author": { "@type": "Person", "name": "Melanie K." },
+      "reviewRating": { "@type": "Rating", "ratingValue": "5" },
+      "reviewBody": "Vielen lieben Dank für die tollen Unterrichtsstunden und die super Social Tänze! Macht immer viel Spaß, weiter so!"
+    },
+    {
+      "@type": "Review",
+      "author": { "@type": "Person", "name": "Sarah M." },
+      "reviewRating": { "@type": "Rating", "ratingValue": "5" },
+      "reviewBody": "Ich liebe die Energie beim Training. Man lernt nicht nur Schritte, sondern fühlt die Musik. Ein toller Verein mit Herz!"
+    },
+    {
+      "@type": "Review",
+      "author": { "@type": "Person", "name": "Lukas S." },
+      "reviewRating": { "@type": "Rating", "ratingValue": "5" },
+      "reviewBody": "Die Atmosphäre im Verein ist einfach einzigartig. Man fühlt sich sofort willkommen und lernt unglaublich schnell. Beste Entscheidung!"
+    },
+    {
+      "@type": "Review",
+      "author": { "@type": "Person", "name": "Daniel R." },
+      "reviewRating": { "@type": "Rating", "ratingValue": "5" },
+      "reviewBody": "Hervorragende Trainer, die auf Details achten. Mein Tanzen hat sich in kürzester Zeit massiv verbessert. Danke Idiomadanza!"
+    }
+  ]
+};
+---
+
+<Layout 
+  title="Idiomadanza e.V. | Bachata & Salsa Tanzkurse in Regensburg"
+  description="Bachata und Salsa lernen in Regensburg: Idiomadanza e.V. bietet wöchentliche Kurse für Anfänger bis Fortgeschrittene, Workshops und Socials. Jetzt kostenlose Probestunde sichern!"
+>
+  <!-- Review Schema for Agentic SEO -->
+  <script type="application/ld+json" set:html={JSON.stringify(reviewSchema)} />
+
+  <!-- HERO SECTION -->
+  <section id="hero" class="relative min-h-screen flex items-center justify-center overflow-hidden bg-brand-dark text-white">
+    <!-- Background Gradient Glows -->
+    <div class="absolute top-1/4 left-1/4 w-[500px] h-[500px] bg-brand-rose/30 rounded-full blur-[120px] -z-10"></div>
+    <div class="absolute bottom-1/4 right-1/4 w-[500px] h-[500px] bg-brand-glow/20 rounded-full blur-[120px] -z-10"></div>
+    
+    <div class="container mx-auto px-4 text-center z-10 mt-16">
+      <div class="inline-block py-2 px-6 rounded-full bg-brand-rose/20 text-brand-rose text-sm font-bold tracking-widest uppercase mb-8 backdrop-blur-md border border-brand-rose/30 animate-pulse">
+        Nächster Anfängerkurs: 05. Mai 2026
+      </div>
+      <h1 class="font-display text-5xl md:text-7xl font-bold mb-4 animate-fade-in-up">
+        Willkommen bei <span class="text-brand-rose">Idioma</span>danza
+      </h1>
+      <p class="text-lg md:text-xl font-medium text-brand-rose mb-8 animate-fade-in-up tracking-wide" style="animation-delay: 0.1s;">
+        Deine Sprache, dein Rhythmus, dein Verein.
+      </p>
+      <p class="text-xl md:text-2xl mb-10 max-w-2xl mx-auto opacity-90 animate-fade-in-up" style="animation-delay: 0.2s;">
+        Die Sprache des Körpers – Ein Ausdruck deiner Persönlichkeit. Bachata & Salsa in Regensburg.
+      </p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center animate-fade-in-up" style="animation-delay: 0.4s;">
+        <a href="#about" class="px-8 py-4 bg-brand-rose text-white font-medium rounded-idioma shadow-glow-rose hover:scale-105 transition-transform duration-300">
+          Entdecke unseren Verein
+        </a>
+        <a href="/kurse" class="px-8 py-4 bg-white/10 backdrop-blur-xs border border-white/20 font-medium rounded-idioma hover:bg-white/20 transition-all duration-300">
+          Unser Kursangebot
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- NEWS BANNER -->
+  <div class="relative z-20 -mt-10 px-4">
+    <div class="max-w-4xl mx-auto bg-white/10 dark:bg-brand-dark/80 backdrop-blur-2xl p-6 rounded-2xl border border-white/20 shadow-glow-rose flex flex-col md:flex-row items-center gap-6 group">
+      <div class="flex items-center gap-3">
+        <span class="relative flex h-3 w-3">
+          <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-brand-rose opacity-75"></span>
+          <span class="relative inline-flex rounded-full h-3 w-3 bg-brand-rose"></span>
+        </span>
+        <span class="text-brand-rose font-bold uppercase tracking-widest text-xs">Aktuelles:</span>
+      </div>
+      <div class="flex-grow space-y-2">
+        <p class="text-white font-medium text-center md:text-left flex items-center gap-2">
+          <span class="text-brand-glow">🔥</span> <strong>Nächster Bachata-Anfängerkurs:</strong> Di, 05.05.2026 um 20:00 Uhr
+        </p>
+        <p class="text-white/60 text-sm text-center md:text-left flex items-center gap-2">
+          <span>ℹ️</span> MI 01.04.2026 18:15 Uhr Raum für Engagement Bachata Ladystyling mit Patricia
+        </p>
+      </div>
+      <div class="h-px md:h-12 w-full md:w-px bg-white/10"></div>
+      <a href="/kurse" class="text-white hover:text-brand-rose transition-colors text-xs font-bold uppercase tracking-widest flex items-center gap-2 whitespace-nowrap">
+        Details ansehen
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" x2="19" y1="12" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+      </a>
+    </div>
+  </div>
+
+  <!-- ABOUT SECTION -->
+  <section id="about" class="py-20 bg-brand-light dark:bg-brand-dark">
+    <div class="container mx-auto px-4">
+      <div class="text-center mb-16">
+        <h2 class="font-display text-4xl md:text-5xl font-bold text-brand-dark dark:text-brand-light mb-4">Über <span class="text-brand-rose">Idiomadanza</span></h2>
+        <div class="w-24 h-1 bg-brand-glow mx-auto rounded-full"></div>
+      </div>
+      
+      <div class="grid md:grid-cols-2 gap-12 items-center">
+        <div class="rounded-idioma overflow-hidden shadow-glass relative group aspect-square">
+          <img src="/images/about/about-bg.png" alt="Bachata Community" class="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+          <div class="absolute inset-0 bg-brand-dark/40 group-hover:bg-brand-dark/20 transition-colors duration-500 z-10 flex items-center justify-center p-12">
+            <p class="text-2xl md:text-3xl font-display text-white text-center italic z-20 drop-shadow-2xl">
+              "Tanzen ist mehr als nur Bewegung. Es ist deine Sprache."
+            </p>
+          </div>
+        </div>
+        <div class="space-y-6 text-brand-dark dark:text-brand-light">
+          <h3 class="text-3xl font-display font-bold">Mehr als nur Schritte</h3>
+          <p>"Idioma" bedeutet Sprache, und "Danza" bedeutet Tanz. Zusammen bilden sie IdiomaDanza, eine Hommage an die kraftvolle Verbindung zwischen Ausdruck und Bewegung.</p>
+          <p>Jeder Mensch hat eine einzigartige Art, sich zu bewegen und auszudrücken. Ob Anfänger oder erfahrener Tänzer, bei uns findest du einen Ort, an dem du deine persönliche Note im Tanz entdecken kannst.</p>
+          <ul class="space-y-3 mt-6">
+            <li class="flex items-center gap-3"><span class="text-brand-rose font-bold text-xl">✓</span> Smoothes Leading & Following</li>
+            <li class="flex items-center gap-3"><span class="text-brand-rose font-bold text-xl">✓</span> Musikalische Struktur und Theorie</li>
+            <li class="flex items-center gap-3"><span class="text-brand-rose font-bold text-xl">✓</span> Styling und Ausdruck</li>
+            <li class="flex items-center gap-3"><span class="text-brand-rose font-bold text-xl">✓</span> Spaß auf der Tanzfläche (Social Dance)</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TEAM SECTION -->
+  <section id="team" class="py-24 bg-brand-light dark:bg-brand-dark/95 relative overflow-hidden">
+    <!-- Background Accents -->
+    <div class="absolute -left-20 top-20 w-96 h-96 bg-brand-rose/10 rounded-full blur-[120px] -z-10 animate-float"></div>
+    <div class="absolute -right-20 bottom-20 w-96 h-96 bg-brand-glow/10 rounded-full blur-[120px] -z-10 animate-pulse-glow"></div>
+
+    <div class="container mx-auto px-4">
+      <div class="text-center mb-16">
+        <h2 class="font-display text-4xl md:text-5xl font-bold text-brand-dark dark:text-brand-light mb-4">Unser <span class="text-brand-rose">Team</span></h2>
+        <div class="w-24 h-1 bg-brand-glow mx-auto rounded-full"></div>
+      </div>
+
+      <div class="max-w-5xl mx-auto">
+        <div class="relative group rounded-idioma overflow-hidden shadow-glow-rose border border-white/20">
+          <div class="aspect-[16/9] md:aspect-[21/9] bg-brand-dark overflow-hidden relative">
+            <!-- Group Picture Placeholder -->
+            <img src="/images/about/action.png" alt="Idiomadanza Trainer Team" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 opacity-80">
+            <div class="absolute inset-0 bg-gradient-to-t from-brand-dark/90 via-transparent to-transparent"></div>
+            
+            <!-- Overlay Content -->
+            <div class="absolute bottom-0 left-0 p-8 md:p-12 space-y-4">
+              <h3 class="text-3xl md:text-5xl font-display font-bold text-white">Das <span class="text-brand-rose">Team</span></h3>
+              <p class="max-w-2xl text-white/80 text-lg leading-relaxed">
+                Unsere 13 zertifizierten Trainer brennen darauf, ihre Leidenschaft für Bachata & Salsa mit dir zu teilen. Gemeinsam schaffen wir einen Ort, an dem du dich tänzerisch entfalten kannst.
+              </p>
+              <div class="pt-4 flex flex-wrap gap-4">
+                <a href="/ueber-uns" class="px-8 py-3 bg-brand-rose text-white font-bold rounded-full shadow-glow-rose hover:-translate-y-1 transition-all">Lerne uns kennen</a>
+                <a href="https://instagram.com/idiomadanza" target="_blank" rel="noopener noreferrer" class="px-8 py-3 bg-white/10 backdrop-blur-md text-white font-bold rounded-full border border-white/20 hover:bg-white/20 transition-all flex items-center gap-3">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg>
+                  Instagram
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Minor Note -->
+        <p class="text-center mt-8 text-sm opacity-40 dark:text-white italic">
+          Geführt von Patricia, Stephan, Chris & Nalini
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- COURSES PREVIEW SECTION -->
+  <section id="portfolio" class="py-20 bg-brand-light dark:bg-brand-dark relative z-10">
+    <div class="container mx-auto px-4">
+      <div class="text-center mb-16">
+        <h2 class="font-display text-4xl md:text-5xl font-bold text-brand-dark dark:text-white mb-4">Unser <span class="text-brand-rose">Kursangebot</span></h2>
+        <div class="w-24 h-1 bg-brand-glow mx-auto rounded-full"></div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <!-- Bachata Foundations -->
+        <div class="group block bg-white/70 dark:bg-brand-dark/50 backdrop-blur-md border border-white/20 dark:border-white/10 rounded-idioma overflow-hidden shadow-glass hover:shadow-glow-rose transition-all">
+          <div class="h-48 bg-brand-dark relative overflow-hidden flex items-center justify-center">
+             <div class="absolute inset-0 bg-brand-rose/20 group-hover:bg-brand-rose/40 transition-colors z-10"></div>
+             <span class="text-white/30 font-display text-4xl font-bold z-0">Bachata</span>
+          </div>
+          <div class="p-6">
+            <h4 class="text-2xl font-bold font-display mb-2 text-brand-dark dark:text-brand-light">Bachata Foundations</h4>
+            <p class="opacity-80">Lerne alle Sensual Elemente von Grund auf neu.</p>
+          </div>
+        </div>
+        
+        <!-- Bachata Combinations -->
+        <div class="group block bg-white/70 dark:bg-brand-dark/50 backdrop-blur-md border border-white/20 dark:border-white/10 rounded-idioma overflow-hidden shadow-glass hover:shadow-glow-rose transition-all">
+          <div class="h-48 bg-brand-dark relative overflow-hidden flex items-center justify-center">
+             <div class="absolute inset-0 bg-brand-rose/20 group-hover:bg-brand-rose/40 transition-colors z-10"></div>
+             <span class="text-white/30 font-display text-4xl font-bold z-0">Bachata</span>
+          </div>
+          <div class="p-6">
+            <h4 class="text-2xl font-bold font-display mb-2 text-brand-dark dark:text-brand-light">Bachata Combinations</h4>
+            <p class="opacity-80">Meister alle Figuren & Roots Dominican-Bachata für den Social Dance Floor.</p>
+          </div>
+        </div>
+
+        <!-- Bachata Pro -->
+        <div class="group block bg-white/70 dark:bg-brand-dark/50 backdrop-blur-md border border-white/20 dark:border-white/10 rounded-idioma overflow-hidden shadow-glass hover:shadow-glow-rose transition-all">
+          <div class="h-48 bg-brand-dark relative overflow-hidden flex items-center justify-center">
+             <div class="absolute inset-0 bg-brand-rose/30 group-hover:bg-brand-rose/50 transition-colors z-10"></div>
+             <span class="text-white/30 font-display text-4xl font-bold z-0 font-bold italic">PRO</span>
+          </div>
+          <div class="p-6">
+            <h4 class="text-2xl font-bold font-display mb-2 text-brand-dark dark:text-brand-light">Bachata Pro</h4>
+            <p class="opacity-80">Fortgeschrittene Technik, BachaZouk & Social Competition (Jack and Jill) Coaching.</p>
+          </div>
+        </div>
+
+        <!-- Bachata Influence -->
+        <div class="group block bg-white/70 dark:bg-brand-dark/50 backdrop-blur-md border border-white/20 dark:border-white/10 rounded-idioma overflow-hidden shadow-glass hover:shadow-glow-rose transition-all">
+          <div class="h-48 bg-brand-dark relative overflow-hidden flex items-center justify-center">
+             <div class="absolute inset-0 bg-brand-rose/20 group-hover:bg-brand-rose/40 transition-colors z-10"></div>
+             <span class="text-white/30 font-display text-4xl font-bold z-0">Style</span>
+          </div>
+          <div class="p-6">
+            <h4 class="text-2xl font-bold font-display mb-2 text-brand-dark dark:text-brand-light">Bachata Influence</h4>
+            <p class="opacity-80">Musicality, Styling & dein eigener Ausdruck.</p>
+          </div>
+        </div>
+
+        <!-- Salsa All Styles -->
+        <div class="group block bg-white/70 dark:bg-brand-dark/50 backdrop-blur-md border border-white/20 dark:border-white/10 rounded-idioma overflow-hidden shadow-glass hover:shadow-glow-amber transition-all">
+          <div class="h-48 bg-brand-dark relative overflow-hidden flex items-center justify-center">
+             <div class="absolute inset-0 bg-brand-glow/20 group-hover:bg-brand-glow/40 transition-colors z-10"></div>
+             <span class="text-white/30 font-display text-4xl font-bold z-0">Salsa</span>
+          </div>
+          <div class="p-6">
+            <h4 class="text-2xl font-bold font-display mb-2 text-brand-dark dark:text-brand-light">Salsa All Styles</h4>
+            <p class="opacity-80">L.A. Style, Mambo, Cuban & Afro Elemente.</p>
+          </div>
+        </div>
+
+      </div>
+  </section>
+
+  <!-- TESTIMONIALS SECTION -->
+  <section id="testimonials" class="relative py-32 overflow-hidden">
+    <!-- Background Image with Overlay -->
+    <div class="absolute inset-0 z-0">
+      <img src="/images/testimonials/bg.png" alt="Club Atmosphere" class="w-full h-full object-cover">
+      <div class="absolute inset-0 bg-brand-dark/80 backdrop-blur-[2px]"></div>
+    </div>
+
+    <div class="container mx-auto px-4 relative z-10">
+      <div class="text-center mb-16">
+        <h2 class="font-display text-4xl md:text-5xl font-bold text-white mb-4">Was unsere <span class="text-brand-rose">Community</span> sagt</h2>
+        <div class="w-24 h-1 bg-brand-glow mx-auto rounded-full"></div>
+      </div>
+
+      <div class="max-w-6xl mx-auto px-4">
+        <div class="testimonial-slider swiper !overflow-visible">
+          <div class="swiper-wrapper">
+            <!-- Testimonial 1 -->
+            <div class="swiper-slide h-auto py-12">
+              <div class="bg-white/10 backdrop-blur-xl p-8 rounded-idioma border border-white/20 shadow-glass relative group h-full flex flex-col pt-14 transition-all duration-500 hover:bg-white/15">
+                <div class="absolute -top-6 left-1/2 -translate-x-1/2 z-20">
+                  <div class="w-20 h-20 rounded-full border-4 border-brand-rose overflow-hidden shadow-glow-rose transition-transform duration-500 group-hover:scale-110">
+                    <img src="/images/testimonials/melanie.png" alt="Melanie K." class="w-full h-full object-cover">
+                  </div>
+                </div>
+                <div class="text-center text-white flex-grow flex flex-col">
+                  <h4 class="text-2xl font-bold font-display">Melanie K.</h4>
+                  <p class="text-brand-rose text-sm font-medium mb-4">ehemalige Schülerin</p>
+                  <div class="flex justify-center gap-1 mb-6 text-brand-glow">
+                    <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+                  </div>
+                  <div class="flex-grow flex items-center justify-center">
+                    <p class="italic opacity-90 leading-relaxed relative text-sm md:text-base">
+                      <span class="text-3xl font-serif absolute -top-4 -left-6 opacity-30 text-brand-rose">"</span>
+                      Hi Stephan, vielen lieben Dank für die tollen Unterrichtsstunden und die super Social Tänze! Macht immer viel Spaß, weiter so!
+                      <span class="text-3xl font-serif absolute -bottom-6 -right-6 opacity-30 text-brand-rose">"</span>
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Testimonial 2: Jorge Escalona (Korke) -->
+            <div class="swiper-slide h-auto py-12">
+              <div class="bg-white/10 backdrop-blur-xl p-8 rounded-idioma border border-white/20 shadow-glass relative group h-full flex flex-col pt-14 transition-all duration-500 hover:bg-white/15">
+                <div class="absolute -top-6 left-1/2 -translate-x-1/2 z-20">
+                  <div class="w-20 h-20 rounded-full border-4 border-brand-glow overflow-hidden shadow-glow-amber transition-transform duration-500 group-hover:scale-110">
+                    <img src="/images/testimonials/jorge.png" alt="Jorge Escalona (Korke)" class="w-full h-full object-cover">
+                  </div>
+                </div>
+                <div class="text-center text-white flex-grow flex flex-col">
+                  <h4 class="text-2xl font-bold font-display">Jorge Escalona (Korke)</h4>
+                  <p class="text-brand-glow text-sm font-medium mb-4">Bachata Sensual Creator</p>
+                  <div class="flex justify-center gap-1 mb-6 text-brand-glow">
+                    <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+                  </div>
+                  <div class="flex-grow flex items-center justify-center mb-6">
+                    <p class="italic opacity-90 leading-relaxed relative text-sm md:text-base">
+                      <span class="text-3xl font-serif absolute -top-4 -left-6 opacity-30 text-brand-glow">"</span>
+                      Hello everybody, Patricia and Stephan are an amazing couple. They are teaching regular classes of Bachata Sensual Official in Regensburg. Don't miss them and become the best follower and leader.
+                      <span class="text-3xl font-serif absolute -bottom-6 -right-6 opacity-30 text-brand-glow">"</span>
+                    </p>
+                  </div>
+                  <a href="https://www.instagram.com/reel/Crp9VoXIT6F/?igshid=MTIyMzRjYmRlZg==" target="_blank" rel="noopener noreferrer" class="text-[10px] text-brand-rose hover:text-brand-glow transition-colors font-black uppercase tracking-[0.2em] block mt-auto">
+                    [watch the full video message]
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            <!-- Testimonial 3 -->
+            <div class="swiper-slide h-auto py-12">
+              <div class="bg-white/10 backdrop-blur-xl p-8 rounded-idioma border border-white/20 shadow-glass relative group h-full flex flex-col pt-14 transition-all duration-500 hover:bg-white/15">
+                <div class="absolute -top-6 left-1/2 -translate-x-1/2 z-20">
+                  <div class="w-20 h-20 rounded-full border-4 border-brand-glow overflow-hidden shadow-glow-amber transition-transform duration-500 group-hover:scale-110">
+                    <img src="/images/testimonials/hugo.png" alt="Hugo A." class="w-full h-full object-cover">
+                  </div>
+                </div>
+                <div class="text-center text-white flex-grow flex flex-col">
+                  <h4 class="text-2xl font-bold font-display">Hugo A.</h4>
+                  <p class="text-brand-glow text-sm font-medium mb-4">Bachatero</p>
+                  <div class="flex justify-center gap-1 mb-6 text-brand-glow">
+                    <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+                  </div>
+                  <div class="flex-grow flex items-center justify-center">
+                    <p class="italic opacity-90 leading-relaxed relative text-sm md:text-base">
+                      <span class="text-3xl font-serif absolute -top-4 -left-6 opacity-30 text-brand-glow">"</span>
+                      Patricia und Stephan sind lustig, fleißig und leidenschaftlich beim Tanzen und in den Kursen. Sie bilden sich viel weiter und entwickeln sich stetig. Zusammen unterrichten sie einen aktuellen und social tauglichen Bachata-Stil, und teilen ihre gesamten Erfahrungen im Kurs. Ich habe viel Spaß und lerne viel mit ihnen.
+                      <span class="text-3xl font-serif absolute -bottom-6 -right-6 opacity-30 text-brand-glow">"</span>
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Testimonial 4 -->
+            <div class="swiper-slide h-auto py-12">
+              <div class="bg-white/10 backdrop-blur-xl p-8 rounded-idioma border border-white/20 shadow-glass relative group h-full flex flex-col pt-14 transition-all duration-500 hover:bg-white/15">
+                <div class="absolute -top-6 left-1/2 -translate-x-1/2 z-20">
+                  <div class="w-20 h-20 rounded-full border-4 border-brand-rose overflow-hidden shadow-glow-rose transition-transform duration-500 group-hover:scale-110">
+                    <img src="/images/testimonials/susy.png" alt="Susy K." class="w-full h-full object-cover">
+                  </div>
+                </div>
+                <div class="text-center text-white flex-grow flex flex-col">
+                  <h4 class="text-2xl font-bold font-display">Susy K.</h4>
+                  <p class="text-brand-rose text-sm font-medium mb-4">ehemalige Schülerin</p>
+                  <div class="flex justify-center gap-1 mb-6 text-brand-glow">
+                    <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+                  </div>
+                  <div class="flex-grow flex items-center justify-center">
+                    <p class="italic opacity-90 leading-relaxed relative text-sm md:text-base">
+                      <span class="text-3xl font-serif absolute -top-4 -left-6 opacity-30 text-brand-rose">"</span>
+                      Hey Stephan! Ich wollt mich grad nochmal bei dir bedanken dafür dass ich bei euch Bachata lernen durfte und natürlich für die ganzen Social Tänze! Hab grad in Mexiko den 2. Platz bei nem Social Wettkampf gewonnen. Völlig unerwartet wirklich Danke dafür! Mach weiter so.
+                      <span class="text-3xl font-serif absolute -bottom-6 -right-6 opacity-30 text-brand-rose">"</span>
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Pagination mit mehr Abstand -->
+          <div class="swiper-pagination testimonial-pagination"></div>
+        </div>
+      </div>
+
+      <!-- Swiper Initialization -->
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+      <script is:inline src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+      <script is:inline>
+        document.addEventListener('DOMContentLoaded', () => {
+          new Swiper('.testimonial-slider', {
+            slidesPerView: 1,
+            spaceBetween: 30,
+            loop: true,
+            grabCursor: true,
+            centeredSlides: false,
+            autoplay: {
+              delay: 5000,
+              disableOnInteraction: false,
+            },
+            pagination: {
+              el: '.testimonial-pagination',
+              clickable: true,
+            },
+            breakpoints: {
+              768: {
+                slidesPerView: 2,
+              }
+            }
+          });
+        });
+      </script>
+
+      <style is:global>
+        .testimonial-pagination {
+          position: relative !important;
+          margin-top: 2rem;
+          bottom: 0 !important;
+        }
+        .testimonial-pagination .swiper-pagination-bullet {
+          @apply bg-white opacity-20 w-3 h-3 transition-all duration-300;
+        }
+        .testimonial-pagination .swiper-pagination-bullet-active {
+          @apply bg-brand-rose opacity-100 w-8 rounded-full;
+        }
+      </style>
+    </div>
+  </section>
+
+  <!-- PRICING SECTION -->
+  <section id="pricing" class="py-24 bg-brand-light dark:bg-brand-dark/95 relative overflow-hidden border-t border-brand-dark/5 dark:border-white/5">
+    <!-- Background Accents -->
+    <div class="absolute -right-40 top-1/2 w-96 h-96 bg-brand-rose/5 rounded-full blur-[120px] -z-10"></div>
+
+    <div class="container mx-auto px-4 relative z-10">
+      <div class="text-center mb-16">
+        <h2 class="font-display text-4xl md:text-5xl font-bold text-brand-dark dark:text-white mb-4">Investition in dein <span class="text-brand-rose">Tanzen</span></h2>
+        <div class="w-24 h-1 bg-brand-glow mx-auto rounded-full mb-6"></div>
+        <p class="max-w-2xl mx-auto opacity-80 text-lg">Einfache und transparente Preise für alle unsere Mitglieder.</p>
+      </div>
+
+      <div class="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+        <!-- Student Card -->
+        <div class="group bg-white/70 dark:bg-brand-dark/50 backdrop-blur-md p-10 rounded-idioma shadow-glass text-center border border-white/20 dark:border-white/10 border-t-4 border-t-brand-glow hover:-translate-y-3 transition-all duration-500">
+          <h3 class="text-2xl font-display font-bold mb-4 opacity-90">Für Studierende</h3>
+          <div class="text-5xl font-bold text-brand-rose mb-8">19€ <span class="text-lg text-brand-dark dark:text-brand-light opacity-60 font-normal">/ Monat</span></div>
+          <ul class="text-left space-y-3 mb-10 opacity-80 max-w-xs mx-auto">
+            <li class="flex items-center gap-2">✓ Alle Bachata & Salsa Kurse</li>
+            <li class="flex items-center gap-2">✓ Kostenlose Socials</li>
+            <li class="flex items-center gap-2">✓ Vergünstigte Workshops</li>
+          </ul>
+          <a href="/kontakt" class="block w-full py-4 px-6 bg-brand-dark dark:bg-white text-white dark:text-brand-dark font-bold rounded-idioma hover:bg-brand-rose hover:text-white transition-all duration-300 shadow-lg">Schreib dich ein</a>
+        </div>
+        
+        <!-- Regular Card -->
+        <div class="group bg-white/70 dark:bg-brand-dark/50 backdrop-blur-md p-10 rounded-idioma shadow-glass text-center border border-white/20 dark:border-white/10 border-t-4 border-t-brand-rose hover:-translate-y-3 transition-all duration-500 relative">
+          <div class="absolute top-0 right-0 bg-brand-rose text-white text-xs font-bold px-4 py-2 rounded-bl-lg rounded-tr-idioma tracking-widest uppercase">Beliebt</div>
+          <h3 class="text-2xl font-display font-bold mb-4 opacity-90">Alle Kurse</h3>
+          <div class="text-5xl font-bold text-brand-rose mb-8">39€ <span class="text-lg text-brand-dark dark:text-brand-light opacity-60 font-normal">/ Monat</span></div>
+          <ul class="text-left space-y-3 mb-10 opacity-80 max-w-xs mx-auto">
+            <li class="flex items-center gap-2 text-brand-rose font-semibold">✓ Voller Zugriff auf alles</li>
+            <li class="flex items-center gap-2">✓ Kostenlose Socials</li>
+            <li class="flex items-center gap-2">✓ Vergünstigte Workshops</li>
+          </ul>
+          <a href="/kontakt" class="block w-full py-4 px-6 bg-brand-rose text-white font-bold rounded-idioma shadow-glow-rose hover:bg-brand-dark transition-all duration-300">Schreib dich ein</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</Layout>

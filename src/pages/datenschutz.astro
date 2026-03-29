@@ -1,0 +1,93 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="Datenschutz | Idiomadanza e.V." description="Datenschutzerklärung des Idiomadanza e.V. (Regensburg) – Informationen zur Verarbeitung personenbezogener Daten.">
+  <div class="container mx-auto px-4 py-20 max-w-4xl">
+    <!-- Header -->
+    <div class="text-center mb-12">
+      <h1 class="font-display text-4xl md:text-5xl font-bold text-brand-dark dark:text-brand-light mb-4">Daten<span class="text-brand-rose">schutz</span></h1>
+      <div class="w-24 h-1 bg-brand-glow mx-auto rounded-full mb-6"></div>
+      <p class="opacity-80">Aktueller Stand gemäß DSGVO</p>
+    </div>
+
+    <!-- Content Card -->
+    <div class="bg-white/70 dark:bg-brand-dark/50 backdrop-blur-md rounded-idioma p-8 md:p-12 shadow-glass border border-white/20 dark:border-white/10 legal-content">
+      
+      <section class="mb-12">
+        <h2>1. Verantwortlicher für die Datenverarbeitung</h2>
+        <p>Verantwortlich für die Verarbeitung Ihrer personenbezogenen Daten auf dieser Website im Sinne der Datenschutz-Grundverordnung (DSGVO) ist:</p>
+        <div class="mt-4 p-6 bg-brand-rose/5 border border-brand-rose/10 rounded-lg">
+          <p><strong>Idiomadanza e.V.</strong><br />
+          Isarstr. 85, 93057 Regensburg<br />
+          E-Mail: <a href="mailto:mail@idiomadanza.de" class="text-brand-rose">mail [at] idiomadanza.de</a><br />
+          Web: <a href="https://idiomadanza.de" class="text-brand-rose">www.idiomadanza.de</a></p>
+        </div>
+      </section>
+
+      <section class="mb-12">
+        <h2>2. Erhebung und Speicherung personenbezogener Daten</h2>
+        <h3>a) Beim Besuch der Website</h3>
+        <p>Beim Aufrufen unserer Website werden durch den auf Ihrem Endgerät zum Einsatz kommenden Browser automatisch Informationen an den Server unserer Website gesendet. Diese Informationen werden temporär in einem sog. Logfile gespeichert (z.B. IP-Adresse, Datum/Uhrzeit des Zugriffs, Name der abgerufenen Datei).</p>
+        <p>Die Verarbeitung erfolgt gemäß Art. 6 Abs. 1 lit. f DSGVO zur Gewährleistung eines reibungslosen Verbindungsaufbaus und einer komfortablen Nutzung der Website.</p>
+
+        <h3>b) Bei Nutzung unseres Kontaktformulars / E-Mail</h3>
+        <p>Bei Fragen jeglicher Art bieten wir Ihnen die Möglichkeit, mit uns über die auf der Website angegebenen Kontaktdaten in Verbindung zu treten. Die Datenverarbeitung zum Zwecke der Kontaktaufnahme erfolgt nach Art. 6 Abs. 1 lit. a DSGVO auf Grundlage Ihrer freiwillig erteilten Einwilligung.</p>
+      </section>
+
+      <section class="mb-12">
+        <h2>3. Weitergabe von Daten</h2>
+        <p>Eine Übermittlung Ihrer persönlichen Daten an Dritte zu anderen als den im Folgenden aufgeführten Zwecken findet nicht statt. Wir geben Ihre Daten nur weiter, wenn:</p>
+        <ul>
+          <li>Sie Ihre ausdrückliche Einwilligung dazu erteilt haben (Art. 6 Abs. 1 lit. a DSGVO),</li>
+          <li>die Weitergabe zur Geltendmachung, Ausübung oder Verteidigung von Rechtsansprüchen erforderlich ist,</li>
+          <li>eine gesetzliche Verpflichtung besteht.</li>
+        </ul>
+      </section>
+
+      <section class="mb-12">
+        <h2>4. Ihre Rechte als Betroffene(r)</h2>
+        <p>Sie haben das Recht:</p>
+        <ul>
+          <li><strong>Auskunft</strong> über Ihre von uns verarbeiteten Daten zu verlangen (Art. 15 DSGVO),</li>
+          <li>die <strong>Berichtigung</strong> unrichtiger Daten zu fordern (Art. 16 DSGVO),</li>
+          <li>die <strong>Löschung</strong> Ihrer bei uns gespeicherten Daten zu verlangen (Art. 17 DSGVO),</li>
+          <li>die <strong>Einschränkung der Verarbeitung</strong> zu fordern (Art. 18 DSGVO),</li>
+          <li>Ihre einmal erteilte <strong>Einwilligung zu widerrufen</strong> (Art. 7 Abs. 3 DSGVO).</li>
+        </ul>
+      </section>
+
+      <section class="mb-12">
+        <h2>5. Cookies</h2>
+        <p>Wir setzen auf unserer Seite ggf. Cookies ein. Dies sind kleine Dateien, die Ihr Browser automatisch erstellt und die auf Ihrem Endgerät gespeichert werden. Wir nutzen diese primär für technische Zwecke, um die Website funktionsfähig zu halten.</p>
+      </section>
+
+      <div class="mt-16 pt-8 border-t border-brand-dark/10 dark:border-white/10 opacity-70 text-sm">
+        <p>Diese Datenschutzerklärung basiert auf den gesetzlichen Anforderungen der DSGVO und ist speziell auf den Betrieb des Vereins Idiomadanza e.V. zugeschnitten.</p>
+      </div>
+
+    </div>
+  </div>
+</Layout>
+
+<style is:global>
+  .legal-content h2 {
+    @apply text-2xl font-display font-bold text-brand-rose mt-10 mb-6;
+  }
+  
+  .legal-content h3 {
+    @apply text-lg font-bold font-display mt-6 mb-3 text-brand-dark dark:text-brand-light;
+  }
+  
+  .legal-content p {
+    @apply mb-4 leading-relaxed opacity-90;
+  }
+
+  .legal-content ul {
+    @apply list-disc list-inside mb-6 ml-4 space-y-2 opacity-90;
+  }
+
+  .legal-content strong {
+    @apply font-bold text-brand-rose;
+  }
+</style>

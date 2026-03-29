@@ -1,0 +1,224 @@
+---
+import '../styles/global.css';
+import CookieBanner from '../components/CookieBanner.astro';
+
+interface Props {
+  title: string;
+  description?: string;
+  canonical?: string;
+  ogImage?: string;
+  breadcrumb?: { name: string; url: string }[];
+}
+
+const { 
+  title, 
+  description = "Idiomadanza e.V. – Bachata und Salsa Tanzkurse in Regensburg. Wöchentliche Kurse, Workshops und Socials für alle Level.",
+  canonical,
+  ogImage = "/images/og-default.png",
+  breadcrumb
+} = Astro.props;
+
+const siteUrl = "https://idiomadanza.de";
+const canonicalUrl = canonical ? `${siteUrl}${canonical}` : `${siteUrl}${Astro.url.pathname}`;
+
+// Auto-generate breadcrumb from URL if not provided
+const pathSegments = Astro.url.pathname.split('/').filter(Boolean);
+const breadcrumbLabels: Record<string, string> = {
+  'kurse': 'Tanzkurse',
+  'preise': 'Preise & Mitgliedschaft',
+  'ueber-uns': 'Über Uns',
+  'kontakt': 'Kontakt',
+  'impressum': 'Impressum',
+  'datenschutz': 'Datenschutz',
+};
+
+const autoBreadcrumb = breadcrumb || pathSegments.map((seg, i) => ({
+  name: breadcrumbLabels[seg] || seg,
+  url: '/' + pathSegments.slice(0, i + 1).join('/')
+}));
+
+const breadcrumbSchema = autoBreadcrumb.length > 0 ? {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Startseite", "item": siteUrl },
+    ...autoBreadcrumb.map((item, i) => ({
+      "@type": "ListItem",
+      "position": i + 2,
+      "name": item.name,
+      "item": `${siteUrl}${item.url}`
+    }))
+  ]
+} : null;
+---
+
+<!DOCTYPE html>
+<html lang="de" class="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/png" href="/favicon.png" />
+    <meta name="generator" content={Astro.generator} />
+
+    <!-- Primary SEO -->
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalUrl} />
+    <meta name="robots" content="index, follow" />
+
+    <!-- Geo/Local SEO Meta -->
+    <meta name="geo.region" content="DE-BY" />
+    <meta name="geo.placename" content="Regensburg" />
+    <meta name="geo.position" content="49.0134;12.1016" />
+    <meta name="ICBM" content="49.0134, 12.1016" />
+
+    <!-- Open Graph / Social -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={`${siteUrl}${ogImage}`} />
+    <meta property="og:locale" content="de_DE" />
+    <meta property="og:site_name" content="Idiomadanza e.V." />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={`${siteUrl}${ogImage}`} />
+
+    <!-- Schema.org Markup (Local Business + DanceSchool) -->
+    <script type="application/ld+json" set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": ["DanceSchool", "SportsActivityLocation"],
+      "name": "Idiomadanza e.V.",
+      "description": "Bachata und Salsa Tanzverein in Regensburg. Wöchentliche Kurse, Workshops und Socials für alle Level.",
+      "url": siteUrl,
+      "telephone": "+4915678659226",
+      "email": "info@idiomadanza.de",
+      "priceRange": "€€",
+      "image": `${siteUrl}/images/logo.png`,
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Isarstr. 85",
+        "addressLocality": "Regensburg",
+        "addressRegion": "Bayern",
+        "postalCode": "93057",
+        "addressCountry": "DE"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": 49.0134,
+        "longitude": 12.1016
+      },
+      "areaServed": {
+        "@type": "City",
+        "name": "Regensburg"
+      },
+      "openingHoursSpecification": [
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": "Tuesday",
+          "opens": "18:00",
+          "closes": "21:00"
+        },
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": "Wednesday",
+          "opens": "18:00",
+          "closes": "21:00"
+        }
+      ],
+      "sameAs": []
+    })} />
+
+    <!-- Breadcrumb Schema (Agentic SEO) -->
+    {breadcrumbSchema && (
+      <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+    )}
+    
+    <!-- Fonts (Lokal gehostet in global.css) -->
+    <link rel="preload" href="/fonts/inter-400.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="/fonts/playfair-400.woff2" as="font" type="font/woff2" crossorigin>
+  </head>
+  <body class="font-sans min-h-screen flex flex-col">
+    <header class="sticky top-0 z-50 w-full backdrop-blur-md bg-white/70 dark:bg-brand-dark/80 shadow-glass border-b border-white/10 transition-all duration-300">
+      <!-- Navigationsbereich mit modernem runden Logo -->
+      <nav class="container mx-auto px-4 py-2 flex justify-between items-center" aria-label="Hauptnavigation">
+        <a href="/" class="flex items-center gap-4 group" aria-label="Idiomadanza Startseite">
+          <div class="relative">
+            <div class="absolute inset-0 bg-brand-glow rounded-full blur-md opacity-20 group-hover:opacity-40 transition-opacity"></div>
+            <div class="relative w-14 h-14 rounded-full bg-black border-2 border-brand-glow/30 flex items-center justify-center overflow-hidden shadow-glow-amber group-hover:scale-105 transition-transform">
+              <img src="/images/logo.png" alt="Idiomadanza e.V. Logo" width="56" height="56" class="w-full h-full object-cover p-1">
+            </div>
+          </div>
+          <span class="text-2xl font-display font-bold text-brand-rose leading-none transition-colors group-hover:text-brand-glow">Idiomadanza</span>
+        </a>
+        <div class="hidden md:flex gap-6 items-center">
+          <a href="/kurse" class="font-medium hover:text-brand-rose transition-colors dark:text-white/80 dark:hover:text-white">Kurse</a>
+          <a href="/preise" class="font-medium hover:text-brand-rose transition-colors dark:text-white/80 dark:hover:text-white">Preise</a>
+          <a href="/ueber-uns" class="font-medium hover:text-brand-rose transition-colors dark:text-white/80 dark:hover:text-white">Über uns</a>
+          <a href="/kontakt" class="bg-brand-rose px-6 py-2.5 rounded-full text-white text-sm font-bold shadow-glow-rose hover:-translate-y-0.5 transition-all">Anmelden</a>
+        </div>
+      </nav>
+    </header>
+
+    <main class="flex-grow">
+      <slot />
+    </main>
+
+    <footer class="bg-brand-dark text-white pt-20 pb-10 border-t border-white/5">
+      <div class="container mx-auto px-4">
+        <div class="grid md:grid-cols-4 gap-12 mb-16">
+          <div class="space-y-6">
+            <div class="flex items-center gap-4">
+              <div class="relative w-12 h-12 rounded-full bg-black border border-brand-glow/30 flex items-center justify-center overflow-hidden shadow-glow-amber">
+                <img src="/images/logo.png" alt="Idiomadanza e.V. Logo" width="48" height="48" class="w-full h-full object-cover p-1">
+              </div>
+              <h3 class="font-display text-xl text-brand-glow">Idiomadanza e.V.</h3>
+            </div>
+            <p class="text-sm opacity-60 leading-relaxed">Tanzen verbindet: Dein Verein für Bachata & Salsa in Regensburg. Erlebe Leidenschaft und Community.</p>
+          </div>
+          <div>
+            <h4 class="font-bold mb-6 text-brand-rose uppercase tracking-widest text-xs">Rechtliches</h4>
+            <ul class="space-y-3 text-sm opacity-70">
+              <li><a href="/impressum" class="hover:text-brand-rose transition-colors">Impressum</a></li>
+              <li><a href="/datenschutz" class="hover:text-brand-rose transition-colors">Datenschutz</a></li>
+              <li><a href="/cookie-richtlinie" class="hover:text-brand-rose transition-colors">Cookies</a></li>
+              <li><a href="/satzung" class="hover:text-brand-rose transition-colors">Satzung</a></li>
+              <li><a href="/vereinsordnung" class="hover:text-brand-rose transition-colors">Vereinsordnung</a></li>
+            </ul>
+          </div>
+          <div>
+            <h4 class="font-bold mb-6 text-brand-rose uppercase tracking-widest text-xs">Entdecken</h4>
+            <ul class="space-y-3 text-sm opacity-70">
+              <li><a href="/kurse" class="hover:text-brand-rose transition-colors">Wöchentliche Kurse</a></li>
+              <li><a href="/preise" class="hover:text-brand-rose transition-colors">Preise & Mitgliedschaft</a></li>
+              <li><a href="/ueber-uns" class="hover:text-brand-rose transition-colors">Über den Verein</a></li>
+            </ul>
+          </div>
+          <div>
+            <h4 class="font-bold mb-6 text-brand-rose uppercase tracking-widest text-xs">Kontakt</h4>
+            <div class="text-sm opacity-70 space-y-4">
+              <p class="flex items-center gap-3">
+                <span class="text-brand-glow">📍</span> Isarstr. 85, 93057 Regensburg
+              </p>
+              <a href="https://wa.me/+4915678659226?text=Hallo%20Idiomadanza,%20ich%20habe%20weitere%20Fragen%20zu%20..." class="flex items-center gap-3 text-sm opacity-70 hover:opacity-100 hover:text-[#25D366] transition-all group">
+                <span class="text-brand-glow group-hover:rotate-12 transition-transform">💬</span> 
+                <span class="font-bold">Chat on WhatsApp</span>
+              </a>
+              <a href="mailto:mail@idiomadanza.de" class="flex items-center gap-3 text-sm opacity-70 hover:opacity-100 hover:text-brand-rose transition-colors group">
+                <span class="text-brand-glow group-hover:scale-110 transition-transform">📧</span> 
+                mail [at] idiomadanza.de
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="pt-8 border-t border-white/5 text-center text-xs opacity-40">
+          &copy; {new Date().getFullYear()} Idiomadanza e.V. Alle Rechte vorbehalten.
+        </div>
+      </div>
+    </footer>
+    <CookieBanner />
+  </body>
+</html>

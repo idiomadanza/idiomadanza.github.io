@@ -1,0 +1,81 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="Impressum | Idiomadanza e.V." description="Das offizielle Impressum des Idiomadanza e.V. (Regensburg).">
+  <div class="container mx-auto px-4 py-20 max-w-4xl">
+    <!-- Header/Hero der Seite -->
+    <div class="text-center mb-12">
+      <h1 class="font-display text-4xl md:text-5xl font-bold text-brand-dark dark:text-brand-light mb-4">Impres<span class="text-brand-rose">sum</span></h1>
+      <div class="w-24 h-1 bg-brand-glow mx-auto rounded-full mb-6"></div>
+    </div>
+
+    <!-- Content Card -->
+    <div class="bg-white/70 dark:bg-brand-dark/50 backdrop-blur-md rounded-idioma p-8 md:p-12 shadow-glass border border-white/20 dark:border-white/10 legal-content">
+      
+      <div class="grid md:grid-cols-2 gap-12">
+        <div>
+          <h2 class="text-2xl font-display font-bold text-brand-rose mb-6">Angaben gemäß § 5 TMG</h2>
+          <div class="space-y-4 opacity-90 leading-relaxed">
+            <p class="font-bold text-lg">Idiomadanza e.V.</p>
+            <p>
+              Isarstr. 85<br />
+              93057 Regensburg
+            </p>
+            <p>
+              <strong>Registergericht:</strong> Amtsgericht Regensburg<br />
+              <strong>Registernummer:</strong> VR 201849
+            </p>
+            <p>
+              <strong>Vorstand:</strong><br />
+              Stephan Lopez (Vorsitzender)<br />
+              Patricia Lopez (Kassenwart)<br />
+              Silke Gall (Schriftführer)<br />
+              <em class="block mt-2 opacity-70">Wir freuen uns Idiomadanza jeweils zu zweit vertreten zu dürfen!</em>
+            </p>
+          </div>
+        </div>
+
+        <div class="space-y-8">
+          <div>
+            <h2 class="text-2xl font-display font-bold text-brand-rose mb-6">Kontakt</h2>
+            <div class="space-y-2 opacity-90">
+              <p>Telefon: +49 (0) 15678 659226</p>
+              <p>E-Mail: <a href="mailto:mail@idiomadanza.de" class="text-brand-rose hover:underline">mail [at] idiomadanza.de</a></p>
+              <p>Web: <a href="https://idiomadanza.de" class="text-brand-rose hover:underline">www.idiomadanza.de</a></p>
+            </div>
+          </div>
+
+          <div>
+            <h2 class="text-2xl font-display font-bold text-brand-rose mb-6">Redaktionell verantwortlich</h2>
+            <p class="opacity-90">
+              Gemäß § 18 Abs. 2 MStV:<br />
+              Stephan Lopez<br />
+              Isarstr. 85<br />
+              93057 Regensburg
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="mt-16 pt-8 border-t border-brand-dark/10 dark:border-white/10 opacity-70 text-sm italic">
+        <p>Hinweis: Der Verein ist als gemeinnützig anerkannt und fördert Kunst und Kultur, insbesondere den Tanzsport (Bachata & Salsa).</p>
+      </div>
+    </div>
+  </div>
+</Layout>
+
+<style is:global>
+  /* Konsistentes Styling für rechtliche Inhalte */
+  .legal-content h2 {
+    @apply text-xl md:text-2xl font-display font-bold text-brand-rose mt-0 mb-6;
+  }
+  
+  .legal-content p {
+    @apply mb-2;
+  }
+
+  .legal-content a {
+    @apply transition-colors duration-300;
+  }
+</style>

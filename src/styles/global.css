@@ -1,0 +1,26 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Lokal gehostete Fonts (DSGVO-konform) */
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400 700;
+  font-display: swap;
+  src: url('/fonts/inter-400.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Playfair Display';
+  font-style: normal;
+  font-weight: 400 700;
+  font-display: swap;
+  src: url('/fonts/playfair-400.woff2') format('woff2');
+}
+
+@layer base {
+  html, body {
+    @apply antialiased text-brand-dark dark:text-brand-light bg-brand-light dark:bg-brand-dark transition-colors duration-300;
+  }
+}
