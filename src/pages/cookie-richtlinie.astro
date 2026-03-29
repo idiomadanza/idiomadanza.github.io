@@ -1,0 +1,87 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="Cookie-Richtlinie | Idiomadanza e.V." description="Informationen über die Verwendung von Cookies auf der Website des Idiomadanza e.V. (Regensburg).">
+  <div class="container mx-auto px-4 py-20 max-w-4xl">
+    <!-- Header -->
+    <div class="text-center mb-12">
+      <h1 class="font-display text-4xl md:text-5xl font-bold text-brand-dark dark:text-brand-light mb-4">Cookie-<span class="text-brand-rose">Richtlinie</span></h1>
+      <div class="w-24 h-1 bg-brand-glow mx-auto rounded-full mb-6"></div>
+      <p class="opacity-80 leading-relaxed max-w-2xl mx-auto">
+        Mit dieser Richtlinie möchten wir erklären, wie wir Cookies auf dieser Website verwenden, um dein Erlebnis zu verbessern und die Funktionalität sicherzustellen.
+      </p>
+    </div>
+
+    <!-- Content Card -->
+    <div class="bg-white/70 dark:bg-brand-dark/50 backdrop-blur-md rounded-idioma p-8 md:p-12 shadow-glass border border-white/20 dark:border-white/10 legal-content">
+      
+      <section class="mb-12">
+        <h2>1. Was sind Cookies?</h2>
+        <p>
+          Cookies sind kleine Texteinheiten, ähnlich wie Textdateien, die auf deinem Endgerät gespeichert und gelesen werden können. Sie dienen verschiedenen Zwecken, unter anderem der Aufrechterhaltung grundlegender Funktionen der Website, der Sicherheit und der Bereitstellung optionaler Funktionen.
+        </p>
+      </section>
+
+      <section class="mb-12">
+        <h2>2. Warum verwenden wir Cookies?</h2>
+        <p>
+          Wir setzen Cookies ein, um die technische Funktionalität unserer Website zu gewährleisten (z.B. Navigation, Ladezeiten) und um externe Dienste wie <strong>Google Maps</strong> korrekt darzustellen.
+        </p>
+        <p>
+          Da wir keine Werbe-Netzwerke oder komplexen Analysetools (wie Google Analytics) ohne deine explizite Zustimmung direkt laden, verwenden wir primär <strong>technisch notwendige Cookies</strong>.
+        </p>
+      </section>
+
+      <section class="mb-12">
+        <h2>3. Arten von Cookies auf dieser Website</h2>
+        
+        <h3>Essenzielle Cookies (Notwendig)</h3>
+        <ul class="list-disc list-inside space-y-2 opacity-90 mb-6 ml-4">
+          <li><strong>Zweck:</strong> Diese Cookies sind für die grundlegende Funktionalität der Website unverzichtbar.</li>
+          <li><strong>Technik:</strong> Lokaler Speicher für Theme-Einstellungen (Hell/Dunkel) oder Navigationszustände.</li>
+        </ul>
+
+        <h3>Externe Medien (Drittanbieter)</h3>
+        <p>
+          Wir binden Dienste von Drittanbietern ein, um die Benutzerfreundlichkeit zu erhöhen (z.B. Google Maps zur Standortanzeige). Diese Dienste können eigene Cookies auf deinem Endgerät speichern.
+        </p>
+        <ul class="list-disc list-inside space-y-2 opacity-90 mb-6 ml-4">
+          <li><strong>Google Maps:</strong> Wird zur Anzeige unserer Standorte verwendet. Google erfasst dabei ggf. deine IP-Adresse und speichert Cookies für Tracking-Zwecke. <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer" class="text-brand-rose hover:underline">Google Datenschutzerklärung</a></li>
+        </ul>
+      </section>
+
+      <section class="mb-12">
+        <h2>4. Wie verwalte ich Cookies?</h2>
+        <p>
+          Du kannst das Speichern von Cookies in deinem Browser jederzeit deaktivieren oder bereits gesetzte Cookies löschen. Bitte beachte, dass dies die Funktionalität einiger Website-Bereiche (z.B. die interaktive Karte) einschränken kann.
+        </p>
+        <div class="mt-6 p-6 bg-brand-glow/10 border border-brand-glow/20 rounded-lg">
+          <p class="font-bold mb-2">Browser-Einstellungen:</p>
+          <p class="text-sm opacity-80 leading-relaxed">
+            In jedem Browser (Chrome, Safari, Firefox, Edge) findest du die Cookie-Einstellungen unter "Datenschutz & Sicherheit". Dort kannst du Cookies einzelner Seiten blockieren oder den Verlauf löschen.
+          </p>
+        </div>
+      </section>
+
+      <div class="mt-16 pt-8 border-t border-brand-dark/10 dark:border-white/10 opacity-70 text-sm italic">
+        <p>Stand der Cookie-Richtlinie: März 2026. Idiomadanza e.V. behält sich vor, diese Richtlinie bei technischen Änderungen anzupassen.</p>
+      </div>
+
+    </div>
+  </div>
+</Layout>
+
+<style is:global>
+  .legal-content h2 {
+    @apply text-2xl font-display font-bold text-brand-rose mt-10 mb-6;
+  }
+  
+  .legal-content h3 {
+    @apply text-lg font-bold font-display mt-8 mb-4 text-brand-dark dark:text-brand-light;
+  }
+  
+  .legal-content p {
+    @apply mb-4 leading-relaxed opacity-90;
+  }
+</style>

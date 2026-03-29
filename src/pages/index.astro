@@ -96,7 +96,7 @@ const reviewSchema = {
           <span class="text-brand-glow">🔥</span> <strong>Nächster Bachata-Anfängerkurs:</strong> Di, 05.05.2026 um 20:00 Uhr
         </p>
         <p class="text-white/60 text-sm text-center md:text-left flex items-center gap-2">
-          <span>ℹ️</span> MI 25.03.2026 finden keine Kurse statt.
+          <span>ℹ️</span> MI 01.04.2026 18:15 Uhr Raum für Engagement Bachata Ladystyling mit Patricia
         </p>
       </div>
       <div class="h-px md:h-12 w-full md:w-px bg-white/10"></div>
@@ -116,11 +116,12 @@ const reviewSchema = {
       </div>
       
       <div class="grid md:grid-cols-2 gap-12 items-center">
-        <div class="rounded-idioma overflow-hidden shadow-glass relative group">
-          <div class="aspect-square bg-gradient-to-tr from-brand-rose/20 to-brand-glow/10 p-8 flex items-center justify-center relative overflow-hidden">
-            <!-- Platzhalter für existierendes Bild: assets/img/about/1.jpg -->
-            <div class="absolute inset-0 bg-brand-dark/10 group-hover:bg-brand-dark/0 transition-colors duration-500 z-10"></div>
-            <p class="text-2xl font-display text-brand-dark dark:text-white text-center italic z-20">"Tanzen ist mehr als nur Bewegung. Es ist deine Sprache."</p>
+        <div class="rounded-idioma overflow-hidden shadow-glass relative group aspect-square">
+          <img src="/images/about/about-bg.png" alt="Bachata Community" class="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+          <div class="absolute inset-0 bg-brand-dark/40 group-hover:bg-brand-dark/20 transition-colors duration-500 z-10 flex items-center justify-center p-12">
+            <p class="text-2xl md:text-3xl font-display text-white text-center italic z-20 drop-shadow-2xl">
+              "Tanzen ist mehr als nur Bewegung. Es ist deine Sprache."
+            </p>
           </div>
         </div>
         <div class="space-y-6 text-brand-dark dark:text-brand-light">
@@ -165,7 +166,7 @@ const reviewSchema = {
               </p>
               <div class="pt-4 flex flex-wrap gap-4">
                 <a href="/ueber-uns" class="px-8 py-3 bg-brand-rose text-white font-bold rounded-full shadow-glow-rose hover:-translate-y-1 transition-all">Lerne uns kennen</a>
-                <a href="https://instagram.com/idiomadanza" target="_blank" class="px-8 py-3 bg-white/10 backdrop-blur-md text-white font-bold rounded-full border border-white/20 hover:bg-white/20 transition-all flex items-center gap-3">
+                <a href="https://instagram.com/idiomadanza" target="_blank" rel="noopener noreferrer" class="px-8 py-3 bg-white/10 backdrop-blur-md text-white font-bold rounded-full border border-white/20 hover:bg-white/20 transition-all flex items-center gap-3">
                   <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg>
                   Instagram
                 </a>
@@ -268,93 +269,159 @@ const reviewSchema = {
         <div class="w-24 h-1 bg-brand-glow mx-auto rounded-full"></div>
       </div>
 
-      <div class="max-w-6xl mx-auto">
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-16">
-          <!-- Testimonial 1 -->
-          <div class="bg-white/10 backdrop-blur-xl p-8 rounded-idioma border border-white/10 shadow-glass relative group">
-            <div class="absolute -top-6 left-1/2 -translate-x-1/2">
-              <div class="w-20 h-20 rounded-full border-4 border-brand-rose overflow-hidden shadow-glow-rose">
-                <img src="/images/testimonials/melanie.png" alt="Melanie K." class="w-full h-full object-cover">
+      <div class="max-w-6xl mx-auto px-4">
+        <div class="testimonial-slider swiper !overflow-visible">
+          <div class="swiper-wrapper">
+            <!-- Testimonial 1 -->
+            <div class="swiper-slide h-auto py-12">
+              <div class="bg-white/10 backdrop-blur-xl p-8 rounded-idioma border border-white/20 shadow-glass relative group h-full flex flex-col pt-14 transition-all duration-500 hover:bg-white/15">
+                <div class="absolute -top-6 left-1/2 -translate-x-1/2 z-20">
+                  <div class="w-20 h-20 rounded-full border-4 border-brand-rose overflow-hidden shadow-glow-rose transition-transform duration-500 group-hover:scale-110">
+                    <img src="/images/testimonials/melanie.png" alt="Melanie K." class="w-full h-full object-cover">
+                  </div>
+                </div>
+                <div class="text-center text-white flex-grow flex flex-col">
+                  <h4 class="text-2xl font-bold font-display">Melanie K.</h4>
+                  <p class="text-brand-rose text-sm font-medium mb-4">ehemalige Schülerin</p>
+                  <div class="flex justify-center gap-1 mb-6 text-brand-glow">
+                    <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+                  </div>
+                  <div class="flex-grow flex items-center justify-center">
+                    <p class="italic opacity-90 leading-relaxed relative text-sm md:text-base">
+                      <span class="text-3xl font-serif absolute -top-4 -left-6 opacity-30 text-brand-rose">"</span>
+                      Hi Stephan, vielen lieben Dank für die tollen Unterrichtsstunden und die super Social Tänze! Macht immer viel Spaß, weiter so!
+                      <span class="text-3xl font-serif absolute -bottom-6 -right-6 opacity-30 text-brand-rose">"</span>
+                    </p>
+                  </div>
+                </div>
               </div>
             </div>
-            <div class="mt-12 text-center text-white">
-              <h4 class="text-2xl font-bold font-display">Melanie K.</h4>
-              <p class="text-brand-rose text-sm font-medium mb-4">ehemalige Schülerin</p>
-              <div class="flex justify-center gap-1 mb-6 text-brand-glow">
-                <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
-              </div>
-              <p class="italic opacity-90 leading-relaxed relative">
-                <span class="text-4xl font-serif absolute -top-4 -left-4 opacity-50 text-brand-rose">"</span>
-                Hi Stephan, vielen lieben Dank für die tollen Unterrichtsstunden und die super Social Tänze! Macht immer viel Spaß, weiter so!
-                <span class="text-4xl font-serif absolute -bottom-8 -right-4 opacity-50 text-brand-rose">"</span>
-              </p>
-            </div>
-          </div>
 
-          <!-- Testimonial 2 -->
-          <div class="bg-white/10 backdrop-blur-xl p-8 rounded-idioma border border-white/10 shadow-glass relative group">
-            <div class="absolute -top-6 left-1/2 -translate-x-1/2">
-              <div class="w-20 h-20 rounded-full border-4 border-brand-glow overflow-hidden shadow-glow-amber">
-                <img src="/images/testimonials/sarah.png" alt="Sarah M." class="w-full h-full object-cover">
+            <!-- Testimonial 2: Jorge Escalona (Korke) -->
+            <div class="swiper-slide h-auto py-12">
+              <div class="bg-white/10 backdrop-blur-xl p-8 rounded-idioma border border-white/20 shadow-glass relative group h-full flex flex-col pt-14 transition-all duration-500 hover:bg-white/15">
+                <div class="absolute -top-6 left-1/2 -translate-x-1/2 z-20">
+                  <div class="w-20 h-20 rounded-full border-4 border-brand-glow overflow-hidden shadow-glow-amber transition-transform duration-500 group-hover:scale-110">
+                    <img src="/images/testimonials/jorge.png" alt="Jorge Escalona (Korke)" class="w-full h-full object-cover">
+                  </div>
+                </div>
+                <div class="text-center text-white flex-grow flex flex-col">
+                  <h4 class="text-2xl font-bold font-display">Jorge Escalona (Korke)</h4>
+                  <p class="text-brand-glow text-sm font-medium mb-4">Bachata Sensual Creator</p>
+                  <div class="flex justify-center gap-1 mb-6 text-brand-glow">
+                    <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+                  </div>
+                  <div class="flex-grow flex items-center justify-center mb-6">
+                    <p class="italic opacity-90 leading-relaxed relative text-sm md:text-base">
+                      <span class="text-3xl font-serif absolute -top-4 -left-6 opacity-30 text-brand-glow">"</span>
+                      Hello everybody, Patricia and Stephan are an amazing couple. They are teaching regular classes of Bachata Sensual Official in Regensburg. Don't miss them and become the best follower and leader.
+                      <span class="text-3xl font-serif absolute -bottom-6 -right-6 opacity-30 text-brand-glow">"</span>
+                    </p>
+                  </div>
+                  <a href="https://www.instagram.com/reel/Crp9VoXIT6F/?igshid=MTIyMzRjYmRlZg==" target="_blank" rel="noopener noreferrer" class="text-[10px] text-brand-rose hover:text-brand-glow transition-colors font-black uppercase tracking-[0.2em] block mt-auto">
+                    [watch the full video message]
+                  </a>
+                </div>
               </div>
             </div>
-            <div class="mt-12 text-center text-white">
-              <h4 class="text-2xl font-bold font-display">Sarah M.</h4>
-              <p class="text-brand-glow text-sm font-medium mb-4">Bachata Passion</p>
-              <div class="flex justify-center gap-1 mb-6 text-brand-glow">
-                <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
-              </div>
-              <p class="italic opacity-90 leading-relaxed relative">
-                <span class="text-4xl font-serif absolute -top-4 -left-4 opacity-50 text-brand-glow">"</span>
-                Ich liebe die Energie beim Training. Man lernt nicht nur Schritte, sondern fühlt die Musik. Ein toller Verein mit Herz!
-                <span class="text-4xl font-serif absolute -bottom-8 -right-4 opacity-50 text-brand-glow">"</span>
-              </p>
-            </div>
-          </div>
 
-          <!-- Testimonial 3 -->
-          <div class="bg-white/10 backdrop-blur-xl p-8 rounded-idioma border border-white/10 shadow-glass relative group">
-            <div class="absolute -top-6 left-1/2 -translate-x-1/2">
-              <div class="w-20 h-20 rounded-full border-4 border-brand-glow overflow-hidden shadow-glow-amber">
-                <img src="/images/testimonials/lukas.png" alt="Lukas S." class="w-full h-full object-cover">
+            <!-- Testimonial 3 -->
+            <div class="swiper-slide h-auto py-12">
+              <div class="bg-white/10 backdrop-blur-xl p-8 rounded-idioma border border-white/20 shadow-glass relative group h-full flex flex-col pt-14 transition-all duration-500 hover:bg-white/15">
+                <div class="absolute -top-6 left-1/2 -translate-x-1/2 z-20">
+                  <div class="w-20 h-20 rounded-full border-4 border-brand-glow overflow-hidden shadow-glow-amber transition-transform duration-500 group-hover:scale-110">
+                    <img src="/images/testimonials/hugo.png" alt="Hugo A." class="w-full h-full object-cover">
+                  </div>
+                </div>
+                <div class="text-center text-white flex-grow flex flex-col">
+                  <h4 class="text-2xl font-bold font-display">Hugo A.</h4>
+                  <p class="text-brand-glow text-sm font-medium mb-4">Bachatero</p>
+                  <div class="flex justify-center gap-1 mb-6 text-brand-glow">
+                    <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+                  </div>
+                  <div class="flex-grow flex items-center justify-center">
+                    <p class="italic opacity-90 leading-relaxed relative text-sm md:text-base">
+                      <span class="text-3xl font-serif absolute -top-4 -left-6 opacity-30 text-brand-glow">"</span>
+                      Patricia und Stephan sind lustig, fleißig und leidenschaftlich beim Tanzen und in den Kursen. Sie bilden sich viel weiter und entwickeln sich stetig. Zusammen unterrichten sie einen aktuellen und social tauglichen Bachata-Stil, und teilen ihre gesamten Erfahrungen im Kurs. Ich habe viel Spaß und lerne viel mit ihnen.
+                      <span class="text-3xl font-serif absolute -bottom-6 -right-6 opacity-30 text-brand-glow">"</span>
+                    </p>
+                  </div>
+                </div>
               </div>
             </div>
-            <div class="mt-12 text-center text-white">
-              <h4 class="text-2xl font-bold font-display">Lukas S.</h4>
-              <p class="text-brand-glow text-sm font-medium mb-4">Bachata Tänzer</p>
-              <div class="flex justify-center gap-1 mb-6 text-brand-glow">
-                <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
-              </div>
-              <p class="italic opacity-90 leading-relaxed relative">
-                <span class="text-4xl font-serif absolute -top-4 -left-4 opacity-50 text-brand-glow">"</span>
-                Die Atmosphäre im Verein ist einfach einzigartig. Man fühlt sich sofort willkommen und lernt unglaublich schnell. Beste Entscheidung!
-                <span class="text-4xl font-serif absolute -bottom-8 -right-4 opacity-50 text-brand-glow">"</span>
-              </p>
-            </div>
-          </div>
 
-          <!-- Testimonial 4 -->
-          <div class="bg-white/10 backdrop-blur-xl p-8 rounded-idioma border border-white/10 shadow-glass relative group">
-            <div class="absolute -top-6 left-1/2 -translate-x-1/2">
-              <div class="w-20 h-20 rounded-full border-4 border-brand-rose overflow-hidden shadow-glow-rose">
-                <img src="/images/testimonials/daniel.png" alt="Daniel R." class="w-full h-full object-cover">
+            <!-- Testimonial 4 -->
+            <div class="swiper-slide h-auto py-12">
+              <div class="bg-white/10 backdrop-blur-xl p-8 rounded-idioma border border-white/20 shadow-glass relative group h-full flex flex-col pt-14 transition-all duration-500 hover:bg-white/15">
+                <div class="absolute -top-6 left-1/2 -translate-x-1/2 z-20">
+                  <div class="w-20 h-20 rounded-full border-4 border-brand-rose overflow-hidden shadow-glow-rose transition-transform duration-500 group-hover:scale-110">
+                    <img src="/images/testimonials/susy.png" alt="Susy K." class="w-full h-full object-cover">
+                  </div>
+                </div>
+                <div class="text-center text-white flex-grow flex flex-col">
+                  <h4 class="text-2xl font-bold font-display">Susy K.</h4>
+                  <p class="text-brand-rose text-sm font-medium mb-4">ehemalige Schülerin</p>
+                  <div class="flex justify-center gap-1 mb-6 text-brand-glow">
+                    <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+                  </div>
+                  <div class="flex-grow flex items-center justify-center">
+                    <p class="italic opacity-90 leading-relaxed relative text-sm md:text-base">
+                      <span class="text-3xl font-serif absolute -top-4 -left-6 opacity-30 text-brand-rose">"</span>
+                      Hey Stephan! Ich wollt mich grad nochmal bei dir bedanken dafür dass ich bei euch Bachata lernen durfte und natürlich für die ganzen Social Tänze! Hab grad in Mexiko den 2. Platz bei nem Social Wettkampf gewonnen. Völlig unerwartet wirklich Danke dafür! Mach weiter so.
+                      <span class="text-3xl font-serif absolute -bottom-6 -right-6 opacity-30 text-brand-rose">"</span>
+                    </p>
+                  </div>
+                </div>
               </div>
-            </div>
-            <div class="mt-12 text-center text-white">
-              <h4 class="text-2xl font-bold font-display">Daniel R.</h4>
-              <p class="text-brand-rose text-sm font-medium mb-4">Salsa & Bachata</p>
-              <div class="flex justify-center gap-1 mb-6 text-brand-glow">
-                <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
-              </div>
-              <p class="italic opacity-90 leading-relaxed relative">
-                <span class="text-4xl font-serif absolute -top-4 -left-4 opacity-50 text-brand-rose">"</span>
-                Hervorragende Trainer, die auf Details achten. Mein Tanzen hat sich in kürzester Zeit massiv verbessert. Danke Idiomadanza!
-                <span class="text-4xl font-serif absolute -bottom-8 -right-4 opacity-50 text-brand-rose">"</span>
-              </p>
             </div>
           </div>
+          
+          <!-- Pagination mit mehr Abstand -->
+          <div class="swiper-pagination testimonial-pagination"></div>
         </div>
       </div>
+
+      <!-- Swiper Initialization -->
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+      <script is:inline src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+      <script is:inline>
+        document.addEventListener('DOMContentLoaded', () => {
+          new Swiper('.testimonial-slider', {
+            slidesPerView: 1,
+            spaceBetween: 30,
+            loop: true,
+            grabCursor: true,
+            centeredSlides: false,
+            autoplay: {
+              delay: 5000,
+              disableOnInteraction: false,
+            },
+            pagination: {
+              el: '.testimonial-pagination',
+              clickable: true,
+            },
+            breakpoints: {
+              768: {
+                slidesPerView: 2,
+              }
+            }
+          });
+        });
+      </script>
+
+      <style is:global>
+        .testimonial-pagination {
+          position: relative !important;
+          margin-top: 2rem;
+          bottom: 0 !important;
+        }
+        .testimonial-pagination .swiper-pagination-bullet {
+          @apply bg-white opacity-20 w-3 h-3 transition-all duration-300;
+        }
+        .testimonial-pagination .swiper-pagination-bullet-active {
+          @apply bg-brand-rose opacity-100 w-8 rounded-full;
+        }
+      </style>
     </div>
   </section>
 

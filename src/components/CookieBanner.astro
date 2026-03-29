@@ -1,0 +1,119 @@
+---
+---
+
+<div id="cookie-consent-container" class="fixed bottom-6 left-6 z-[9999] pointer-events-none">
+  <!-- Small Trigger Icon (Fingerprint) -->
+  <button 
+    id="cookie-trigger" 
+    class="pointer-events-auto w-12 h-12 rounded-full bg-brand-rose text-white shadow-glow-rose flex items-center justify-center hover:scale-110 transition-transform duration-300"
+    aria-label="Cookie-Einstellungen"
+  >
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-fingerprint"><path d="M12 10a2 2 0 0 0-2 2c0 .24.01.47.03.7"/><path d="M7 10.12a5 5 0 0 1 5.93-3.02"/><path d="M2 11.5a10 10 0 0 1 18.89-2.91"/><path d="M20 21c-.46-1.12-1-2.19-1.63-3.2"/><path d="M13.43 12.03A3 3 0 0 1 15 15c0 .34-.03.66-.08.98"/><path d="M17.43 14.5a8 8 0 0 1-2.43 6.5"/><path d="M6 21c.54-1.39 1.14-2.73 1.81-4"/><path d="M4 17a10.43 10.43 0 0 1-.82-1.92A10 10 0 0 1 12 2c5.52 0 10 4.48 10 10 0 1.13-.09 2.19-.27 3.22"/><path d="M11 22a4.99 4.99 0 0 0 4-2"/><path d="M21 17a11.33 11.33 0 0 1-2.03 4"/><path d="M3.5 13.5A9.96 9.96 0 0 1 12 12"/><path d="M10 22c-2.21 0-4-1.79-4-4 0-1.13.26-2.19.72-3.14"/><path d="M8 22a3 3 0 0 1-2-1"/></svg>
+  </button>
+
+  <!-- The Actual Banner -->
+  <div 
+    id="cookie-banner" 
+    class="absolute bottom-16 left-0 w-[320px] md:w-[400px] bg-white/90 dark:bg-brand-dark/95 backdrop-blur-xl rounded-idioma border border-white/20 dark:border-white/10 shadow-glass p-6 transform translate-y-full opacity-0 pointer-events-none transition-all duration-500 scale-95 origin-bottom-left"
+  >
+    <div class="flex items-center gap-3 mb-4">
+      <div class="w-10 h-10 rounded-full bg-brand-glow/20 flex items-center justify-center text-brand-glow text-xl">
+        🍪
+      </div>
+      <h3 class="text-xl font-display font-bold dark:text-brand-light">Cookie-Einstellungen</h3>
+    </div>
+    
+    <p class="text-sm opacity-70 dark:text-brand-light/70 mb-6 leading-relaxed">
+      Wir nutzen Cookies, um dir ein optimales Webseiten-Erlebnis zu bieten. Dazu zählen technisch notwendige Cookies sowie Dienste von Drittanbietern (z.B. Google Maps).
+    </p>
+
+    <div class="space-y-3 mb-8">
+      <label class="flex items-center justify-between p-3 bg-brand-rose/5 rounded-lg border border-brand-rose/10 cursor-not-allowed opacity-80">
+        <span class="text-xs font-bold uppercase tracking-widest flex flex-col">
+          Essentiell
+          <span class="text-[10px] font-normal lowercase opacity-50 mt-1">Technisch notwendig</span>
+        </span>
+        <div class="w-10 h-5 bg-brand-rose rounded-full flex items-center px-1">
+          <div class="w-3.5 h-3.5 bg-white rounded-full"></div>
+        </div>
+      </label>
+
+      <label class="flex items-center justify-between p-3 bg-brand-glow/5 rounded-lg border border-brand-glow/10 cursor-pointer hover:bg-brand-glow/10 transition-colors">
+        <span class="text-xs font-bold uppercase tracking-widest flex flex-col">
+          Externe Medien
+          <span class="text-[10px] font-normal lowercase opacity-50 mt-1">Google Maps</span>
+        </span>
+        <div class="relative inline-flex items-center cursor-pointer">
+          <input type="checkbox" id="cookie-maps" class="sr-only peer" checked>
+          <div class="w-10 h-5 bg-gray-300 dark:bg-gray-700 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[3px] after:left-[3px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-3.5 after:w-3.5 after:transition-all peer-checked:bg-brand-glow"></div>
+        </div>
+      </label>
+    </div>
+
+    <div class="grid grid-cols-2 gap-3">
+      <button id="cookie-accept-all" class="bg-brand-rose text-white text-xs font-bold uppercase py-3 rounded-full shadow-glow-rose hover:-translate-y-0.5 transition-all">
+        Alle akzeptieren
+      </button>
+      <button id="cookie-save" class="border border-brand-rose/30 text-brand-rose text-xs font-bold uppercase py-3 rounded-full hover:bg-brand-rose/5 transition-all">
+        Sichern
+      </button>
+    </div>
+
+    <div class="mt-4 text-center">
+      <a href="/cookie-richtlinie" class="text-[10px] uppercase tracking-widest opacity-40 hover:opacity-100 transition-opacity underline underline-offset-4">Cookie-Richtlinie lesen</a>
+    </div>
+  </div>
+</div>
+
+<script>
+  const trigger = document.getElementById('cookie-trigger');
+  const banner = document.getElementById('cookie-banner');
+  const acceptAll = document.getElementById('cookie-accept-all');
+  const save = document.getElementById('cookie-save');
+  const mapsToggle = document.getElementById('cookie-maps') as HTMLInputElement;
+
+  function toggleBanner() {
+    const isOpen = banner?.classList.contains('translate-y-0');
+    if (isOpen) {
+      banner?.classList.remove('translate-y-0', 'opacity-100', 'scale-100', 'pointer-events-auto');
+      banner?.classList.add('translate-y-full', 'opacity-0', 'scale-95', 'pointer-events-none');
+    } else {
+      banner?.classList.add('translate-y-0', 'opacity-100', 'scale-100', 'pointer-events-auto');
+      banner?.classList.remove('translate-y-full', 'opacity-0', 'scale-95', 'pointer-events-none');
+    }
+  }
+
+  function saveSettings(all = false) {
+    const settings = {
+      essential: true,
+      maps: all ? true : (mapsToggle?.checked || false),
+      timestamp: new Date().getTime()
+    };
+    localStorage.setItem('idioma-cookie-consent', JSON.stringify(settings));
+    toggleBanner();
+  }
+
+  trigger?.addEventListener('click', toggleBanner);
+  acceptAll?.addEventListener('click', () => saveSettings(true));
+  save?.addEventListener('click', () => saveSettings(false));
+
+  // Show on first visit
+  window.addEventListener('load', () => {
+    const saved = localStorage.getItem('idioma-cookie-consent');
+    if (!saved) {
+      setTimeout(() => {
+        banner?.classList.add('translate-y-0', 'opacity-100', 'scale-100', 'pointer-events-auto');
+        banner?.classList.remove('translate-y-full', 'opacity-0', 'scale-95', 'pointer-events-none');
+      }, 1500);
+    }
+  });
+
+  // Handle outside clicks
+  document.addEventListener('click', (e) => {
+    if (banner?.classList.contains('translate-y-0') && 
+        !banner.contains(e.target as Node) && 
+        !trigger?.contains(e.target as Node)) {
+      toggleBanner();
+    }
+  });
+</script>
