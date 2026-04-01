@@ -88,29 +88,41 @@ import Layout from '../layouts/Layout.astro';
           <div class="p-8 md:p-12 bg-white/70 dark:bg-white/5 backdrop-blur-xl rounded-idioma border border-white/20 dark:border-white/10 shadow-glass">
             <h3 class="text-2xl font-display font-bold mb-8 dark:text-white">Nachricht schreiben</h3>
             
-            <form action="#" class="space-y-6">
+            <form 
+              name="contact" 
+              method="POST" 
+              data-netlify="true" 
+              netlify-honeypot="bot-field"
+              action="/success" 
+              class="space-y-6"
+            >
+              <p class="hidden">
+                <label>Don’t fill this out if you’re human: <input name="bot-field" /></label>
+              </p>
+              <input type="hidden" name="form-name" value="contact" />
+              
               <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div class="space-y-2">
-                  <label class="text-xs font-bold uppercase tracking-widest opacity-60 dark:text-white">Name</label>
-                  <input type="text" placeholder="Dein Name" class="w-full bg-white dark:bg-brand-dark/50 border border-brand-dark/10 dark:border-white/10 rounded-idioma px-4 py-3 focus:border-brand-rose focus:ring-1 focus:ring-brand-rose outline-none transition-all dark:text-white">
+                  <label for="name" class="text-xs font-bold uppercase tracking-widest opacity-60 dark:text-white">Name</label>
+                  <input type="text" id="name" name="name" required placeholder="Dein Name" class="w-full bg-white dark:bg-brand-dark/50 border border-brand-dark/10 dark:border-white/10 rounded-idioma px-4 py-3 focus:border-brand-rose focus:ring-1 focus:ring-brand-rose outline-none transition-all dark:text-white">
                 </div>
                 <div class="space-y-2">
-                  <label class="text-xs font-bold uppercase tracking-widest opacity-60 dark:text-white">E-Mail</label>
-                  <input type="email" placeholder="mail@example.com" class="w-full bg-white dark:bg-brand-dark/50 border border-brand-dark/10 dark:border-white/10 rounded-idioma px-4 py-3 focus:border-brand-rose focus:ring-1 focus:ring-brand-rose outline-none transition-all dark:text-white">
+                  <label for="email" class="text-xs font-bold uppercase tracking-widest opacity-60 dark:text-white">E-Mail</label>
+                  <input type="email" id="email" name="email" required placeholder="mail@example.com" class="w-full bg-white dark:bg-brand-dark/50 border border-brand-dark/10 dark:border-white/10 rounded-idioma px-4 py-3 focus:border-brand-rose focus:ring-1 focus:ring-brand-rose outline-none transition-all dark:text-white">
                 </div>
               </div>
               <div class="space-y-2">
-                <label class="text-xs font-bold uppercase tracking-widest opacity-60 dark:text-white">Interesse</label>
-                <select class="w-full bg-white dark:bg-brand-dark/50 border border-brand-dark/10 dark:border-white/10 rounded-idioma px-4 py-3 focus:border-brand-rose focus:ring-1 focus:ring-brand-rose outline-none transition-all dark:text-white appearance-none">
-                  <option>Probestunde anfragen</option>
-                  <option>Mitgliedschaft</option>
-                  <option>Allgemeine Frage</option>
-                  <option>Workshop Infos</option>
+                <label for="interest" class="text-xs font-bold uppercase tracking-widest opacity-60 dark:text-white">Interesse</label>
+                <select id="interest" name="interest" class="w-full bg-white dark:bg-brand-dark/50 border border-brand-dark/10 dark:border-white/10 rounded-idioma px-4 py-3 focus:border-brand-rose focus:ring-1 focus:ring-brand-rose outline-none transition-all dark:text-white appearance-none">
+                  <option value="probestunde">Probestunde anfragen</option>
+                  <option value="mitgliedschaft">Mitgliedschaft</option>
+                  <option value="frage">Allgemeine Frage</option>
+                  <option value="workshops">Workshop Infos</option>
                 </select>
               </div>
               <div class="space-y-2">
-                <label class="text-xs font-bold uppercase tracking-widest opacity-60 dark:text-white">Nachricht</label>
-                <textarea rows="4" placeholder="Wie können wir dir helfen?" class="w-full bg-white dark:bg-brand-dark/50 border border-brand-dark/10 dark:border-white/10 rounded-idioma px-4 py-3 focus:border-brand-rose focus:ring-1 focus:ring-brand-rose outline-none transition-all dark:text-white mb-4"></textarea>
+                <label for="message" class="text-xs font-bold uppercase tracking-widest opacity-60 dark:text-white">Nachricht</label>
+                <textarea id="message" name="message" rows="4" required placeholder="Wie können wir dir helfen?" class="w-full bg-white dark:bg-brand-dark/50 border border-brand-dark/10 dark:border-white/10 rounded-idioma px-4 py-3 focus:border-brand-rose focus:ring-1 focus:ring-brand-rose outline-none transition-all dark:text-white mb-4"></textarea>
               </div>
 
               <div class="flex items-start gap-4 mb-8">
@@ -120,7 +132,7 @@ import Layout from '../layouts/Layout.astro';
                 </label>
               </div>
               
-              <button type="submit" class="w-full py-4 bg-brand-rose text-white font-bold rounded-full shadow-glow-rose hover:-translate-y-1 transition-all disabled:opacity-50 disabled:cursor-not-allowed">Nachricht absenden</button>
+              <button type="submit" class="w-full py-4 bg-brand-rose text-white font-bold rounded-full shadow-glow-rose hover:-translate-y-1 transition-all">Nachricht absenden</button>
             </form>
           </div>
         </div>
@@ -210,4 +222,40 @@ import Layout from '../layouts/Layout.astro';
     // Re-check periodically or on storage changes
     window.addEventListener('storage', updateMap);
   </script>
+  <!-- QUICK CONTACT FORM SECTION -->
+  <section id="fast-contact" class="py-24 bg-brand-dark relative overflow-hidden">
+    <!-- Abstract Glow -->
+    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full bg-brand-rose/5 rounded-full blur-[150px] -z-10"></div>
+    
+    <div class="container mx-auto px-4 max-w-4xl relative z-10 text-center">
+      <div class="mb-12">
+        <h2 class="font-display text-4xl md:text-5xl font-bold text-white mb-4 italic">Schneller <span class="text-brand-glow">Kontakt</span></h2>
+        <p class="opacity-70 text-brand-light">Keine Lust auf lange Formulare? Schick uns direkt eine kurze Message.</p>
+      </div>
+
+      <form 
+        name="home-contact" 
+        method="POST" 
+        data-netlify="true" 
+        netlify-honeypot="bot-field"
+        class="grid grid-cols-1 md:grid-cols-3 gap-4"
+      >
+        <p class="hidden">
+           <label>Bot check: <input name="bot-field" /></label>
+        </p>
+        <input type="hidden" name="form-name" value="home-contact" />
+        
+        <input type="text" name="name" required placeholder="Dein Name" class="bg-white/10 border border-white/20 rounded-full px-6 py-4 focus:border-brand-rose outline-none transition-all text-white backdrop-blur-md">
+        <input type="email" name="email" required placeholder="E-Mail" class="bg-white/10 border border-white/20 rounded-full px-6 py-4 focus:border-brand-rose outline-none transition-all text-white backdrop-blur-md">
+        <button type="submit" class="bg-brand-rose text-white font-black uppercase tracking-widest text-xs rounded-full shadow-glow-rose hover:scale-105 transition-all py-4">
+          Jetzt Connecten →
+        </button>
+      </form>
+      
+      <p class="text-[10px] opacity-40 mt-6 text-brand-light">
+        Durch das Absenden stimmst du der <a href="/datenschutz" class="underline">Datenschutzerklärung</a> zu.
+      </p>
+    </div>
+  </section>
+
 </Layout>
