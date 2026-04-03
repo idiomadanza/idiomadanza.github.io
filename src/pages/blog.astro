@@ -1,41 +1,13 @@
 ---
 import Layout from '../layouts/Layout.astro';
 
-// Beispielhafte Blog-Daten
-const posts = [
-  {
-    title: "Neuer Bachata Anfängerkurs startet im Mai!",
-    excerpt: "Endlich wieder Foundations: Ab dem 05. Mai 2026 um 20:00 Uhr öffnen wir unsere Türen für alle Neu-Einsteiger im Fortuna.",
-    category: "Events",
-    date: "25. März 2026",
-    image: "/images/testimonials/bg.png",
-    author: "Idioma Vorstand"
-  },
-  {
-    title: "Bachata Sensual: Tipps für den Social Dance Floor",
-    excerpt: "Wie du mit Gefühl und Verbindung glänzt, ohne dich in komplexen Figuren zu verlieren.",
-    category: "Tutorials",
-    date: "20. März 2024",
-    image: "/images/about/action.png",
-    author: "Stephan Lopez"
-  },
-  {
-    title: "Social Night: Rückblick & Fotos vom letzten Event",
-    excerpt: "Was für eine Nacht! Über 100 Tänzer haben Fortuna zum Beben gebracht. Hier sind die besten Momente.",
-    category: "Events",
-    date: "15. März 2024",
-    image: "/images/testimonials/bg.png",
-    author: "Patricia"
-  },
-  {
-    title: "Neu im Team: Willkommen Vicky & Katharina",
-    excerpt: "Lerne unsere neuen Bachata-Trainerinnen kennen und erfahre mehr über ihren Tanzstil.",
-    category: "Community",
-    date: "10. März 2024",
-    image: "/images/about/action.png",
-    author: "Idioma Vorstand"
-  }
-];
+import { getCollection } from 'astro:content';
+
+const blogEntries = await getCollection('blog');
+const posts = blogEntries.map(entry => ({
+  ...entry.data,
+  slug: entry.id
+}));
 ---
 
 <Layout 
@@ -58,34 +30,7 @@ const posts = [
     </div>
   </section>
 
-  <!-- FEATURED POST -->
-  <section class="py-12 bg-brand-dark relative z-10 -mt-20">
-    <div class="container mx-auto px-4">
-      <div class="bg-white/10 backdrop-blur-2xl rounded-idioma border border-white/20 overflow-hidden shadow-glow-rose group max-w-6xl mx-auto">
-        <div class="grid grid-cols-1 lg:grid-cols-2">
-          <div class="aspect-video lg:aspect-auto h-full overflow-hidden relative">
-            <img src="/images/about/action.png" alt="Featured Post" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
-            <div class="absolute top-4 left-4">
-               <span class="px-4 py-1.5 bg-brand-rose text-white text-xs font-bold uppercase tracking-widest rounded-full shadow-lg">Featured Story</span>
-            </div>
-          </div>
-          <div class="p-8 md:p-12 flex flex-col justify-center space-y-6">
-            <span class="text-brand-glow font-bold text-sm uppercase tracking-[0.2em]">Community News</span>
-            <h2 class="text-3xl md:text-5xl font-display font-bold text-white group-hover:text-brand-rose transition-colors">Wie Tanzen das Leben in Regensburg verändert.</h2>
-            <p class="text-white/60 text-lg leading-relaxed">Warum Bachata & Salsa mehr als nur Sport sind und wie wir gemeinsam eine neue Art der Gemeinschaft in unserer Stadt aufbauen.</p>
-            <div class="flex items-center gap-4 pt-4 border-t border-white/10">
-               <div class="w-10 h-10 rounded-full bg-brand-rose/20 border border-brand-rose flex items-center justify-center text-brand-rose font-bold">SL</div>
-               <div class="text-xs">
-                 <p class="text-white font-bold uppercase tracking-widest">Stephan Lopez</p>
-                 <p class="text-white/40">25. März 2024 • 5 min Lesezeit</p>
-               </div>
-            </div>
-            <a href="#" class="inline-block pt-4 text-brand-rose font-bold group-hover:translate-x-2 transition-transform">Weiterlesen →</a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
+  <!-- Blog Content -->
 
   <!-- CATEGORIES SUB-NAV -->
   <section class="py-12 bg-brand-light dark:bg-brand-dark">
@@ -103,7 +48,7 @@ const posts = [
   <!-- BLOG FEED -->
   <section class="py-24 bg-brand-light dark:bg-brand-dark">
     <div class="container mx-auto px-4">
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 max-w-6xl mx-auto">
+      <div class="grid grid-cols-1 max-w-md mx-auto gap-12">
         {posts.map((post) => (
           <article class="group relative flex flex-col h-full bg-white/70 dark:bg-brand-dark/50 backdrop-blur-md rounded-idioma border border-white/20 dark:border-white/10 overflow-hidden shadow-glass hover:shadow-glow-rose transition-all duration-500">
             <!-- Image Area -->
@@ -128,19 +73,13 @@ const posts = [
                   <div class="w-6 h-6 rounded-full bg-brand-rose/20 border border-brand-rose flex items-center justify-center text-[10px] text-brand-rose font-bold">I</div>
                   <span class="text-[10px] uppercase font-bold opacity-60 dark:text-white">{post.author}</span>
                </div>
-               <a href="#" class="text-brand-rose font-black text-xs group-hover:mr-2 transition-all">READ</a>
+               <a href={`/blog/${post.slug}`} class="text-brand-rose font-black text-xs group-hover:mr-2 transition-all">READ</a>
             </div>
           </article>
         ))}
       </div>
 
-      <!-- PAGINATION -->
-      <div class="mt-20 flex justify-center gap-4">
-        <button class="w-12 h-12 rounded-full border border-brand-rose/20 flex items-center justify-center opacity-50 hover:bg-brand-rose hover:text-white transition-all">←</button>
-        <button class="w-12 h-12 rounded-full bg-brand-rose text-white shadow-glow-rose flex items-center justify-center font-bold">1</button>
-        <button class="w-12 h-12 rounded-full border border-brand-rose/20 flex items-center justify-center opacity-50 hover:bg-brand-rose hover:text-white transition-all">2</button>
-        <button class="w-12 h-12 rounded-full border border-brand-rose/20 flex items-center justify-center opacity-50 hover:bg-brand-rose hover:text-white transition-all">→</button>
-      </div>
+
     </div>
   </section>
 
