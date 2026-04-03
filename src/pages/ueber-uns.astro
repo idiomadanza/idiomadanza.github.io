@@ -52,8 +52,38 @@ import Layout from '../layouts/Layout.astro';
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
         <div class="relative">
           <div class="absolute -top-10 -left-10 w-64 h-64 bg-brand-rose/10 rounded-full blur-[80px] -z-10"></div>
-          <div class="rounded-idioma overflow-hidden shadow-glow-rose transform -rotate-2 hover:rotate-0 transition-transform duration-700">
-            <img src="/images/about/action.png" alt="Bachata Community Action" class="w-full aspect-square object-cover">
+          <div class="grid grid-cols-2 md:grid-cols-3 gap-2 lg:gap-3 rounded-idioma overflow-hidden shadow-glow-rose transform hover:rotate-1 hover:scale-[1.02] transition-transform duration-700 bg-white/5 border border-white/20 p-2 md:p-3 relative z-10 before:absolute before:inset-0 before:bg-brand-rose/5 before:pointer-events-none">
+            
+            <div class="aspect-square overflow-hidden rounded-lg group relative">
+              <div class="absolute inset-x-0 bottom-0 py-2 px-3 bg-gradient-to-t from-black/80 to-transparent z-10 opacity-0 group-hover:opacity-100 transition-opacity"><span class="text-white font-bold text-xs">Patricia</span></div>
+              <img src="/images/team/patricia.png" alt="Patricia" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500 scale-110 group-hover:scale-100 object-top">
+            </div>
+            
+            <div class="aspect-square overflow-hidden rounded-lg group relative">
+              <div class="absolute inset-x-0 bottom-0 py-2 px-3 bg-gradient-to-t from-black/80 to-transparent z-10 opacity-0 group-hover:opacity-100 transition-opacity"><span class="text-white font-bold text-xs">Stephan</span></div>
+              <img src="/images/team/stephan.png" alt="Stephan" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500 scale-110 group-hover:scale-100 object-top">
+            </div>
+            
+            <div class="aspect-square overflow-hidden rounded-lg group relative">
+              <div class="absolute inset-x-0 bottom-0 py-2 px-3 bg-gradient-to-t from-black/80 to-transparent z-10 opacity-0 group-hover:opacity-100 transition-opacity"><span class="text-white font-bold text-xs">Chris & Nalini</span></div>
+              <img src="/images/team/chris_und_nalini.png" alt="Chris & Nalini" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500 scale-110 group-hover:scale-100 object-[center_10%]">
+            </div>
+            
+            <div class="aspect-square overflow-hidden rounded-lg group relative">
+              <div class="absolute inset-x-0 bottom-0 py-2 px-3 bg-gradient-to-t from-black/80 to-transparent z-10 opacity-0 group-hover:opacity-100 transition-opacity"><span class="text-white font-bold text-xs">Pancho & Anna</span></div>
+              <img src="/images/team/pancho_und_anna.png" alt="Pancho & Anna" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500 scale-110 group-hover:scale-100 object-[center_30%]">
+            </div>
+            
+            <div class="aspect-square overflow-hidden rounded-lg group relative">
+              <div class="absolute inset-x-0 bottom-0 py-2 px-3 bg-gradient-to-t from-black/80 to-transparent z-10 opacity-0 group-hover:opacity-100 transition-opacity"><span class="text-white font-bold text-xs">Sebastian</span></div>
+              <img src="/images/team/sebastian.png" alt="Sebastian" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500 scale-110 group-hover:scale-100 object-top">
+            </div>
+            
+            <div class="aspect-square overflow-hidden rounded-lg group relative">
+              <div class="absolute inset-x-0 bottom-0 py-2 px-3 bg-gradient-to-t from-black/80 to-transparent z-10 opacity-0 group-hover:opacity-100 transition-opacity"><span class="text-white font-bold text-xs">Silke</span></div>
+              <img src="/images/team/silke.png" alt="Silke" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500 scale-110 group-hover:scale-100 object-top">
+            </div>
+            
           </div>
           <div class="absolute -bottom-8 -right-8 bg-white/70 dark:bg-brand-dark/80 backdrop-blur-md p-8 rounded-idioma shadow-glass border border-white/20 hidden md:block">
             <div class="text-4xl font-bold text-brand-rose mb-1">13+</div>
@@ -91,7 +121,7 @@ import Layout from '../layouts/Layout.astro';
       <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
         <div class="group">
           <div class="w-20 h-20 bg-brand-rose/20 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform shadow-glow-rose">
-             <span class="text-3xl">💃</span>
+             <span class="text-3xl">🕺</span>
           </div>
           <h3 class="text-2xl font-bold mb-4">Eleganz</h3>
           <p class="opacity-70 leading-relaxed">Wir lieben die Ästhetik und den Ausdruck, den Bachata Sensual und Salsa verkörpern.</p>
@@ -123,8 +153,8 @@ import Layout from '../layouts/Layout.astro';
         <p class="max-w-2xl mx-auto opacity-80 text-lg dark:text-brand-light">Ein Team aus 13 leidenschaftlichen Trainern, die darauf brennen, ihr Wissen mit dir zu teilen.</p>
       </div>
 
-        <!-- Founders Grid -->
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
+        <!-- Founders Grid (Updated to 3 columns to accommodate Duo-Card) -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 mb-12 max-w-6xl mx-auto">
           <!-- Patricia -->
           <div class="group bg-white/70 dark:bg-brand-dark/50 backdrop-blur-md rounded-idioma p-8 text-center shadow-glass border border-white/20 dark:border-white/10 hover:-translate-y-3 transition-all duration-500 relative overflow-hidden">
             <div class="relative w-40 h-40 mx-auto mb-6">
@@ -201,49 +231,45 @@ import Layout from '../layouts/Layout.astro';
             </ul>
           </div>
 
-          <!-- Chris -->
+          <!-- Chris & Nalini Duo -->
           <div class="group bg-white/70 dark:bg-brand-dark/50 backdrop-blur-md rounded-idioma p-8 text-center shadow-glass border border-white/20 dark:border-white/10 hover:-translate-y-3 transition-all duration-500 relative overflow-hidden">
             <div class="relative w-40 h-40 mx-auto mb-6">
               <div class="relative w-40 h-40 rounded-full bg-brand-dark overflow-hidden border-4 border-white/30 group-hover:border-brand-rose/50 transition-colors shadow-inner">
-                <img src="/images/team/chris.png" alt="Chris" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500 scale-110 group-hover:scale-100">
+                <img src="/images/team/chris_und_nalini.png" alt="Chris & Nalini" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500 scale-110 group-hover:scale-100 object-top">
               </div>
             </div>
-            <h4 class="text-2xl font-bold font-display mb-2 dark:text-white">Chris</h4>
+            <h4 class="text-2xl font-bold font-display mb-2 dark:text-white">Chris & Nalini</h4>
             <div class="flex items-center justify-center gap-4 mb-4">
-              <p class="text-brand-rose text-sm font-semibold uppercase tracking-widest">Gründer & Bachata</p>
-              <a href="https://instagram.com/idiomadanza" target="_blank" rel="noopener noreferrer" class="text-white/40 hover:text-brand-rose transition-colors" aria-label="Folge Chris auf Instagram">
+              <p class="text-brand-rose text-sm font-semibold uppercase tracking-widest">Gründer-Duo</p>
+              <a href="https://www.instagram.com/chrishart_91/" target="_blank" rel="noopener noreferrer" class="text-white/40 hover:text-brand-rose transition-colors" aria-label="Folge Chris & Nalini auf Instagram">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg>
               </a>
             </div>
-            <p class="text-[10px] opacity-40 uppercase tracking-widest font-bold">Details folgen</p>
-          </div>
-
-          <!-- Nalini -->
-          <div class="group bg-white/70 dark:bg-brand-dark/50 backdrop-blur-md rounded-idioma p-8 text-center shadow-glass border border-white/20 dark:border-white/10 hover:-translate-y-3 transition-all duration-500 relative overflow-hidden">
-            <div class="relative w-40 h-40 mx-auto mb-6">
-              <div class="relative w-40 h-40 rounded-full bg-brand-dark overflow-hidden border-4 border-white/30 group-hover:border-brand-rose/50 transition-colors shadow-inner">
-                <img src="/images/team/nalini.png" alt="Nalini" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500 scale-110 group-hover:scale-100">
-              </div>
+            
+            <div class="border-t border-brand-dark/5 dark:border-white/5 pt-6">
+              <p class="text-xs italic opacity-80 dark:text-brand-light leading-relaxed">
+                "Unsere Passion ist der authentische Ausdruck des <strong class="text-brand-rose">Bachata Sensual</strong>. Wir lehren mit Fokus auf die fundierte Technik und Ästhetik nach den Begründern <strong class="text-brand-rose">Korke & Judith</strong>."
+              </p>
             </div>
-            <h4 class="text-2xl font-bold font-display mb-2 dark:text-white">Nalini</h4>
-            <div class="flex items-center justify-center gap-4 mb-4">
-              <p class="text-brand-rose text-sm font-semibold uppercase tracking-widest">Gründerin & Bachata</p>
-              <a href="https://instagram.com/idiomadanza" target="_blank" rel="noopener noreferrer" class="text-white/40 hover:text-brand-rose transition-colors" aria-label="Folge Nalini auf Instagram">
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg>
-              </a>
-            </div>
-            <p class="text-[10px] opacity-40 uppercase tracking-widest font-bold">Details folgen</p>
           </div>
         </div>
 
         <!-- Team List (Excluding founders) -->
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
           {[
-            { name: 'Francisco Pancho', id: 'pancho' },
-            { name: 'Anna', id: 'anna' },
+            { 
+              name: 'Pancho & Anna', 
+              id: 'pancho_und_anna',
+              bio: [
+                { icon: '🎓', text: 'Certified in Germany' },
+                { icon: '🕺💃', text: 'Salsa Fusion (all styles)' },
+                { icon: '🌍', text: 'International artist and choreographer' },
+                { icon: '📍', text: 'Nürnberg Bayern' }
+              ]
+            },
             { name: 'Omar', id: 'omar' },
             { name: 'Antonia', id: 'antonia' },
-            { name: 'Sebastian', id: 'sebastian' },
+            { name: 'Sebastian', id: 'sebastian', position: 'object-top' },
             { name: 'Silke', id: 'silke', position: 'object-top' },
             { name: 'Janis', id: 'janis' },
             { name: 'Katharina', id: 'katharina' },
@@ -257,13 +283,24 @@ import Layout from '../layouts/Layout.astro';
                   class={`w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500 scale-110 group-hover:scale-100 ${trainer.position || 'object-center'}`}
                 >
               </div>
-              <h4 class="text-xl font-bold font-display text-brand-dark dark:text-brand-light">{trainer.name}</h4>
-              <div class="flex items-center justify-center gap-3 mt-1">
+              <h4 class="text-xl font-bold font-display text-brand-dark dark:text-white">{trainer.name}</h4>
+              <div class="flex items-center justify-center gap-3 mt-1 mb-4">
                 <p class="text-brand-rose text-xs font-semibold uppercase">Trainer</p>
                 <a href="https://instagram.com/idiomadanza" target="_blank" rel="noopener noreferrer" class="text-brand-dark/20 dark:text-white/20 hover:text-brand-rose transition-colors">
                   <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg>
                 </a>
               </div>
+              
+              {trainer.bio && (
+                <ul class="text-left space-y-2 text-[10px] opacity-80 dark:text-brand-light border-t border-brand-dark/5 dark:border-white/5 pt-4 mx-auto max-w-[180px]">
+                  {trainer.bio.map((item) => (
+                    <li class="flex items-start gap-2">
+                      <span class="text-xs leading-none">{item.icon}</span>
+                      <span>{item.text}</span>
+                    </li>
+                  ))}
+                </ul>
+              )}
             </div>
           ))}
         </div>

@@ -26,9 +26,9 @@ Damit KI-Agenten und Suchmaschinen-Crawler die Daten nahtlos verarbeiten können
   "description": "Bachata und Salsa Tanzverein in Regensburg. Hochwertiger Tanzunterricht mit starker Community.",
   "address": {
     "@type": "PostalAddress",
-    "streetAddress": "Isarstr. 85",
+    "streetAddress": "Metzgerweg 48",
     "addressLocality": "Regensburg",
-    "postalCode": "93057",
+    "postalCode": "93055",
     "addressCountry": "DE"
   },
   "url": "https://idiomadanza.de/",

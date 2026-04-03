@@ -1,5 +1,9 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import { getCollection } from 'astro:content';
+
+const blogEntries = await getCollection('blog');
+const latestPost = blogEntries.length > 0 ? blogEntries[0] : null; // Simulating simple latest post sorting for now
 
 const siteUrl = "https://idiomadanza.de";
 
@@ -180,54 +184,24 @@ const faqSchema = {
         </a>
       </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        <!-- Post 1 -->
-        <a href="/blog" class="group bg-white/70 dark:bg-brand-dark/50 backdrop-blur-md border border-brand-dark/10 dark:border-white/10 rounded-idioma overflow-hidden shadow-glass hover:shadow-glow-rose transition-all hover:-translate-y-2 duration-300 flex flex-col h-full">
-          <div class="h-48 overflow-hidden relative">
-            <img src="/images/testimonials/bg.png" alt="News Image" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
-            <div class="absolute top-4 left-4">
-              <span class="px-3 py-1 bg-brand-rose text-white text-[10px] font-bold uppercase tracking-widest rounded-full shadow-lg">Kurse</span>
+      <div class="grid grid-cols-1 max-w-sm mx-auto gap-8">
+        {latestPost && (
+          <!-- Post 1 (Dynamic) -->
+          <a href={`/blog/${latestPost.id}`} class="group bg-white/70 dark:bg-brand-dark/50 backdrop-blur-md border border-brand-dark/10 dark:border-white/10 rounded-idioma overflow-hidden shadow-glass hover:shadow-glow-rose transition-all hover:-translate-y-2 duration-300 flex flex-col h-full">
+            <div class="h-48 overflow-hidden relative">
+              <img src={latestPost.data.image} alt={latestPost.data.title} class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+              <div class="absolute top-4 left-4">
+                <span class="px-3 py-1 bg-brand-rose text-white text-[10px] font-bold uppercase tracking-widest rounded-full shadow-lg">{latestPost.data.category}</span>
+              </div>
             </div>
-          </div>
-          <div class="p-6 flex-grow flex flex-col">
-            <p class="text-xs text-brand-rose font-bold mb-2">05. Mai 2026</p>
-            <h4 class="text-xl font-display font-bold text-brand-dark dark:text-brand-light mb-3 group-hover:text-brand-rose transition-colors">Neuer Bachata Anfängerkurs startet</h4>
-            <p class="text-sm opacity-70 flex-grow mb-4">Sichere dir jetzt deinen Platz in unserem beliebten Foundations-Kurs in den Fortuna Räumen.</p>
-            <span class="text-xs font-bold uppercase tracking-widest mt-auto opacity-50 group-hover:opacity-100 transition-opacity">Lesen →</span>
-          </div>
-        </a>
-
-        <!-- Post 2 -->
-        <a href="/blog" class="group bg-white/70 dark:bg-brand-dark/50 backdrop-blur-md border border-brand-dark/10 dark:border-white/10 rounded-idioma overflow-hidden shadow-glass hover:shadow-glow-amber transition-all hover:-translate-y-2 duration-300 flex flex-col h-full">
-          <div class="h-48 overflow-hidden relative">
-            <img src="/images/about/action.png" alt="News Image" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
-            <div class="absolute top-4 left-4">
-              <span class="px-3 py-1 bg-brand-glow text-brand-dark text-[10px] font-bold uppercase tracking-widest rounded-full shadow-lg">Community</span>
+            <div class="p-6 flex-grow flex flex-col">
+              <p class="text-xs text-brand-rose font-bold mb-2">{latestPost.data.date}</p>
+              <h4 class="text-xl font-display font-bold text-brand-dark dark:text-brand-light mb-3 group-hover:text-brand-rose transition-colors">{latestPost.data.title}</h4>
+              <p class="text-sm opacity-70 flex-grow mb-4">{latestPost.data.excerpt}</p>
+              <span class="text-xs font-bold uppercase tracking-widest mt-auto opacity-50 group-hover:opacity-100 transition-opacity">Lesen →</span>
             </div>
-          </div>
-          <div class="p-6 flex-grow flex flex-col">
-            <p class="text-xs text-brand-glow font-bold mb-2">10. April 2026</p>
-            <h4 class="text-xl font-display font-bold text-brand-dark dark:text-brand-light mb-3 group-hover:text-brand-glow transition-colors">Idiomadanza Spring-Social Party</h4>
-            <p class="text-sm opacity-70 flex-grow mb-4">Gemeinsam das schöne Wetter mit feinsten Beats von DJ Stephan einläuten. Der Eintritt ist für Mitglieder frei!</p>
-            <span class="text-xs font-bold uppercase tracking-widest mt-auto opacity-50 group-hover:opacity-100 transition-opacity">Lesen →</span>
-          </div>
-        </a>
-
-        <!-- Post 3 -->
-        <a href="/blog" class="md:hidden lg:flex group bg-white/70 dark:bg-brand-dark/50 backdrop-blur-md border border-brand-dark/10 dark:border-white/10 rounded-idioma overflow-hidden shadow-glass hover:shadow-glow-rose transition-all hover:-translate-y-2 duration-300 flex-col h-full">
-          <div class="h-48 overflow-hidden relative">
-            <img src="/images/team/patricia.png" alt="News Image" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700">
-            <div class="absolute top-4 left-4">
-              <span class="px-3 py-1 bg-white/20 backdrop-blur-md text-white border border-white/30 text-[10px] font-bold uppercase tracking-widest rounded-full shadow-lg">Ratgeber</span>
-            </div>
-          </div>
-          <div class="p-6 flex-grow flex flex-col">
-            <p class="text-xs text-brand-rose font-bold mb-2">25. März 2026</p>
-            <h4 class="text-xl font-display font-bold text-brand-dark dark:text-brand-light mb-3 group-hover:text-brand-rose transition-colors">Welche Schuhe für den Bachatakurs?</h4>
-            <p class="text-sm opacity-70 flex-grow mb-4">Die ultimative Anleitung für Anfänger, um den perfekten Halt auf der Tanzfläche zu haben.</p>
-            <span class="text-xs font-bold uppercase tracking-widest mt-auto opacity-50 group-hover:opacity-100 transition-opacity">Lesen →</span>
-          </div>
-        </a>
+          </a>
+        )}
       </div>
       <div class="mt-8 text-center md:hidden">
         <a href="/blog" class="inline-flex px-8 py-3 bg-white/10 dark:bg-brand-dark/50 backdrop-blur-md rounded-full border border-brand-dark/10 dark:border-white/20 text-xs font-bold uppercase tracking-widest hover:text-brand-rose transition-colors duration-300">
@@ -284,9 +258,16 @@ const faqSchema = {
       <div class="max-w-5xl mx-auto">
         <div class="relative group rounded-idioma overflow-hidden shadow-glow-rose border border-white/20">
           <div class="aspect-[16/9] md:aspect-[21/9] bg-brand-dark overflow-hidden relative">
-            <!-- Group Picture Placeholder -->
-            <img src="/images/about/action.png" alt="Idiomadanza Trainer Team" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 opacity-80">
-            <div class="absolute inset-0 bg-gradient-to-t from-brand-dark/90 via-transparent to-transparent"></div>
+            <!-- Team Collage Grid -->
+            <div class="absolute inset-0 w-full h-full grid grid-cols-2 md:grid-cols-3 gap-1 bg-brand-dark group-hover:scale-105 transition-transform duration-[1500ms]">
+              <div class="overflow-hidden relative"><img src="/images/team/patricia.png" alt="Patricia" class="w-full h-full object-cover grayscale group-hover:grayscale-0 opacity-60 group-hover:opacity-100 transition-all duration-700 object-top"></div>
+              <div class="overflow-hidden relative"><img src="/images/team/stephan.png" alt="Stephan" class="w-full h-full object-cover grayscale group-hover:grayscale-0 opacity-60 group-hover:opacity-100 transition-all duration-700 object-top"></div>
+              <div class="overflow-hidden relative"><img src="/images/team/chris_und_nalini.png" alt="Chris & Nalini" class="w-full h-full object-cover grayscale group-hover:grayscale-0 opacity-60 group-hover:opacity-100 transition-all duration-700 object-[center_10%]"></div>
+              <div class="overflow-hidden relative"><img src="/images/team/pancho_und_anna.png" alt="Pancho & Anna" class="w-full h-full object-cover grayscale group-hover:grayscale-0 opacity-60 group-hover:opacity-100 transition-all duration-700 object-[center_30%]"></div>
+              <div class="overflow-hidden relative"><img src="/images/team/sebastian.png" alt="Sebastian" class="w-full h-full object-cover grayscale group-hover:grayscale-0 opacity-60 group-hover:opacity-100 transition-all duration-700 object-top"></div>
+              <div class="overflow-hidden relative"><img src="/images/team/silke.png" alt="Silke" class="w-full h-full object-cover grayscale group-hover:grayscale-0 opacity-60 group-hover:opacity-100 transition-all duration-700 object-top"></div>
+            </div>
+            <div class="absolute inset-0 bg-gradient-to-t from-brand-dark/95 via-brand-dark/40 to-transparent"></div>
             
             <!-- Overlay Content -->
             <div class="absolute bottom-0 left-0 p-8 md:p-12 space-y-4">
@@ -645,6 +626,7 @@ const faqSchema = {
         method="POST" 
         data-netlify="true" 
         netlify-honeypot="bot-field"
+        action="/success"
         class="grid grid-cols-1 md:grid-cols-3 gap-4"
       >
         <p class="hidden">

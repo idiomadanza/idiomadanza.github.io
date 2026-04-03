@@ -1,0 +1,62 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { getCollection, render } from 'astro:content';
+
+export async function getStaticPaths() {
+  const blogEntries = await getCollection('blog');
+  return blogEntries.map(entry => ({
+    params: { slug: entry.id }, props: { entry },
+  }));
+}
+
+const { entry } = Astro.props;
+const { Content } = await render(entry);
+---
+
+<Layout 
+  title={`${entry.data.title} | Idioma Journal`}
+  description={entry.data.excerpt}
+>
+  <article class="py-24 bg-brand-light dark:bg-brand-dark min-h-screen">
+    <div class="container mx-auto px-4 max-w-3xl">
+      <!-- Header -->
+      <header class="mb-12 text-center">
+        <span class="inline-block py-1 px-4 rounded-full bg-brand-rose/20 text-brand-rose text-xs font-bold tracking-widest uppercase mb-6 backdrop-blur-sm border border-brand-rose/30">
+          {entry.data.category}
+        </span>
+        <h1 class="font-display text-4xl md:text-6xl font-bold text-brand-dark dark:text-white mb-6 leading-tight">
+          {entry.data.title}
+        </h1>
+        <div class="flex items-center justify-center gap-4 text-sm opacity-60">
+          <span>{entry.data.date}</span>
+          <span class="w-1 h-1 bg-brand-rose rounded-full"></span>
+          <span>{entry.data.author}</span>
+        </div>
+      </header>
+
+      <!-- Featured Image -->
+      <div class="relative h-[300px] md:h-[500px] rounded-idioma overflow-hidden shadow-glass mb-16">
+        <img src={entry.data.image} alt={entry.data.title} class="w-full h-full object-cover">
+        <div class="absolute inset-0 bg-gradient-to-t from-brand-dark/40 to-transparent"></div>
+      </div>
+
+      <!-- Main Content -->
+      <div class="prose prose-lg dark:prose-invert prose-rose max-w-none 
+        prose-headings:font-display prose-headings:font-bold 
+        prose-p:leading-relaxed prose-p:opacity-80
+        dark:prose-p:text-white/80">
+        <Content />
+      </div>
+
+      <!-- Footer / Back -->
+      <footer class="mt-20 pt-12 border-t border-brand-dark/10 dark:border-white/10 flex justify-between items-center">
+        <a href="/blog" class="text-brand-rose font-bold text-sm uppercase tracking-widest hover:text-brand-glow transition-colors">
+          ← Zurück zum Journal
+        </a>
+        <div class="flex gap-4">
+           <!-- Social Share Icons could go here -->
+        </div>
+      </footer>
+    </div>
+  </article>
+</Layout>
