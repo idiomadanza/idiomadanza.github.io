@@ -4,5 +4,5 @@
   publish = "dist"
 
 [build.environment]
-  # Behebt den Build-Fehler: Zwingt Netlify dazu, Node.js Version 24 (statt 18) zu verwenden
-  NODE_VERSION = "24"
+  # Behebt den Build-Fehler: Zwingt Netlify dazu, Node.js Version 22 (statt 18) zu verwenden
+  NODE_VERSION = "22"
