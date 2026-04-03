@@ -40,7 +40,7 @@ Unser Team besteht aus leidenschaftlichen Experten, die ihr Wissen mit Herz weit
 *   **Silke**
 *   **Janis**
 *   **Katharina**
-*   **Vicky**
+*   **Vikky**
 
 ---
 *Idiomadanza e.V. — Isarstr. 85, 93057 Regensburg*
