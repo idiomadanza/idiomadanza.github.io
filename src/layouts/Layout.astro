@@ -164,7 +164,7 @@ const breadcrumbSchema = autoBreadcrumb.length > 0 ? {
               </li>
               <li class="flex items-start gap-3">
                 <span class="text-brand-rose">📧</span>
-                <a href="mailto:mail@idiomadanza.de" class="hover:text-brand-rose transition-colors">mail [at] idiomadanza.de</a>
+                <a href="#" data-email="mail|idiomadanza.de" class="email-decode hover:text-brand-rose transition-colors">mail [at] idiomadanza.de</a>
               </li>
             </ul>
           </div>
@@ -180,5 +180,25 @@ const breadcrumbSchema = autoBreadcrumb.length > 0 ? {
       </div>
     </footer>
     <CookieBanner />
+
+    <!-- Anti-Spam Email Decoder -->
+    <script>
+      const decodeEmails = () => {
+        document.querySelectorAll('.email-decode').forEach((el) => {
+          const email = el.getAttribute('data-email')?.replace('|', '@');
+          if (email) {
+            (el as HTMLAnchorElement).href = `mailto:${email}`;
+            // Optional: Restore text if it contains [at]
+            if (el.textContent?.includes('[at]')) {
+              el.textContent = email;
+            }
+          }
+        });
+      };
+      
+      // Run on load and after view transitions
+      decodeEmails();
+      document.addEventListener('astro:after-swap', decodeEmails);
+    </script>
   </body>
 </html>

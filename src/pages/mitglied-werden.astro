@@ -202,8 +202,13 @@ import aboutBg from '../assets/images/about/about-bg.png';
                   <input type="checkbox" name="status" value="Studierend" class="w-6 h-6 rounded border-gray-300 text-brand-rose focus:ring-brand-rose cursor-pointer">
                   <span class="font-bold dark:text-white">Ja, ich bin Studierende(r) oder in Ausbildung</span>
                 </label>
-                <p class="text-xs opacity-40 dark:text-white/40 italic">Bitte einen aktuellen Nachweis an mail@idiomadanza.de schicken.</p>
+                <p class="text-xs opacity-40 dark:text-white/40 italic text-white/40">Bitte einen aktuellen Nachweis an <a href="#" data-email="mail|idiomadanza.de" class="email-decode underline hover:text-brand-rose transition-colors">mail [at] idiomadanza.de</a> schicken.</p>
               </div>
+
+              {/* Bot Field (Honeypot) */}
+              <p class="hidden">
+                <label>Don’t fill this out if you’re human: <input name="bot-field" id="bot-field" /></label>
+              </p>
 
               <div class="space-y-4 pt-4">
                 <label class="flex items-start gap-4 cursor-pointer group">
@@ -244,6 +249,13 @@ import aboutBg from '../assets/images/about/about-bg.png';
 
     form?.addEventListener('submit', async (e) => {
       e.preventDefault();
+
+      // Honeypot Check
+      const botField = (document.getElementById('bot-field') as HTMLInputElement)?.value;
+      if (botField) {
+        console.warn('Bot detected');
+        return;
+      }
       
       feedback?.classList.add('hidden');
       if (submitBtn) (submitBtn as HTMLButtonElement).disabled = true;

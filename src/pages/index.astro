@@ -241,7 +241,18 @@ const danceSchoolSchema = {
   <section id="fast-contact" class="py-24 bg-brand-dark relative overflow-hidden text-white">
     <div class="container mx-auto px-4 max-w-2xl relative z-10 text-center">
       <h2 class="font-display text-4xl font-bold mb-8">Gratis <span class="text-brand-glow">Probestunde</span></h2>
-      <form name="home-probestunde" method="POST" data-netlify="true" class="space-y-4">
+      <form 
+        name="home-probestunde" 
+        method="POST" 
+        data-netlify="true" 
+        netlify-honeypot="bot-field"
+        class="space-y-4"
+      >
+        <p class="hidden">
+          <label>Don’t fill this out if you’re human: <input name="bot-field" /></label>
+        </p>
+        <input type="hidden" name="form-name" value="home-probestunde" />
+        
         <input type="text" name="name" required placeholder="Dein Name" class="w-full bg-white/10 border border-white/20 rounded-xl px-6 py-4 outline-none focus:border-brand-rose transition-colors">
         <input type="email" name="email" required placeholder="E-Mail Adresse" class="w-full bg-white/10 border border-white/20 rounded-xl px-6 py-4 outline-none focus:border-brand-rose transition-colors">
         <button type="submit" class="w-full bg-brand-rose py-4 rounded-xl font-bold shadow-glow-rose hover:-translate-y-1 transition-all">Anfrage senden</button>
