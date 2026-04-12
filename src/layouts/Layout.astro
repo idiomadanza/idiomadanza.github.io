@@ -29,6 +29,7 @@ const breadcrumbLabels: Record<string, string> = {
   'preise': 'Preise',
   'workshops': 'Workshops',
   'ueber-uns': 'Über Uns',
+  'mitglied-werden': 'Mitgliedschaft',
   'kontakt': 'Kontakt',
   'blog': 'Journal'
 };
@@ -78,6 +79,7 @@ const breadcrumbSchema = autoBreadcrumb.length > 0 ? {
           <a href="/kurse" class="hover:text-brand-rose transition-colors">Kurse</a>
           <a href="/workshops" class="hover:text-brand-rose transition-colors">Workshops</a>
           <a href="/ueber-uns" class="hover:text-brand-rose transition-colors">Über Uns</a>
+          <a href="/mitglied-werden" class="hover:text-brand-rose transition-colors">Mitgliedschaft</a>
           <a href="/blog" class="hover:text-brand-rose transition-colors">Journal</a>
           <a href="/kontakt" class="bg-brand-rose px-6 py-2 rounded-full text-white shadow-glow-rose hover:-translate-y-0.5 transition-all">Probestunde</a>
         </div>
@@ -88,11 +90,72 @@ const breadcrumbSchema = autoBreadcrumb.length > 0 ? {
       <slot />
     </main>
 
-    <footer class="bg-brand-dark py-12 border-t border-white/5 text-center text-sm opacity-50">
-      <p>&copy; {new Date().getFullYear()} Idiomadanza e.V. Regensburg</p>
-      <div class="mt-4 flex justify-center gap-6">
-        <a href="/impressum">Impressum</a>
-        <a href="/datenschutz">Datenschutz</a>
+    <footer class="bg-brand-dark border-t border-white/5 pt-20 pb-10 overflow-hidden">
+      <div class="container mx-auto px-4">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
+          <!-- Brand & About -->
+          <div class="space-y-6">
+            <div class="flex items-center gap-4">
+              <div class="relative w-12 h-12 rounded-full overflow-hidden border border-brand-glow/30">
+                <Image src={logoImg} alt="Idiomadanza Logo" width={48} height={48} class="p-1" />
+              </div>
+              <span class="text-2xl font-display font-bold text-brand-rose">Idiomadanza e.V.</span>
+            </div>
+            <p class="text-sm text-white/50 leading-relaxed max-w-xs">
+              Tanzen verbindet: Dein Verein für Bachata & Salsa in Regensburg. Erlebe Leidenschaft und Community.
+            </p>
+          </div>
+
+          <!-- Legal -->
+          <div class="space-y-6">
+            <h4 class="text-xs font-bold uppercase tracking-[0.2em] text-brand-glow">Rechtliches</h4>
+            <ul class="space-y-4 text-sm text-white/60">
+              <li><a href="/impressum" class="hover:text-brand-rose transition-colors">Impressum</a></li>
+              <li><a href="/datenschutz" class="hover:text-brand-rose transition-colors">Datenschutz</a></li>
+              <li><a href="/cookie-richtlinie" class="hover:text-brand-rose transition-colors">Cookies</a></li>
+              <li><a href="/satzung" class="hover:text-brand-rose transition-colors">Satzung</a></li>
+              <li><a href="/vereinsordnung" class="hover:text-brand-rose transition-colors">Vereinsordnung</a></li>
+            </ul>
+          </div>
+
+          <!-- Explore -->
+          <div class="space-y-6">
+            <h4 class="text-xs font-bold uppercase tracking-[0.2em] text-brand-glow">Entdecken</h4>
+            <ul class="space-y-4 text-sm text-white/60">
+              <li><a href="/kurse" class="hover:text-brand-rose transition-colors">Wöchentliche Kurse</a></li>
+              <li><a href="/preise" class="hover:text-brand-rose transition-colors">Preise & Mitgliedschaft</a></li>
+              <li><a href="/ueber-uns" class="hover:text-brand-rose transition-colors">Über den Verein</a></li>
+              <li><a href="/mitglied-werden" class="hover:text-brand-rose transition-colors font-bold text-brand-rose/80">Mitglied werden</a></li>
+            </ul>
+          </div>
+
+          <!-- Contact -->
+          <div class="space-y-6">
+            <h4 class="text-xs font-bold uppercase tracking-[0.2em] text-brand-glow">Kontakt</h4>
+            <ul class="space-y-4 text-sm text-white/60">
+              <li class="flex items-start gap-3">
+                <span class="text-brand-rose">📍</span>
+                <span>Isarstr. 85, 93057 Regensburg</span>
+              </li>
+              <li class="flex items-start gap-3">
+                <span class="text-brand-rose">💬</span>
+                <a href="https://wa.me/+4915678659226?text=Hallo%20Idiomadanza,%20ich%20habe%20weitere%20Fragen%20zu%20..." target="_blank" class="hover:text-brand-rose transition-colors font-bold">Chat on WhatsApp</a>
+              </li>
+              <li class="flex items-start gap-3">
+                <span class="text-brand-rose">📧</span>
+                <a href="mailto:mail@idiomadanza.de" class="hover:text-brand-rose transition-colors">mail [at] idiomadanza.de</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-white/30">
+          <p>&copy; {new Date().getFullYear()} Idiomadanza e.V. Alle Rechte vorbehalten.</p>
+          <div class="flex gap-6">
+            <a href="https://instagram.com/idiomadanza" target="_blank" rel="noopener" class="hover:text-brand-rose transition-colors">Instagram</a>
+            <a href="https://facebook.com/idiomadanza" target="_blank" rel="noopener" class="hover:text-brand-rose transition-colors">Facebook</a>
+          </div>
+        </div>
       </div>
     </footer>
     <CookieBanner />
