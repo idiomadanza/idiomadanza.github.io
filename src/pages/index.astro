@@ -2,33 +2,115 @@
 import Layout from '../layouts/Layout.astro';
 import { getCollection } from 'astro:content';
 import { Image } from 'astro:assets';
+import HeroSection from '../components/blocks/HeroSection.astro';
 
-const blogEntries = await getCollection('blog');
-const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/**/*.{jpeg,jpg,png,gif,webp}');
+// 1. Daten holen
+const blogEntries = await getCollection('blog') || [];
+const workshopsDocs = await getCollection('workshops') || [];
+const team = await getCollection('team') || [];
 
-const latestPost = blogEntries[0];
-let heroImg = null;
+const latestPost = blogEntries.length > 0 ? blogEntries[0] : null;
+const latestWorkshops = workshopsDocs.slice(0, 2);
+const collageTeam = team.slice(0, 8);
 
-if (latestPost && typeof latestPost.data.image === 'string') {
-  const path = latestPost.data.image.replace('../../assets/', '/src/assets/');
-  if (images[path]) {
-    const mod = await images[path]();
-    heroImg = mod.default;
-  }
-}
+// 2. Statische Bilder importieren
+import blogFallbackImg from '../assets/images/testimonials/bg.png';
+import testimonialsBg from '../assets/images/testimonials/bg.png';
+import melanieImg from '../assets/images/testimonials/melanie.png';
 ---
 
-<Layout title="Home | Idiomadanza">
-  <section class="py-20 text-center">
-    <h1 class="text-6xl font-bold mb-4">Idiomadanza</h1>
-    <p class="text-xl opacity-60">Salsa & Bachata in Regensburg</p>
+<Layout 
+  title="Idiomadanza e.V. | Bachata & Salsa Tanzkurse in Regensburg"
+  description="Lerne Bachata und Salsa in Regensburg bei Idiomadanza e.V. – Qualität und Gemeinschaft."
+>
+  
+  <HeroSection 
+    title="Deine Sprache. Dein Rhythmus. Dein Verein."
+    subtitle="Erlebe Bachata & Salsa in Regensburg. Höchste tänzerische Qualität trifft auf echte Gemeinschaft."
+    ctaText="Kostenlose Probestunde"
+    ctaHref="/kontakt"
+  />
+
+  <div class="relative z-20 -mt-10 px-4">
+    <div class="max-w-4xl mx-auto bg-white/10 dark:bg-brand-dark/80 backdrop-blur-2xl p-6 rounded-2xl border border-white/20 shadow-glow-rose flex flex-col md:flex-row items-center gap-6 group">
+      <div class="flex-grow space-y-1 text-white">
+        <p class="font-medium flex items-center gap-2">
+          <span class="text-brand-glow">🔥</span> <strong>Nächster Kursstart:</strong> Mai 2026
+        </p>
+      </div>
+      <a href="/kurse" class="text-white hover:text-brand-rose transition-colors text-xs font-bold uppercase tracking-widest flex items-center gap-2 whitespace-nowrap">
+        Details ansehen →
+      </a>
+    </div>
+  </div>
+
+  <section class="py-24 bg-brand-light dark:bg-brand-dark/95">
+    <div class="container mx-auto px-4">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+        
+        {latestPost && (
+          <a href={`/blog/${latestPost.id}`} class="group bg-white/70 dark:bg-brand-dark/50 border border-brand-dark/10 rounded-idioma overflow-hidden shadow-glass hover:shadow-glow-rose transition-all hover:-translate-y-2 flex flex-col h-full">
+            <div class="aspect-video overflow-hidden relative">
+              <Image src={blogFallbackImg} alt={latestPost.data.title} class="w-full h-full object-cover" />
+            </div>
+            <div class="p-6 flex-grow">
+              <h4 class="text-xl font-display font-bold text-brand-dark dark:text-white">{latestPost.data.title}</h4>
+              <p class="text-sm opacity-70 mt-2 line-clamp-3">{latestPost.data.excerpt}</p>
+            </div>
+          </a>
+        )}
+
+        {latestWorkshops.map((workshop) => (
+          <div class="group bg-white/70 dark:bg-brand-dark/50 border border-brand-dark/10 rounded-idioma p-6 flex flex-col h-full">
+            <h4 class="text-xl font-display font-bold dark:text-white">{workshop.data.title}</h4>
+            <p class="text-sm opacity-70 mt-2 flex-grow">{workshop.data.description?.substring(0, 80)}...</p>
+            <a href="/workshops" class="text-xs font-bold uppercase text-brand-rose mt-4">Details →</a>
+          </div>
+        ))}
+      </div>
+    </div>
   </section>
 
-  {latestPost && heroImg && (
-    <section class="max-w-xl mx-auto p-4">
-      <Image src={heroImg} alt="News" class="rounded-2xl" />
-      <h2 class="text-2xl font-bold mt-4">{latestPost.data.title}</h2>
-      <a href={`/blog/${latestPost.id}`} class="text-brand-rose mt-2 inline-block">Lesen →</a>
+  {collageTeam.length > 0 && (
+    <section class="py-24 bg-brand-dark overflow-hidden">
+      <div class="container mx-auto px-4">
+        <h2 class="text-3xl font-display font-bold text-white text-center mb-12">Unser <span class="text-brand-rose">Team</span></h2>
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+          {collageTeam.map((member) => (
+            <div class="aspect-square rounded-xl overflow-hidden border border-white/10">
+              <Image src={member.data.image} alt={member.data.name} class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700" />
+            </div>
+          ))}
+        </div>
+      </div>
     </section>
   )}
+
+  <section id="testimonials" class="relative py-32 overflow-hidden bg-brand-dark">
+    <div class="absolute inset-0 z-0 opacity-30">
+      <Image src={testimonialsBg} alt="Atmosphere" class="w-full h-full object-cover" />
+    </div>
+
+    <div class="container mx-auto px-4 relative z-10 text-center text-white">
+      <div class="max-w-xl mx-auto bg-white/10 backdrop-blur-xl p-8 rounded-2xl border border-white/20">
+        <div class="w-20 h-20 mx-auto mb-6 rounded-full border-4 border-brand-rose overflow-hidden">
+          <Image src={melanieImg} alt="Melanie K." class="w-full h-full object-cover" />
+        </div>
+        <p class="italic text-lg mb-4">"Vielen lieben Dank für die tollen Unterrichtsstunden! Macht immer viel Spaß, weiter so!"</p>
+        <p class="text-brand-rose font-bold uppercase text-sm">Melanie K.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="fast-contact" class="py-24 bg-brand-dark relative overflow-hidden text-white">
+    <div class="container mx-auto px-4 max-w-2xl relative z-10 text-center">
+      <h2 class="font-display text-4xl font-bold mb-8">Gratis <span class="text-brand-glow">Probestunde</span></h2>
+      <form name="home-probestunde" method="POST" data-netlify="true" class="space-y-4">
+        <input type="text" name="name" required placeholder="Dein Name" class="w-full bg-white/10 border border-white/20 rounded-xl px-6 py-4 outline-none focus:border-brand-rose transition-colors">
+        <input type="email" name="email" required placeholder="E-Mail Adresse" class="w-full bg-white/10 border border-white/20 rounded-xl px-6 py-4 outline-none focus:border-brand-rose transition-colors">
+        <button type="submit" class="w-full bg-brand-rose py-4 rounded-xl font-bold shadow-glow-rose hover:-translate-y-1 transition-all">Anfrage senden</button>
+      </form>
+    </div>
+  </section>
+
 </Layout>
