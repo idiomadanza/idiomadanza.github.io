@@ -12,10 +12,12 @@ const latestPost = blogEntries.length > 0 ? blogEntries[0] : null;
 const workshops = await getCollection('workshops') || [];
 const latestWorkshops = workshops.slice(0, 2); // Die ersten zwei Workshops anzeigen
 
-// 3. Statische Bilder
+// 3. Testimonials laden
+const testimonials = await getCollection('testimonials') || [];
+
+// 4. Statische Bilder
 import blogFallbackImg from '../assets/images/testimonials/bg.png';
 import testimonialsBg from '../assets/images/testimonials/bg.png';
-import melanieImg from '../assets/images/testimonials/melanie.png';
 
 // 4. Team-Collage vorbereiten (wie auf Über Uns)
 const allTeam = await getCollection('team') || [];
@@ -164,16 +166,45 @@ const overviewTeam = [
 
   {/* Testimonials */}
   <section id="testimonials" class="relative py-32 overflow-hidden bg-brand-dark">
-    <div class="absolute inset-0 z-0 opacity-30">
+    <div class="absolute inset-0 z-0 opacity-20">
       <Image src={testimonialsBg} alt="Atmosphere" class="w-full h-full object-cover" />
     </div>
-    <div class="container mx-auto px-4 relative z-10 text-center text-white">
-      <div class="max-w-xl mx-auto bg-white/10 backdrop-blur-xl p-8 rounded-2xl border border-white/20">
-        <div class="w-20 h-20 mx-auto mb-6 rounded-full border-4 border-brand-rose overflow-hidden">
-          <Image src={melanieImg} alt="Melanie K." class="w-full h-full object-cover" />
-        </div>
-        <p class="italic text-lg mb-4 text-white/90">"Vielen lieben Dank für die tollen Unterrichtsstunden! Macht immer viel Spaß, weiter so!"</p>
-        <p class="text-brand-rose font-bold uppercase tracking-widest text-sm">Melanie K.</p>
+    
+    <div class="container mx-auto px-4 relative z-10">
+      <div class="text-center mb-16">
+        <h2 class="font-display text-4xl md:text-5xl font-bold text-white mb-4">Das sagen unsere <span class="text-brand-glow">Tänzer</span></h2>
+        <div class="w-24 h-1 bg-brand-rose mx-auto rounded-full"></div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-7xl mx-auto">
+        {testimonials.map((t) => (
+          <div class="group bg-white/5 backdrop-blur-xl p-8 rounded-2xl border border-white/10 flex flex-col items-center text-center shadow-glass hover:border-brand-rose/50 transition-all duration-500 hover:-translate-y-2">
+            <div class="w-20 h-20 mb-6 rounded-full border-4 border-brand-rose/30 group-hover:border-brand-rose overflow-hidden transition-colors shadow-glow-rose">
+              <Image src={t.data.image} alt={t.data.name} class="w-full h-full object-cover" />
+            </div>
+            
+            <div class="flex gap-1 mb-4">
+              {[...Array(t.data.rating)].map(() => (
+                <span class="text-brand-glow text-xs">★</span>
+              ))}
+            </div>
+
+            <p class="text-white/80 text-sm italic leading-relaxed mb-6 flex-grow">
+              "{t.data.text}"
+            </p>
+
+            <div class="mt-auto">
+              <p class="text-brand-rose font-bold uppercase tracking-widest text-[10px] mb-1">{t.data.name}</p>
+              <p class="text-white/40 text-[9px] uppercase tracking-wider">{t.data.role}</p>
+              
+              {t.data.videoUrl && (
+                <a href={t.data.videoUrl} target="_blank" rel="noopener noreferrer" class="mt-4 inline-flex items-center gap-2 text-[10px] font-bold text-brand-glow hover:text-white transition-colors uppercase tracking-widest">
+                  Video Message <span class="text-xs">▶</span>
+                </a>
+              )}
+            </div>
+          </div>
+        ))}
       </div>
     </div>
   </section>
