@@ -3,7 +3,7 @@
   "name": "Patricia",
   "role": "Gründerin & Bachata",
   "isFounder": true,
-  "image": "/src/assets/images/team/patricia.png",
+  "image": "../../assets/images/team/patricia.png",
   "imagePosition": "object-top",
   "instagram": "https://instagram.com/idiomadanza",
   "bio": [

@@ -2,7 +2,7 @@
   "name": "Stephan",
   "role": "Gründer & Bachata",
   "isFounder": true,
-  "image": "/images/team/stephan.png",
+  "image": "../../assets/images/team/stephan.png",
   "imagePosition": "object-top",
   "instagram": "https://instagram.com/idiomadanza",
   "bio": [

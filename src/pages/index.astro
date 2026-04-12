@@ -8,23 +8,9 @@ import HeroSection from '../components/blocks/HeroSection.astro';
 const blogEntries = await getCollection('blog') || [];
 const latestPost = blogEntries.length > 0 ? blogEntries[0] : null;
 
-// 2. Team & Workshops direkt importieren
-import stephanData from '../content/team/stephan.json';
-import patriciaData from '../content/team/patricia.json';
-
-import workshop1 from '../content/workshops/bailabachata.json';
-import workshop2 from '../content/workshops/habibi-amor.json';
-
-// Wir packen die Daten in das Array
-const collageTeam = [
-  { data: stephanData },
-  { data: patriciaData }
-];
-
-const latestWorkshops = [
-  { data: workshop1 },
-  { data: workshop2 }
-];
+// 2. Workshops holen
+const workshops = await getCollection('workshops') || [];
+const latestWorkshops = workshops.slice(0, 2); // Die ersten zwei Workshops anzeigen
 
 // 3. Statische Bilder
 import blogFallbackImg from '../assets/images/testimonials/bg.png';
@@ -77,7 +63,7 @@ import melanieImg from '../assets/images/testimonials/melanie.png';
             
             {/* Bild mit Kategorie-Badge */}
             <div class="aspect-video overflow-hidden relative">
-              <img 
+              <Image 
                 src={workshop.data.image} 
                 alt={workshop.data.title} 
                 class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" 
@@ -121,54 +107,7 @@ import melanieImg from '../assets/images/testimonials/melanie.png';
     </div>
   </section>
 
-  {/* TEAM SECTION - DAS HIGHLIGHT */}
-  <section class="py-24 bg-brand-dark relative overflow-hidden">
-    <div class="absolute top-0 left-0 w-full h-full bg-brand-rose/5 blur-[120px] rounded-full -translate-y-1/2"></div>
-    
-    <div class="container mx-auto px-4 relative z-10">
-      <div class="text-center mb-16">
-        <h2 class="font-display text-4xl md:text-5xl font-bold text-white mb-4">Unser <span class="text-brand-rose">Team</span></h2>
-        <div class="w-24 h-1 bg-brand-rose mx-auto rounded-full"></div>
-      </div>
 
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 max-w-7xl mx-auto">
-        {collageTeam.map((member) => (
-          <div class="group bg-white/5 backdrop-blur-md border border-white/10 rounded-2xl overflow-hidden hover:border-brand-rose transition-all duration-500 hover:-translate-y-2 flex flex-col">
-            <div class="aspect-[4/5] overflow-hidden relative">
-              <img 
-                src={member.data.image} 
-                alt={member.data.name} 
-                class={`w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700 ${member.data.imagePosition || 'object-center'}`} 
-              />
-              <div class="absolute inset-0 bg-gradient-to-t from-brand-dark via-transparent to-transparent opacity-80"></div>
-              
-              <div class="absolute bottom-4 left-6">
-                <h3 class="text-2xl font-display font-bold text-white">{member.data.name}</h3>
-                <p class="text-brand-rose font-bold text-xs uppercase tracking-widest">{member.data.role}</p>
-              </div>
-            </div>
-
-            <div class="p-6">
-              <div class="space-y-3">
-                {member.data.bio?.slice(0, 3).map((item) => (
-                  <div class="flex items-start gap-3 text-[11px] text-white/60">
-                    <span class="text-brand-glow">{item.icon}</span>
-                    <span class="leading-tight">{item.text}</span>
-                  </div>
-                ))}
-              </div>
-              
-              {member.data.instagram && (
-                <a href={member.data.instagram} target="_blank" class="mt-6 flex items-center gap-2 text-[10px] font-bold uppercase tracking-tighter text-white/40 hover:text-brand-rose transition-colors">
-                  Instagram <span class="text-xs">↗</span>
-                </a>
-              )}
-            </div>
-          </div>
-        ))}
-      </div>
-    </div>
-  </section>
 
   {/* Testimonials */}
   <section id="testimonials" class="relative py-32 overflow-hidden bg-brand-dark">

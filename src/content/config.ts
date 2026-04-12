@@ -1,12 +1,9 @@
 import { z, defineCollection } from 'astro:content';
 
 const teamCollection = defineCollection({
-  // Wir nehmen 'content', das ist bei der Erkennung von Ordnern oft toleranter
-  type: 'content',
+  type: 'data',
   schema: ({ image }) => z.object({
-    // 'id' entfernen wir hier im Schema, da Astro die ID bei 'content' 
-    // automatisch aus dem Dateinamen zieht und ein doppeltes 'id' im 
-    // JSON oft zu Fehlern führt!
+    id: z.string().optional(),
     name: z.string(),
     role: z.string().optional(),
     isFounder: z.boolean().default(false),
