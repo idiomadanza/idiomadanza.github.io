@@ -67,14 +67,36 @@ const courseSchema = [
     "audience": { "@type": "Audience", "audienceType": "Alle Level" }
   }
 ];
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Kann ich eine kostenlose Probestunde machen?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Ja! Bei Idiomadanza e.V. ist die erste Schnupperstunde (z. B. in der Bachata Influence Session am Mittwoch) kostenlos. Eine kurze Anmeldung via WhatsApp oder Kontaktformular genügt." }
+    },
+    {
+      "@type": "Question",
+      "name": "Brauche ich einen Tanzpartner?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Nein. In unseren Kursen wird regelmäßig gewechselt. Du lernst so das Führen und Folgen viel effektiver. Du kannst allein, mit Freunden oder als Paar kommen." }
+    },
+    {
+      "@type": "Question",
+      "name": "Wie sind die Kündigungsfristen?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Unsere Mitgliedschaft hat eine Mindestlaufzeit von 3 Monaten. Danach ist sie flexibel monatlich kündbar." }
+    }
+  ]
+};
 ---
 
 <Layout 
   title="Bachata & Salsa Kurse in Regensburg | Idiomadanza e.V."
   description="Wöchentliche Bachata und Salsa Tanzkurse in Regensburg: Dienstag und Mittwoch für alle Level – von Foundations bis Pro. Jetzt Kursplan ansehen!"
 >
-  <!-- Course Schema for Agentic SEO -->
-  <script type="application/ld+json" set:html={JSON.stringify({ "@context": "https://schema.org", "@graph": courseSchema })} />
+  <!-- Course & FAQ Schema for Agentic SEO -->
+  <script type="application/ld+json" set:html={JSON.stringify({ "@context": "https://schema.org", "@graph": [...courseSchema, faqSchema] })} />
 
   <!-- HERO SECTION -->
   <section class="relative py-20 overflow-hidden bg-brand-dark">
@@ -246,17 +268,154 @@ const courseSchema = [
             </div>
           </div>
         </div>
+      </div>
+    </div>
+  </section>
 
+  <!-- PRICING SECTION -->
+  <section id="preise" class="py-24 bg-brand-dark/95 relative overflow-hidden text-white border-t border-white/5">
+    <div class="container mx-auto px-4">
+      <div class="text-center mb-16">
+        <h2 class="font-display text-4xl md:text-5xl font-bold">Mitgliedschaft & <span class="text-brand-glow">Preise</span></h2>
+        <div class="w-24 h-1 bg-brand-rose mx-auto rounded-full mt-4"></div>
       </div>
 
-      <!-- CTA -->
-      <div class="mt-24 text-center">
-        <div class="p-12 bg-white/10 backdrop-blur-lg rounded-idioma border border-white/20 max-w-4xl mx-auto shadow-glow-rose">
-          <h2 class="text-3xl font-display font-bold text-brand-rose mb-6">Lust auf eine Probestunde?</h2>
-          <p class="text-lg opacity-80 mb-10 dark:text-white">Melde dich jetzt für deinen ersten Kurs an und werde Teil unserer Community.</p>
-          <a href="/kontakt" class="inline-block py-4 px-10 bg-brand-rose text-white font-bold rounded-full shadow-glow-rose hover:scale-105 transition-all">Jetzt Platz sichern</a>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-12 max-w-5xl mx-auto">
+        <!-- Student Membership -->
+        <div class="group bg-white/5 backdrop-blur-xl p-12 rounded-idioma shadow-glass border border-white/10 flex flex-col items-center hover:-translate-y-4 transition-all duration-500 relative overflow-hidden">
+          <div class="absolute top-0 left-0 w-full h-2 bg-brand-glow"></div>
+          <h3 class="text-3xl font-display font-bold mb-2">Ermäßigt</h3>
+          <p class="text-[10px] opacity-50 mb-8 uppercase tracking-widest font-bold">Studierende / Azubis</p>
+          <div class="mb-10 text-center">
+            <span class="text-6xl font-black text-brand-rose">19€</span>
+            <span class="text-lg opacity-40 ml-2">/ Monat</span>
+          </div>
+          <ul class="space-y-4 mb-12 w-full max-w-xs text-sm opacity-80">
+            <li class="flex items-center gap-3">
+              <span class="text-brand-glow">✓</span> Alle Bachata & Salsa Kurse
+            </li>
+            <li class="flex items-center gap-3">
+              <span class="text-brand-glow">✓</span> Unlimitierter Kursbesuch
+            </li>
+            <li class="flex items-center gap-3">
+              <span class="text-brand-glow">✓</span> Keine versteckten Kursgebühren
+            </li>
+          </ul>
+               <a href="/mitglied-werden" class="mt-auto w-full py-4 bg-white/10 hover:bg-brand-rose rounded-full font-bold transition-all border border-white/10 text-center">Jetzt anmelden</a>
+        </div>
+
+        <!-- Full Membership -->
+        <div class="group bg-white/5 backdrop-blur-xl p-12 rounded-idioma shadow-glass border border-white/10 flex flex-col items-center hover:-translate-y-4 transition-all duration-500 relative overflow-hidden">
+          <div class="absolute top-0 left-0 w-full h-2 bg-brand-rose"></div>
+          <h3 class="text-3xl font-display font-bold mb-2">Regulär</h3>
+          <p class="text-[10px] opacity-50 mb-8 uppercase tracking-widest font-bold">Erwachsene</p>
+          <div class="mb-10 text-center">
+            <span class="text-6xl font-black text-brand-rose">39€</span>
+            <span class="text-lg opacity-40 ml-2">/ Monat</span>
+          </div>
+          <ul class="space-y-4 mb-12 w-full max-w-xs text-sm opacity-80">
+            <li class="flex items-center gap-3">
+              <span class="text-brand-rose">✓</span> Alle Bachata & Salsa Kurse
+            </li>
+            <li class="flex items-center gap-3">
+              <span class="text-brand-rose">✓</span> Unlimitierter Kursbesuch
+            </li>
+            <li class="flex items-center gap-3">
+              <span class="text-brand-rose">✓</span> Community-Events & Socials
+            </li>
+          </ul>
+          <a href="/mitglied-werden" class="mt-auto w-full py-4 bg-brand-rose text-white font-bold rounded-full shadow-glow-rose hover:bg-white hover:text-brand-dark transition-all text-center">Jetzt Mitglied werden</a>
+        </div>
+      </div>
+
+      <div class="mt-16 text-center text-xs opacity-40 italic">
+        Aufnahmegebühr (einmalig): 11€ | Mindestlaufzeit: 3 Monate, danach monatlich kündbar.
+      </div>
+    </div>
+  </section>
+
+  <!-- EXPANDED FAQ SECTION -->
+  <section id="faq" class="py-24 bg-brand-dark relative overflow-hidden text-white border-t border-white/5">
+    <div class="container mx-auto px-4 max-w-5xl relative z-10">
+      <div class="text-center mb-16">
+        <h2 class="font-display text-4xl md:text-5xl font-bold">💃 Häufige <span class="text-brand-rose">Fragen</span></h2>
+        <p class="mt-4 opacity-60">Alles was du über den Einstieg bei Idiomadanza e.V. wissen musst.</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-16">
+        <!-- 1. Einstieg & Probestunde -->
+        <div class="space-y-8">
+          <h3 class="text-xl font-display font-bold text-brand-glow border-b border-brand-glow/20 pb-4">1. Einstieg & Probestunde</h3>
+          <div class="space-y-6">
+            <div>
+              <h4 class="font-bold mb-2 text-brand-rose">Kann ich eine kostenlose Probestunde machen?</h4>
+              <p class="text-sm opacity-70 leading-relaxed">Ja! Bei Idiomadanza e.V. ist die erste Schnupperstunde (z. B. in der Bachata Influence Session am Mittwoch) kostenlos. Eine kurze Anmeldung via WhatsApp oder Kontaktformular genügt.</p>
+            </div>
+            <div>
+              <h4 class="font-bold mb-2 text-brand-rose">Brauche ich einen Tanzpartner?</h4>
+              <p class="text-sm opacity-70 leading-relaxed">Nein. In unseren Kursen wird regelmäßig gewechselt. Du lernst so das Führen und Folgen viel effektiver. Du kannst allein, mit Freunden oder als Paar kommen.</p>
+            </div>
+            <div>
+              <h4 class="font-bold mb-2 text-brand-rose">Wie läuft der Anmeldeprozess ab?</h4>
+              <p class="text-sm opacity-70 leading-relaxed">Nach deiner Probestunde erhältst du von uns eine Beitrittserklärung. Diese füllst du in Ruhe aus und gibst sie beim nächsten Training ab. Die Aufnahme erfolgt unkompliziert und digital-friendly.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- 2. Kosten & Mitgliedschaft -->
+        <div class="space-y-8">
+          <h3 class="text-xl font-display font-bold text-brand-glow border-b border-brand-glow/20 pb-4">2. Kosten & Mitgliedschaft</h3>
+          <div class="space-y-6">
+            <div>
+              <h4 class="font-bold mb-2 text-brand-rose">Was kostet die Teilnahme?</h4>
+              <p class="text-sm opacity-70 leading-relaxed">Wir bieten faire Konditionen ohne versteckte Block-Gebühren: 19€/Monat für Studierende/Azubis oder 39€/Monat regulär. Hinzu kommt eine einmalige Aufnahmegebühr von 11€.</p>
+            </div>
+            <div>
+              <h4 class="font-bold mb-2 text-brand-rose">Wie sind die Kündigungsfristen?</h4>
+              <p class="text-sm opacity-70 leading-relaxed">Unsere Mitgliedschaft hat eine Mindestlaufzeit von 3 Monaten. Danach ist sie flexibel monatlich kündbar.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- 3. Kleidung & Ausrüstung -->
+        <div class="space-y-8">
+          <h3 class="text-xl font-display font-bold text-brand-glow border-b border-brand-glow/20 pb-4">3. Kleidung & Ausrüstung</h3>
+          <div class="space-y-6">
+            <div>
+              <h4 class="font-bold mb-2 text-brand-rose">Welche Schuhe und Kleidung?</h4>
+              <p class="text-sm opacity-70 leading-relaxed">Bequeme Alltagskleidung ist ideal. Saubere Sneaker, Hallenschuhe oder Socken genügen. Wichtig: Keine Straßenschuhe auf der Tanzfläche!</p>
+            </div>
+            <div>
+              <h4 class="font-bold mb-2 text-brand-rose">Muss ich Salsa können, um Bachata zu lernen?</h4>
+              <p class="text-sm opacity-70 leading-relaxed">Nein. Bachata und Salsa sind eigenständige Tänze. Unsere Anfängerkurs erfordern keinerlei Vorkenntnisse.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- 4. Ort & Zeiten -->
+        <div class="space-y-8">
+          <h3 class="text-xl font-display font-bold text-brand-glow border-b border-brand-glow/20 pb-4">4. Ort & Zeiten</h3>
+          <div class="space-y-6">
+            <div>
+              <h4 class="font-bold mb-2 text-brand-rose">Wo finden die Kurse statt?</h4>
+              <p class="text-sm opacity-70 leading-relaxed">Im "Raum für Engagement" im Regensburger Hauptbahnhof (D.-Martin-Luther-Str. 19). Zentral und perfekt mit ÖPNV erreichbar.</p>
+            </div>
+            <div>
+              <h4 class="font-bold mb-2 text-brand-rose">Findet Unterricht in den Ferien statt?</h4>
+              <p class="text-sm opacity-70 leading-relaxed">Ja! Unser Kursbetrieb läuft in der Regel durchgehend, außer an gesetzlichen Feiertagen.</p>
+            </div>
+          </div>
         </div>
       </div>
     </div>
   </section>
+
+  <!-- CTA -->
+  <div class="py-24 bg-brand-dark border-t border-white/5 text-center">
+    <div class="p-12 bg-white/5 backdrop-blur-lg rounded-idioma border border-white/10 max-w-4xl mx-auto shadow-glow-rose">
+      <h2 class="text-3xl font-display font-bold text-brand-rose mb-6">Noch Fragen offen?</h2>
+      <p class="text-lg opacity-80 mb-10 text-white">Wir beraten dich gerne persönlich. Schreib uns einfach!</p>
+      <a href="/kontakt" class="inline-block py-4 px-10 bg-brand-rose text-white font-bold rounded-full shadow-glow-rose hover:scale-105 transition-all">Kontakt aufnehmen</a>
+    </div>
+  </div>
 </Layout>

@@ -26,7 +26,6 @@ const canonicalUrl = canonical ? `${siteUrl}${canonical}` : `${siteUrl}${Astro.u
 const pathSegments = Astro.url.pathname.split('/').filter(Boolean);
 const breadcrumbLabels: Record<string, string> = {
   'kurse': 'Tanzkurse',
-  'preise': 'Preise',
   'workshops': 'Workshops',
   'ueber-uns': 'Über Uns',
   'mitglied-werden': 'Mitgliedschaft',
@@ -115,6 +114,7 @@ const breadcrumbSchema = autoBreadcrumb.length > 0 ? {
               <li><a href="/cookie-richtlinie" class="hover:text-brand-rose transition-colors">Cookies</a></li>
               <li><a href="/satzung" class="hover:text-brand-rose transition-colors">Satzung</a></li>
               <li><a href="/vereinsordnung" class="hover:text-brand-rose transition-colors">Vereinsordnung</a></li>
+              <li><a href="/kurse#faq" class="hover:text-brand-rose transition-colors">Häufige Fragen</a></li>
             </ul>
           </div>
 
@@ -123,7 +123,7 @@ const breadcrumbSchema = autoBreadcrumb.length > 0 ? {
             <h4 class="text-xs font-bold uppercase tracking-[0.2em] text-brand-glow">Entdecken</h4>
             <ul class="space-y-4 text-sm text-white/60">
               <li><a href="/kurse" class="hover:text-brand-rose transition-colors">Wöchentliche Kurse</a></li>
-              <li><a href="/preise" class="hover:text-brand-rose transition-colors">Preise & Mitgliedschaft</a></li>
+              <li><a href="/kurse#preise" class="hover:text-brand-rose transition-colors">Preise & Mitgliedschaft</a></li>
               <li><a href="/ueber-uns" class="hover:text-brand-rose transition-colors">Über den Verein</a></li>
               <li><a href="/mitglied-werden" class="hover:text-brand-rose transition-colors font-bold text-brand-rose/80">Mitglied werden</a></li>
             </ul>
