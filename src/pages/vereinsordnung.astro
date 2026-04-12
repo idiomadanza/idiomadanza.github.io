@@ -190,6 +190,7 @@ import Layout from '../layouts/Layout.astro';
 </Layout>
 
 <style is:global>
+  @reference "../styles/global.css";
   /* Scoped Styling für den Legal Content (Ersatz für @tailwindcss/typography) */
   .legal-content h2 {
     @apply text-2xl md:text-3xl font-display font-bold text-brand-rose mt-12 mb-6 border-b border-brand-dark/10 dark:border-white/10 pb-2;

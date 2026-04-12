@@ -1,0 +1,139 @@
+---
+import { getCollection } from 'astro:content';
+import { Image } from 'astro:assets';
+import '../styles/global.css';
+import logoImg from '../assets/images/logo.png';
+
+const workshops = await getCollection('workshops');
+const slides = workshops.map(w => ({
+    image: w.data.image,
+    title: w.data.title,
+    date: w.data.date
+}));
+---
+
+<!DOCTYPE html>
+<html lang="de" class="dark">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Idiomadanza TV</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background: #020617;
+            overflow: hidden;
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .slide-container {
+            position: relative;
+            width: 100%;
+            height: 100%;
+        }
+
+        .slide {
+            position: absolute;
+            inset: 0;
+            opacity: 0;
+            transition: opacity 1.5s ease-in-out;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: black;
+        }
+
+        .slide.active {
+            opacity: 1;
+        }
+
+        .slide-img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+            box-shadow: 0 0 50px rgba(139, 92, 246, 0.3);
+        }
+
+        .overlay {
+            position: absolute;
+            bottom: 2rem;
+            right: 2rem;
+            padding: 1.5rem;
+            background: rgba(2, 6, 23, 0.7);
+            backdrop-filter: blur(12px);
+            border-radius: 1.5rem;
+            color: white;
+            font-family: 'Inter', sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .logo {
+            position: absolute;
+            top: 2rem;
+            left: 2rem;
+            width: 120px;
+            filter: drop-shadow(0 0 10px rgba(252, 211, 77, 0.3));
+            opacity: 0.8;
+        }
+
+        .qr-placeholder {
+            width: 120px;
+            height: 120px;
+            background: white;
+            padding: 0.4rem;
+            border-radius: 0.8rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .overlay span {
+            font-size: 0.9rem;
+            font-weight: bold;
+            color: #fcd34d;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+        }
+    </style>
+</head>
+<body>
+    <div class="slide-container" id="carousel">
+        {slides.map((slide, index) => (
+            <div class={`slide ${index === 0 ? 'active' : ''}`} data-index={index}>
+                <Image src={slide.image} alt={slide.title} class="slide-img" />
+                <Image src={logoImg} class="logo" alt="Logo" width={120} height={120} />
+                <div class="overlay">
+                    <div class="qr-placeholder flex items-center justify-center">
+                        <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://idiomadanza.de/workshops" alt="QR Code" />
+                    </div>
+                    <span>Workshops & Info</span>
+                </div>
+            </div>
+        ))}
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const slides = document.querySelectorAll('.slide');
+            if (slides.length === 0) return;
+            
+            let currentSlide = 0;
+
+            const nextSlide = () => {
+                slides[currentSlide].classList.remove('active');
+                currentSlide = (currentSlide + 1) % slides.length;
+                slides[currentSlide].classList.add('active');
+            };
+
+            // Wechsel alle 8 Sekunden
+            setInterval(nextSlide, 8000);
+        });
+    </script>
+</body>
+</html>

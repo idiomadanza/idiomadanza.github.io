@@ -1,0 +1,8 @@
+{
+  "id": "antonia",
+  "name": "Antonia",
+  "role": "Trainer",
+  "isFounder": false,
+  "image": "../../assets/images/team/antonia.png",
+  "imagePosition": "object-center"
+}

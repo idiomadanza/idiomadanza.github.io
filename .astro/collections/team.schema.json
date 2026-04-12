@@ -1,0 +1,58 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string"
+    },
+    "name": {
+      "type": "string"
+    },
+    "role": {
+      "type": "string"
+    },
+    "isFounder": {
+      "default": false,
+      "type": "boolean"
+    },
+    "founderQuote": {
+      "type": "string"
+    },
+    "instagram": {
+      "type": "string",
+      "format": "uri"
+    },
+    "image": {
+      "type": "string"
+    },
+    "imagePosition": {
+      "default": "object-center",
+      "type": "string"
+    },
+    "bio": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "icon": {
+            "type": "string"
+          },
+          "text": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "icon",
+          "text"
+        ]
+      }
+    },
+    "$schema": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "name",
+    "image"
+  ]
+}

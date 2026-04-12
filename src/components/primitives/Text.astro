@@ -1,0 +1,35 @@
+---
+interface Props {
+  as?: any;
+  size?: 'sm' | 'base' | 'lg' | 'xl' | '2xl' | 'display';
+  family?: 'sans' | 'display';
+  weight?: string;
+  class?: string;
+}
+
+const { 
+  as: Tag = 'p', 
+  size = 'base', 
+  family = 'sans', 
+  weight = 'font-normal',
+  class: className 
+} = Astro.props;
+
+const sizeClasses = {
+  sm: 'text-fluid-sm',
+  base: 'text-fluid-base',
+  lg: 'text-fluid-lg',
+  xl: 'text-fluid-xl',
+  '2xl': 'text-fluid-2xl',
+  display: 'text-fluid-display'
+};
+
+const familyClasses = {
+  sans: 'font-sans',
+  display: 'font-display'
+};
+---
+
+<Tag class:list={[sizeClasses[size], familyClasses[family], weight, className]}>
+  <slot />
+</Tag>

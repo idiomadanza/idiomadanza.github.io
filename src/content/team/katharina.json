@@ -1,0 +1,8 @@
+{
+  "id": "katharina",
+  "name": "Katharina",
+  "role": "Trainer",
+  "isFounder": false,
+  "image": "../../assets/images/team/katharina.png",
+  "imagePosition": "object-center"
+}

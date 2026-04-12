@@ -1,0 +1,19 @@
+{
+  "id": "vicky",
+  "name": "Vikky",
+  "role": "Trainer",
+  "isFounder": false,
+  "image": "../../assets/images/team/vicky.png",
+  "imagePosition": "object-top",
+  "instagram": "https://instagram.com/bailaniina",
+  "bio": [
+    {
+      "icon": "🥇",
+      "text": "Bachata Switch - Bachata Town Fest, Puerto Escondido, Mexiko 2026"
+    },
+    {
+      "icon": "🥉",
+      "text": "J&J Bavaria Bachata Cup, München 2026"
+    }
+  ]
+}
