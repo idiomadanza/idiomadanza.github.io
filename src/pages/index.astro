@@ -31,12 +31,40 @@ const overviewTeam = [
   ...founders.filter(f => f.id !== 'chris_und_nalini').slice(0, 2),
   ...trainers
 ].slice(0, 8);
+
+const danceSchoolSchema = {
+  "@context": "https://schema.org",
+  "@type": "DanceSchool",
+  "name": "Idiomadanza e.V.",
+  "description": "Bachata & Salsa Tanzverein in Regensburg. Höchste tänzerische Qualität trifft auf echte Gemeinschaft.",
+  "url": "https://idiomadanza.de",
+  "logo": "https://idiomadanza.de/favicon.png",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "Isarstr. 85",
+    "addressLocality": "Regensburg",
+    "postalCode": "93057",
+    "addressCountry": "DE"
+  },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": 49.0245,
+    "longitude": 12.1158
+  },
+  "telephone": "+4915678659226",
+  "openingHours": "Tu 18:00-21:00, We 18:00-21:00",
+  "sameAs": [
+    "https://instagram.com/idiomadanza",
+    "https://facebook.com/idiomadanza"
+  ]
+};
 ---
 
 <Layout 
   title="Idiomadanza e.V. | Bachata & Salsa Tanzkurse in Regensburg"
   description="Lerne Bachata und Salsa in Regensburg bei Idiomadanza e.V. – Qualität und Gemeinschaft."
 >
+  <script type="application/ld+json" set:html={JSON.stringify(danceSchoolSchema)} />
   
   <HeroSection 
     title="Deine Sprache. Dein Rhythmus. Dein Verein."
@@ -51,7 +79,7 @@ const overviewTeam = [
       <p class="font-medium flex items-center gap-2">
         <span class="text-brand-glow">🔥</span> <strong>Nächster Kursstart:</strong> Mai 2026
       </p>
-      <a href="/kurse" class="text-white hover:text-brand-rose transition-colors text-xs font-bold uppercase tracking-widest flex items-center gap-2 whitespace-nowrap">
+      <a href="/kurse" aria-label="Details zum nächsten Kursstart ansehen" class="text-white hover:text-brand-rose transition-colors text-xs font-bold uppercase tracking-widest flex items-center gap-2 whitespace-nowrap">
         Details ansehen →
       </a>
     </div>

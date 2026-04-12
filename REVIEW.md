@@ -1,92 +1,138 @@
-🔍 Post-Build Review & Audit Checkliste (v2.2)
+🔍 Post-Build Review & Audit Checkliste (v2.8)
 
-Diese Checkliste wird nach jedem erfolgreichen Build (npm run build) ausgeführt. Sie dient als verbindlicher Gatekeeper für das Deployment und stellt sicher, dass Design-, Sicherheits- und Performance-Standards nicht durch neue Code-Änderungen erodieren.
+⚠️ NUR LESEN / READ-ONLY: Diese Datei ist eine statische System-Vorlage. Manuelle Änderungen am Regelwerk sollten nur nach Rücksprache mit der technischen Leitung vorgenommen werden. Ergebnisse und Korrekturmaßnahmen werden ausschließlich in der post-review-task.md dokumentiert.
 
-Agenten-Instruktion: Scanne den /dist Ordner, die Konfigurationsdateien und den generierten Client-Code. Antworte für jeden Unterpunkt strikt mit:
+Diese Checkliste wird nach jedem erfolgreichen Build (npm run build) ausgeführt. Sie dient als verbindlicher Gatekeeper für das Deployment.
+
+Agenten-Instruktion: Scanne den /dist Ordner, die /src Struktur und die Konfigurationsdateien. Antworte für jeden Unterpunkt strikt mit:
 [✅ OK], [⚠️ WARNING] oder [❌ BLOCKER]. Erstelle am Ende eine zusammenfassende Bewertung.
 
 🛡️ 1. Security & Supply Chain Audit
 
-Ziel: Zero-Trust Architektur und Schutz vor Daten-Exfiltration oder Supply-Chain-Angriffen.
+[ ] npm Hygiene: npm audit (Kriterium: 0 High/Critical).
 
-[ ] npm Hygiene: Ausführung von npm audit.
+[ ] Data Leak Scan: Suche nach process.env oder Keys im /dist Verzeichnis.
 
-Kriterium: 0 High/Critical Vulnerabilities erlaubt.
+[ ] Email Obfuscation: Schutz der Mail-Adressen gegen Scraper.
 
-[ ] Script Isolation: Überprüfung der .npmrc im Root auf ignore-scripts=true.
+[ ] Form Spam Protection: Vorhandensein eines Honeypots oder Bot-Schutzes in allen Formularen.
 
-[ ] Data Leak Scan: - Action: grep -r "process.env" ./dist (Darf keine Treffer im Client-JS liefern).
+🛠️ 2. Linting & Static Analysis
 
-Action: Suche nach Patterns wie AI_KEY, SECRET, DATABASE_URL oder sk_test_ im gesamten /dist Verzeichnis.
+[ ] Astro Check: Validierung der Frontmatter-Typen und Komponenten-Props.
 
-[ ] Header & CSP: - Prüfung der astro.config.mjs auf aktive Security-Header (HSTS, No-Sniff, Frame-Deny).
+[ ] Tailwind Validator: Prüfung auf kollidierende Klassen.
 
-Validierung der Content-Security-Policy (CSP): Keine Verwendung von unsafe-inline ohne entsprechende Hashes oder Nonces.
+[ ] Logic Audit: Ausschluss von console.log oder Debugger-Statements.
 
-🤖 2. Agentic SEO & AI Readability
+🤖 3. Agentic SEO & AI Readability
 
-Ziel: Optimierung der Seite für LLMs (SearchGPT, Perplexity) und semantische Crawler.
+[ ] JSON-LD Grounding: NAP-Konsistenz (Name, Address, Phone) über alle Entitäten.
 
-[ ] JSON-LD Schema: Validierung der strukturierter Daten (@type: "DanceSchool", @type: "Event") auf der Homepage und unter /kurse.
+[ ] Schema LocalBusiness: Öffnungszeiten und Geo-Daten für Regensburg vorhanden.
 
-[ ] Semantischer Baum: - Exakt ein <h1> pro Seite vorhanden.
+[ ] Reader-Mode Check: Strukturierte Text-Extraktion ohne visuelle Layer verständlich.
 
-Korrekte Verwendung von Landmark-Elementen (<main>, <article>, <nav>, <footer>) statt "Div-Wüsten".
+🕸️ 4. SEO & Indexability
 
-[ ] LLM-Context Test: Extraktion des reinen Text-Contents (Reader-Mode-Simulation).
+[ ] Title/Meta: Eindeutigkeit und Längenbeschränkung (Title < 60, Desc < 155).
 
-Frage: Ist der Kontext "Bachata Verein Regensburg" ohne visuelle Hilfen innerhalb von 3 Sekunden klar?
+[ ] Canonical & Lang: Vorhandensein von <link rel="canonical"> und korrektem lang="de" Attribut im <html>-Tag.
 
-[ ] A11y: Alle interaktiven Elemente besitzen ein aussagekräftiges aria-label. Alle Bilder verfügen über funktionale alt-Tags.
+[ ] Sitemap & Robots: Validierung der Pfade in sitemap-index.xml und robots.txt.
 
-🕸️ 3. SEO & Indexability
+⚡ 5. Performance & Asset-Audit
 
-Ziel: Maximale organische Sichtbarkeit und fehlerfreies Crawling.
+[ ] Bilder: WebP/AVIF Nutzung und explizite width/height (CLS-Prävention).
 
-[ ] Sitemap-Check: Existenz von sitemap-index.xml im Root und korrekte Verlinkung innerhalb der robots.txt.
+[ ] Lazy Loading: loading="lazy" für Bilder "below the fold" aktiv?
 
-[ ] Metadata: Jede Route besitzt einen einzigartigen <title> (max. 60 Zeichen) und eine meta-description (max. 155 Zeichen).
+[ ] Fonts: Lokaler Host-Check (Keine externen Font-CDNs).
 
-[ ] Social Graph: Prüfung der Open-Graph-Tags (og:title, og:image, og:description) pro Seite auf Vollständigkeit pro Seite.
+⚖️ 6. Compliance (DSGVO)
 
-[ ] Link-Integrity: Lokaler Scan auf "Broken Links" (404er) innerhalb der statischen Build-Struktur.
+[ ] External Requests: Null-Toleranz für ungefragte Drittanbieter-Calls.
 
-⚡ 4. Performance & Core Web Vitals
+[ ] Impressum: 2-Klick-Erreichbarkeit und vollständige Vereinsangaben.
 
-Ziel: Instant-Loading Experience. LCP < 1.2s, CLS = 0.
+[ ] Datenschutz: Aktualisierte Klauseln für Kontaktformulare vorhanden.
 
-[ ] Asset Optimization: - Alle Bilder werden als .webp oder .avif ausgeliefert.
+♿ 7. Accessibility (A11y) Pro
 
-Verpflichtende width und height Attribute an Bildern zur CLS-Vermeidung.
+[ ] Contrast Ratio: Textfarben erfüllen min. 4.5:1 (AA) oder 7:1 (AAA).
 
-[ ] Bundle-Size: Analyse des /dist/_astro/ Verzeichnisses.
+[ ] Focus States: Sind alle interaktiven Elemente (Buttons, Links) bei Tastatur-Fokus (:focus) deutlich sichtbar umrandet?
 
-Warnung: Einzelne JS-Dateien sollten 50kb nicht überschreiten (Fokus auf SSG).
+[ ] Aria-Labels: Sinnvolle Labels für Icons ohne Text-Inhalt.
 
-[ ] Font-Blocking: Lokale Webfonts müssen im woff2 Format via <link rel="preload"> im <head> eingebunden sein. Externe Font-Requests (z.B. Google Fonts API) sind untersagt.
+🎨 8. UX & Brand Consistency
 
-✒️ 5. Constraint-Based Design Audit
+[ ] Interaction Feedback: Visuelle Erfolgsmeldungen für Formular-Aktionen.
 
-Ziel: Aufrechterhaltung der visuellen Identität und des Premium-Minimalismus.
+[ ] Typography Scale: Konsistente Nutzung der Tailwind-Font-Sizes.
 
-[ ] Spacing-Tokens: Scan des generierten CSS auf Inline-Styles oder Abstände außerhalb der definierten Tailwind-Scale.
+[ ] 404 Page: Hilfreiche Fehlerseite mit Rückführung zur Startseite.
 
-[ ] Fluid Typography: Verifizierung der clamp() Funktionen in der CSS-Ausgabe für nahtloses Responsive-Scaling ohne Breakpoint-Sprünge.
+🚀 Agenten-Audit: Abschlussbewertung & Freigabe
 
-[ ] Contrast-Check: Textfarben (z.B. Neutral-950 auf Neutral-50) müssen ein Kontrastverhältnis von mindestens 7:1 aufweisen (WCAG AAA Standard).
+📊 Build Health Score
 
-[ ] Visual Noise Audit: Überprüfung auf unnötige Design-Elemente (Border-Radii, Schatten), die nicht den minimalistischen Richtlinien entsprechen.
+Metrik-Gruppe
 
-🚀 Abschlussbewertung des Agenten
+Status
 
-Dieser Teil wird vom Review-Agenten nach der Analyse ausgefüllt.
+Vertrauens-Level
 
-Gesamtstatus: [ WARTET AUF ANALYSE ]
+Security & Integrity
 
-Kritische Blocker: - Noch keine vorhanden.
+[ WARTET ]
 
-Optimierungspotenzial: - Noch keine vorhanden.
+-- / 100
 
-Post-Review Action: Der Agent muss nach Abschluss des Audits eine Datei namens post-review-task.md generieren, die alle identifizierten [❌ BLOCKER] und [⚠️ WARNING] als interaktive Task-Liste für die Behebung zusammenfasst.
+Linting & Code Quality
 
-Dokumenten-Version: 2.3 | Stand: April 2026
+[ WARTET ]
+
+-- / 100
+
+Agentic SEO (AI-Ready)
+
+[ WARTET ]
+
+-- / 100
+
+Performance (Vitals)
+
+[ WARTET ]
+
+-- / 100
+
+Legal & Accessibility
+
+[ WARTET ]
+
+-- / 100
+
+UX & Design Consistency
+
+[ WARTET ]
+
+-- / 100
+
+🚨 Kritische Blocker (Deployment gestoppt)
+
+Noch keine Analyse erfolgt.
+
+✅ Finales Urteil
+
+Status: [ ⏳ ANALYSE ERFORDERLICH ]
+
+Entscheidungs-Logik:
+
+Alle [✅ OK] -> "BUILD CERTIFIED"
+
+Ein [❌ BLOCKER] -> "DEPLOYMENT REJECTED"
+
+Nur Warnungen [⚠️] -> "BUILD CERTIFIED (WITH CAVEATS)"
+
+Dokumenten-Version: 2.8 | Stand: April 2026

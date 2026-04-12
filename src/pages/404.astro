@@ -1,0 +1,58 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout 
+  title="404 - Seite nicht gefunden | Idiomadanza e.V."
+  description="Ups! Diese Seite scheint beim Tanzen verloren gegangen zu sein. Keine Sorge, wir führen dich zurück zur Tanzfläche."
+>
+  <section class="min-h-[85vh] flex items-center justify-center relative overflow-hidden bg-brand-dark">
+    <!-- Dynamic Background Elements -->
+    <div class="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_50%_50%,rgba(139,92,246,0.1)_0%,transparent_50%)]"></div>
+    <div class="absolute -top-24 -left-24 w-96 h-96 bg-brand-rose/20 rounded-full blur-[100px] animate-pulse"></div>
+    <div class="absolute -bottom-24 -right-24 w-96 h-96 bg-brand-glow/10 rounded-full blur-[100px]"></div>
+    
+    <div class="container mx-auto px-4 relative z-10 text-center">
+      <div class="max-w-3xl mx-auto">
+        <!-- 404 Display -->
+        <div class="relative inline-block mb-12">
+          <span class="text-[12rem] md:text-[20rem] font-display font-black text-white/5 leading-none select-none">404</span>
+          <div class="absolute inset-0 flex items-center justify-center">
+             <h1 class="text-4xl md:text-6xl font-display font-bold text-white drop-shadow-glow">
+              Oje! <span class="text-brand-rose">Takt</span> verloren?
+            </h1>
+          </div>
+        </div>
+        
+        <div class="bg-white/5 backdrop-blur-xl border border-white/10 p-8 md:p-12 rounded-3xl shadow-glass transform hover:scale-[1.02] transition-all duration-500">
+          <p class="text-xl md:text-2xl text-white/80 mb-10 font-light leading-relaxed">
+            Es sieht so aus, als ob diese Seite im Getümmel der Tanzfläche verschwunden ist. <br class="hidden md:block" />
+            Keine Panik – bei uns bleibt niemand allein am Rand stehen!
+          </p>
+
+          <div class="flex flex-col sm:flex-row gap-6 justify-center items-center">
+            <a href="/" class="group px-12 py-5 bg-brand-rose text-white font-black uppercase tracking-[0.2em] text-xs rounded-full shadow-glow-rose hover:-translate-y-1 hover:shadow-2xl transition-all duration-300 flex items-center gap-3">
+              Zurück zur Startseite
+              <span class="group-hover:translate-x-1 transition-transform">→</span>
+            </a>
+            <a href="/kurse" class="px-12 py-5 bg-white/10 text-white font-black uppercase tracking-[0.2em] text-xs rounded-full border border-white/20 hover:bg-white/20 transition-all">
+              Kursplan ansehen
+            </a>
+          </div>
+        </div>
+
+        <div class="mt-16 flex justify-center gap-8 opacity-40 hover:opacity-100 transition-opacity duration-700">
+          <span class="text-4xl grayscale hover:grayscale-0 cursor-default transition-all">💃</span>
+          <span class="text-4xl grayscale hover:grayscale-0 cursor-default transition-all">🕺</span>
+          <span class="text-4xl grayscale hover:grayscale-0 cursor-default transition-all">🎶</span>
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .drop-shadow-glow {
+    filter: drop-shadow(0 0 20px rgba(139, 92, 246, 0.4));
+  }
+</style>
