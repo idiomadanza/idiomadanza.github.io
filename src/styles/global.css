@@ -1,6 +1,33 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+
+@theme {
+  --font-display: "Playfair Display", serif;
+  --font-sans: "Inter", sans-serif;
+
+  --color-brand-dark: #020617;
+  --color-brand-darker: #010411;
+  --color-brand-light: #f8fafc;
+  --color-brand-rose: #8b5cf6;
+  --color-brand-glow: #fcd34d;
+
+  /* Fluid Typography Scale */
+  --text-fluid-sm: clamp(0.75rem, 0.7rem + 0.25vw, 1rem);
+  --text-fluid-base: clamp(1rem, 0.95rem + 0.25vw, 1.25rem);
+  --text-fluid-lg: clamp(1.25rem, 1.15rem + 0.5vw, 1.75rem);
+  --text-fluid-xl: clamp(1.5rem, 1.3rem + 1vw, 2.5rem);
+  --text-fluid-2xl: clamp(2rem, 1.7rem + 1.5vw, 3.5rem);
+  --text-fluid-display: clamp(3rem, 2.5rem + 2.5vw, 6rem);
+
+  /* Constraint-Based Spacing */
+  --spacing-fluid-gutter: clamp(1rem, 5vw, 4rem);
+  --spacing-fluid-stack: clamp(2rem, 10vw, 8rem);
+
+  /* Custom Shadows */
+  --shadow-glow-rose: 0 0 15px rgba(139, 92, 246, 0.5);
+  --shadow-glow-amber: 0 0 15px rgba(252, 211, 77, 0.5);
+  --shadow-glass: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+}
+
 
 /* Lokal gehostete Fonts (DSGVO-konform) */
 @font-face {

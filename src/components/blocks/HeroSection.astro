@@ -1,0 +1,35 @@
+---
+import Box from '../primitives/Box.astro';
+import Flex from '../primitives/Flex.astro';
+import Heading from '../typography/Heading.astro';
+import Paragraph from '../typography/Paragraph.astro';
+import MinimalButton from '../ui/MinimalButton.astro';
+
+interface Props {
+  title: string;
+  subtitle: string;
+  ctaText: string;
+  ctaHref: string;
+}
+
+const { title, subtitle, ctaText, ctaHref } = Astro.props;
+---
+
+<section class="relative min-h-[80vh] flex items-center overflow-hidden bg-brand-light dark:bg-brand-dark">
+  <Box class="container mx-auto">
+    <Flex direction="col" align="start" gap="gap-8" class="max-w-4xl">
+      <Heading level={1} class="text-brand-dark dark:text-white uppercase tracking-tighter">
+        {title}
+      </Heading>
+      <Paragraph size="lg" class="text-brand-dark/70 dark:text-white/70">
+        {subtitle}
+      </Paragraph>
+      <MinimalButton href={ctaHref}>
+        {ctaText}
+      </MinimalButton>
+    </Flex>
+  </Box>
+  
+  <!-- Subtle Crawford-style background element -->
+  <div class="absolute -right-20 -bottom-20 w-96 h-96 bg-brand-rose opacity-5 blur-[100px] rounded-full"></div>
+</section>

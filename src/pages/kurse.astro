@@ -1,5 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import { Image } from 'astro:assets';
+import coursesBg from '../assets/images/testimonials/bg.png';
 
 const siteUrl = "https://idiomadanza.de";
 
@@ -77,7 +79,7 @@ const courseSchema = [
   <!-- HERO SECTION -->
   <section class="relative py-20 overflow-hidden bg-brand-dark">
     <div class="absolute inset-0 z-0">
-      <img src="/images/testimonials/bg.png" alt="Courses Background" class="w-full h-full object-cover opacity-30 blur-sm">
+      <Image src={coursesBg} alt="Courses Background" class="w-full h-full object-cover opacity-30 blur-sm" />
       <div class="absolute inset-0 bg-gradient-to-b from-brand-dark/80 via-brand-dark/60 to-brand-dark"></div>
     </div>
     

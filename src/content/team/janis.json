@@ -1,0 +1,8 @@
+{
+  "id": "janis",
+  "name": "Janis",
+  "role": "Trainer",
+  "isFounder": false,
+  "image": "../../assets/images/team/janis.png",
+  "imagePosition": "object-center"
+}

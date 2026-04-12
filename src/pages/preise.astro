@@ -1,5 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import { Image } from 'astro:assets';
+import pricingBg from '../assets/images/testimonials/bg.png';
 
 const faqSchema = {
   "@context": "https://schema.org",
@@ -39,7 +41,7 @@ const faqSchema = {
   <!-- HERO SECTION -->
   <section class="relative py-24 md:py-32 overflow-hidden bg-brand-dark">
     <div class="absolute inset-0 z-0 text-white">
-      <img src="/images/testimonials/bg.png" alt="Pricing Background" class="w-full h-full object-cover opacity-30">
+      <Image src={pricingBg} alt="Pricing Background" class="w-full h-full object-cover opacity-30" />
       <div class="absolute inset-0 bg-gradient-to-b from-brand-dark/90 via-brand-dark/60 to-brand-dark"></div>
     </div>
     

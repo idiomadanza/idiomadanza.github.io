@@ -79,6 +79,97 @@ Astro erlaubt 100% statisch generiertes (SSG) HTML per Default („Zero JS“). 
 
 ## 5. Design-Guidelines: "Modern-Clubbing"
 - **Dark Mode Option**: Dunkles Basis-Schema (Slate-900/950) für das echte "Club-Feeling" und zur Betonung der Rose-Akzente.
-- **Rose-Theme (#BE123C)**: Ein edles, tieferes Rot (Tailwind Rose-700) als Primärfarbe für CTAs und Hover-Effekte – spiegelt die Leidenschaft des Bachata wider.
+- **Violet-Theme (#8B5CF6)**: Ein lebendiges Electric Violet als Primärfarbe für CTAs und Hover-Effekte – spiegelt die Energie und Leidenschaft des Bachata wider.
+- **Amber-Glow (#FCD34D)**: Ein warmes Gold für Akzente und zur Wiedererkennung des Logos.
 - **Glassmorphism-Effekte**: Navigation und Cards als halbtransparente Glaselemente (`backdrop-blur`, `bg-opacity`), um tiefe, schwebende Layer zu erzeugen.
 - **Flüssige Tailwind-Animationen**: Leichtes Einfliegen (`fade-in-up`) beim Scrollen, Glow-Effekte bei wichtigen Buttons, um Dynamik in das Corporate Design zu bringen.
+
+## 6. High-Performance & Security-First Architektur (Crawford-Stil)
+
+### 6.1 Dependency Audit & Native Astro 6 APIs
+Ziel ist es, die Angriffsfläche (Supply Chain Attacks) durch den Verzicht auf unnötige Drittanbieter-Pakete massiv zu reduzieren.
+
+#### Minimaler Dependency-Footprint (Erlaubte Pakete)
+- `astro` (Core Framework – Version 6+)
+- `tailwindcss` (Core Styling Engine – Version 4+)
+- `@astrojs/tailwind` (Tailwind Integration)
+- `@astrojs/sitemap` (Native XML Sitemap-Generierung)
+- `typescript` (Typsicherheit)
+- *Optional:* `@astrojs/mdx` (falls MDX zwingend für Content benötigt wird, reines Markdown wird ohnehin nativ von Astro unterstützt)
+
+#### Native Astro APIs (Zero-Third-Party Policy)
+- **State Management:** Statt `zustand` oder `redux` nutzen wir Astro View Transitions für das SPA-Gefühl und `nanostores` (falls client-seitiger State absolut essenziell ist).
+- **Image Optimization:** Strikt keine SDKs (z. B. cloudinary) oder `next/image` Ports. Nutzung der nativen `<Image />` und `<Picture />` Komponenten in Astro (basierend auf der lokalen sharp API).
+- **Icons:** Keine gigantischen Library-Abhängigkeiten wie `font-awesome`. Statische, inline eingebettete und optimierte SVG-Dateien.
+- **Routing & SEO:** Native Datei-basiertes Routing von Astro. JSON-LD Schema und Meta-Tags über strukturierte Layout-Komponenten statt Plugins (`next-seo` / `react-helmet`).
+- **Content:** Strikte Nutzung von **Astro Content Collections** (`src/content/config.ts`) mit Zod-Validierung anstelle von Drittanbieter-CMS-SDKs.
+
+### 6.2 Security-Hardening (Zero-Trust)
+
+#### npm Hardening (`.npmrc`)
+Erstelle direkt im Root-Verzeichnis eine `<project>/.npmrc` um bösartige Installations-Skripte zu blockieren:
+```ini
+# Blockiert 95% der Supply-Chain Malware, die über pre/postinstall Scripts agiert
+ignore-scripts=true
+# Optionale strikte Kontrolle (kein automatisches Fund-Spamming)
+audit=true
+fund=false
+```
+> *Wenn Code-Transformationen wie `sharp` oder `esbuild` kompilieren müssen, muss der Agent einen manuellen `npm rebuild <package-name>` nach einem kurzen Code-Review durchführen.*
+
+#### Content-Security-Policy (CSP)
+Implementierung strikter Header über Astro Middleware (`src/middleware.ts`):
+```typescript
+import { defineMiddleware } from "astro:middleware";
+
+export const onRequest = defineMiddleware(async ({ request, locals }, next) => {
+  const response = await next();
+  const csp = "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; connect-src 'self'; font-src 'self' data: woff2;";
+  
+  response.headers.set('Content-Security-Policy', csp);
+  response.headers.set('Strict-Transport-Security', 'max-age=63072000; includeSubDomains; preload');
+  response.headers.set('X-Content-Type-Options', 'nosniff');
+  response.headers.set('X-Frame-Options', 'DENY');
+
+  return response;
+});
+```
+
+### 6.3 Component Mapping (Crawford-Stil)
+
+Crawford's "Constraint-Based Design" fokussiert sich auf radikalen Einsatz von Typografie, Whitespace, starken Kontrasten und strikten Proportionen. Keine willkürlichen Abstände (Margin/Padding).
+
+#### Design Tokens (Tailwind v4 Setup)
+- **Grid:** 12-Column-Grid, aber primär Flow-basiert (`max-w-prose` für Texte).
+- **Typografie:** Maximale Limitierung. Eine Serife (z. B. Playfair), eine Sans-Serif (z. B. Inter). CSS `clamp()` für absolut fließendes Scaling (Fluid Typography).
+- **Farben:** Deep Black (#020617), starkes Off-White (#F8FAFC), singuläre Akzentfarbe Electric Violet (#8B5CF6) und Amber Glow (#FCD34D).
+
+#### Verzeichnis-Struktur (`/src/components`)
+```text
+src/
+└── components/
+    ├── primitives/           # Basis Constraint-Bausteine
+    │   ├── Box.astro         # Container mit restriktiven Spacing-Props
+    │   ├── Flex.astro        # Layout Flexbox
+    │   ├── Grid.astro        # CSS Grid
+    │   └── Text.astro        # Typography Manger (erzwingt Modular Scale)
+    ├── typography/           # Visuelle Crawford-Typo
+    │   ├── Heading.astro     # Typografische Hierarchie (H1-H6)
+    │   ├── Paragraph.astro   # Lesetexte (opt. line-height & measure)
+    │   └── Display.astro     # Übergroße, maskierte Textblöcke
+    ├── ui/                   # Wiederverwendbare Interfaces
+    │   ├── MinimalButton.astro # CTA
+    │   └── Divider.astro     # Subtile Trennlinien
+    └── blocks/               # Zusammengelegte Sektoren
+        ├── HeroSection.astro
+        ├── EditorialBox.astro
+        └── MinimalFooter.astro
+```
+
+### 6.4 Anti-Gravity Roadmap (Iterative Sprints)
+
+1. **Sprint 1: Hardened Bootstrap**: Bootstrapping, `.npmrc` (`ignore-scripts=true`), manuelle Dependency-Rebuilds.
+2. **Sprint 2: Constraint-Based CSS & Primitives**: Tailwind v4 Setup mit `clamp()`, Programmierung der UI-Basis (`<Text>`, `<Box>`).
+3. **Sprint 3: Architektur & Server-Middleware**: `middleware.ts` (CSP Header), Content Collections + Zod, Base-Layout Setup.
+4. **Sprint 4: Editorial Assembly (UI Bau)**: Zusammenstellen der Pages (Hero, Editorial, MinimalFooter) anhand strengen Whitespace-Einsatzes.
+5. **Sprint 5: Optimization & Build-Audit**: Einbau von `<Image />`, Fonts lokal, und Zero-Vulnerability Build Audit (`npm audit`).

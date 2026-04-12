@@ -1,0 +1,31 @@
+{
+  "id": "stephan",
+  "name": "Stephan",
+  "role": "Gründer & Bachata",
+  "isFounder": true,
+  "image": "../../assets/images/team/stephan.png",
+  "imagePosition": "object-top",
+  "instagram": "https://instagram.com/idiomadanza",
+  "bio": [
+    {
+      "icon": "🎓",
+      "text": "Bachata Sensual Instructor Level 2 by Korke & Judith"
+    },
+    {
+      "icon": "🎓",
+      "text": "Bachata Dominican Instructor Level 1 by Evelyn La Negra"
+    },
+    {
+      "icon": "🎓",
+      "text": "Dutch Zouk Teachers Course"
+    },
+    {
+      "icon": "🥈",
+      "text": "Social Dance Competition J&J Bachata Sensual Congress Germany Pro Division 2024"
+    },
+    {
+      "icon": "🥈",
+      "text": "Social Dance Competition J&J Belgien 2023"
+    }
+  ]
+}

@@ -71,8 +71,9 @@ import Layout from '../layouts/Layout.astro';
 </Layout>
 
 <style is:global>
+  @reference "../styles/global.css";
   .legal-content h2 {
-    @apply text-2xl font-display font-bold text-brand-rose mt-10 mb-6;
+    @apply text-xl md:text-2xl font-display font-bold text-brand-rose mt-10 mb-6;
   }
   
   .legal-content h3 {

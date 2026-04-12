@@ -1,0 +1,8 @@
+{
+  "id": "silke",
+  "name": "Silke",
+  "role": "Trainer",
+  "isFounder": false,
+  "image": "../../assets/images/team/silke.png",
+  "imagePosition": "object-top"
+}

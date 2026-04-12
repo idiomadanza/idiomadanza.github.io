@@ -1,5 +1,18 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import { getCollection } from 'astro:content';
+import { Image } from 'astro:assets';
+
+// Static Assets
+import heroBg from '../assets/images/testimonials/bg.png';
+
+const allTeam = await getCollection('team');
+const founders = allTeam.filter(t => t.data.isFounder).sort((a, b) => {
+  // Manual sort for specific founder order: Patricia, Stephan, Chris & Nalini
+  const order = ['patricia', 'stephan', 'chris_und_nalini'];
+  return order.indexOf(a.data.id) - order.indexOf(b.data.id);
+});
+const trainers = allTeam.filter(t => !t.data.isFounder);
 ---
 
 <Layout 
@@ -9,7 +22,7 @@ import Layout from '../layouts/Layout.astro';
   <!-- HERO SECTION -->
   <section class="relative py-24 md:py-32 lg:py-48 overflow-hidden bg-brand-dark">
     <div class="absolute inset-0 z-0">
-      <img src="/images/testimonials/bg.png" alt="Hero Background" class="w-full h-full object-cover opacity-50 blur-[2px]">
+      <Image src={heroBg} alt="Hero Background" class="w-full h-full object-cover opacity-50 blur-[2px]" />
       <div class="absolute inset-0 bg-gradient-to-b from-brand-dark/80 via-brand-dark/60 to-brand-dark"></div>
     </div>
     
@@ -54,45 +67,18 @@ import Layout from '../layouts/Layout.astro';
           <div class="absolute -top-10 -left-10 w-64 h-64 bg-brand-rose/10 rounded-full blur-[80px] -z-10"></div>
           <div class="grid grid-cols-2 lg:grid-cols-4 gap-2 lg:gap-3 rounded-idioma overflow-hidden shadow-glow-rose transform hover:rotate-1 hover:scale-[1.02] transition-transform duration-700 bg-white/5 border border-white/20 p-2 md:p-3 relative z-10 before:absolute before:inset-0 before:bg-brand-rose/5 before:pointer-events-none">
             
-            <div class="aspect-square overflow-hidden rounded-lg group relative">
-              <div class="absolute inset-x-0 bottom-0 py-2 px-3 bg-gradient-to-t from-black/80 to-transparent z-10 opacity-0 group-hover:opacity-100 transition-opacity"><span class="text-white font-bold text-xs">Patricia</span></div>
-              <img src="/images/team/patricia.png" alt="Patricia" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500 scale-110 group-hover:scale-100 object-top">
-            </div>
-            
-            <div class="aspect-square overflow-hidden rounded-lg group relative">
-              <div class="absolute inset-x-0 bottom-0 py-2 px-3 bg-gradient-to-t from-black/80 to-transparent z-10 opacity-0 group-hover:opacity-100 transition-opacity"><span class="text-white font-bold text-xs">Stephan</span></div>
-              <img src="/images/team/stephan.png" alt="Stephan" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500 scale-110 group-hover:scale-100 object-top">
-            </div>
-            
-            <div class="aspect-square overflow-hidden rounded-lg group relative">
-              <div class="absolute inset-x-0 bottom-0 py-2 px-3 bg-gradient-to-t from-black/80 to-transparent z-10 opacity-0 group-hover:opacity-100 transition-opacity"><span class="text-white font-bold text-xs">Chris & Nalini</span></div>
-              <img src="/images/team/chris_und_nalini.png" alt="Chris & Nalini" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500 scale-110 group-hover:scale-100 object-[center_10%]">
-            </div>
-            
-            <div class="aspect-square overflow-hidden rounded-lg group relative">
-              <div class="absolute inset-x-0 bottom-0 py-2 px-3 bg-gradient-to-t from-black/80 to-transparent z-10 opacity-0 group-hover:opacity-100 transition-opacity"><span class="text-white font-bold text-xs">Pancho & Anna</span></div>
-              <img src="/images/team/pancho_und_anna.png" alt="Pancho & Anna" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500 scale-110 group-hover:scale-100 object-[center_30%]">
-            </div>
-            
-            <div class="aspect-square overflow-hidden rounded-lg group relative">
-              <div class="absolute inset-x-0 bottom-0 py-2 px-3 bg-gradient-to-t from-black/80 to-transparent z-10 opacity-0 group-hover:opacity-100 transition-opacity"><span class="text-white font-bold text-xs">Sebastian</span></div>
-              <img src="/images/team/sebastian.png" alt="Sebastian" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500 scale-110 group-hover:scale-100 object-top">
-            </div>
-            
-            <div class="aspect-square overflow-hidden rounded-lg group relative">
-              <div class="absolute inset-x-0 bottom-0 py-2 px-3 bg-gradient-to-t from-black/80 to-transparent z-10 opacity-0 group-hover:opacity-100 transition-opacity"><span class="text-white font-bold text-xs">Silke</span></div>
-              <img src="/images/team/silke.png" alt="Silke" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500 scale-110 group-hover:scale-100 object-top">
-            </div>
-
-            <div class="aspect-square overflow-hidden rounded-lg group relative">
-              <div class="absolute inset-x-0 bottom-0 py-2 px-3 bg-gradient-to-t from-black/80 to-transparent z-10 opacity-0 group-hover:opacity-100 transition-opacity"><span class="text-white font-bold text-xs">Vikky</span></div>
-              <img src="/images/team/vicky.png" alt="Vikky" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500 scale-110 group-hover:scale-100 object-top">
-            </div>
-
-            <div class="aspect-square overflow-hidden rounded-lg group relative">
-              <div class="absolute inset-x-0 bottom-0 py-2 px-3 bg-gradient-to-t from-black/80 to-transparent z-10 opacity-0 group-hover:opacity-100 transition-opacity"><span class="text-white font-bold text-xs">Omar</span></div>
-              <img src="/images/team/omar.png" alt="Omar" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500 scale-110 group-hover:scale-100 object-top">
-            </div>
+            {allTeam.slice(0, 8).map((member) => (
+              <div class="aspect-square overflow-hidden rounded-lg group relative">
+                <div class="absolute inset-x-0 bottom-0 py-2 px-3 bg-gradient-to-t from-black/80 to-transparent z-10 opacity-0 group-hover:opacity-100 transition-opacity">
+                  <span class="text-white font-bold text-xs">{member.data.name}</span>
+                </div>
+                <Image 
+                  src={member.data.image} 
+                  alt={member.data.name} 
+                  class={`w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500 scale-110 group-hover:scale-100 ${member.data.imagePosition}`}
+                />
+              </div>
+            ))}
             
           </div>
           <div class="absolute -bottom-8 -right-8 bg-white/70 dark:bg-brand-dark/80 backdrop-blur-md p-8 rounded-idioma shadow-glass border border-white/20 hidden md:block">
@@ -165,153 +151,67 @@ import Layout from '../layouts/Layout.astro';
 
         <!-- Founders Grid (Updated to 3 columns to accommodate Duo-Card) -->
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 mb-12 max-w-6xl mx-auto">
-          <!-- Patricia -->
-          <div class="group bg-white/70 dark:bg-brand-dark/50 backdrop-blur-md rounded-idioma p-8 text-center shadow-glass border border-white/20 dark:border-white/10 hover:-translate-y-3 transition-all duration-500 relative overflow-hidden">
-            <div class="relative w-40 h-40 mx-auto mb-6">
-              <div class="relative w-40 h-40 rounded-full bg-brand-dark overflow-hidden border-4 border-white/30 group-hover:border-brand-rose/50 transition-colors shadow-inner">
-                <img src="/images/team/patricia.png" alt="Patricia" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500 scale-110 group-hover:scale-100">
+          {founders.map((founder) => (
+            <div class="group bg-white/70 dark:bg-brand-dark/50 backdrop-blur-md rounded-idioma p-8 text-center shadow-glass border border-white/20 dark:border-white/10 hover:-translate-y-3 transition-all duration-500 relative overflow-hidden">
+              <div class="relative w-40 h-40 mx-auto mb-6">
+                <div class="relative w-40 h-40 rounded-full bg-brand-dark overflow-hidden border-4 border-white/30 group-hover:border-brand-rose/50 transition-colors shadow-inner">
+                  <Image src={founder.data.image} alt={founder.data.name} class={`w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500 scale-110 group-hover:scale-100 ${founder.data.imagePosition}`} />
+                </div>
               </div>
-            </div>
-            <h4 class="text-2xl font-bold font-display mb-2 dark:text-white">Patricia</h4>
-            <div class="flex items-center justify-center gap-4 mb-4">
-              <p class="text-brand-rose text-sm font-semibold uppercase tracking-widest">Gründerin & Bachata</p>
-              <a href="https://instagram.com/idiomadanza" target="_blank" rel="noopener noreferrer" class="text-white/40 hover:text-brand-rose transition-colors" aria-label="Folge Patricia auf Instagram">
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg>
-              </a>
-            </div>
-            
-            <!-- Accomplishments -->
-            <ul class="text-left space-y-3 text-xs opacity-80 dark:text-brand-light border-t border-brand-dark/5 dark:border-white/5 pt-6 mx-auto max-w-[220px]">
-              <li class="flex items-start gap-3">
-                <span class="text-lg leading-none">🎓</span>
-                <span>Bachata Sensual Instructor Level 1 by Korke & Judith</span>
-              </li>
-              <li class="flex items-start gap-3">
-                <span class="text-lg leading-none">🥈</span>
-                <span>Social Dance Competition J&J Strasbourg 2022</span>
-              </li>
-              <li class="flex items-start gap-3">
-                <span class="text-lg leading-none">🥉</span>
-                <span>Social Dance Competition J&J Wien 2023</span>
-              </li>
-              <li class="flex items-start gap-3">
-                <span class="text-lg leading-none">🥉</span>
-                <span>Social Dance Competition J&J Prag 2022</span>
-              </li>
-            </ul>
-          </div>
+              <h4 class="text-2xl font-bold font-display mb-2 dark:text-white">{founder.data.name}</h4>
+              <div class="flex items-center justify-center gap-4 mb-4">
+                <p class="text-brand-rose text-sm font-semibold uppercase tracking-widest">{founder.data.role}</p>
+                {founder.data.instagram && (
+                  <a href={founder.data.instagram} target="_blank" rel="noopener noreferrer" class="text-white/40 hover:text-brand-rose transition-colors" aria-label={`Folge ${founder.data.name} auf Instagram`}>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg>
+                  </a>
+                )}
+              </div>
+              
+              {founder.data.bio && (
+                <ul class="text-left space-y-3 text-xs opacity-80 dark:text-brand-light border-t border-brand-dark/5 dark:border-white/5 pt-6 mx-auto max-w-[220px]">
+                  {founder.data.bio.map((item) => (
+                    <li class="flex items-start gap-3">
+                      <span class="text-lg leading-none">{item.icon}</span>
+                      <span>{item.text}</span>
+                    </li>
+                  ))}
+                </ul>
+              )}
 
-          <!-- Stephan -->
-          <div class="group bg-white/70 dark:bg-brand-dark/50 backdrop-blur-md rounded-idioma p-8 text-center shadow-glass border border-white/20 dark:border-white/10 hover:-translate-y-3 transition-all duration-500 relative overflow-hidden">
-            <div class="relative w-40 h-40 mx-auto mb-6">
-              <div class="relative w-40 h-40 rounded-full bg-brand-dark overflow-hidden border-4 border-white/30 group-hover:border-brand-rose/50 transition-colors shadow-inner">
-                <img src="/images/team/stephan.png" alt="Stephan" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500 scale-110 group-hover:scale-100 object-top">
-              </div>
+              {founder.data.founderQuote && (
+                <div class="border-t border-brand-dark/5 dark:border-white/5 pt-6">
+                  <p class="text-xs italic opacity-80 dark:text-brand-light leading-relaxed">
+                    {founder.data.founderQuote}
+                  </p>
+                </div>
+              )}
             </div>
-            <h4 class="text-2xl font-bold font-display mb-2 dark:text-white">Stephan</h4>
-            <div class="flex items-center justify-center gap-4 mb-4">
-              <p class="text-brand-rose text-sm font-semibold uppercase tracking-widest">Gründer & Bachata</p>
-              <a href="https://instagram.com/idiomadanza" target="_blank" rel="noopener noreferrer" class="text-white/40 hover:text-brand-rose transition-colors" aria-label="Folge Stephan auf Instagram">
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg>
-              </a>
-            </div>
-            
-            <!-- Accomplishments -->
-            <ul class="text-left space-y-3 text-xs opacity-80 dark:text-brand-light border-t border-brand-dark/5 dark:border-white/5 pt-6 mx-auto max-w-[220px]">
-              <li class="flex items-start gap-3">
-                <span class="text-lg leading-none">🎓</span>
-                <span>Bachata Sensual Instructor Level 2 by Korke & Judith</span>
-              </li>
-              <li class="flex items-start gap-3">
-                <span class="text-lg leading-none">🎓</span>
-                <span>Bachata Dominican Instructor Level 1 by Evelyn La Negra</span>
-              </li>
-              <li class="flex items-start gap-3">
-                <span class="text-lg leading-none">🎓</span>
-                <span>Dutch Zouk Teachers Course</span>
-              </li>
-              <li class="flex items-start gap-3">
-                <span class="text-lg leading-none">🥈</span>
-                <span>Social Dance Competition J&J Bachata Sensual Congress Germany Pro Division 2024</span>
-              </li>
-              <li class="flex items-start gap-3">
-                <span class="text-lg leading-none">🥈</span>
-                <span>Social Dance Competition J&J Belgien 2023</span>
-              </li>
-            </ul>
-          </div>
-
-          <!-- Chris & Nalini Duo -->
-          <div class="group bg-white/70 dark:bg-brand-dark/50 backdrop-blur-md rounded-idioma p-8 text-center shadow-glass border border-white/20 dark:border-white/10 hover:-translate-y-3 transition-all duration-500 relative overflow-hidden">
-            <div class="relative w-40 h-40 mx-auto mb-6">
-              <div class="relative w-40 h-40 rounded-full bg-brand-dark overflow-hidden border-4 border-white/30 group-hover:border-brand-rose/50 transition-colors shadow-inner">
-                <img src="/images/team/chris_und_nalini.png" alt="Chris & Nalini" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500 scale-110 group-hover:scale-100 object-top">
-              </div>
-            </div>
-            <h4 class="text-2xl font-bold font-display mb-2 dark:text-white">Chris & Nalini</h4>
-            <div class="flex items-center justify-center gap-4 mb-4">
-              <p class="text-brand-rose text-sm font-semibold uppercase tracking-widest">Gründer-Duo</p>
-              <a href="https://www.instagram.com/chrishart_91/" target="_blank" rel="noopener noreferrer" class="text-white/40 hover:text-brand-rose transition-colors" aria-label="Folge Chris & Nalini auf Instagram">
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg>
-              </a>
-            </div>
-            
-            <div class="border-t border-brand-dark/5 dark:border-white/5 pt-6">
-              <p class="text-xs italic opacity-80 dark:text-brand-light leading-relaxed">
-                "Unsere Passion ist der authentische Ausdruck des <strong class="text-brand-rose">Bachata Sensual</strong>. Wir lehren mit Fokus auf die fundierte Technik und Ästhetik nach den Begründern <strong class="text-brand-rose">Korke & Judith</strong>."
-              </p>
-            </div>
-          </div>
+          ))}
         </div>
 
         <!-- Team List (Excluding founders) -->
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
-          {[
-            { 
-              name: 'Pancho & Anna', 
-              id: 'pancho_und_anna',
-              bio: [
-                { icon: '🎓', text: 'Certified in Germany' },
-                { icon: '🕺💃', text: 'Salsa Fusion (all styles)' },
-                { icon: '🌍', text: 'International artist and choreographer' },
-                { icon: '📍', text: 'Nürnberg Bayern' }
-              ]
-            },
-            { name: 'Omar', id: 'omar' },
-            { name: 'Antonia', id: 'antonia' },
-            { name: 'Sebastian', id: 'sebastian', position: 'object-top' },
-            { name: 'Silke', id: 'silke', position: 'object-top' },
-            { name: 'Janis', id: 'janis' },
-            { name: 'Katharina', id: 'katharina' },
-            { 
-              name: 'Vikky', 
-              id: 'vicky', 
-              instagram: 'bailaniina',
-              bio: [
-                { icon: '🥇', text: 'Bachata Switch - Bachata Town Fest, Puerto Escondido, Mexiko 2026' },
-                { icon: '🥉', text: 'J&J Bavaria Bachata Cup, München 2026' }
-              ]
-            }
-          ].map((trainer) => (
+          {trainers.map((trainer) => (
             <div class="group bg-white/70 dark:bg-brand-dark/50 backdrop-blur-md rounded-idioma p-8 text-center shadow-glass border border-white/20 dark:border-white/10 hover:-translate-y-2 transition-all duration-300">
               <div class="w-24 h-24 mx-auto mb-4 rounded-full border-2 border-brand-rose/20 overflow-hidden group-hover:border-brand-rose/50 transition-colors shadow-inner">
-                <img 
-                  src={`/images/team/${trainer.id}.png`} 
-                  alt={trainer.name} 
-                  class={`w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500 scale-110 group-hover:scale-100 ${trainer.position || 'object-center'}`}
-                >
+                <Image 
+                  src={trainer.data.image} 
+                  alt={trainer.data.name} 
+                  class={`w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500 scale-110 group-hover:scale-100 ${trainer.data.imagePosition}`}
+                />
               </div>
-              <h4 class="text-xl font-bold font-display text-brand-dark dark:text-white">{trainer.name}</h4>
+              <h4 class="text-xl font-bold font-display text-brand-dark dark:text-white">{trainer.data.name}</h4>
               <div class="flex items-center justify-center gap-3 mt-1 mb-4">
                 <p class="text-brand-rose text-xs font-semibold uppercase">Trainer</p>
-                <a href={trainer.instagram ? `https://instagram.com/${trainer.instagram}` : "https://instagram.com/idiomadanza"} target="_blank" rel="noopener noreferrer" class="text-brand-dark/20 dark:text-white/20 hover:text-brand-rose transition-colors">
+                <a href={trainer.data.instagram || "https://instagram.com/idiomadanza"} target="_blank" rel="noopener noreferrer" class="text-brand-dark/20 dark:text-white/20 hover:text-brand-rose transition-colors">
                   <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg>
                 </a>
               </div>
               
-              {trainer.bio && (
+              {trainer.data.bio && (
                 <ul class="text-left space-y-2 text-[10px] opacity-80 dark:text-brand-light border-t border-brand-dark/5 dark:border-white/5 pt-4 mx-auto max-w-[180px]">
-                  {trainer.bio.map((item) => (
+                  {trainer.data.bio.map((item) => (
                     <li class="flex items-start gap-2">
                       <span class="text-xs leading-none">{item.icon}</span>
                       <span>{item.text}</span>
