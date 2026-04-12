@@ -6,14 +6,27 @@ import HeroSection from '../components/blocks/HeroSection.astro';
 
 // 1. Daten holen
 const blogEntries = await getCollection('blog') || [];
-const workshopsDocs = await getCollection('workshops') || [];
-const team = await getCollection('team') || [];
-
 const latestPost = blogEntries.length > 0 ? blogEntries[0] : null;
-const latestWorkshops = workshopsDocs.slice(0, 2);
-const collageTeam = team.slice(0, 8);
 
-// 2. Statische Bilder importieren
+// 2. Team & Workshops direkt importieren
+import stephanData from '../content/team/stephan.json';
+import patriciaData from '../content/team/patricia.json';
+
+import workshop1 from '../content/workshops/bailabachata.json';
+import workshop2 from '../content/workshops/habibi-amor.json';
+
+// Wir packen die Daten in das Array
+const collageTeam = [
+  { data: stephanData },
+  { data: patriciaData }
+];
+
+const latestWorkshops = [
+  { data: workshop1 },
+  { data: workshop2 }
+];
+
+// 3. Statische Bilder
 import blogFallbackImg from '../assets/images/testimonials/bg.png';
 import testimonialsBg from '../assets/images/testimonials/bg.png';
 import melanieImg from '../assets/images/testimonials/melanie.png';
@@ -31,25 +44,24 @@ import melanieImg from '../assets/images/testimonials/melanie.png';
     ctaHref="/kontakt"
   />
 
+  {/* Quick-Info Banner */}
   <div class="relative z-20 -mt-10 px-4">
-    <div class="max-w-4xl mx-auto bg-white/10 dark:bg-brand-dark/80 backdrop-blur-2xl p-6 rounded-2xl border border-white/20 shadow-glow-rose flex flex-col md:flex-row items-center gap-6 group">
-      <div class="flex-grow space-y-1 text-white">
-        <p class="font-medium flex items-center gap-2">
-          <span class="text-brand-glow">🔥</span> <strong>Nächster Kursstart:</strong> Mai 2026
-        </p>
-      </div>
+    <div class="max-w-4xl mx-auto bg-white/10 dark:bg-brand-dark/80 backdrop-blur-2xl p-6 rounded-2xl border border-white/20 shadow-glow-rose flex flex-col md:flex-row items-center gap-6 group text-white">
+      <p class="font-medium flex items-center gap-2">
+        <span class="text-brand-glow">🔥</span> <strong>Nächster Kursstart:</strong> Mai 2026
+      </p>
       <a href="/kurse" class="text-white hover:text-brand-rose transition-colors text-xs font-bold uppercase tracking-widest flex items-center gap-2 whitespace-nowrap">
         Details ansehen →
       </a>
     </div>
   </div>
 
+  {/* Aktuelles / Workshops */}
   <section class="py-24 bg-brand-light dark:bg-brand-dark/95">
     <div class="container mx-auto px-4">
       <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-        
         {latestPost && (
-          <a href={`/blog/${latestPost.id}`} class="group bg-white/70 dark:bg-brand-dark/50 border border-brand-dark/10 rounded-idioma overflow-hidden shadow-glass hover:shadow-glow-rose transition-all hover:-translate-y-2 flex flex-col h-full">
+          <a href={`/blog/${latestPost.id}`} class="group bg-white/70 dark:bg-brand-dark/50 border border-brand-dark/10 rounded-2xl overflow-hidden shadow-glass hover:shadow-glow-rose transition-all hover:-translate-y-2 flex flex-col h-full">
             <div class="aspect-video overflow-hidden relative">
               <Image src={blogFallbackImg} alt={latestPost.data.title} class="w-full h-full object-cover" />
             </div>
@@ -61,47 +73,120 @@ import melanieImg from '../assets/images/testimonials/melanie.png';
         )}
 
         {latestWorkshops.map((workshop) => (
-          <div class="group bg-white/70 dark:bg-brand-dark/50 border border-brand-dark/10 rounded-idioma p-6 flex flex-col h-full">
-            <h4 class="text-xl font-display font-bold dark:text-white">{workshop.data.title}</h4>
-            <p class="text-sm opacity-70 mt-2 flex-grow">{workshop.data.description?.substring(0, 80)}...</p>
-            <a href="/workshops" class="text-xs font-bold uppercase text-brand-rose mt-4">Details →</a>
+          <div class="group bg-white/70 dark:bg-brand-dark/50 border border-brand-dark/10 rounded-2xl overflow-hidden shadow-glass hover:shadow-glow-rose transition-all hover:-translate-y-2 flex flex-col h-full">
+            
+            {/* Bild mit Kategorie-Badge */}
+            <div class="aspect-video overflow-hidden relative">
+              <img 
+                src={workshop.data.image} 
+                alt={workshop.data.title} 
+                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" 
+              />
+              <div class="absolute top-4 left-4 bg-brand-rose text-white text-[10px] font-bold uppercase px-3 py-1 rounded-full shadow-lg">
+                Workshop
+              </div>
+            </div>
+
+            {/* Content Bereich */}
+            <div class="p-6 flex flex-col flex-grow">
+              <h4 class="text-xl font-display font-bold text-brand-dark dark:text-white leading-tight mb-2">
+                {workshop.data.title}
+              </h4>
+              
+              <p class="text-sm opacity-70 mb-6 line-clamp-2 dark:text-white/70">
+                {workshop.data.description}
+              </p>
+
+              {/* Info-Leiste (Datum & Preis) */}
+              <div class="mt-auto pt-4 border-t border-brand-dark/5 dark:border-white/5 flex justify-between items-center">
+                <div class="flex flex-col">
+                  <span class="text-[9px] uppercase text-brand-rose font-bold tracking-widest">Datum</span>
+                  <span class="text-xs font-medium dark:text-white">{workshop.data.date}</span>
+                </div>
+                <div class="text-right flex flex-col">
+                  <span class="text-[9px] uppercase text-brand-rose font-bold tracking-widest">Preis</span>
+                  <span class="text-sm font-display font-bold text-brand-dark dark:text-white">
+                    {workshop.data.price}
+                  </span>
+                </div>
+              </div>
+
+              <a href="/workshops" class="mt-5 w-full text-center bg-brand-dark dark:bg-white/10 hover:bg-brand-rose dark:hover:bg-brand-rose text-white py-2.5 rounded-xl text-xs font-bold transition-all duration-300">
+                Details & Anmeldung
+              </a>
+            </div>
           </div>
         ))}
       </div>
     </div>
   </section>
 
-  {collageTeam.length > 0 && (
-    <section class="py-24 bg-brand-dark overflow-hidden">
-      <div class="container mx-auto px-4">
-        <h2 class="text-3xl font-display font-bold text-white text-center mb-12">Unser <span class="text-brand-rose">Team</span></h2>
-        <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-          {collageTeam.map((member) => (
-            <div class="aspect-square rounded-xl overflow-hidden border border-white/10">
-              <Image src={member.data.image} alt={member.data.name} class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700" />
-            </div>
-          ))}
-        </div>
+  {/* TEAM SECTION - DAS HIGHLIGHT */}
+  <section class="py-24 bg-brand-dark relative overflow-hidden">
+    <div class="absolute top-0 left-0 w-full h-full bg-brand-rose/5 blur-[120px] rounded-full -translate-y-1/2"></div>
+    
+    <div class="container mx-auto px-4 relative z-10">
+      <div class="text-center mb-16">
+        <h2 class="font-display text-4xl md:text-5xl font-bold text-white mb-4">Unser <span class="text-brand-rose">Team</span></h2>
+        <div class="w-24 h-1 bg-brand-rose mx-auto rounded-full"></div>
       </div>
-    </section>
-  )}
 
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 max-w-7xl mx-auto">
+        {collageTeam.map((member) => (
+          <div class="group bg-white/5 backdrop-blur-md border border-white/10 rounded-2xl overflow-hidden hover:border-brand-rose transition-all duration-500 hover:-translate-y-2 flex flex-col">
+            <div class="aspect-[4/5] overflow-hidden relative">
+              <img 
+                src={member.data.image} 
+                alt={member.data.name} 
+                class={`w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700 ${member.data.imagePosition || 'object-center'}`} 
+              />
+              <div class="absolute inset-0 bg-gradient-to-t from-brand-dark via-transparent to-transparent opacity-80"></div>
+              
+              <div class="absolute bottom-4 left-6">
+                <h3 class="text-2xl font-display font-bold text-white">{member.data.name}</h3>
+                <p class="text-brand-rose font-bold text-xs uppercase tracking-widest">{member.data.role}</p>
+              </div>
+            </div>
+
+            <div class="p-6">
+              <div class="space-y-3">
+                {member.data.bio?.slice(0, 3).map((item) => (
+                  <div class="flex items-start gap-3 text-[11px] text-white/60">
+                    <span class="text-brand-glow">{item.icon}</span>
+                    <span class="leading-tight">{item.text}</span>
+                  </div>
+                ))}
+              </div>
+              
+              {member.data.instagram && (
+                <a href={member.data.instagram} target="_blank" class="mt-6 flex items-center gap-2 text-[10px] font-bold uppercase tracking-tighter text-white/40 hover:text-brand-rose transition-colors">
+                  Instagram <span class="text-xs">↗</span>
+                </a>
+              )}
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  {/* Testimonials */}
   <section id="testimonials" class="relative py-32 overflow-hidden bg-brand-dark">
     <div class="absolute inset-0 z-0 opacity-30">
       <Image src={testimonialsBg} alt="Atmosphere" class="w-full h-full object-cover" />
     </div>
-
     <div class="container mx-auto px-4 relative z-10 text-center text-white">
       <div class="max-w-xl mx-auto bg-white/10 backdrop-blur-xl p-8 rounded-2xl border border-white/20">
         <div class="w-20 h-20 mx-auto mb-6 rounded-full border-4 border-brand-rose overflow-hidden">
           <Image src={melanieImg} alt="Melanie K." class="w-full h-full object-cover" />
         </div>
-        <p class="italic text-lg mb-4">"Vielen lieben Dank für die tollen Unterrichtsstunden! Macht immer viel Spaß, weiter so!"</p>
-        <p class="text-brand-rose font-bold uppercase text-sm">Melanie K.</p>
+        <p class="italic text-lg mb-4 text-white/90">"Vielen lieben Dank für die tollen Unterrichtsstunden! Macht immer viel Spaß, weiter so!"</p>
+        <p class="text-brand-rose font-bold uppercase tracking-widest text-sm">Melanie K.</p>
       </div>
     </div>
   </section>
 
+  {/* Kontakt */}
   <section id="fast-contact" class="py-24 bg-brand-dark relative overflow-hidden text-white">
     <div class="container mx-auto px-4 max-w-2xl relative z-10 text-center">
       <h2 class="font-display text-4xl font-bold mb-8">Gratis <span class="text-brand-glow">Probestunde</span></h2>
@@ -112,5 +197,4 @@ import melanieImg from '../assets/images/testimonials/melanie.png';
       </form>
     </div>
   </section>
-
 </Layout>

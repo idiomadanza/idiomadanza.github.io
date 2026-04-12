@@ -3,13 +3,13 @@
   "name": "Patricia",
   "role": "Gründerin & Bachata",
   "isFounder": true,
-  "image": "../../assets/images/team/patricia.png",
+  "image": "/src/assets/images/team/patricia.png",
   "imagePosition": "object-top",
   "instagram": "https://instagram.com/idiomadanza",
   "bio": [
     {
       "icon": "🎓",
-      "text": "Bachata Sensual Instructor Level 1 by Korke & Judith"
+      "text": "Bachata Sensual Instructor Level 1"
     },
     {
       "icon": "🥈",
@@ -18,10 +18,6 @@
     {
       "icon": "🥉",
       "text": "Social Dance Competition J&J Wien 2023"
-    },
-    {
-      "icon": "🥉",
-      "text": "Social Dance Competition J&J Prag 2022"
     }
   ]
 }
