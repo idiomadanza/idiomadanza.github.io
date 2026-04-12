@@ -16,6 +16,19 @@ const latestWorkshops = workshops.slice(0, 2); // Die ersten zwei Workshops anze
 import blogFallbackImg from '../assets/images/testimonials/bg.png';
 import testimonialsBg from '../assets/images/testimonials/bg.png';
 import melanieImg from '../assets/images/testimonials/melanie.png';
+
+// 4. Team-Collage vorbereiten (wie auf Über Uns)
+const allTeam = await getCollection('team') || [];
+const founders = allTeam.filter(t => t.data.isFounder).sort((a, b) => {
+  const order = ['patricia', 'stephan', 'chris_und_nalini'];
+  return order.indexOf(a.id) - order.indexOf(b.id);
+});
+const trainers = allTeam.filter(t => !t.data.isFounder);
+
+const overviewTeam = [
+  ...founders.filter(f => f.id !== 'chris_und_nalini').slice(0, 2),
+  ...trainers
+].slice(0, 8);
 ---
 
 <Layout 
@@ -108,6 +121,46 @@ import melanieImg from '../assets/images/testimonials/melanie.png';
   </section>
 
 
+
+  {/* Team Collage Section */}
+  <section class="py-24 bg-brand-dark/95 relative overflow-hidden">
+    <div class="container mx-auto px-4">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center max-w-6xl mx-auto">
+        <div class="relative order-2 lg:order-1">
+          <div class="absolute -top-10 -left-10 w-64 h-64 bg-brand-rose/10 rounded-full blur-[80px] -z-10"></div>
+          <div class="grid grid-cols-2 lg:grid-cols-4 gap-2 lg:gap-3 rounded-2xl overflow-hidden shadow-glow-rose transform hover:rotate-1 hover:scale-[1.01] transition-all duration-700 bg-white/5 border border-white/20 p-2 md:p-3 relative z-10">
+            {overviewTeam.map((member) => (
+              <div class="aspect-square overflow-hidden rounded-lg group relative">
+                <div class="absolute inset-x-0 bottom-0 py-2 px-3 bg-gradient-to-t from-black/80 to-transparent z-10 opacity-0 group-hover:opacity-100 transition-opacity">
+                  <span class="text-white font-bold text-[10px]">{member.data.name}</span>
+                </div>
+                <Image 
+                  src={member.data.image} 
+                  alt={member.data.name} 
+                  class={`w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500 scale-110 group-hover:scale-100 ${member.data.imagePosition}`}
+                />
+              </div>
+            ))}
+          </div>
+          <div class="absolute -bottom-8 -right-8 bg-brand-dark/80 backdrop-blur-md p-6 rounded-2xl border border-white/10 hidden md:block shadow-glow-rose z-20">
+            <div class="text-3xl font-bold text-brand-rose mb-1 text-center">13</div>
+            <div class="text-[10px] uppercase tracking-widest font-bold text-white/60">Trainer</div>
+          </div>
+        </div>
+        
+        <div class="space-y-8 order-1 lg:order-2 text-white">
+          <h2 class="font-display text-4xl md:text-5xl font-bold">Die <span class="text-brand-rose">Community</span> brennt</h2>
+          <p class="text-lg opacity-80 leading-relaxed font-light">
+            Hinter Idiomadanza steht ein Team aus leidenschaftlichen Tänzern, die Bachata und Salsa nicht nur unterrichten, sondern leben. Wir bringen die Energie direkt nach Regensburg.
+          </p>
+          <a href="/ueber-uns" class="group/btn inline-flex items-center gap-3 px-10 py-4 bg-brand-rose text-white rounded-full font-bold shadow-glow-rose hover:-translate-y-1 transition-all duration-300">
+            Lerne das ganze Team kennen
+            <span class="group-hover/btn:translate-x-1 transition-transform">→</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
 
   {/* Testimonials */}
   <section id="testimonials" class="relative py-32 overflow-hidden bg-brand-dark">

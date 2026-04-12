@@ -10,11 +10,17 @@ import { getCollection } from 'astro:content';
 const allTeam = await getCollection('team');
 
 const founders = allTeam.filter(t => t.data.isFounder).sort((a, b) => {
-  // Manual sort for specific founder order: Patricia, Stephan, Chris & Nalini
   const order = ['patricia', 'stephan', 'chris_und_nalini'];
   return order.indexOf(a.id) - order.indexOf(b.id);
 });
 const trainers = allTeam.filter(t => !t.data.isFounder);
+
+// Curated list for the 8-tile collage: Patricia & Stephan first, then trainers.
+// Chris & Nalini are intentionally moved to the full list below the collage to focus on the founders.
+const overviewTeam = [
+  ...founders.filter(f => f.id !== 'chris_und_nalini').slice(0, 2),
+  ...trainers
+].slice(0, 8);
 ---
 
 <Layout 
@@ -69,7 +75,7 @@ const trainers = allTeam.filter(t => !t.data.isFounder);
           <div class="absolute -top-10 -left-10 w-64 h-64 bg-brand-rose/10 rounded-full blur-[80px] -z-10"></div>
           <div class="grid grid-cols-2 lg:grid-cols-4 gap-2 lg:gap-3 rounded-idioma overflow-hidden shadow-glow-rose transform hover:rotate-1 hover:scale-[1.02] transition-transform duration-700 bg-white/5 border border-white/20 p-2 md:p-3 relative z-10 before:absolute before:inset-0 before:bg-brand-rose/5 before:pointer-events-none">
             
-            {allTeam.slice(0, 8).map((member) => (
+            {overviewTeam.map((member) => (
               <div class="aspect-square overflow-hidden rounded-lg group relative">
                 <div class="absolute inset-x-0 bottom-0 py-2 px-3 bg-gradient-to-t from-black/80 to-transparent z-10 opacity-0 group-hover:opacity-100 transition-opacity">
                   <span class="text-white font-bold text-xs">{member.data.name}</span>
@@ -83,9 +89,9 @@ const trainers = allTeam.filter(t => !t.data.isFounder);
             ))}
             
           </div>
-          <div class="absolute -bottom-8 -right-8 bg-white/70 dark:bg-brand-dark/80 backdrop-blur-md p-8 rounded-idioma shadow-glass border border-white/20 hidden md:block">
+          <div class="absolute -bottom-8 -right-8 bg-white/70 dark:bg-brand-dark/80 backdrop-blur-md p-8 rounded-idioma border border-white/20 hidden md:block shadow-glow-rose z-20">
             <div class="text-4xl font-bold text-brand-rose mb-1">13</div>
-            <div class="text-sm uppercase tracking-widest font-bold opacity-60">Experten Trainer</div>
+            <div class="text-sm uppercase tracking-widest font-bold dark:text-white/60">Experten Trainer</div>
           </div>
         </div>
         
