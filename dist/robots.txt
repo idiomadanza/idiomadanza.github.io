@@ -1,4 +1,10 @@
 User-agent: *
 Allow: /
 
+# Sitemaps helfen KI-Agenten und Suchmaschinen, deine Struktur sofort zu verstehen
+
 Sitemap: https://idiomadanza.de/sitemap-index.xml
+
+# Schütze sensible Bereiche (falls du später ein Admin-Panel oder interne Tools hast)
+
+Disallow: /admin/

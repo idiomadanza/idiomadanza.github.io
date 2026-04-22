@@ -19,8 +19,8 @@ import Layout from '../layouts/Layout.astro';
         <p>Verantwortlich für die Verarbeitung Ihrer personenbezogenen Daten auf dieser Website im Sinne der Datenschutz-Grundverordnung (DSGVO) ist:</p>
         <div class="mt-4 p-6 bg-brand-rose/5 border border-brand-rose/10 rounded-lg">
           <p><strong>Idiomadanza e.V.</strong><br />
-          Metzgerweg 48, 93055 Regensburg<br />
-          E-Mail: <a href="mailto:mail@idiomadanza.de" class="text-brand-rose">mail [at] idiomadanza.de</a><br />
+          Isarstr. 85, 93057 Regensburg<br />
+          E-Mail: <a href="#" data-email="mail|idiomadanza.de" class="email-decode text-brand-rose">mail [at] idiomadanza.de</a><br />
           Web: <a href="https://idiomadanza.de" class="text-brand-rose">www.idiomadanza.de</a></p>
         </div>
       </section>
@@ -71,8 +71,9 @@ import Layout from '../layouts/Layout.astro';
 </Layout>
 
 <style is:global>
+  @reference "../styles/global.css";
   .legal-content h2 {
-    @apply text-2xl font-display font-bold text-brand-rose mt-10 mb-6;
+    @apply text-xl md:text-2xl font-display font-bold text-brand-rose mt-10 mb-6;
   }
   
   .legal-content h3 {

@@ -1,0 +1,8 @@
+{
+  "id": "sebastian",
+  "name": "Sebastian",
+  "role": "Trainer",
+  "isFounder": false,
+  "image": "../../assets/images/team/sebastian.png",
+  "imagePosition": "object-top"
+}

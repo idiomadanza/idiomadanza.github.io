@@ -1,41 +1,41 @@
 ---
 import { ClientRouter } from 'astro:transitions';
+import { Image } from 'astro:assets';
 import '../styles/global.css';
 import CookieBanner from '../components/CookieBanner.astro';
+import logoImg from '../assets/images/logo.png';
 
 interface Props {
   title: string;
   description?: string;
   canonical?: string;
   ogImage?: string;
-  breadcrumb?: { name: string; url: string }[];
 }
 
 const { 
   title, 
-  description = "Idiomadanza e.V. – Bachata und Salsa Tanzkurse in Regensburg. Wöchentliche Kurse, Workshops und Socials für alle Level.",
+  description = "Idiomadanza e.V. – Bachata und Salsa Tanzkurse in Regensburg.",
   canonical,
-  ogImage = "/images/og-default.png",
-  breadcrumb
+  ogImage = "/images/og-default.png"
 } = Astro.props;
 
 const siteUrl = "https://idiomadanza.de";
 const canonicalUrl = canonical ? `${siteUrl}${canonical}` : `${siteUrl}${Astro.url.pathname}`;
 
-// Auto-generate breadcrumb from URL if not provided
+// Breadcrumb-Logik (Sicher deklariert)
 const pathSegments = Astro.url.pathname.split('/').filter(Boolean);
 const breadcrumbLabels: Record<string, string> = {
   'kurse': 'Tanzkurse',
-  'preise': 'Preise & Mitgliedschaft',
+  'workshops': 'Workshops',
   'ueber-uns': 'Über Uns',
+  'mitglied-werden': 'Mitgliedschaft',
   'kontakt': 'Kontakt',
-  'impressum': 'Impressum',
-  'datenschutz': 'Datenschutz',
+  'blog': 'Journal'
 };
 
-const autoBreadcrumb = breadcrumb || pathSegments.map((seg, i) => ({
+const autoBreadcrumb = pathSegments.map((seg, index) => ({
   name: breadcrumbLabels[seg] || seg,
-  url: '/' + pathSegments.slice(0, i + 1).join('/')
+  url: '/' + pathSegments.slice(0, index + 1).join('/')
 }));
 
 const breadcrumbSchema = autoBreadcrumb.length > 0 ? {
@@ -43,9 +43,9 @@ const breadcrumbSchema = autoBreadcrumb.length > 0 ? {
   "@type": "BreadcrumbList",
   "itemListElement": [
     { "@type": "ListItem", "position": 1, "name": "Startseite", "item": siteUrl },
-    ...autoBreadcrumb.map((item, i) => ({
+    ...autoBreadcrumb.map((item, idx) => ({
       "@type": "ListItem",
-      "position": i + 2,
+      "position": idx + 2,
       "name": item.name,
       "item": `${siteUrl}${item.url}`
     }))
@@ -59,129 +59,49 @@ const breadcrumbSchema = autoBreadcrumb.length > 0 ? {
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" type="image/png" href="/favicon.png" />
-    <meta name="generator" content={Astro.generator} />
-    <ClientRouter />
+    
+    <!-- Critical Font Preloading -->
+    <link rel="preload" href="/fonts/inter-400.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/fonts/playfair-400.woff2" as="font" type="font/woff2" crossorigin />
 
-    <!-- Primary SEO -->
+    <ClientRouter />
     <title>{title}</title>
     <meta name="description" content={description} />
     <link rel="canonical" href={canonicalUrl} />
-    <meta name="robots" content="index, follow" />
 
-    <!-- Geo/Local SEO Meta -->
-    <meta name="geo.region" content="DE-BY" />
-    <meta name="geo.placename" content="Regensburg" />
-    <meta name="geo.position" content="49.0134;12.1016" />
-    <meta name="ICBM" content="49.0134, 12.1016" />
-
-    <!-- Open Graph / Social -->
+    <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website" />
     <meta property="og:url" content={canonicalUrl} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
-    <meta property="og:image" content={`${siteUrl}${ogImage}`} />
-    <meta property="og:locale" content="de_DE" />
+    <meta property="og:image" content={new URL(ogImage, siteUrl)} />
     <meta property="og:site_name" content="Idiomadanza e.V." />
 
-    <!-- Twitter Card -->
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content={title} />
-    <meta name="twitter:description" content={description} />
-    <meta name="twitter:image" content={`${siteUrl}${ogImage}`} />
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content={canonicalUrl} />
+    <meta property="twitter:title" content={title} />
+    <meta property="twitter:description" content={description} />
+    <meta property="twitter:image" content={new URL(ogImage, siteUrl)} />
 
-    <!-- Schema.org Markup (Local Business + DanceSchool) -->
-    <script type="application/ld+json" set:html={JSON.stringify({
-      "@context": "https://schema.org",
-      "@type": ["DanceSchool", "SportsActivityLocation"],
-      "name": "Idiomadanza e.V.",
-      "description": "Bachata und Salsa Tanzverein in Regensburg. Wöchentliche Kurse, Workshops und Socials für alle Level.",
-      "url": siteUrl,
-      "telephone": "+4915678659226",
-      "email": "info@idiomadanza.de",
-      "priceRange": "€€",
-      "image": `${siteUrl}/images/logo.png`,
-      "address": {
-        "@type": "PostalAddress",
-        "streetAddress": "Isarstr. 85",
-        "addressLocality": "Regensburg",
-        "addressRegion": "Bayern",
-        "postalCode": "93057",
-        "addressCountry": "DE"
-      },
-      "geo": {
-        "@type": "GeoCoordinates",
-        "latitude": 49.0134,
-        "longitude": 12.1016
-      },
-      "areaServed": {
-        "@type": "City",
-        "name": "Regensburg"
-      },
-      "openingHoursSpecification": [
-        {
-          "@type": "OpeningHoursSpecification",
-          "dayOfWeek": "Tuesday",
-          "opens": "18:00",
-          "closes": "21:00"
-        },
-        {
-          "@type": "OpeningHoursSpecification",
-          "dayOfWeek": "Wednesday",
-          "opens": "18:00",
-          "closes": "21:00"
-        }
-      ],
-      "sameAs": []
-    })} />
-
-    <!-- Breadcrumb Schema (Agentic SEO) -->
-    {breadcrumbSchema && (
-      <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
-    )}
-    
-    <!-- Fonts (Lokal gehostet in global.css) -->
-    <link rel="preload" href="/fonts/inter-400.woff2" as="font" type="font/woff2" crossorigin>
-    <link rel="preload" href="/fonts/playfair-400.woff2" as="font" type="font/woff2" crossorigin>
+    {breadcrumbSchema && <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />}
   </head>
-  <body class="font-sans min-h-screen flex flex-col">
-    <header class="sticky top-0 z-50 w-full backdrop-blur-md bg-white/70 dark:bg-brand-dark/80 shadow-glass border-b border-white/10 transition-all duration-300">
-      <!-- Navigationsbereich mit modernem runden Logo -->
-      <nav class="container mx-auto px-4 py-2 flex justify-between items-center" aria-label="Hauptnavigation">
-        <a href="/" class="flex items-center gap-4 group" aria-label="Idiomadanza Startseite">
-          <div class="relative">
-            <div class="absolute inset-0 bg-brand-glow rounded-full blur-md opacity-20 group-hover:opacity-40 transition-opacity"></div>
-            <div class="relative w-14 h-14 rounded-full bg-black border-2 border-brand-glow/30 flex items-center justify-center overflow-hidden shadow-glow-amber group-hover:scale-105 transition-transform">
-              <img src="/images/logo.png" alt="Idiomadanza e.V. Logo" width="56" height="56" class="w-full h-full object-cover p-1">
-            </div>
+  <body class="font-sans min-h-screen flex flex-col bg-brand-light dark:bg-brand-dark text-brand-dark dark:text-white">
+    <header class="sticky top-0 z-50 w-full backdrop-blur-md bg-white/70 dark:bg-brand-dark/80 border-b border-white/10">
+      <nav class="container mx-auto px-4 py-4 flex justify-between items-center">
+        <a href="/" class="flex items-center gap-4 group">
+          <div class="relative w-12 h-12 rounded-full overflow-hidden border-2 border-brand-glow/30">
+            <Image src={logoImg} alt="Logo" width={48} height={48} class="p-1" />
           </div>
-          <span class="text-2xl font-display font-bold text-brand-rose leading-none transition-colors group-hover:text-brand-glow">Idiomadanza</span>
+          <span class="text-2xl font-display font-bold text-brand-rose">Idiomadanza</span>
         </a>
-        <!-- Desktop Navigation -->
-        <div class="hidden md:flex gap-6 items-center">
-          <a href="/kurse" class={`font-medium transition-colors ${Astro.url.pathname.startsWith('/kurse') ? 'text-brand-rose' : 'dark:text-white/80 dark:hover:text-white hover:text-brand-rose'}`}>Kurse</a>
-          <a href="/preise" class={`font-medium transition-colors ${Astro.url.pathname.startsWith('/preise') ? 'text-brand-rose' : 'dark:text-white/80 dark:hover:text-white hover:text-brand-rose'}`}>Preise</a>
-          <a href="/ueber-uns" class={`font-medium transition-colors ${Astro.url.pathname.startsWith('/ueber-uns') ? 'text-brand-rose' : 'dark:text-white/80 dark:hover:text-white hover:text-brand-rose'}`}>Über uns</a>
-          <a href="/kontakt" class="bg-brand-rose px-6 py-2.5 rounded-full text-white text-sm font-bold shadow-glow-rose hover:-translate-y-0.5 transition-all">Probestunde</a>
-        </div>
-
-        <!-- Mobile Menu Button -->
-        <button id="mobile-menu-button" class="md:hidden flex flex-col gap-1.5 p-2 focus:outline-none z-[60]" aria-label="Menü öffnen">
-          <span class="w-6 h-0.5 bg-brand-rose rounded-full transition-all duration-300 origin-center translate-y-1"></span>
-          <span class="w-6 h-0.5 bg-brand-rose rounded-full transition-all duration-300 origin-center -translate-y-1"></span>
-        </button>
-
-        <!-- Mobile Menu Overlay -->
-        <div id="mobile-menu" class="fixed inset-0 bg-brand-dark/95 backdrop-blur-2xl z-50 flex flex-col items-center justify-center gap-8 opacity-0 pointer-events-none transition-all duration-500 scale-95">
-          <a href="/" class={`mobile-nav-link text-3xl font-display font-bold ${Astro.url.pathname === '/' ? 'text-brand-rose' : 'text-white'}`}>Home</a>
-          <a href="/kurse" class={`mobile-nav-link text-3xl font-display font-bold ${Astro.url.pathname.startsWith('/kurse') ? 'text-brand-rose' : 'text-white'}`}>Kurse</a>
-          <a href="/preise" class={`mobile-nav-link text-3xl font-display font-bold ${Astro.url.pathname.startsWith('/preise') ? 'text-brand-rose' : 'text-white'}`}>Preise</a>
-          <a href="/ueber-uns" class={`mobile-nav-link text-3xl font-display font-bold ${Astro.url.pathname.startsWith('/ueber-uns') ? 'text-brand-rose' : 'text-white'}`}>Über uns</a>
-          <a href="/kontakt" class="px-12 py-4 bg-brand-rose text-white text-xl font-bold rounded-full shadow-glow-rose mt-4">Probestunde</a>
-          
-          <div class="absolute bottom-12 flex gap-8">
-            <a href="https://instagram.com/idiomadanza" class="text-white opacity-60 hover:opacity-100 transition-opacity">Instagram</a>
-            <a href="/kontakt" class="text-white opacity-60 hover:opacity-100 transition-opacity">WhatsApp</a>
-          </div>
+        <div class="hidden md:flex gap-8 items-center font-medium">
+          <a href="/kurse" class="hover:text-brand-rose transition-colors">Kurse</a>
+          <a href="/workshops" class="hover:text-brand-rose transition-colors">Workshops</a>
+          <a href="/ueber-uns" class="hover:text-brand-rose transition-colors">Über Uns</a>
+          <a href="/mitglied-werden" class="hover:text-brand-rose transition-colors">Mitgliedschaft</a>
+          <a href="/blog" class="hover:text-brand-rose transition-colors">Journal</a>
+          <a href="/kontakt" class="bg-brand-rose px-6 py-2 rounded-full text-white shadow-glow-rose hover:-translate-y-0.5 transition-all">Probestunde</a>
         </div>
       </nav>
     </header>
@@ -190,102 +110,95 @@ const breadcrumbSchema = autoBreadcrumb.length > 0 ? {
       <slot />
     </main>
 
-    <footer class="bg-brand-dark text-white pt-20 pb-10 border-t border-white/5">
+    <footer class="bg-brand-dark border-t border-white/5 pt-20 pb-10 overflow-hidden">
       <div class="container mx-auto px-4">
-        <div class="grid md:grid-cols-4 gap-12 mb-16">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
+          <!-- Brand & About -->
           <div class="space-y-6">
             <div class="flex items-center gap-4">
-              <div class="relative w-12 h-12 rounded-full bg-black border border-brand-glow/30 flex items-center justify-center overflow-hidden shadow-glow-amber">
-                <img src="/images/logo.png" alt="Idiomadanza e.V. Logo" width="48" height="48" class="w-full h-full object-cover p-1">
+              <div class="relative w-12 h-12 rounded-full overflow-hidden border border-brand-glow/30">
+                <Image src={logoImg} alt="Idiomadanza Logo" width={48} height={48} class="p-1" />
               </div>
-              <h3 class="font-display text-xl text-brand-glow">Idiomadanza e.V.</h3>
+              <span class="text-2xl font-display font-bold text-brand-rose">Idiomadanza e.V.</span>
             </div>
-            <p class="text-sm opacity-60 leading-relaxed">Tanzen verbindet: Dein Verein für Bachata & Salsa in Regensburg. Erlebe Leidenschaft und Community.</p>
+            <p class="text-sm text-white/50 leading-relaxed max-w-xs">
+              Tanzen verbindet: Dein Verein für Bachata & Salsa in Regensburg. Erlebe Leidenschaft und Community.
+            </p>
           </div>
-          <div>
-            <h4 class="font-bold mb-6 text-brand-rose uppercase tracking-widest text-xs">Rechtliches</h4>
-            <ul class="space-y-3 text-sm opacity-70">
+
+          <!-- Legal -->
+          <div class="space-y-6">
+            <h3 class="text-xs font-bold uppercase tracking-[0.2em] text-brand-glow">Rechtliches</h3>
+            <ul class="space-y-4 text-sm text-white/60">
               <li><a href="/impressum" class="hover:text-brand-rose transition-colors">Impressum</a></li>
               <li><a href="/datenschutz" class="hover:text-brand-rose transition-colors">Datenschutz</a></li>
               <li><a href="/cookie-richtlinie" class="hover:text-brand-rose transition-colors">Cookies</a></li>
               <li><a href="/satzung" class="hover:text-brand-rose transition-colors">Satzung</a></li>
               <li><a href="/vereinsordnung" class="hover:text-brand-rose transition-colors">Vereinsordnung</a></li>
+              <li><a href="/kurse#faq" class="hover:text-brand-rose transition-colors">Häufige Fragen</a></li>
             </ul>
           </div>
-          <div>
-            <h4 class="font-bold mb-6 text-brand-rose uppercase tracking-widest text-xs">Entdecken</h4>
-            <ul class="space-y-3 text-sm opacity-70">
+
+          <!-- Explore -->
+          <div class="space-y-6">
+            <h3 class="text-xs font-bold uppercase tracking-[0.2em] text-brand-glow">Entdecken</h3>
+            <ul class="space-y-4 text-sm text-white/60">
               <li><a href="/kurse" class="hover:text-brand-rose transition-colors">Wöchentliche Kurse</a></li>
-              <li><a href="/preise" class="hover:text-brand-rose transition-colors">Preise & Mitgliedschaft</a></li>
+              <li><a href="/kurse#preise" class="hover:text-brand-rose transition-colors">Preise & Mitgliedschaft</a></li>
               <li><a href="/ueber-uns" class="hover:text-brand-rose transition-colors">Über den Verein</a></li>
+              <li><a href="/mitglied-werden" class="hover:text-brand-rose transition-colors font-bold text-brand-rose/80">Mitglied werden</a></li>
             </ul>
           </div>
-          <div>
-            <h4 class="font-bold mb-6 text-brand-rose uppercase tracking-widest text-xs">Kontakt</h4>
-            <div class="text-sm opacity-70 space-y-4">
-              <p class="flex items-center gap-3">
-                <span class="text-brand-glow">📍</span> Isarstr. 85, 93057 Regensburg
-              </p>
-              <a href="https://wa.me/+4915678659226?text=Hallo%20Idiomadanza,%20ich%20habe%20weitere%20Fragen%20zu%20..." class="flex items-center gap-3 text-sm opacity-70 hover:opacity-100 hover:text-[#25D366] transition-all group">
-                <span class="text-brand-glow group-hover:rotate-12 transition-transform">💬</span> 
-                <span class="font-bold">Chat on WhatsApp</span>
-              </a>
-              <a href="mailto:mail@idiomadanza.de" class="flex items-center gap-3 text-sm opacity-70 hover:opacity-100 hover:text-brand-rose transition-colors group">
-                <span class="text-brand-glow group-hover:scale-110 transition-transform">📧</span> 
-                mail [at] idiomadanza.de
-              </a>
-            </div>
+
+          <!-- Contact -->
+          <div class="space-y-6">
+            <h3 class="text-xs font-bold uppercase tracking-[0.2em] text-brand-glow">Kontakt</h3>
+            <ul class="space-y-4 text-sm text-white/60">
+              <li class="flex items-start gap-3">
+                <span class="text-brand-rose">📍</span>
+                <span>Isarstr. 85, 93057 Regensburg</span>
+              </li>
+              <li class="flex items-start gap-3">
+                <span class="text-brand-rose">💬</span>
+                <a href="https://wa.me/+4915678659226?text=Hallo%20Idiomadanza,%20ich%20habe%20weitere%20Fragen%20zu%20..." target="_blank" class="hover:text-brand-rose transition-colors font-bold">Chat on WhatsApp</a>
+              </li>
+              <li class="flex items-start gap-3">
+                <span class="text-brand-rose">📧</span>
+                <a href="#" data-email="mail|idiomadanza.de" class="email-decode hover:text-brand-rose transition-colors">mail [at] idiomadanza.de</a>
+              </li>
+            </ul>
           </div>
         </div>
-        <div class="pt-8 border-t border-white/5 text-center text-xs opacity-40">
-          &copy; {new Date().getFullYear()} Idiomadanza e.V. Alle Rechte vorbehalten.
+
+        <div class="pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-white/30">
+          <p>&copy; {new Date().getFullYear()} Idiomadanza e.V. Alle Rechte vorbehalten.</p>
+          <div class="flex gap-6">
+            <a href="https://instagram.com/idiomadanza" target="_blank" rel="noopener" aria-label="Idiomadanza auf Instagram" class="hover:text-brand-rose transition-colors">Instagram</a>
+            <a href="https://facebook.com/idiomadanza" target="_blank" rel="noopener" aria-label="Idiomadanza auf Facebook" class="hover:text-brand-rose transition-colors">Facebook</a>
+          </div>
         </div>
       </div>
     </footer>
-    <script>
-      document.addEventListener('astro:page-load', () => {
-        const mobileMenuButton = document.getElementById('mobile-menu-button');
-        const mobileMenu = document.getElementById('mobile-menu');
-        const navLinks = document.querySelectorAll('.mobile-nav-link');
-        const spans = mobileMenuButton?.querySelectorAll('span');
-
-        function toggleMenu() {
-          const isOpen = mobileMenu?.classList.contains('opacity-100');
-          
-          if (isOpen) {
-            mobileMenu?.classList.remove('opacity-100', 'pointer-events-auto', 'scale-100');
-            mobileMenu?.classList.add('opacity-0', 'pointer-events-none', 'scale-95');
-            if (spans) {
-              spans[0].classList.remove('rotate-45', 'translate-y-[5px]');
-              spans[1].classList.remove('-rotate-45', '-translate-y-[5px]');
-            }
-            document.body.style.overflow = '';
-          } else {
-            mobileMenu?.classList.add('opacity-100', 'pointer-events-auto', 'scale-100');
-            mobileMenu?.classList.remove('opacity-0', 'pointer-events-none', 'scale-95');
-            if (spans) {
-              spans[0].classList.add('rotate-45', 'translate-y-[5px]');
-              spans[1].classList.add('-rotate-45', '-translate-y-[5px]');
-            }
-            document.body.style.overflow = 'hidden';
-          }
-        }
-
-        // Remove old listeners to prevent duplicates during view transitions
-        const oldButtonListener = mobileMenuButton?.getAttribute('data-listenerized');
-        if (!oldButtonListener) {
-          mobileMenuButton?.addEventListener('click', toggleMenu);
-          mobileMenuButton?.setAttribute('data-listenerized', 'true');
-        }
-        
-        navLinks.forEach(link => {
-          link.addEventListener('click', () => {
-             // Let the navigation happen naturally without strict overflow hidden remaining
-             document.body.style.overflow = '';
-          });
-        });
-      });
-    </script>
     <CookieBanner />
+
+    <!-- Anti-Spam Email Decoder -->
+    <script>
+      const decodeEmails = () => {
+        document.querySelectorAll('.email-decode').forEach((el) => {
+          const email = el.getAttribute('data-email')?.replace('|', '@');
+          if (email) {
+            (el as HTMLAnchorElement).href = `mailto:${email}`;
+            // Optional: Restore text if it contains [at]
+            if (el.textContent?.includes('[at]')) {
+              el.textContent = email;
+            }
+          }
+        });
+      };
+      
+      // Run on load and after view transitions
+      decodeEmails();
+      document.addEventListener('astro:after-swap', decodeEmails);
+    </script>
   </body>
 </html>

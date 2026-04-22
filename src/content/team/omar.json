@@ -1,0 +1,14 @@
+{
+  "id": "omar",
+  "name": "Omar",
+  "role": "Trainer",
+  "isFounder": false,
+  "image": "../../assets/images/team/omar.png",
+  "imagePosition": "object-top",
+  "bio": [
+    {
+      "icon": "🥈",
+      "text": "Sensual Madness J&J Madrid 2026"
+    }
+  ]
+}

@@ -1,0 +1,304 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { Image } from 'astro:assets';
+import aboutBg from '../assets/images/about/about-bg.png';
+---
+
+<Layout 
+  title="Beitrittsformular | Idiomadanza e.V."
+  description="Werde Mitglied bei Idiomadanza e.V. – Deine Bachata & Salsa Community in Regensburg."
+>
+  <!-- HERO SECTION -->
+  <section class="relative py-20 overflow-hidden bg-brand-dark">
+    <div class="absolute inset-0 z-0">
+      <Image src={aboutBg} alt="Mitgliedschaft" class="w-full h-full object-cover opacity-20 blur-[2px]" />
+      <div class="absolute inset-0 bg-gradient-to-b from-brand-dark/90 via-brand-dark/40 to-brand-dark"></div>
+    </div>
+    
+    <div class="container mx-auto px-4 relative z-10 text-center">
+      <h1 class="font-display text-5xl md:text-6xl font-bold text-white mb-4">Beitrittsformular</h1>
+      <p class="text-xl text-brand-glow font-light tracking-wide italic">Mitgliederanträge online einreichen</p>
+    </div>
+  </section>
+
+  <!-- FORM SECTION -->
+  <section class="py-16 bg-brand-light dark:bg-brand-dark min-h-screen">
+    <div class="container mx-auto px-4">
+      <div class="max-w-4xl mx-auto">
+        
+        <div class="bg-white/70 dark:bg-brand-dark/50 backdrop-blur-xl rounded-idioma border border-brand-dark/10 dark:border-white/10 p-8 md:p-12 shadow-glass relative overflow-hidden">
+          
+          <div id="form-feedback" class="hidden mb-8 p-6 rounded-idioma font-bold text-center"></div>
+
+          <form id="membership-form" class="space-y-16">
+            <input type="hidden" name="sparte" value="Bachata">
+            
+            <!-- ABSCHNITT 1: Basis-Informationen -->
+            <div class="space-y-8">
+              <div class="flex items-center gap-4">
+                <span class="w-10 h-10 rounded-full bg-brand-rose/20 text-brand-rose flex items-center justify-center font-bold text-lg border border-brand-rose/30">1</span>
+                <h3 class="text-2xl font-display font-bold dark:text-white">Basis-Informationen</h3>
+              </div>
+              
+              <div class="space-y-4">
+                <label for="email" class="block text-xs font-bold uppercase tracking-widest opacity-60 dark:text-white">E-Mail*</label>
+                <input type="email" id="email" name="email" required class="w-full bg-white dark:bg-brand-dark/80 border border-brand-dark/10 dark:border-white/10 rounded-idioma px-6 py-4 focus:border-brand-rose focus:ring-1 focus:ring-brand-rose outline-none transition-all dark:text-white">
+                <p class="text-xs opacity-50 dark:text-white/50 italic italic">Die E-Mail-Adresse wird auch verwendet, um dich über den Aufnahmeprozess zu informieren.</p>
+              </div>
+            </div>
+
+            <!-- ABSCHNITT 2: Name & Persönliches -->
+            <div class="space-y-8">
+              <div class="flex items-center gap-4">
+                <span class="w-10 h-10 rounded-full bg-brand-rose/20 text-brand-rose flex items-center justify-center font-bold text-lg border border-brand-rose/30">2</span>
+                <h3 class="text-2xl font-display font-bold dark:text-white">Name & Persönliches</h3>
+              </div>
+
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="space-y-2">
+                  <label for="vorname" class="text-xs font-bold uppercase tracking-widest opacity-60 dark:text-white">Vorname*</label>
+                  <input type="text" id="vorname" name="vorname" required class="w-full bg-white dark:bg-brand-dark/80 border border-brand-dark/10 dark:border-white/10 rounded-idioma px-6 py-4 focus:border-brand-rose focus:ring-1 focus:ring-brand-rose outline-none transition-all dark:text-white">
+                </div>
+                <div class="space-y-2">
+                  <label for="nachname" class="text-xs font-bold uppercase tracking-widest opacity-60 dark:text-white">Nachname*</label>
+                  <input type="text" id="nachname" name="nachname" required class="w-full bg-white dark:bg-brand-dark/80 border border-brand-dark/10 dark:border-white/10 rounded-idioma px-6 py-4 focus:border-brand-rose focus:ring-1 focus:ring-brand-rose outline-none transition-all dark:text-white">
+                </div>
+              </div>
+
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="space-y-2">
+                  <label for="geburtstag" class="text-xs font-bold uppercase tracking-widest opacity-60 dark:text-white">Geburtstag*</label>
+                  <input type="date" id="geburtstag" name="geburtstag" required class="w-full bg-white dark:bg-brand-dark/80 border border-brand-dark/10 dark:border-white/10 rounded-idioma px-6 py-4 focus:border-brand-rose focus:ring-1 focus:ring-brand-rose outline-none transition-all dark:text-white">
+                </div>
+                <div class="space-y-2">
+                  <label for="geschlecht" class="text-xs font-bold uppercase tracking-widest opacity-60 dark:text-white">Geschlecht*</label>
+                  <select id="geschlecht" name="geschlecht" required class="w-full bg-white dark:bg-brand-dark/80 border border-brand-dark/10 dark:border-white/10 rounded-idioma px-6 py-4 focus:border-brand-rose focus:ring-1 focus:ring-brand-rose outline-none transition-all dark:text-white appearance-none">
+                    <option value="" disabled selected>Bitte wählen...</option>
+                    <option value="weiblich">Weiblich</option>
+                    <option value="männlich">Männlich</option>
+                    <option value="divers">Divers / Keine Angabe</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+
+            <!-- ABSCHNITT 3: Adresse & Kontakt -->
+            <div class="space-y-8">
+              <div class="flex items-center gap-4">
+                <span class="w-10 h-10 rounded-full bg-brand-rose/20 text-brand-rose flex items-center justify-center font-bold text-lg border border-brand-rose/30">3</span>
+                <h3 class="text-2xl font-display font-bold dark:text-white">Adresse & Kontakt</h3>
+              </div>
+
+              <div class="space-y-2">
+                <label for="land" class="text-xs font-bold uppercase tracking-widest opacity-60 dark:text-white">Land*</label>
+                <input type="text" id="land" name="land" required value="Deutschland" class="w-full bg-white dark:bg-brand-dark/80 border border-brand-dark/10 dark:border-white/10 rounded-idioma px-6 py-4 focus:border-brand-rose focus:ring-1 focus:ring-brand-rose outline-none transition-all dark:text-white">
+              </div>
+
+              <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div class="md:col-span-3 space-y-2">
+                  <label for="strasse" class="text-xs font-bold uppercase tracking-widest opacity-60 dark:text-white">Straße*</label>
+                  <input type="text" id="strasse" name="strasse" required class="w-full bg-white dark:bg-brand-dark/80 border border-brand-dark/10 dark:border-white/10 rounded-idioma px-6 py-4 focus:border-brand-rose focus:ring-1 focus:ring-brand-rose outline-none transition-all dark:text-white">
+                </div>
+                <div class="space-y-2">
+                  <label for="hausnummer" class="text-xs font-bold uppercase tracking-widest opacity-60 dark:text-white">Haus-Nr.*</label>
+                  <input type="text" id="hausnummer" name="hausnummer" required class="w-full bg-white dark:bg-brand-dark/80 border border-brand-dark/10 dark:border-white/10 rounded-idioma px-6 py-4 focus:border-brand-rose focus:ring-1 focus:ring-brand-rose outline-none transition-all dark:text-white">
+                </div>
+              </div>
+
+              <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="space-y-2 text-white">
+                  <label for="plz" class="text-xs font-bold uppercase tracking-widest opacity-60 dark:text-white">PLZ*</label>
+                  <input type="text" id="plz" name="plz" required class="w-full bg-white dark:bg-brand-dark/80 border border-brand-dark/10 dark:border-white/10 rounded-idioma px-6 py-4 focus:border-brand-rose focus:ring-1 focus:ring-brand-rose outline-none transition-all dark:text-white">
+                </div>
+                <div class="md:col-span-2 space-y-2">
+                  <label for="ort" class="text-xs font-bold uppercase tracking-widest opacity-60 dark:text-white">Stadt/Ort*</label>
+                  <input type="text" id="ort" name="ort" required class="w-full bg-white dark:bg-brand-dark/80 border border-brand-dark/10 dark:border-white/10 rounded-idioma px-6 py-4 focus:border-brand-rose focus:ring-1 focus:ring-brand-rose outline-none transition-all dark:text-white">
+                </div>
+              </div>
+
+              <div class="space-y-2">
+                <label for="telefon" class="text-xs font-bold uppercase tracking-widest opacity-60 dark:text-white">Telefonnummer</label>
+                <input type="tel" id="telefon" name="telefon" class="w-full bg-white dark:bg-brand-dark/80 border border-brand-dark/10 dark:border-white/10 rounded-idioma px-6 py-4 focus:border-brand-rose focus:ring-1 focus:ring-brand-rose outline-none transition-all dark:text-white">
+              </div>
+            </div>
+
+            <!-- ABSCHNITT 4: Informationen zur Mitgliedschaft -->
+            <div class="space-y-8 p-8 bg-brand-rose/5 rounded-idioma border border-brand-rose/20 relative overflow-hidden">
+              <div class="flex items-center gap-4 relative z-10">
+                <span class="w-10 h-10 rounded-full bg-brand-rose/20 text-brand-rose flex items-center justify-center font-bold text-lg border border-brand-rose/30">4</span>
+                <h3 class="text-2xl font-display font-bold dark:text-white">Informationen zur Mitgliedschaft</h3>
+              </div>
+
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-6 text-sm relative z-10">
+                <div class="space-y-1">
+                  <p class="text-xs font-bold uppercase opacity-40 dark:text-white italic">Sparte</p>
+                  <p class="text-lg font-bold dark:text-white">Bachata</p>
+                </div>
+                <div class="space-y-1">
+                  <p class="text-xs font-bold uppercase opacity-40 dark:text-white italic">Beitrag</p>
+                  <p class="text-lg font-bold dark:text-white">39 EUR / Monat (bzw. 19 EUR gemäß Auswahl)</p>
+                </div>
+                <div class="space-y-1">
+                  <p class="text-xs font-bold uppercase opacity-40 dark:text-white italic">Aufnahmegebühr</p>
+                  <p class="text-lg font-bold dark:text-white">Einmalig 11 EUR</p>
+                </div>
+                <div class="space-y-1">
+                  <p class="text-xs font-bold uppercase opacity-40 dark:text-white italic">Kündigung</p>
+                  <p class="text-lg font-bold dark:text-white">1 Monat zum Monatsende (Mindestlaufzeit 3 Monate).</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- ABSCHNITT 5: Bankdaten (SEPA-Lastschrift) -->
+            <div class="space-y-8">
+              <div class="flex items-center gap-4">
+                <span class="w-10 h-10 rounded-full bg-brand-rose/20 text-brand-rose flex items-center justify-center font-bold text-lg border border-brand-rose/30">5</span>
+                <h3 class="text-2xl font-display font-bold dark:text-white">Bankdaten (SEPA-Lastschrift)</h3>
+              </div>
+
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="space-y-2 text-white">
+                  <label for="kontoinhaber" class="text-xs font-bold uppercase tracking-widest opacity-60 dark:text-white">Kontoinhaber*</label>
+                  <input type="text" id="kontoinhaber" name="kontoinhaber" required class="w-full bg-white dark:bg-brand-dark/80 border border-brand-dark/10 dark:border-white/10 rounded-idioma px-6 py-4 focus:border-brand-rose focus:ring-1 focus:ring-brand-rose outline-none transition-all dark:text-white">
+                </div>
+                <div class="space-y-2">
+                  <label for="bank" class="text-xs font-bold uppercase tracking-widest opacity-60 dark:text-white">Bank</label>
+                  <input type="text" id="bank" name="bank" class="w-full bg-white dark:bg-brand-dark/80 border border-brand-dark/10 dark:border-white/10 rounded-idioma px-6 py-4 focus:border-brand-rose focus:ring-1 focus:ring-brand-rose outline-none transition-all dark:text-white">
+                </div>
+              </div>
+
+              <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="md:col-span-2 space-y-2">
+                  <label for="iban" class="text-xs font-bold uppercase tracking-widest opacity-60 dark:text-white">IBAN*</label>
+                  <input type="text" id="iban" name="iban" required placeholder="DE..." class="w-full bg-white dark:bg-brand-dark/80 border border-brand-dark/10 dark:border-white/10 rounded-idioma px-6 py-4 focus:border-brand-rose focus:ring-1 focus:ring-brand-rose outline-none transition-all dark:text-white tracking-widest">
+                </div>
+                <div class="space-y-2">
+                  <label for="bic" class="text-xs font-bold uppercase tracking-widest opacity-60 dark:text-white">BIC</label>
+                  <input type="text" id="bic" name="bic" class="w-full bg-white dark:bg-brand-dark/80 border border-brand-dark/10 dark:border-white/10 rounded-idioma px-6 py-4 focus:border-brand-rose focus:ring-1 focus:ring-brand-rose outline-none transition-all dark:text-white">
+                </div>
+              </div>
+
+              <label class="flex items-start gap-4 p-6 bg-brand-dark/5 dark:bg-white/5 rounded-idioma border border-transparent cursor-pointer transition-all hover:border-brand-rose/50 group">
+                <input type="checkbox" name="sepa_accepted" required class="mt-1 w-6 h-6 rounded border-gray-300 text-brand-rose focus:ring-brand-rose cursor-pointer">
+                <div class="space-y-1">
+                  <p class="font-bold dark:text-white text-sm">Lastschriftvereinbarung akzeptieren*</p>
+                  <p class="text-xs opacity-60 dark:text-white/60 leading-relaxed italic">
+                    Ich ermächtige den Verein, den Mitgliedsbeitrag monatlich im Voraus per Lastschrift einzuziehen.
+                  </p>
+                </div>
+              </label>
+            </div>
+
+            <!-- ABSCHNITT 6: Status & Bestätigung -->
+            <div class="space-y-8">
+              <div class="flex items-center gap-4">
+                <span class="w-10 h-10 rounded-full bg-brand-rose/20 text-brand-rose flex items-center justify-center font-bold text-lg border border-brand-rose/30">6</span>
+                <h3 class="text-2xl font-display font-bold dark:text-white">Status & Bestätigung</h3>
+              </div>
+
+              <div class="space-y-4">
+                <label class="text-xs font-bold uppercase tracking-widest opacity-60 dark:text-white block">Studierende oder in Ausbildung</label>
+                <label class="flex items-center gap-4 p-5 bg-brand-dark/5 dark:bg-white/5 rounded-idioma border border-transparent cursor-pointer transition-all hover:border-brand-rose/50 group">
+                  <input type="checkbox" name="status" value="Studierend" class="w-6 h-6 rounded border-gray-300 text-brand-rose focus:ring-brand-rose cursor-pointer">
+                  <span class="font-bold dark:text-white">Ja, ich bin Studierende(r) oder in Ausbildung</span>
+                </label>
+                <p class="text-xs opacity-40 dark:text-white/40 italic text-white/40">Bitte einen aktuellen Nachweis an <a href="#" data-email="mail|idiomadanza.de" class="email-decode underline hover:text-brand-rose transition-colors">mail [at] idiomadanza.de</a> schicken.</p>
+              </div>
+
+              {/* Bot Field (Honeypot) */}
+              <p class="hidden">
+                <label>Don’t fill this out if you’re human: <input name="bot-field" id="bot-field" /></label>
+              </p>
+
+              <div class="space-y-4 pt-4">
+                <label class="flex items-start gap-4 cursor-pointer group">
+                  <input type="checkbox" required class="mt-1 w-5 h-5 rounded border-gray-300 text-brand-rose focus:ring-brand-rose cursor-pointer">
+                  <span class="text-xs opacity-60 dark:text-white/60 leading-relaxed italic">
+                    Ich akzeptiere die <a href="/satzung" target="_blank" class="text-brand-rose underline hover:text-brand-glow transition-colors">Vereinssatzung</a>* 
+                  </span>
+                </label>
+                <label class="flex items-start gap-4 cursor-pointer group">
+                  <input type="checkbox" required class="mt-1 w-5 h-5 rounded border-gray-300 text-brand-rose focus:ring-brand-rose cursor-pointer">
+                  <span class="text-xs opacity-60 dark:text-white/60 leading-relaxed italic">
+                    Ich akzeptiere die <a href="/datenschutz" target="_blank" class="text-brand-rose underline hover:text-brand-glow transition-colors">Datenschutzerklärung</a>*
+                  </span>
+                </label>
+              </div>
+
+              <button type="submit" id="submit-btn" class="w-full py-6 bg-brand-rose text-white font-black uppercase tracking-widest text-sm rounded-full shadow-glow-rose hover:-translate-y-1 transition-all flex items-center justify-center gap-4">
+                <span id="btn-text">Mitgliedschaft verbindlich beantragen</span>
+                <div id="btn-spinner" class="hidden w-5 h-5 border-2 border-white/20 border-t-white rounded-full animate-spin"></div>
+              </button>
+            </div>
+
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    const form = document.querySelector('#membership-form') as HTMLFormElement;
+    const feedback = document.getElementById('form-feedback');
+    const btnText = document.getElementById('btn-text');
+    const btnSpinner = document.getElementById('btn-spinner');
+    const submitBtn = document.getElementById('submit-btn');
+
+    // Google Apps Script Web App URL
+    const WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbzTlgkYGZfD_i1hNZTIHOaW7An2SVWiKDDqWY2UF4S7XNo9lMwAYhaBeuMTtRW9Gk1E/exec';
+
+    form?.addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      // Honeypot Check
+      const botField = (document.getElementById('bot-field') as HTMLInputElement)?.value;
+      if (botField) {
+        // Silent bot detection - return without submitting
+        return;
+      }
+      
+      feedback?.classList.add('hidden');
+      if (submitBtn) (submitBtn as HTMLButtonElement).disabled = true;
+      btnSpinner?.classList.remove('hidden');
+      if (btnText) btnText.textContent = 'Antrag wird übermittelt...';
+
+      const formData = new FormData(form);
+      const data = Object.fromEntries(formData);
+      
+      // Timestamp hinzufügen
+      data.timestamp = new Date().toLocaleString('de-DE');
+
+      try {
+        // Wir senden die Daten als JSON an das Google Apps Script
+        // Da wir kein CORS Problem in der Cloud haben wollen, nutzen wir den Redirect-Handler von Apps Script
+        const response = await fetch(WEB_APP_URL, {
+          method: 'POST',
+          mode: 'no-cors', // Apps Script benötigt oft no-cors für einfache Redirects
+          cache: 'no-cache',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(data)
+        });
+
+        // Bei no-cors erhalten wir keine richtige Response, daher gehen wir bei Erfolg davon aus
+        feedback?.classList.remove('hidden', 'bg-red-500/10', 'text-red-500');
+        feedback?.classList.add('bg-green-500/10', 'text-green-500', 'block');
+        if (feedback) feedback.textContent = 'Vielen Dank! Dein Mitgliedsantrag wurde erfolgreich übermittelt. Wir melden uns in Kürze bei dir.';
+        
+        form.reset();
+        if (btnText) btnText.textContent = 'Antrag erfolgreich!';
+        btnSpinner?.classList.add('hidden');
+
+      } catch (_err) {
+        feedback?.classList.remove('hidden', 'bg-green-500/10', 'text-green-500');
+        feedback?.classList.add('bg-red-500/10', 'text-red-500', 'block');
+        if (feedback) feedback.textContent = 'Es gab ein Problem. Bitte versuche es später erneut oder kontaktiere uns direkt.';
+        
+        if (btnText) btnText.textContent = 'Erneut versuchen';
+        btnSpinner?.classList.add('hidden');
+        if (submitBtn) (submitBtn as HTMLButtonElement).disabled = false;
+      }
+    });
+  </script>
+</Layout>

@@ -1,0 +1,26 @@
+{
+  "id": "pancho_und_anna",
+  "name": "Pancho & Anna",
+  "role": "Trainer",
+  "isFounder": false,
+  "image": "../../assets/images/team/pancho_und_anna.png",
+  "imagePosition": "object-[center_30%]",
+  "bio": [
+    {
+      "icon": "🎓",
+      "text": "Certified in Germany"
+    },
+    {
+      "icon": "🕺💃",
+      "text": "Salsa Fusion (all styles)"
+    },
+    {
+      "icon": "🌍",
+      "text": "International artist and choreographer"
+    },
+    {
+      "icon": "📍",
+      "text": "Nürnberg Bayern"
+    }
+  ]
+}

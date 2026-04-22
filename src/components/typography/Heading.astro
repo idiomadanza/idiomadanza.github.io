@@ -1,0 +1,30 @@
+---
+import Text from '../primitives/Text.astro';
+
+interface Props {
+  level?: 1 | 2 | 3 | 4 | 5 | 6;
+  class?: string;
+}
+
+const { level = 2, class: className } = Astro.props;
+const Tag = `h${level}` as any;
+
+const levelSizes: Record<number, any> = {
+  1: 'display',
+  2: '2xl',
+  3: 'xl',
+  4: 'lg',
+  5: 'base',
+  6: 'sm'
+};
+---
+
+<Text 
+  as={Tag} 
+  size={levelSizes[level]} 
+  family="display" 
+  weight="font-bold" 
+  class:list={['leading-tight tracking-tight', className]}
+>
+  <slot />
+</Text>

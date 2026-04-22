@@ -1,0 +1,1273 @@
+0 verbose cli /usr/local/bin/node /usr/local/bin/npm
+1 info using npm@10.9.2
+2 info using node@v22.17.0
+3 silly config load:file:/usr/local/lib/node_modules/npm/npmrc
+4 silly config load:file:/Users/stephan/dev/anti-idiomadanza/idiomadanza.github.io/.npmrc
+5 silly config load:file:/Users/stephan/.npmrc
+6 silly config load:file:/usr/local/etc/npmrc
+7 verbose title npm audit fix
+8 verbose argv "audit" "fix" "--cache" "./.npm-cache" "--legacy-peer-deps"
+9 verbose logfile logs-max:10 dir:/Users/stephan/dev/anti-idiomadanza/idiomadanza.github.io/.npm-cache/_logs/2026-04-12T16_35_43_105Z-
+10 verbose logfile /Users/stephan/dev/anti-idiomadanza/idiomadanza.github.io/.npm-cache/_logs/2026-04-12T16_35_43_105Z-debug-0.log
+11 silly logfile done cleaning log files
+12 silly packumentCache heap:2197815296 maxSize:549453824 maxEntrySize:274726912
+13 silly audit bulk request {
+13 silly audit   '@alloc/quick-lru': [ '5.2.0' ],
+13 silly audit   '@astrojs/compiler': [ '3.0.1' ],
+13 silly audit   '@astrojs/internal-helpers': [ '0.8.0' ],
+13 silly audit   '@astrojs/markdown-remark': [ '7.1.0' ],
+13 silly audit   '@astrojs/prism': [ '4.0.1' ],
+13 silly audit   '@astrojs/sitemap': [ '3.7.2' ],
+13 silly audit   '@astrojs/telemetry': [ '3.3.0' ],
+13 silly audit   '@babel/helper-string-parser': [ '7.27.1' ],
+13 silly audit   '@babel/helper-validator-identifier': [ '7.28.5' ],
+13 silly audit   '@babel/parser': [ '7.29.2' ],
+13 silly audit   '@babel/types': [ '7.29.0' ],
+13 silly audit   '@capsizecss/unpack': [ '4.0.0' ],
+13 silly audit   '@clack/core': [ '1.2.0' ],
+13 silly audit   '@clack/prompts': [ '1.2.0' ],
+13 silly audit   '@emnapi/runtime': [ '1.9.1' ],
+13 silly audit   '@esbuild/aix-ppc64': [ '0.27.4' ],
+13 silly audit   '@esbuild/android-arm': [ '0.27.4' ],
+13 silly audit   '@esbuild/android-arm64': [ '0.27.4' ],
+13 silly audit   '@esbuild/android-x64': [ '0.27.4' ],
+13 silly audit   '@esbuild/darwin-arm64': [ '0.27.4' ],
+13 silly audit   '@esbuild/darwin-x64': [ '0.27.4' ],
+13 silly audit   '@esbuild/freebsd-arm64': [ '0.27.4' ],
+13 silly audit   '@esbuild/freebsd-x64': [ '0.27.4' ],
+13 silly audit   '@esbuild/linux-arm': [ '0.27.4' ],
+13 silly audit   '@esbuild/linux-arm64': [ '0.27.4' ],
+13 silly audit   '@esbuild/linux-ia32': [ '0.27.4' ],
+13 silly audit   '@esbuild/linux-loong64': [ '0.27.4' ],
+13 silly audit   '@esbuild/linux-mips64el': [ '0.27.4' ],
+13 silly audit   '@esbuild/linux-ppc64': [ '0.27.4' ],
+13 silly audit   '@esbuild/linux-riscv64': [ '0.27.4' ],
+13 silly audit   '@esbuild/linux-s390x': [ '0.27.4' ],
+13 silly audit   '@esbuild/linux-x64': [ '0.27.4' ],
+13 silly audit   '@esbuild/netbsd-arm64': [ '0.27.4' ],
+13 silly audit   '@esbuild/netbsd-x64': [ '0.27.4' ],
+13 silly audit   '@esbuild/openbsd-arm64': [ '0.27.4' ],
+13 silly audit   '@esbuild/openbsd-x64': [ '0.27.4' ],
+13 silly audit   '@esbuild/openharmony-arm64': [ '0.27.4' ],
+13 silly audit   '@esbuild/sunos-x64': [ '0.27.4' ],
+13 silly audit   '@esbuild/win32-arm64': [ '0.27.4' ],
+13 silly audit   '@esbuild/win32-ia32': [ '0.27.4' ],
+13 silly audit   '@esbuild/win32-x64': [ '0.27.4' ],
+13 silly audit   '@img/colour': [ '1.1.0' ],
+13 silly audit   '@img/sharp-darwin-arm64': [ '0.34.5' ],
+13 silly audit   '@img/sharp-darwin-x64': [ '0.34.5' ],
+13 silly audit   '@img/sharp-libvips-darwin-arm64': [ '1.2.4' ],
+13 silly audit   '@img/sharp-libvips-darwin-x64': [ '1.2.4' ],
+13 silly audit   '@img/sharp-libvips-linux-arm': [ '1.2.4' ],
+13 silly audit   '@img/sharp-libvips-linux-arm64': [ '1.2.4' ],
+13 silly audit   '@img/sharp-libvips-linux-ppc64': [ '1.2.4' ],
+13 silly audit   '@img/sharp-libvips-linux-riscv64': [ '1.2.4' ],
+13 silly audit   '@img/sharp-libvips-linux-s390x': [ '1.2.4' ],
+13 silly audit   '@img/sharp-libvips-linux-x64': [ '1.2.4' ],
+13 silly audit   '@img/sharp-libvips-linuxmusl-arm64': [ '1.2.4' ],
+13 silly audit   '@img/sharp-libvips-linuxmusl-x64': [ '1.2.4' ],
+13 silly audit   '@img/sharp-linux-arm': [ '0.34.5' ],
+13 silly audit   '@img/sharp-linux-arm64': [ '0.34.5' ],
+13 silly audit   '@img/sharp-linux-ppc64': [ '0.34.5' ],
+13 silly audit   '@img/sharp-linux-riscv64': [ '0.34.5' ],
+13 silly audit   '@img/sharp-linux-s390x': [ '0.34.5' ],
+13 silly audit   '@img/sharp-linux-x64': [ '0.34.5' ],
+13 silly audit   '@img/sharp-linuxmusl-arm64': [ '0.34.5' ],
+13 silly audit   '@img/sharp-linuxmusl-x64': [ '0.34.5' ],
+13 silly audit   '@img/sharp-wasm32': [ '0.34.5' ],
+13 silly audit   '@img/sharp-win32-arm64': [ '0.34.5' ],
+13 silly audit   '@img/sharp-win32-ia32': [ '0.34.5' ],
+13 silly audit   '@img/sharp-win32-x64': [ '0.34.5' ],
+13 silly audit   '@jridgewell/gen-mapping': [ '0.3.13' ],
+13 silly audit   '@jridgewell/remapping': [ '2.3.5' ],
+13 silly audit   '@jridgewell/resolve-uri': [ '3.1.2' ],
+13 silly audit   '@jridgewell/sourcemap-codec': [ '1.5.5' ],
+13 silly audit   '@jridgewell/trace-mapping': [ '0.3.31' ],
+13 silly audit   '@oslojs/encoding': [ '1.1.0' ],
+13 silly audit   '@rollup/pluginutils': [ '5.3.0' ],
+13 silly audit   'estree-walker': [ '2.0.2' ],
+13 silly audit   '@rollup/rollup-android-arm-eabi': [ '4.60.1' ],
+13 silly audit   '@rollup/rollup-android-arm64': [ '4.60.1' ],
+13 silly audit   '@rollup/rollup-darwin-arm64': [ '4.60.1' ],
+13 silly audit   '@rollup/rollup-darwin-x64': [ '4.60.1' ],
+13 silly audit   '@rollup/rollup-freebsd-arm64': [ '4.60.1' ],
+13 silly audit   '@rollup/rollup-freebsd-x64': [ '4.60.1' ],
+13 silly audit   '@rollup/rollup-linux-arm-gnueabihf': [ '4.60.1' ],
+13 silly audit   '@rollup/rollup-linux-arm-musleabihf': [ '4.60.1' ],
+13 silly audit   '@rollup/rollup-linux-arm64-gnu': [ '4.60.1' ],
+13 silly audit   '@rollup/rollup-linux-arm64-musl': [ '4.60.1' ],
+13 silly audit   '@rollup/rollup-linux-loong64-gnu': [ '4.60.1' ],
+13 silly audit   '@rollup/rollup-linux-loong64-musl': [ '4.60.1' ],
+13 silly audit   '@rollup/rollup-linux-ppc64-gnu': [ '4.60.1' ],
+13 silly audit   '@rollup/rollup-linux-ppc64-musl': [ '4.60.1' ],
+13 silly audit   '@rollup/rollup-linux-riscv64-gnu': [ '4.60.1' ],
+13 silly audit   '@rollup/rollup-linux-riscv64-musl': [ '4.60.1' ],
+13 silly audit   '@rollup/rollup-linux-s390x-gnu': [ '4.60.1' ],
+13 silly audit   '@rollup/rollup-linux-x64-gnu': [ '4.60.1' ],
+13 silly audit   '@rollup/rollup-linux-x64-musl': [ '4.60.1' ],
+13 silly audit   '@rollup/rollup-openbsd-x64': [ '4.60.1' ],
+13 silly audit   '@rollup/rollup-openharmony-arm64': [ '4.60.1' ],
+13 silly audit   '@rollup/rollup-win32-arm64-msvc': [ '4.60.1' ],
+13 silly audit   '@rollup/rollup-win32-ia32-msvc': [ '4.60.1' ],
+13 silly audit   '@rollup/rollup-win32-x64-gnu': [ '4.60.1' ],
+13 silly audit   '@rollup/rollup-win32-x64-msvc': [ '4.60.1' ],
+13 silly audit   '@shikijs/core': [ '4.0.2' ],
+13 silly audit   '@shikijs/engine-javascript': [ '4.0.2' ],
+13 silly audit   '@shikijs/engine-oniguruma': [ '4.0.2' ],
+13 silly audit   '@shikijs/langs': [ '4.0.2' ],
+13 silly audit   '@shikijs/primitive': [ '4.0.2' ],
+13 silly audit   '@shikijs/themes': [ '4.0.2' ],
+13 silly audit   '@shikijs/types': [ '4.0.2' ],
+13 silly audit   '@shikijs/vscode-textmate': [ '10.0.2' ],
+13 silly audit   '@tailwindcss/node': [ '4.2.2' ],
+13 silly audit   '@tailwindcss/oxide': [ '4.2.2' ],
+13 silly audit   '@tailwindcss/oxide-android-arm64': [ '4.2.2' ],
+13 silly audit   '@tailwindcss/oxide-darwin-arm64': [ '4.2.2' ],
+13 silly audit   '@tailwindcss/oxide-darwin-x64': [ '4.2.2' ],
+13 silly audit   '@tailwindcss/oxide-freebsd-x64': [ '4.2.2' ],
+13 silly audit   '@tailwindcss/oxide-linux-arm-gnueabihf': [ '4.2.2' ],
+13 silly audit   '@tailwindcss/oxide-linux-arm64-gnu': [ '4.2.2' ],
+13 silly audit   '@tailwindcss/oxide-linux-arm64-musl': [ '4.2.2' ],
+13 silly audit   '@tailwindcss/oxide-linux-x64-gnu': [ '4.2.2' ],
+13 silly audit   '@tailwindcss/oxide-linux-x64-musl': [ '4.2.2' ],
+13 silly audit   '@tailwindcss/oxide-wasm32-wasi': [ '4.2.2' ],
+13 silly audit   '@tailwindcss/oxide-win32-arm64-msvc': [ '4.2.2' ],
+13 silly audit   '@tailwindcss/oxide-win32-x64-msvc': [ '4.2.2' ],
+13 silly audit   '@tailwindcss/postcss': [ '4.2.2' ],
+13 silly audit   '@tailwindcss/vite': [ '4.2.2' ],
+13 silly audit   '@types/debug': [ '4.1.13' ],
+13 silly audit   '@types/estree': [ '1.0.8' ],
+13 silly audit   '@types/hast': [ '3.0.4' ],
+13 silly audit   '@types/mdast': [ '4.0.4' ],
+13 silly audit   '@types/ms': [ '2.1.0' ],
+13 silly audit   '@types/nlcst': [ '2.0.3' ],
+13 silly audit   '@types/node': [ '24.12.0' ],
+13 silly audit   '@types/sax': [ '1.2.7' ],
+13 silly audit   '@types/unist': [ '3.0.3' ],
+13 silly audit   '@ungap/structured-clone': [ '1.3.0' ],
+13 silly audit   anymatch: [ '3.1.3' ],
+13 silly audit   picomatch: [ '2.3.2', '4.0.4' ],
+13 silly audit   arg: [ '5.0.2' ],
+13 silly audit   argparse: [ '2.0.1' ],
+13 silly audit   'aria-query': [ '5.3.2' ],
+13 silly audit   'array-iterate': [ '2.0.1' ],
+13 silly audit   astro: [ '6.1.2' ],
+13 silly audit   'axobject-query': [ '4.1.0' ],
+13 silly audit   bail: [ '2.0.2' ],
+13 silly audit   boolbase: [ '1.0.0' ],
+13 silly audit   ccount: [ '2.0.1' ],
+13 silly audit   'character-entities': [ '2.0.2' ],
+13 silly audit   'character-entities-html4': [ '2.1.0' ],
+13 silly audit   'character-entities-legacy': [ '3.0.0' ],
+13 silly audit   chokidar: [ '5.0.0' ],
+13 silly audit   'ci-info': [ '4.4.0' ],
+13 silly audit   clsx: [ '2.1.1' ],
+13 silly audit   'comma-separated-tokens': [ '2.0.3' ],
+13 silly audit   commander: [ '11.1.0' ],
+13 silly audit   'common-ancestor-path': [ '2.0.0' ],
+13 silly audit   cookie: [ '1.1.1' ],
+13 silly audit   'cookie-es': [ '1.2.2' ],
+13 silly audit   crossws: [ '0.3.5' ],
+13 silly audit   'css-select': [ '5.2.2' ],
+13 silly audit   'css-tree': [ '3.2.1', '2.2.1' ],
+13 silly audit   'css-what': [ '6.2.2' ],
+13 silly audit   csso: [ '5.0.5' ],
+13 silly audit   'mdn-data': [ '2.0.28', '2.27.1' ],
+13 silly audit   debug: [ '4.4.3' ],
+13 silly audit   'decode-named-character-reference': [ '1.3.0' ],
+13 silly audit   defu: [ '6.1.6' ],
+13 silly audit   dequal: [ '2.0.3' ],
+13 silly audit   destr: [ '2.0.5' ],
+13 silly audit   'detect-libc': [ '2.1.2' ],
+13 silly audit   devalue: [ '5.6.4' ],
+13 silly audit   devlop: [ '1.1.0' ],
+13 silly audit   diff: [ '8.0.4' ],
+13 silly audit   dlv: [ '1.1.3' ],
+13 silly audit   'dom-serializer': [ '2.0.0' ],
+13 silly audit   entities: [ '4.5.0', '6.0.1' ],
+13 silly audit   domelementtype: [ '2.3.0' ],
+13 silly audit   domhandler: [ '5.0.3' ],
+13 silly audit   domutils: [ '3.2.2' ],
+13 silly audit   dset: [ '3.1.4' ],
+13 silly audit   'enhanced-resolve': [ '5.20.1' ],
+13 silly audit   'es-module-lexer': [ '2.0.0' ],
+13 silly audit   esbuild: [ '0.27.4' ],
+13 silly audit   'escape-string-regexp': [ '5.0.0' ],
+13 silly audit   eventemitter3: [ '5.0.4' ],
+13 silly audit   extend: [ '3.0.2' ],
+13 silly audit   'fast-string-truncated-width': [ '1.2.1' ],
+13 silly audit   'fast-string-width': [ '1.1.0' ],
+13 silly audit   'fast-wrap-ansi': [ '0.1.6' ],
+13 silly audit   fdir: [ '6.5.0' ],
+13 silly audit   flattie: [ '1.1.1' ],
+13 silly audit   fontace: [ '0.4.1' ],
+13 silly audit   fontkitten: [ '1.0.3' ],
+13 silly audit   fsevents: [ '2.3.3' ],
+13 silly audit   'github-slugger': [ '2.0.0' ],
+13 silly audit   'graceful-fs': [ '4.2.11' ],
+13 silly audit   h3: [ '1.15.10' ],
+13 silly audit   'hast-util-from-html': [ '2.0.3' ],
+13 silly audit   'hast-util-from-parse5': [ '8.0.3' ],
+13 silly audit   'hast-util-is-element': [ '3.0.0' ],
+13 silly audit   'hast-util-parse-selector': [ '4.0.0' ],
+13 silly audit   'hast-util-raw': [ '9.1.0' ],
+13 silly audit   'hast-util-to-html': [ '9.0.5' ],
+13 silly audit   'hast-util-to-parse5': [ '8.0.1' ],
+13 silly audit   'hast-util-to-text': [ '4.0.2' ],
+13 silly audit   'hast-util-whitespace': [ '3.0.0' ],
+13 silly audit   hastscript: [ '9.0.1' ],
+13 silly audit   'html-escaper': [ '3.0.3' ],
+13 silly audit   'html-void-elements': [ '3.0.0' ],
+13 silly audit   'http-cache-semantics': [ '4.2.0' ],
+13 silly audit   'iron-webcrypto': [ '1.2.1' ],
+13 silly audit   'is-docker': [ '3.0.0' ],
+13 silly audit   'is-inside-container': [ '1.0.0' ],
+13 silly audit   'is-plain-obj': [ '4.1.0' ],
+13 silly audit   'is-wsl': [ '3.1.1' ],
+13 silly audit   jiti: [ '2.6.1' ],
+13 silly audit   'js-yaml': [ '4.1.1' ],
+13 silly audit   lightningcss: [ '1.32.0' ],
+13 silly audit   'lightningcss-android-arm64': [ '1.32.0' ],
+13 silly audit   'lightningcss-darwin-arm64': [ '1.32.0' ],
+13 silly audit   'lightningcss-darwin-x64': [ '1.32.0' ],
+13 silly audit   'lightningcss-freebsd-x64': [ '1.32.0' ],
+13 silly audit   'lightningcss-linux-arm-gnueabihf': [ '1.32.0' ],
+13 silly audit   'lightningcss-linux-arm64-gnu': [ '1.32.0' ],
+13 silly audit   'lightningcss-linux-arm64-musl': [ '1.32.0' ],
+13 silly audit   'lightningcss-linux-x64-gnu': [ '1.32.0' ],
+13 silly audit   'lightningcss-linux-x64-musl': [ '1.32.0' ],
+13 silly audit   'lightningcss-win32-arm64-msvc': [ '1.32.0' ],
+13 silly audit   'lightningcss-win32-x64-msvc': [ '1.32.0' ],
+13 silly audit   'longest-streak': [ '3.1.0' ],
+13 silly audit   'lru-cache': [ '11.2.7' ],
+13 silly audit   'magic-string': [ '0.30.21' ],
+13 silly audit   magicast: [ '0.5.2' ],
+13 silly audit   'markdown-table': [ '3.0.4' ],
+13 silly audit   'mdast-util-definitions': [ '6.0.0' ],
+13 silly audit   'mdast-util-find-and-replace': [ '3.0.2' ],
+13 silly audit   'mdast-util-from-markdown': [ '2.0.3' ],
+13 silly audit   'mdast-util-gfm': [ '3.1.0' ],
+13 silly audit   'mdast-util-gfm-autolink-literal': [ '2.0.1' ],
+13 silly audit   'mdast-util-gfm-footnote': [ '2.1.0' ],
+13 silly audit   'mdast-util-gfm-strikethrough': [ '2.0.0' ],
+13 silly audit   'mdast-util-gfm-table': [ '2.0.0' ],
+13 silly audit   'mdast-util-gfm-task-list-item': [ '2.0.0' ],
+13 silly audit   'mdast-util-phrasing': [ '4.1.0' ],
+13 silly audit   'mdast-util-to-hast': [ '13.2.1' ],
+13 silly audit   'mdast-util-to-markdown': [ '2.1.2' ],
+13 silly audit   'mdast-util-to-string': [ '4.0.0' ],
+13 silly audit   micromark: [ '4.0.2' ],
+13 silly audit   'micromark-core-commonmark': [ '2.0.3' ],
+13 silly audit   'micromark-extension-gfm': [ '3.0.0' ],
+13 silly audit   'micromark-extension-gfm-autolink-literal': [ '2.1.0' ],
+13 silly audit   'micromark-extension-gfm-footnote': [ '2.1.0' ],
+13 silly audit   'micromark-extension-gfm-strikethrough': [ '2.1.0' ],
+13 silly audit   'micromark-extension-gfm-table': [ '2.1.1' ],
+13 silly audit   'micromark-extension-gfm-tagfilter': [ '2.0.0' ],
+13 silly audit   'micromark-extension-gfm-task-list-item': [ '2.1.0' ],
+13 silly audit   'micromark-factory-destination': [ '2.0.1' ],
+13 silly audit   'micromark-factory-label': [ '2.0.1' ],
+13 silly audit   'micromark-factory-space': [ '2.0.1' ],
+13 silly audit   'micromark-factory-title': [ '2.0.1' ],
+13 silly audit   'micromark-factory-whitespace': [ '2.0.1' ],
+13 silly audit   'micromark-util-character': [ '2.1.1' ],
+13 silly audit   'micromark-util-chunked': [ '2.0.1' ],
+13 silly audit   'micromark-util-classify-character': [ '2.0.1' ],
+13 silly audit   'micromark-util-combine-extensions': [ '2.0.1' ],
+13 silly audit   'micromark-util-decode-numeric-character-reference': [ '2.0.2' ],
+13 silly audit   'micromark-util-decode-string': [ '2.0.1' ],
+13 silly audit   'micromark-util-encode': [ '2.0.1' ],
+13 silly audit   'micromark-util-html-tag-name': [ '2.0.1' ],
+13 silly audit   'micromark-util-normalize-identifier': [ '2.0.1' ],
+13 silly audit   'micromark-util-resolve-all': [ '2.0.1' ],
+13 silly audit   'micromark-util-sanitize-uri': [ '2.0.1' ],
+13 silly audit   'micromark-util-subtokenize': [ '2.1.0' ],
+13 silly audit   'micromark-util-symbol': [ '2.0.1' ],
+13 silly audit   'micromark-util-types': [ '2.0.2' ],
+13 silly audit   mrmime: [ '2.0.1' ],
+13 silly audit   ms: [ '2.1.3' ],
+13 silly audit   nanoid: [ '3.3.11' ],
+13 silly audit   neotraverse: [ '0.6.18' ],
+13 silly audit   'nlcst-to-string': [ '4.0.0' ],
+13 silly audit   'node-fetch-native': [ '1.6.7' ],
+13 silly audit   'node-mock-http': [ '1.0.4' ],
+13 silly audit   'normalize-path': [ '3.0.0' ],
+13 silly audit   'nth-check': [ '2.1.1' ],
+13 silly audit   obug: [ '2.1.1' ],
+13 silly audit   ofetch: [ '1.5.1' ],
+13 silly audit   ohash: [ '2.0.11' ],
+13 silly audit   'oniguruma-parser': [ '0.12.1' ],
+13 silly audit   'oniguruma-to-es': [ '4.3.5' ],
+13 silly audit   'p-limit': [ '7.3.0' ],
+13 silly audit   'p-queue': [ '9.1.0' ],
+13 silly audit   'p-timeout': [ '7.0.1' ],
+13 silly audit   'package-manager-detector': [ '1.6.0' ],
+13 silly audit   'parse-latin': [ '7.0.0' ],
+13 silly audit   parse5: [ '7.3.0' ],
+13 silly audit   piccolore: [ '0.1.3' ],
+13 silly audit   picocolors: [ '1.1.1' ],
+13 silly audit   postcss: [ '8.5.8' ],
+13 silly audit   prismjs: [ '1.30.0' ],
+13 silly audit   'property-information': [ '7.1.0' ],
+13 silly audit   radix3: [ '1.1.2' ],
+13 silly audit   readdirp: [ '5.0.0' ],
+13 silly audit   regex: [ '6.1.0' ],
+13 silly audit   'regex-recursion': [ '6.0.2' ],
+13 silly audit   'regex-utilities': [ '2.3.0' ],
+13 silly audit   rehype: [ '13.0.2' ],
+13 silly audit   'rehype-parse': [ '9.0.1' ],
+13 silly audit   'rehype-raw': [ '7.0.0' ],
+13 silly audit   'rehype-stringify': [ '10.0.1' ],
+13 silly audit   'remark-gfm': [ '4.0.1' ],
+13 silly audit   'remark-parse': [ '11.0.0' ],
+13 silly audit   'remark-rehype': [ '11.1.2' ],
+13 silly audit   'remark-smartypants': [ '3.0.2' ],
+13 silly audit   'remark-stringify': [ '11.0.0' ],
+13 silly audit   retext: [ '9.0.0' ],
+13 silly audit   'retext-latin': [ '4.0.0' ],
+13 silly audit   'retext-smartypants': [ '6.2.0' ],
+13 silly audit   'retext-stringify': [ '4.0.0' ],
+13 silly audit   rollup: [ '4.60.1' ],
+13 silly audit   sax: [ '1.6.0' ],
+13 silly audit   semver: [ '7.7.4' ],
+13 silly audit   sharp: [ '0.34.5' ],
+13 silly audit   shiki: [ '4.0.2' ],
+13 silly audit   sisteransi: [ '1.0.5' ],
+13 silly audit   sitemap: [ '9.0.1' ],
+13 silly audit   'smol-toml': [ '1.6.1' ],
+13 silly audit   'source-map-js': [ '1.2.1' ],
+13 silly audit   'space-separated-tokens': [ '2.0.2' ],
+13 silly audit   'stream-replace-string': [ '2.0.0' ],
+13 silly audit   'stringify-entities': [ '4.0.4' ],
+13 silly audit   svgo: [ '4.0.1' ],
+13 silly audit   tailwindcss: [ '4.2.2' ],
+13 silly audit   tapable: [ '2.3.2' ],
+13 silly audit   'tiny-inflate': [ '1.0.3' ],
+13 silly audit   tinyclip: [ '0.1.12' ],
+13 silly audit   tinyexec: [ '1.0.4' ],
+13 silly audit   tinyglobby: [ '0.2.15' ],
+13 silly audit   'trim-lines': [ '3.0.1' ],
+13 silly audit   trough: [ '2.2.0' ],
+13 silly audit   tsconfck: [ '3.1.6' ],
+13 silly audit   tslib: [ '2.8.1' ],
+13 silly audit   ufo: [ '1.6.3' ],
+13 silly audit   ultrahtml: [ '1.6.0' ],
+13 silly audit   uncrypto: [ '0.1.3' ],
+13 silly audit   'undici-types': [ '7.16.0' ],
+13 silly audit   unified: [ '11.0.5' ],
+13 silly audit   unifont: [ '0.7.4' ],
+13 silly audit   'unist-util-find-after': [ '5.0.0' ],
+13 silly audit   'unist-util-is': [ '6.0.1' ],
+13 silly audit   'unist-util-modify-children': [ '4.0.0' ],
+13 silly audit   'unist-util-position': [ '5.0.0' ],
+13 silly audit   'unist-util-remove-position': [ '5.0.0' ],
+13 silly audit   'unist-util-stringify-position': [ '4.0.0' ],
+13 silly audit   'unist-util-visit': [ '5.1.0' ],
+13 silly audit   'unist-util-visit-children': [ '3.0.0' ],
+13 silly audit   'unist-util-visit-parents': [ '6.0.2' ],
+13 silly audit   unstorage: [ '1.17.5' ],
+13 silly audit   vfile: [ '6.0.3' ],
+13 silly audit   'vfile-location': [ '5.0.3' ],
+13 silly audit   'vfile-message': [ '4.0.3' ],
+13 silly audit   vite: [ '7.3.1' ],
+13 silly audit   vitefu: [ '1.1.2' ],
+13 silly audit   'web-namespaces': [ '2.0.1' ],
+13 silly audit   'which-pm-runs': [ '1.1.0' ],
+13 silly audit   'xxhash-wasm': [ '1.1.0' ],
+13 silly audit   'yargs-parser': [ '22.0.0' ],
+13 silly audit   'yocto-queue': [ '1.2.2' ],
+13 silly audit   zod: [ '4.3.6' ],
+13 silly audit   zwitch: [ '2.0.4' ]
+13 silly audit }
+14 http fetch POST 200 https://registry.npmjs.org/-/npm/v1/security/advisories/bulk 329ms
+15 silly audit report {
+15 silly audit report   vite: [
+15 silly audit report     {
+15 silly audit report       id: 1116230,
+15 silly audit report       url: 'https://github.com/advisories/GHSA-4w7w-66w2-5vf9',
+15 silly audit report       title: 'Vite Vulnerable to Path Traversal in Optimized Deps `.map` Handling',
+15 silly audit report       severity: 'moderate',
+15 silly audit report       vulnerable_versions: '>=7.0.0 <=7.3.1',
+15 silly audit report       cwe: [Array],
+15 silly audit report       cvss: [Object]
+15 silly audit report     },
+15 silly audit report     {
+15 silly audit report       id: 1116232,
+15 silly audit report       url: 'https://github.com/advisories/GHSA-v2wj-q39q-566r',
+15 silly audit report       title: 'Vite: `server.fs.deny` bypassed with queries',
+15 silly audit report       severity: 'high',
+15 silly audit report       vulnerable_versions: '>=7.1.0 <=7.3.1',
+15 silly audit report       cwe: [Array],
+15 silly audit report       cvss: [Object]
+15 silly audit report     },
+15 silly audit report     {
+15 silly audit report       id: 1116235,
+15 silly audit report       url: 'https://github.com/advisories/GHSA-p9ff-h696-f583',
+15 silly audit report       title: 'Vite Vulnerable to Arbitrary File Read via Vite Dev Server WebSocket',
+15 silly audit report       severity: 'high',
+15 silly audit report       vulnerable_versions: '>=7.0.0 <=7.3.1',
+15 silly audit report       cwe: [Array],
+15 silly audit report       cvss: [Object]
+15 silly audit report     }
+15 silly audit report   ]
+15 silly audit report }
+16 silly packumentCache corgi:https://registry.npmjs.org/vite cache-miss
+17 http cache https://registry.npmjs.org/vite 12ms (cache hit)
+18 silly packumentCache corgi:https://registry.npmjs.org/vite set size:2229030 disposed:false
+19 silly packumentCache corgi:https://registry.npmjs.org/astro cache-miss
+20 http cache https://registry.npmjs.org/astro 10ms (cache hit)
+21 silly packumentCache corgi:https://registry.npmjs.org/astro set size:4336727 disposed:false
+22 silly idealTree buildDeps
+23 silly fetch manifest vite@^7.3.1
+24 silly packumentCache full:https://registry.npmjs.org/vite cache-miss
+25 http fetch GET 200 https://registry.npmjs.org/vite 1462ms (cache miss)
+26 silly packumentCache full:https://registry.npmjs.org/vite set size:undefined disposed:false
+27 silly placeDep ROOT vite@7.3.2 REPLACE for: astro@6.1.2 want: ^7.3.1
+28 silly reify mark retired [
+28 silly reify   '/Users/stephan/dev/anti-idiomadanza/idiomadanza.github.io/node_modules/vite',
+28 silly reify   '/Users/stephan/dev/anti-idiomadanza/idiomadanza.github.io/node_modules/.bin/vite'
+28 silly reify ]
+29 silly reify moves {
+29 silly reify   '/Users/stephan/dev/anti-idiomadanza/idiomadanza.github.io/node_modules/vite': '/Users/stephan/dev/anti-idiomadanza/idiomadanza.github.io/node_modules/.vite-KH7DW4j5',
+29 silly reify   '/Users/stephan/dev/anti-idiomadanza/idiomadanza.github.io/node_modules/.bin/vite': '/Users/stephan/dev/anti-idiomadanza/idiomadanza.github.io/node_modules/.bin/.vite-vozRArJ0'
+29 silly reify }
+30 verbose reify failed optional dependency /Users/stephan/dev/anti-idiomadanza/idiomadanza.github.io/node_modules/@tailwindcss/oxide-wasm32-wasi
+31 silly reify mark deleted [
+31 silly reify   '/Users/stephan/dev/anti-idiomadanza/idiomadanza.github.io/node_modules/@tailwindcss/oxide-wasm32-wasi'
+31 silly reify ]
+32 silly audit bulk request {
+32 silly audit   '@alloc/quick-lru': [ '5.2.0' ],
+32 silly audit   '@astrojs/compiler': [ '3.0.1' ],
+32 silly audit   '@astrojs/internal-helpers': [ '0.8.0' ],
+32 silly audit   '@astrojs/markdown-remark': [ '7.1.0' ],
+32 silly audit   '@astrojs/prism': [ '4.0.1' ],
+32 silly audit   '@astrojs/sitemap': [ '3.7.2' ],
+32 silly audit   '@astrojs/telemetry': [ '3.3.0' ],
+32 silly audit   '@babel/helper-string-parser': [ '7.27.1' ],
+32 silly audit   '@babel/helper-validator-identifier': [ '7.28.5' ],
+32 silly audit   '@babel/parser': [ '7.29.2' ],
+32 silly audit   '@babel/types': [ '7.29.0' ],
+32 silly audit   '@capsizecss/unpack': [ '4.0.0' ],
+32 silly audit   '@clack/core': [ '1.2.0' ],
+32 silly audit   '@clack/prompts': [ '1.2.0' ],
+32 silly audit   '@emnapi/runtime': [ '1.9.1' ],
+32 silly audit   '@esbuild/aix-ppc64': [ '0.27.4' ],
+32 silly audit   '@esbuild/android-arm': [ '0.27.4' ],
+32 silly audit   '@esbuild/android-arm64': [ '0.27.4' ],
+32 silly audit   '@esbuild/android-x64': [ '0.27.4' ],
+32 silly audit   '@esbuild/darwin-arm64': [ '0.27.4' ],
+32 silly audit   '@esbuild/darwin-x64': [ '0.27.4' ],
+32 silly audit   '@esbuild/freebsd-arm64': [ '0.27.4' ],
+32 silly audit   '@esbuild/freebsd-x64': [ '0.27.4' ],
+32 silly audit   '@esbuild/linux-arm': [ '0.27.4' ],
+32 silly audit   '@esbuild/linux-arm64': [ '0.27.4' ],
+32 silly audit   '@esbuild/linux-ia32': [ '0.27.4' ],
+32 silly audit   '@esbuild/linux-loong64': [ '0.27.4' ],
+32 silly audit   '@esbuild/linux-mips64el': [ '0.27.4' ],
+32 silly audit   '@esbuild/linux-ppc64': [ '0.27.4' ],
+32 silly audit   '@esbuild/linux-riscv64': [ '0.27.4' ],
+32 silly audit   '@esbuild/linux-s390x': [ '0.27.4' ],
+32 silly audit   '@esbuild/linux-x64': [ '0.27.4' ],
+32 silly audit   '@esbuild/netbsd-arm64': [ '0.27.4' ],
+32 silly audit   '@esbuild/netbsd-x64': [ '0.27.4' ],
+32 silly audit   '@esbuild/openbsd-arm64': [ '0.27.4' ],
+32 silly audit   '@esbuild/openbsd-x64': [ '0.27.4' ],
+32 silly audit   '@esbuild/openharmony-arm64': [ '0.27.4' ],
+32 silly audit   '@esbuild/sunos-x64': [ '0.27.4' ],
+32 silly audit   '@esbuild/win32-arm64': [ '0.27.4' ],
+32 silly audit   '@esbuild/win32-ia32': [ '0.27.4' ],
+32 silly audit   '@esbuild/win32-x64': [ '0.27.4' ],
+32 silly audit   '@img/colour': [ '1.1.0' ],
+32 silly audit   '@img/sharp-darwin-arm64': [ '0.34.5' ],
+32 silly audit   '@img/sharp-darwin-x64': [ '0.34.5' ],
+32 silly audit   '@img/sharp-libvips-darwin-arm64': [ '1.2.4' ],
+32 silly audit   '@img/sharp-libvips-darwin-x64': [ '1.2.4' ],
+32 silly audit   '@img/sharp-libvips-linux-arm': [ '1.2.4' ],
+32 silly audit   '@img/sharp-libvips-linux-arm64': [ '1.2.4' ],
+32 silly audit   '@img/sharp-libvips-linux-ppc64': [ '1.2.4' ],
+32 silly audit   '@img/sharp-libvips-linux-riscv64': [ '1.2.4' ],
+32 silly audit   '@img/sharp-libvips-linux-s390x': [ '1.2.4' ],
+32 silly audit   '@img/sharp-libvips-linux-x64': [ '1.2.4' ],
+32 silly audit   '@img/sharp-libvips-linuxmusl-arm64': [ '1.2.4' ],
+32 silly audit   '@img/sharp-libvips-linuxmusl-x64': [ '1.2.4' ],
+32 silly audit   '@img/sharp-linux-arm': [ '0.34.5' ],
+32 silly audit   '@img/sharp-linux-arm64': [ '0.34.5' ],
+32 silly audit   '@img/sharp-linux-ppc64': [ '0.34.5' ],
+32 silly audit   '@img/sharp-linux-riscv64': [ '0.34.5' ],
+32 silly audit   '@img/sharp-linux-s390x': [ '0.34.5' ],
+32 silly audit   '@img/sharp-linux-x64': [ '0.34.5' ],
+32 silly audit   '@img/sharp-linuxmusl-arm64': [ '0.34.5' ],
+32 silly audit   '@img/sharp-linuxmusl-x64': [ '0.34.5' ],
+32 silly audit   '@img/sharp-wasm32': [ '0.34.5' ],
+32 silly audit   '@img/sharp-win32-arm64': [ '0.34.5' ],
+32 silly audit   '@img/sharp-win32-ia32': [ '0.34.5' ],
+32 silly audit   '@img/sharp-win32-x64': [ '0.34.5' ],
+32 silly audit   '@jridgewell/gen-mapping': [ '0.3.13' ],
+32 silly audit   '@jridgewell/remapping': [ '2.3.5' ],
+32 silly audit   '@jridgewell/resolve-uri': [ '3.1.2' ],
+32 silly audit   '@jridgewell/sourcemap-codec': [ '1.5.5' ],
+32 silly audit   '@jridgewell/trace-mapping': [ '0.3.31' ],
+32 silly audit   '@oslojs/encoding': [ '1.1.0' ],
+32 silly audit   '@rollup/pluginutils': [ '5.3.0' ],
+32 silly audit   'estree-walker': [ '2.0.2' ],
+32 silly audit   '@rollup/rollup-android-arm-eabi': [ '4.60.1' ],
+32 silly audit   '@rollup/rollup-android-arm64': [ '4.60.1' ],
+32 silly audit   '@rollup/rollup-darwin-arm64': [ '4.60.1' ],
+32 silly audit   '@rollup/rollup-darwin-x64': [ '4.60.1' ],
+32 silly audit   '@rollup/rollup-freebsd-arm64': [ '4.60.1' ],
+32 silly audit   '@rollup/rollup-freebsd-x64': [ '4.60.1' ],
+32 silly audit   '@rollup/rollup-linux-arm-gnueabihf': [ '4.60.1' ],
+32 silly audit   '@rollup/rollup-linux-arm-musleabihf': [ '4.60.1' ],
+32 silly audit   '@rollup/rollup-linux-arm64-gnu': [ '4.60.1' ],
+32 silly audit   '@rollup/rollup-linux-arm64-musl': [ '4.60.1' ],
+32 silly audit   '@rollup/rollup-linux-loong64-gnu': [ '4.60.1' ],
+32 silly audit   '@rollup/rollup-linux-loong64-musl': [ '4.60.1' ],
+32 silly audit   '@rollup/rollup-linux-ppc64-gnu': [ '4.60.1' ],
+32 silly audit   '@rollup/rollup-linux-ppc64-musl': [ '4.60.1' ],
+32 silly audit   '@rollup/rollup-linux-riscv64-gnu': [ '4.60.1' ],
+32 silly audit   '@rollup/rollup-linux-riscv64-musl': [ '4.60.1' ],
+32 silly audit   '@rollup/rollup-linux-s390x-gnu': [ '4.60.1' ],
+32 silly audit   '@rollup/rollup-linux-x64-gnu': [ '4.60.1' ],
+32 silly audit   '@rollup/rollup-linux-x64-musl': [ '4.60.1' ],
+32 silly audit   '@rollup/rollup-openbsd-x64': [ '4.60.1' ],
+32 silly audit   '@rollup/rollup-openharmony-arm64': [ '4.60.1' ],
+32 silly audit   '@rollup/rollup-win32-arm64-msvc': [ '4.60.1' ],
+32 silly audit   '@rollup/rollup-win32-ia32-msvc': [ '4.60.1' ],
+32 silly audit   '@rollup/rollup-win32-x64-gnu': [ '4.60.1' ],
+32 silly audit   '@rollup/rollup-win32-x64-msvc': [ '4.60.1' ],
+32 silly audit   '@shikijs/core': [ '4.0.2' ],
+32 silly audit   '@shikijs/engine-javascript': [ '4.0.2' ],
+32 silly audit   '@shikijs/engine-oniguruma': [ '4.0.2' ],
+32 silly audit   '@shikijs/langs': [ '4.0.2' ],
+32 silly audit   '@shikijs/primitive': [ '4.0.2' ],
+32 silly audit   '@shikijs/themes': [ '4.0.2' ],
+32 silly audit   '@shikijs/types': [ '4.0.2' ],
+32 silly audit   '@shikijs/vscode-textmate': [ '10.0.2' ],
+32 silly audit   '@tailwindcss/node': [ '4.2.2' ],
+32 silly audit   '@tailwindcss/oxide': [ '4.2.2' ],
+32 silly audit   '@tailwindcss/oxide-android-arm64': [ '4.2.2' ],
+32 silly audit   '@tailwindcss/oxide-darwin-arm64': [ '4.2.2' ],
+32 silly audit   '@tailwindcss/oxide-darwin-x64': [ '4.2.2' ],
+32 silly audit   '@tailwindcss/oxide-freebsd-x64': [ '4.2.2' ],
+32 silly audit   '@tailwindcss/oxide-linux-arm-gnueabihf': [ '4.2.2' ],
+32 silly audit   '@tailwindcss/oxide-linux-arm64-gnu': [ '4.2.2' ],
+32 silly audit   '@tailwindcss/oxide-linux-arm64-musl': [ '4.2.2' ],
+32 silly audit   '@tailwindcss/oxide-linux-x64-gnu': [ '4.2.2' ],
+32 silly audit   '@tailwindcss/oxide-linux-x64-musl': [ '4.2.2' ],
+32 silly audit   '@tailwindcss/oxide-win32-arm64-msvc': [ '4.2.2' ],
+32 silly audit   '@tailwindcss/oxide-win32-x64-msvc': [ '4.2.2' ],
+32 silly audit   '@tailwindcss/postcss': [ '4.2.2' ],
+32 silly audit   '@tailwindcss/vite': [ '4.2.2' ],
+32 silly audit   '@types/debug': [ '4.1.13' ],
+32 silly audit   '@types/estree': [ '1.0.8' ],
+32 silly audit   '@types/hast': [ '3.0.4' ],
+32 silly audit   '@types/mdast': [ '4.0.4' ],
+32 silly audit   '@types/ms': [ '2.1.0' ],
+32 silly audit   '@types/nlcst': [ '2.0.3' ],
+32 silly audit   '@types/node': [ '24.12.0' ],
+32 silly audit   '@types/sax': [ '1.2.7' ],
+32 silly audit   '@types/unist': [ '3.0.3' ],
+32 silly audit   '@ungap/structured-clone': [ '1.3.0' ],
+32 silly audit   anymatch: [ '3.1.3' ],
+32 silly audit   picomatch: [ '2.3.2', '4.0.4' ],
+32 silly audit   arg: [ '5.0.2' ],
+32 silly audit   argparse: [ '2.0.1' ],
+32 silly audit   'aria-query': [ '5.3.2' ],
+32 silly audit   'array-iterate': [ '2.0.1' ],
+32 silly audit   astro: [ '6.1.2' ],
+32 silly audit   'axobject-query': [ '4.1.0' ],
+32 silly audit   bail: [ '2.0.2' ],
+32 silly audit   boolbase: [ '1.0.0' ],
+32 silly audit   ccount: [ '2.0.1' ],
+32 silly audit   'character-entities': [ '2.0.2' ],
+32 silly audit   'character-entities-html4': [ '2.1.0' ],
+32 silly audit   'character-entities-legacy': [ '3.0.0' ],
+32 silly audit   chokidar: [ '5.0.0' ],
+32 silly audit   'ci-info': [ '4.4.0' ],
+32 silly audit   clsx: [ '2.1.1' ],
+32 silly audit   'comma-separated-tokens': [ '2.0.3' ],
+32 silly audit   commander: [ '11.1.0' ],
+32 silly audit   'common-ancestor-path': [ '2.0.0' ],
+32 silly audit   cookie: [ '1.1.1' ],
+32 silly audit   'cookie-es': [ '1.2.2' ],
+32 silly audit   crossws: [ '0.3.5' ],
+32 silly audit   'css-select': [ '5.2.2' ],
+32 silly audit   'css-tree': [ '3.2.1', '2.2.1' ],
+32 silly audit   'css-what': [ '6.2.2' ],
+32 silly audit   csso: [ '5.0.5' ],
+32 silly audit   'mdn-data': [ '2.0.28', '2.27.1' ],
+32 silly audit   debug: [ '4.4.3' ],
+32 silly audit   'decode-named-character-reference': [ '1.3.0' ],
+32 silly audit   defu: [ '6.1.6' ],
+32 silly audit   dequal: [ '2.0.3' ],
+32 silly audit   destr: [ '2.0.5' ],
+32 silly audit   'detect-libc': [ '2.1.2' ],
+32 silly audit   devalue: [ '5.6.4' ],
+32 silly audit   devlop: [ '1.1.0' ],
+32 silly audit   diff: [ '8.0.4' ],
+32 silly audit   dlv: [ '1.1.3' ],
+32 silly audit   'dom-serializer': [ '2.0.0' ],
+32 silly audit   entities: [ '4.5.0', '6.0.1' ],
+32 silly audit   domelementtype: [ '2.3.0' ],
+32 silly audit   domhandler: [ '5.0.3' ],
+32 silly audit   domutils: [ '3.2.2' ],
+32 silly audit   dset: [ '3.1.4' ],
+32 silly audit   'enhanced-resolve': [ '5.20.1' ],
+32 silly audit   'es-module-lexer': [ '2.0.0' ],
+32 silly audit   esbuild: [ '0.27.4' ],
+32 silly audit   'escape-string-regexp': [ '5.0.0' ],
+32 silly audit   eventemitter3: [ '5.0.4' ],
+32 silly audit   extend: [ '3.0.2' ],
+32 silly audit   'fast-string-truncated-width': [ '1.2.1' ],
+32 silly audit   'fast-string-width': [ '1.1.0' ],
+32 silly audit   'fast-wrap-ansi': [ '0.1.6' ],
+32 silly audit   fdir: [ '6.5.0' ],
+32 silly audit   flattie: [ '1.1.1' ],
+32 silly audit   fontace: [ '0.4.1' ],
+32 silly audit   fontkitten: [ '1.0.3' ],
+32 silly audit   fsevents: [ '2.3.3' ],
+32 silly audit   'github-slugger': [ '2.0.0' ],
+32 silly audit   'graceful-fs': [ '4.2.11' ],
+32 silly audit   h3: [ '1.15.10' ],
+32 silly audit   'hast-util-from-html': [ '2.0.3' ],
+32 silly audit   'hast-util-from-parse5': [ '8.0.3' ],
+32 silly audit   'hast-util-is-element': [ '3.0.0' ],
+32 silly audit   'hast-util-parse-selector': [ '4.0.0' ],
+32 silly audit   'hast-util-raw': [ '9.1.0' ],
+32 silly audit   'hast-util-to-html': [ '9.0.5' ],
+32 silly audit   'hast-util-to-parse5': [ '8.0.1' ],
+32 silly audit   'hast-util-to-text': [ '4.0.2' ],
+32 silly audit   'hast-util-whitespace': [ '3.0.0' ],
+32 silly audit   hastscript: [ '9.0.1' ],
+32 silly audit   'html-escaper': [ '3.0.3' ],
+32 silly audit   'html-void-elements': [ '3.0.0' ],
+32 silly audit   'http-cache-semantics': [ '4.2.0' ],
+32 silly audit   'iron-webcrypto': [ '1.2.1' ],
+32 silly audit   'is-docker': [ '3.0.0' ],
+32 silly audit   'is-inside-container': [ '1.0.0' ],
+32 silly audit   'is-plain-obj': [ '4.1.0' ],
+32 silly audit   'is-wsl': [ '3.1.1' ],
+32 silly audit   jiti: [ '2.6.1' ],
+32 silly audit   'js-yaml': [ '4.1.1' ],
+32 silly audit   lightningcss: [ '1.32.0' ],
+32 silly audit   'lightningcss-android-arm64': [ '1.32.0' ],
+32 silly audit   'lightningcss-darwin-arm64': [ '1.32.0' ],
+32 silly audit   'lightningcss-darwin-x64': [ '1.32.0' ],
+32 silly audit   'lightningcss-freebsd-x64': [ '1.32.0' ],
+32 silly audit   'lightningcss-linux-arm-gnueabihf': [ '1.32.0' ],
+32 silly audit   'lightningcss-linux-arm64-gnu': [ '1.32.0' ],
+32 silly audit   'lightningcss-linux-arm64-musl': [ '1.32.0' ],
+32 silly audit   'lightningcss-linux-x64-gnu': [ '1.32.0' ],
+32 silly audit   'lightningcss-linux-x64-musl': [ '1.32.0' ],
+32 silly audit   'lightningcss-win32-arm64-msvc': [ '1.32.0' ],
+32 silly audit   'lightningcss-win32-x64-msvc': [ '1.32.0' ],
+32 silly audit   'longest-streak': [ '3.1.0' ],
+32 silly audit   'lru-cache': [ '11.2.7' ],
+32 silly audit   'magic-string': [ '0.30.21' ],
+32 silly audit   magicast: [ '0.5.2' ],
+32 silly audit   'markdown-table': [ '3.0.4' ],
+32 silly audit   'mdast-util-definitions': [ '6.0.0' ],
+32 silly audit   'mdast-util-find-and-replace': [ '3.0.2' ],
+32 silly audit   'mdast-util-from-markdown': [ '2.0.3' ],
+32 silly audit   'mdast-util-gfm': [ '3.1.0' ],
+32 silly audit   'mdast-util-gfm-autolink-literal': [ '2.0.1' ],
+32 silly audit   'mdast-util-gfm-footnote': [ '2.1.0' ],
+32 silly audit   'mdast-util-gfm-strikethrough': [ '2.0.0' ],
+32 silly audit   'mdast-util-gfm-table': [ '2.0.0' ],
+32 silly audit   'mdast-util-gfm-task-list-item': [ '2.0.0' ],
+32 silly audit   'mdast-util-phrasing': [ '4.1.0' ],
+32 silly audit   'mdast-util-to-hast': [ '13.2.1' ],
+32 silly audit   'mdast-util-to-markdown': [ '2.1.2' ],
+32 silly audit   'mdast-util-to-string': [ '4.0.0' ],
+32 silly audit   micromark: [ '4.0.2' ],
+32 silly audit   'micromark-core-commonmark': [ '2.0.3' ],
+32 silly audit   'micromark-extension-gfm': [ '3.0.0' ],
+32 silly audit   'micromark-extension-gfm-autolink-literal': [ '2.1.0' ],
+32 silly audit   'micromark-extension-gfm-footnote': [ '2.1.0' ],
+32 silly audit   'micromark-extension-gfm-strikethrough': [ '2.1.0' ],
+32 silly audit   'micromark-extension-gfm-table': [ '2.1.1' ],
+32 silly audit   'micromark-extension-gfm-tagfilter': [ '2.0.0' ],
+32 silly audit   'micromark-extension-gfm-task-list-item': [ '2.1.0' ],
+32 silly audit   'micromark-factory-destination': [ '2.0.1' ],
+32 silly audit   'micromark-factory-label': [ '2.0.1' ],
+32 silly audit   'micromark-factory-space': [ '2.0.1' ],
+32 silly audit   'micromark-factory-title': [ '2.0.1' ],
+32 silly audit   'micromark-factory-whitespace': [ '2.0.1' ],
+32 silly audit   'micromark-util-character': [ '2.1.1' ],
+32 silly audit   'micromark-util-chunked': [ '2.0.1' ],
+32 silly audit   'micromark-util-classify-character': [ '2.0.1' ],
+32 silly audit   'micromark-util-combine-extensions': [ '2.0.1' ],
+32 silly audit   'micromark-util-decode-numeric-character-reference': [ '2.0.2' ],
+32 silly audit   'micromark-util-decode-string': [ '2.0.1' ],
+32 silly audit   'micromark-util-encode': [ '2.0.1' ],
+32 silly audit   'micromark-util-html-tag-name': [ '2.0.1' ],
+32 silly audit   'micromark-util-normalize-identifier': [ '2.0.1' ],
+32 silly audit   'micromark-util-resolve-all': [ '2.0.1' ],
+32 silly audit   'micromark-util-sanitize-uri': [ '2.0.1' ],
+32 silly audit   'micromark-util-subtokenize': [ '2.1.0' ],
+32 silly audit   'micromark-util-symbol': [ '2.0.1' ],
+32 silly audit   'micromark-util-types': [ '2.0.2' ],
+32 silly audit   mrmime: [ '2.0.1' ],
+32 silly audit   ms: [ '2.1.3' ],
+32 silly audit   nanoid: [ '3.3.11' ],
+32 silly audit   neotraverse: [ '0.6.18' ],
+32 silly audit   'nlcst-to-string': [ '4.0.0' ],
+32 silly audit   'node-fetch-native': [ '1.6.7' ],
+32 silly audit   'node-mock-http': [ '1.0.4' ],
+32 silly audit   'normalize-path': [ '3.0.0' ],
+32 silly audit   'nth-check': [ '2.1.1' ],
+32 silly audit   obug: [ '2.1.1' ],
+32 silly audit   ofetch: [ '1.5.1' ],
+32 silly audit   ohash: [ '2.0.11' ],
+32 silly audit   'oniguruma-parser': [ '0.12.1' ],
+32 silly audit   'oniguruma-to-es': [ '4.3.5' ],
+32 silly audit   'p-limit': [ '7.3.0' ],
+32 silly audit   'p-queue': [ '9.1.0' ],
+32 silly audit   'p-timeout': [ '7.0.1' ],
+32 silly audit   'package-manager-detector': [ '1.6.0' ],
+32 silly audit   'parse-latin': [ '7.0.0' ],
+32 silly audit   parse5: [ '7.3.0' ],
+32 silly audit   piccolore: [ '0.1.3' ],
+32 silly audit   picocolors: [ '1.1.1' ],
+32 silly audit   postcss: [ '8.5.8' ],
+32 silly audit   prismjs: [ '1.30.0' ],
+32 silly audit   'property-information': [ '7.1.0' ],
+32 silly audit   radix3: [ '1.1.2' ],
+32 silly audit   readdirp: [ '5.0.0' ],
+32 silly audit   regex: [ '6.1.0' ],
+32 silly audit   'regex-recursion': [ '6.0.2' ],
+32 silly audit   'regex-utilities': [ '2.3.0' ],
+32 silly audit   rehype: [ '13.0.2' ],
+32 silly audit   'rehype-parse': [ '9.0.1' ],
+32 silly audit   'rehype-raw': [ '7.0.0' ],
+32 silly audit   'rehype-stringify': [ '10.0.1' ],
+32 silly audit   'remark-gfm': [ '4.0.1' ],
+32 silly audit   'remark-parse': [ '11.0.0' ],
+32 silly audit   'remark-rehype': [ '11.1.2' ],
+32 silly audit   'remark-smartypants': [ '3.0.2' ],
+32 silly audit   'remark-stringify': [ '11.0.0' ],
+32 silly audit   retext: [ '9.0.0' ],
+32 silly audit   'retext-latin': [ '4.0.0' ],
+32 silly audit   'retext-smartypants': [ '6.2.0' ],
+32 silly audit   'retext-stringify': [ '4.0.0' ],
+32 silly audit   rollup: [ '4.60.1' ],
+32 silly audit   sax: [ '1.6.0' ],
+32 silly audit   semver: [ '7.7.4' ],
+32 silly audit   sharp: [ '0.34.5' ],
+32 silly audit   shiki: [ '4.0.2' ],
+32 silly audit   sisteransi: [ '1.0.5' ],
+32 silly audit   sitemap: [ '9.0.1' ],
+32 silly audit   'smol-toml': [ '1.6.1' ],
+32 silly audit   'source-map-js': [ '1.2.1' ],
+32 silly audit   'space-separated-tokens': [ '2.0.2' ],
+32 silly audit   'stream-replace-string': [ '2.0.0' ],
+32 silly audit   'stringify-entities': [ '4.0.4' ],
+32 silly audit   svgo: [ '4.0.1' ],
+32 silly audit   tailwindcss: [ '4.2.2' ],
+32 silly audit   tapable: [ '2.3.2' ],
+32 silly audit   'tiny-inflate': [ '1.0.3' ],
+32 silly audit   tinyclip: [ '0.1.12' ],
+32 silly audit   tinyexec: [ '1.0.4' ],
+32 silly audit   tinyglobby: [ '0.2.15' ],
+32 silly audit   'trim-lines': [ '3.0.1' ],
+32 silly audit   trough: [ '2.2.0' ],
+32 silly audit   tsconfck: [ '3.1.6' ],
+32 silly audit   tslib: [ '2.8.1' ],
+32 silly audit   ufo: [ '1.6.3' ],
+32 silly audit   ultrahtml: [ '1.6.0' ],
+32 silly audit   uncrypto: [ '0.1.3' ],
+32 silly audit   'undici-types': [ '7.16.0' ],
+32 silly audit   unified: [ '11.0.5' ],
+32 silly audit   unifont: [ '0.7.4' ],
+32 silly audit   'unist-util-find-after': [ '5.0.0' ],
+32 silly audit   'unist-util-is': [ '6.0.1' ],
+32 silly audit   'unist-util-modify-children': [ '4.0.0' ],
+32 silly audit   'unist-util-position': [ '5.0.0' ],
+32 silly audit   'unist-util-remove-position': [ '5.0.0' ],
+32 silly audit   'unist-util-stringify-position': [ '4.0.0' ],
+32 silly audit   'unist-util-visit': [ '5.1.0' ],
+32 silly audit   'unist-util-visit-children': [ '3.0.0' ],
+32 silly audit   'unist-util-visit-parents': [ '6.0.2' ],
+32 silly audit   unstorage: [ '1.17.5' ],
+32 silly audit   vfile: [ '6.0.3' ],
+32 silly audit   'vfile-location': [ '5.0.3' ],
+32 silly audit   'vfile-message': [ '4.0.3' ],
+32 silly audit   vitefu: [ '1.1.2' ],
+32 silly audit   'web-namespaces': [ '2.0.1' ],
+32 silly audit   'which-pm-runs': [ '1.1.0' ],
+32 silly audit   'xxhash-wasm': [ '1.1.0' ],
+32 silly audit   'yargs-parser': [ '22.0.0' ],
+32 silly audit   'yocto-queue': [ '1.2.2' ],
+32 silly audit   zod: [ '4.3.6' ],
+32 silly audit   zwitch: [ '2.0.4' ],
+32 silly audit   vite: [ '7.3.2' ],
+32 silly audit   '@tailwindcss/oxide-wasm32-wasi': [ '4.2.2' ]
+32 silly audit }
+33 verbose reify failed optional dependency /Users/stephan/dev/anti-idiomadanza/idiomadanza.github.io/node_modules/lightningcss-win32-x64-msvc
+34 silly reify mark deleted [
+34 silly reify   '/Users/stephan/dev/anti-idiomadanza/idiomadanza.github.io/node_modules/lightningcss-win32-x64-msvc'
+34 silly reify ]
+35 verbose reify failed optional dependency /Users/stephan/dev/anti-idiomadanza/idiomadanza.github.io/node_modules/lightningcss-win32-arm64-msvc
+36 silly reify mark deleted [
+36 silly reify   '/Users/stephan/dev/anti-idiomadanza/idiomadanza.github.io/node_modules/lightningcss-win32-arm64-msvc'
+36 silly reify ]
+37 verbose reify failed optional dependency /Users/stephan/dev/anti-idiomadanza/idiomadanza.github.io/node_modules/lightningcss-linux-x64-musl
+38 silly reify mark deleted [
+38 silly reify   '/Users/stephan/dev/anti-idiomadanza/idiomadanza.github.io/node_modules/lightningcss-linux-x64-musl'
+38 silly reify ]
+39 verbose reify failed optional dependency /Users/stephan/dev/anti-idiomadanza/idiomadanza.github.io/node_modules/lightningcss-linux-x64-gnu
+40 silly reify mark deleted [
+40 silly reify   '/Users/stephan/dev/anti-idiomadanza/idiomadanza.github.io/node_modules/lightningcss-linux-x64-gnu'
+40 silly reify ]
+41 verbose reify failed optional dependency /Users/stephan/dev/anti-idiomadanza/idiomadanza.github.io/node_modules/lightningcss-linux-arm64-musl
+42 silly reify mark deleted [
+42 silly reify   '/Users/stephan/dev/anti-idiomadanza/idiomadanza.github.io/node_modules/lightningcss-linux-arm64-musl'
+42 silly reify ]
+43 verbose reify failed optional dependency /Users/stephan/dev/anti-idiomadanza/idiomadanza.github.io/node_modules/lightningcss-linux-arm64-gnu
+44 silly reify mark deleted [
+44 silly reify   '/Users/stephan/dev/anti-idiomadanza/idiomadanza.github.io/node_modules/lightningcss-linux-arm64-gnu'
+44 silly reify ]
+45 verbose reify failed optional dependency /Users/stephan/dev/anti-idiomadanza/idiomadanza.github.io/node_modules/lightningcss-linux-arm-gnueabihf
+46 silly reify mark deleted [
+46 silly reify   '/Users/stephan/dev/anti-idiomadanza/idiomadanza.github.io/node_modules/lightningcss-linux-arm-gnueabihf'
+46 silly reify ]
+47 verbose reify failed optional dependency /Users/stephan/dev/anti-idiomadanza/idiomadanza.github.io/node_modules/lightningcss-freebsd-x64
+48 silly reify mark deleted [
+48 silly reify   '/Users/stephan/dev/anti-idiomadanza/idiomadanza.github.io/node_modules/lightningcss-freebsd-x64'
+48 silly reify ]
+49 verbose reify failed optional dependency /Users/stephan/dev/anti-idiomadanza/idiomadanza.github.io/node_modules/lightningcss-darwin-x64
+50 silly reify mark deleted [
+50 silly reify   '/Users/stephan/dev/anti-idiomadanza/idiomadanza.github.io/node_modules/lightningcss-darwin-x64'
+50 silly reify ]
+51 verbose reify failed optional dependency /Users/stephan/dev/anti-idiomadanza/idiomadanza.github.io/node_modules/lightningcss-android-arm64
+52 silly reify mark deleted [
+52 silly reify   '/Users/stephan/dev/anti-idiomadanza/idiomadanza.github.io/node_modules/lightningcss-android-arm64'
+52 silly reify ]
+53 verbose reify failed optional dependency /Users/stephan/dev/anti-idiomadanza/idiomadanza.github.io/node_modules/@tailwindcss/oxide-win32-x64-msvc
+54 silly reify mark deleted [
+54 silly reify   '/Users/stephan/dev/anti-idiomadanza/idiomadanza.github.io/node_modules/@tailwindcss/oxide-win32-x64-msvc'
+54 silly reify ]
+55 verbose reify failed optional dependency /Users/stephan/dev/anti-idiomadanza/idiomadanza.github.io/node_modules/@tailwindcss/oxide-win32-arm64-msvc
+56 silly reify mark deleted [
+56 silly reify   '/Users/stephan/dev/anti-idiomadanza/idiomadanza.github.io/node_modules/@tailwindcss/oxide-win32-arm64-msvc'
+56 silly reify ]
+57 verbose reify failed optional dependency /Users/stephan/dev/anti-idiomadanza/idiomadanza.github.io/node_modules/@tailwindcss/oxide-linux-x64-musl
+58 silly reify mark deleted [
+58 silly reify   '/Users/stephan/dev/anti-idiomadanza/idiomadanza.github.io/node_modules/@tailwindcss/oxide-linux-x64-musl'
+58 silly reify ]
+59 verbose reify failed optional dependency /Users/stephan/dev/anti-idiomadanza/idiomadanza.github.io/node_modules/@tailwindcss/oxide-linux-x64-gnu
+60 silly reify mark deleted [
+60 silly reify   '/Users/stephan/dev/anti-idiomadanza/idiomadanza.github.io/node_modules/@tailwindcss/oxide-linux-x64-gnu'
+60 silly reify ]
+61 verbose reify failed optional dependency /Users/stephan/dev/anti-idiomadanza/idiomadanza.github.io/node_modules/@tailwindcss/oxide-linux-arm64-musl
+62 silly reify mark deleted [
+62 silly reify   '/Users/stephan/dev/anti-idiomadanza/idiomadanza.github.io/node_modules/@tailwindcss/oxide-linux-arm64-musl'
+62 silly reify ]
+63 verbose reify failed optional dependency /Users/stephan/dev/anti-idiomadanza/idiomadanza.github.io/node_modules/@tailwindcss/oxide-linux-arm64-gnu
+64 silly reify mark deleted [
+64 silly reify   '/Users/stephan/dev/anti-idiomadanza/idiomadanza.github.io/node_modules/@tailwindcss/oxide-linux-arm64-gnu'
+64 silly reify ]
+65 verbose reify failed optional dependency /Users/stephan/dev/anti-idiomadanza/idiomadanza.github.io/node_modules/@tailwindcss/oxide-linux-arm-gnueabihf
+66 silly reify mark deleted [
+66 silly reify   '/Users/stephan/dev/anti-idiomadanza/idiomadanza.github.io/node_modules/@tailwindcss/oxide-linux-arm-gnueabihf'
+66 silly reify ]
+67 verbose reify failed optional dependency /Users/stephan/dev/anti-idiomadanza/idiomadanza.github.io/node_modules/@tailwindcss/oxide-freebsd-x64
+68 silly reify mark deleted [
+68 silly reify   '/Users/stephan/dev/anti-idiomadanza/idiomadanza.github.io/node_modules/@tailwindcss/oxide-freebsd-x64'
+68 silly reify ]
+69 verbose reify failed optional dependency /Users/stephan/dev/anti-idiomadanza/idiomadanza.github.io/node_modules/@tailwindcss/oxide-darwin-x64
+70 silly reify mark deleted [
+70 silly reify   '/Users/stephan/dev/anti-idiomadanza/idiomadanza.github.io/node_modules/@tailwindcss/oxide-darwin-x64'
+70 silly reify ]
+71 verbose reify failed optional dependency /Users/stephan/dev/anti-idiomadanza/idiomadanza.github.io/node_modules/@tailwindcss/oxide-android-arm64
+72 silly reify mark deleted [
+72 silly reify   '/Users/stephan/dev/anti-idiomadanza/idiomadanza.github.io/node_modules/@tailwindcss/oxide-android-arm64'
+72 silly reify ]
+73 verbose reify failed optional dependency /Users/stephan/dev/anti-idiomadanza/idiomadanza.github.io/node_modules/@rollup/rollup-win32-x64-msvc
+74 silly reify mark deleted [
+74 silly reify   '/Users/stephan/dev/anti-idiomadanza/idiomadanza.github.io/node_modules/@rollup/rollup-win32-x64-msvc'
+74 silly reify ]
+75 verbose reify failed optional dependency /Users/stephan/dev/anti-idiomadanza/idiomadanza.github.io/node_modules/@rollup/rollup-win32-x64-gnu
+76 silly reify mark deleted [
+76 silly reify   '/Users/stephan/dev/anti-idiomadanza/idiomadanza.github.io/node_modules/@rollup/rollup-win32-x64-gnu'
+76 silly reify ]
+77 verbose reify failed optional dependency /Users/stephan/dev/anti-idiomadanza/idiomadanza.github.io/node_modules/@rollup/rollup-win32-ia32-msvc
+78 silly reify mark deleted [
+78 silly reify   '/Users/stephan/dev/anti-idiomadanza/idiomadanza.github.io/node_modules/@rollup/rollup-win32-ia32-msvc'
+78 silly reify ]
+79 verbose reify failed optional dependency /Users/stephan/dev/anti-idiomadanza/idiomadanza.github.io/node_modules/@rollup/rollup-win32-arm64-msvc
+80 silly reify mark deleted [
+80 silly reify   '/Users/stephan/dev/anti-idiomadanza/idiomadanza.github.io/node_modules/@rollup/rollup-win32-arm64-msvc'
+80 silly reify ]
+81 verbose reify failed optional dependency /Users/stephan/dev/anti-idiomadanza/idiomadanza.github.io/node_modules/@rollup/rollup-openharmony-arm64
+82 silly reify mark deleted [
+82 silly reify   '/Users/stephan/dev/anti-idiomadanza/idiomadanza.github.io/node_modules/@rollup/rollup-openharmony-arm64'
+82 silly reify ]
+83 verbose reify failed optional dependency /Users/stephan/dev/anti-idiomadanza/idiomadanza.github.io/node_modules/@rollup/rollup-openbsd-x64
+84 silly reify mark deleted [
+84 silly reify   '/Users/stephan/dev/anti-idiomadanza/idiomadanza.github.io/node_modules/@rollup/rollup-openbsd-x64'
+84 silly reify ]
+85 verbose reify failed optional dependency /Users/stephan/dev/anti-idiomadanza/idiomadanza.github.io/node_modules/@rollup/rollup-linux-x64-musl
+86 silly reify mark deleted [
+86 silly reify   '/Users/stephan/dev/anti-idiomadanza/idiomadanza.github.io/node_modules/@rollup/rollup-linux-x64-musl'
+86 silly reify ]
+87 verbose reify failed optional dependency /Users/stephan/dev/anti-idiomadanza/idiomadanza.github.io/node_modules/@rollup/rollup-linux-x64-gnu
+88 silly reify mark deleted [
+88 silly reify   '/Users/stephan/dev/anti-idiomadanza/idiomadanza.github.io/node_modules/@rollup/rollup-linux-x64-gnu'
+88 silly reify ]
+89 verbose reify failed optional dependency /Users/stephan/dev/anti-idiomadanza/idiomadanza.github.io/node_modules/@rollup/rollup-linux-s390x-gnu
+90 silly reify mark deleted [
+90 silly reify   '/Users/stephan/dev/anti-idiomadanza/idiomadanza.github.io/node_modules/@rollup/rollup-linux-s390x-gnu'
+90 silly reify ]
+91 verbose reify failed optional dependency /Users/stephan/dev/anti-idiomadanza/idiomadanza.github.io/node_modules/@rollup/rollup-linux-riscv64-musl
+92 silly reify mark deleted [
+92 silly reify   '/Users/stephan/dev/anti-idiomadanza/idiomadanza.github.io/node_modules/@rollup/rollup-linux-riscv64-musl'
+92 silly reify ]
+93 verbose reify failed optional dependency /Users/stephan/dev/anti-idiomadanza/idiomadanza.github.io/node_modules/@rollup/rollup-linux-riscv64-gnu
+94 silly reify mark deleted [
+94 silly reify   '/Users/stephan/dev/anti-idiomadanza/idiomadanza.github.io/node_modules/@rollup/rollup-linux-riscv64-gnu'
+94 silly reify ]
+95 verbose reify failed optional dependency /Users/stephan/dev/anti-idiomadanza/idiomadanza.github.io/node_modules/@rollup/rollup-linux-ppc64-musl
+96 silly reify mark deleted [
+96 silly reify   '/Users/stephan/dev/anti-idiomadanza/idiomadanza.github.io/node_modules/@rollup/rollup-linux-ppc64-musl'
+96 silly reify ]
+97 verbose reify failed optional dependency /Users/stephan/dev/anti-idiomadanza/idiomadanza.github.io/node_modules/@rollup/rollup-linux-ppc64-gnu
+98 silly reify mark deleted [
+98 silly reify   '/Users/stephan/dev/anti-idiomadanza/idiomadanza.github.io/node_modules/@rollup/rollup-linux-ppc64-gnu'
+98 silly reify ]
+99 verbose reify failed optional dependency /Users/stephan/dev/anti-idiomadanza/idiomadanza.github.io/node_modules/@rollup/rollup-linux-loong64-musl
+100 silly reify mark deleted [
+100 silly reify   '/Users/stephan/dev/anti-idiomadanza/idiomadanza.github.io/node_modules/@rollup/rollup-linux-loong64-musl'
+100 silly reify ]
+101 verbose reify failed optional dependency /Users/stephan/dev/anti-idiomadanza/idiomadanza.github.io/node_modules/@rollup/rollup-linux-loong64-gnu
+102 silly reify mark deleted [
+102 silly reify   '/Users/stephan/dev/anti-idiomadanza/idiomadanza.github.io/node_modules/@rollup/rollup-linux-loong64-gnu'
+102 silly reify ]
+103 verbose reify failed optional dependency /Users/stephan/dev/anti-idiomadanza/idiomadanza.github.io/node_modules/@rollup/rollup-linux-arm64-musl
+104 silly reify mark deleted [
+104 silly reify   '/Users/stephan/dev/anti-idiomadanza/idiomadanza.github.io/node_modules/@rollup/rollup-linux-arm64-musl'
+104 silly reify ]
+105 verbose reify failed optional dependency /Users/stephan/dev/anti-idiomadanza/idiomadanza.github.io/node_modules/@rollup/rollup-linux-arm64-gnu
+106 silly reify mark deleted [
+106 silly reify   '/Users/stephan/dev/anti-idiomadanza/idiomadanza.github.io/node_modules/@rollup/rollup-linux-arm64-gnu'
+106 silly reify ]
+107 verbose reify failed optional dependency /Users/stephan/dev/anti-idiomadanza/idiomadanza.github.io/node_modules/@rollup/rollup-linux-arm-musleabihf
+108 silly reify mark deleted [
+108 silly reify   '/Users/stephan/dev/anti-idiomadanza/idiomadanza.github.io/node_modules/@rollup/rollup-linux-arm-musleabihf'
+108 silly reify ]
+109 verbose reify failed optional dependency /Users/stephan/dev/anti-idiomadanza/idiomadanza.github.io/node_modules/@rollup/rollup-linux-arm-gnueabihf
+110 silly reify mark deleted [
+110 silly reify   '/Users/stephan/dev/anti-idiomadanza/idiomadanza.github.io/node_modules/@rollup/rollup-linux-arm-gnueabihf'
+110 silly reify ]
+111 verbose reify failed optional dependency /Users/stephan/dev/anti-idiomadanza/idiomadanza.github.io/node_modules/@rollup/rollup-freebsd-x64
+112 silly reify mark deleted [
+112 silly reify   '/Users/stephan/dev/anti-idiomadanza/idiomadanza.github.io/node_modules/@rollup/rollup-freebsd-x64'
+112 silly reify ]
+113 verbose reify failed optional dependency /Users/stephan/dev/anti-idiomadanza/idiomadanza.github.io/node_modules/@rollup/rollup-freebsd-arm64
+114 silly reify mark deleted [
+114 silly reify   '/Users/stephan/dev/anti-idiomadanza/idiomadanza.github.io/node_modules/@rollup/rollup-freebsd-arm64'
+114 silly reify ]
+115 verbose reify failed optional dependency /Users/stephan/dev/anti-idiomadanza/idiomadanza.github.io/node_modules/@rollup/rollup-darwin-x64
+116 silly reify mark deleted [
+116 silly reify   '/Users/stephan/dev/anti-idiomadanza/idiomadanza.github.io/node_modules/@rollup/rollup-darwin-x64'
+116 silly reify ]
+117 verbose reify failed optional dependency /Users/stephan/dev/anti-idiomadanza/idiomadanza.github.io/node_modules/@rollup/rollup-android-arm64
+118 silly reify mark deleted [
+118 silly reify   '/Users/stephan/dev/anti-idiomadanza/idiomadanza.github.io/node_modules/@rollup/rollup-android-arm64'
+118 silly reify ]
+119 verbose reify failed optional dependency /Users/stephan/dev/anti-idiomadanza/idiomadanza.github.io/node_modules/@rollup/rollup-android-arm-eabi
+120 silly reify mark deleted [
+120 silly reify   '/Users/stephan/dev/anti-idiomadanza/idiomadanza.github.io/node_modules/@rollup/rollup-android-arm-eabi'
+120 silly reify ]
+121 verbose reify failed optional dependency /Users/stephan/dev/anti-idiomadanza/idiomadanza.github.io/node_modules/@img/sharp-win32-x64
+122 silly reify mark deleted [
+122 silly reify   '/Users/stephan/dev/anti-idiomadanza/idiomadanza.github.io/node_modules/@img/sharp-win32-x64'
+122 silly reify ]
+123 verbose reify failed optional dependency /Users/stephan/dev/anti-idiomadanza/idiomadanza.github.io/node_modules/@img/sharp-win32-ia32
+124 silly reify mark deleted [
+124 silly reify   '/Users/stephan/dev/anti-idiomadanza/idiomadanza.github.io/node_modules/@img/sharp-win32-ia32'
+124 silly reify ]
+125 verbose reify failed optional dependency /Users/stephan/dev/anti-idiomadanza/idiomadanza.github.io/node_modules/@img/sharp-win32-arm64
+126 silly reify mark deleted [
+126 silly reify   '/Users/stephan/dev/anti-idiomadanza/idiomadanza.github.io/node_modules/@img/sharp-win32-arm64'
+126 silly reify ]
+127 verbose reify failed optional dependency /Users/stephan/dev/anti-idiomadanza/idiomadanza.github.io/node_modules/@img/sharp-wasm32
+128 silly reify mark deleted [
+128 silly reify   '/Users/stephan/dev/anti-idiomadanza/idiomadanza.github.io/node_modules/@img/sharp-wasm32'
+128 silly reify ]
+129 verbose reify failed optional dependency /Users/stephan/dev/anti-idiomadanza/idiomadanza.github.io/node_modules/@img/sharp-linuxmusl-x64
+130 silly reify mark deleted [
+130 silly reify   '/Users/stephan/dev/anti-idiomadanza/idiomadanza.github.io/node_modules/@img/sharp-linuxmusl-x64'
+130 silly reify ]
+131 verbose reify failed optional dependency /Users/stephan/dev/anti-idiomadanza/idiomadanza.github.io/node_modules/@img/sharp-linuxmusl-arm64
+132 silly reify mark deleted [
+132 silly reify   '/Users/stephan/dev/anti-idiomadanza/idiomadanza.github.io/node_modules/@img/sharp-linuxmusl-arm64'
+132 silly reify ]
+133 verbose reify failed optional dependency /Users/stephan/dev/anti-idiomadanza/idiomadanza.github.io/node_modules/@img/sharp-linux-x64
+134 silly reify mark deleted [
+134 silly reify   '/Users/stephan/dev/anti-idiomadanza/idiomadanza.github.io/node_modules/@img/sharp-linux-x64'
+134 silly reify ]
+135 verbose reify failed optional dependency /Users/stephan/dev/anti-idiomadanza/idiomadanza.github.io/node_modules/@img/sharp-linux-s390x
+136 silly reify mark deleted [
+136 silly reify   '/Users/stephan/dev/anti-idiomadanza/idiomadanza.github.io/node_modules/@img/sharp-linux-s390x'
+136 silly reify ]
+137 verbose reify failed optional dependency /Users/stephan/dev/anti-idiomadanza/idiomadanza.github.io/node_modules/@img/sharp-linux-riscv64
+138 silly reify mark deleted [
+138 silly reify   '/Users/stephan/dev/anti-idiomadanza/idiomadanza.github.io/node_modules/@img/sharp-linux-riscv64'
+138 silly reify ]
+139 verbose reify failed optional dependency /Users/stephan/dev/anti-idiomadanza/idiomadanza.github.io/node_modules/@img/sharp-linux-ppc64
+140 silly reify mark deleted [
+140 silly reify   '/Users/stephan/dev/anti-idiomadanza/idiomadanza.github.io/node_modules/@img/sharp-linux-ppc64'
+140 silly reify ]
+141 verbose reify failed optional dependency /Users/stephan/dev/anti-idiomadanza/idiomadanza.github.io/node_modules/@img/sharp-linux-arm64
+142 silly reify mark deleted [
+142 silly reify   '/Users/stephan/dev/anti-idiomadanza/idiomadanza.github.io/node_modules/@img/sharp-linux-arm64'
+142 silly reify ]
+143 verbose reify failed optional dependency /Users/stephan/dev/anti-idiomadanza/idiomadanza.github.io/node_modules/@img/sharp-linux-arm
+144 silly reify mark deleted [
+144 silly reify   '/Users/stephan/dev/anti-idiomadanza/idiomadanza.github.io/node_modules/@img/sharp-linux-arm'
+144 silly reify ]
+145 verbose reify failed optional dependency /Users/stephan/dev/anti-idiomadanza/idiomadanza.github.io/node_modules/@img/sharp-libvips-linuxmusl-x64
+146 silly reify mark deleted [
+146 silly reify   '/Users/stephan/dev/anti-idiomadanza/idiomadanza.github.io/node_modules/@img/sharp-libvips-linuxmusl-x64'
+146 silly reify ]
+147 verbose reify failed optional dependency /Users/stephan/dev/anti-idiomadanza/idiomadanza.github.io/node_modules/@img/sharp-libvips-linuxmusl-arm64
+148 silly reify mark deleted [
+148 silly reify   '/Users/stephan/dev/anti-idiomadanza/idiomadanza.github.io/node_modules/@img/sharp-libvips-linuxmusl-arm64'
+148 silly reify ]
+149 verbose reify failed optional dependency /Users/stephan/dev/anti-idiomadanza/idiomadanza.github.io/node_modules/@img/sharp-libvips-linux-x64
+150 silly reify mark deleted [
+150 silly reify   '/Users/stephan/dev/anti-idiomadanza/idiomadanza.github.io/node_modules/@img/sharp-libvips-linux-x64'
+150 silly reify ]
+151 verbose reify failed optional dependency /Users/stephan/dev/anti-idiomadanza/idiomadanza.github.io/node_modules/@img/sharp-libvips-linux-s390x
+152 silly reify mark deleted [
+152 silly reify   '/Users/stephan/dev/anti-idiomadanza/idiomadanza.github.io/node_modules/@img/sharp-libvips-linux-s390x'
+152 silly reify ]
+153 verbose reify failed optional dependency /Users/stephan/dev/anti-idiomadanza/idiomadanza.github.io/node_modules/@img/sharp-libvips-linux-riscv64
+154 silly reify mark deleted [
+154 silly reify   '/Users/stephan/dev/anti-idiomadanza/idiomadanza.github.io/node_modules/@img/sharp-libvips-linux-riscv64'
+154 silly reify ]
+155 verbose reify failed optional dependency /Users/stephan/dev/anti-idiomadanza/idiomadanza.github.io/node_modules/@img/sharp-libvips-linux-ppc64
+156 silly reify mark deleted [
+156 silly reify   '/Users/stephan/dev/anti-idiomadanza/idiomadanza.github.io/node_modules/@img/sharp-libvips-linux-ppc64'
+156 silly reify ]
+157 verbose reify failed optional dependency /Users/stephan/dev/anti-idiomadanza/idiomadanza.github.io/node_modules/@img/sharp-libvips-linux-arm64
+158 silly reify mark deleted [
+158 silly reify   '/Users/stephan/dev/anti-idiomadanza/idiomadanza.github.io/node_modules/@img/sharp-libvips-linux-arm64'
+158 silly reify ]
+159 verbose reify failed optional dependency /Users/stephan/dev/anti-idiomadanza/idiomadanza.github.io/node_modules/@img/sharp-libvips-linux-arm
+160 silly reify mark deleted [
+160 silly reify   '/Users/stephan/dev/anti-idiomadanza/idiomadanza.github.io/node_modules/@img/sharp-libvips-linux-arm'
+160 silly reify ]
+161 verbose reify failed optional dependency /Users/stephan/dev/anti-idiomadanza/idiomadanza.github.io/node_modules/@img/sharp-libvips-darwin-x64
+162 silly reify mark deleted [
+162 silly reify   '/Users/stephan/dev/anti-idiomadanza/idiomadanza.github.io/node_modules/@img/sharp-libvips-darwin-x64'
+162 silly reify ]
+163 verbose reify failed optional dependency /Users/stephan/dev/anti-idiomadanza/idiomadanza.github.io/node_modules/@img/sharp-darwin-x64
+164 silly reify mark deleted [
+164 silly reify   '/Users/stephan/dev/anti-idiomadanza/idiomadanza.github.io/node_modules/@img/sharp-darwin-x64'
+164 silly reify ]
+165 verbose reify failed optional dependency /Users/stephan/dev/anti-idiomadanza/idiomadanza.github.io/node_modules/@esbuild/win32-x64
+166 silly reify mark deleted [
+166 silly reify   '/Users/stephan/dev/anti-idiomadanza/idiomadanza.github.io/node_modules/@esbuild/win32-x64'
+166 silly reify ]
+167 verbose reify failed optional dependency /Users/stephan/dev/anti-idiomadanza/idiomadanza.github.io/node_modules/@esbuild/win32-ia32
+168 silly reify mark deleted [
+168 silly reify   '/Users/stephan/dev/anti-idiomadanza/idiomadanza.github.io/node_modules/@esbuild/win32-ia32'
+168 silly reify ]
+169 verbose reify failed optional dependency /Users/stephan/dev/anti-idiomadanza/idiomadanza.github.io/node_modules/@esbuild/win32-arm64
+170 silly reify mark deleted [
+170 silly reify   '/Users/stephan/dev/anti-idiomadanza/idiomadanza.github.io/node_modules/@esbuild/win32-arm64'
+170 silly reify ]
+171 verbose reify failed optional dependency /Users/stephan/dev/anti-idiomadanza/idiomadanza.github.io/node_modules/@esbuild/sunos-x64
+172 silly reify mark deleted [
+172 silly reify   '/Users/stephan/dev/anti-idiomadanza/idiomadanza.github.io/node_modules/@esbuild/sunos-x64'
+172 silly reify ]
+173 verbose reify failed optional dependency /Users/stephan/dev/anti-idiomadanza/idiomadanza.github.io/node_modules/@esbuild/openharmony-arm64
+174 silly reify mark deleted [
+174 silly reify   '/Users/stephan/dev/anti-idiomadanza/idiomadanza.github.io/node_modules/@esbuild/openharmony-arm64'
+174 silly reify ]
+175 verbose reify failed optional dependency /Users/stephan/dev/anti-idiomadanza/idiomadanza.github.io/node_modules/@esbuild/openbsd-x64
+176 silly reify mark deleted [
+176 silly reify   '/Users/stephan/dev/anti-idiomadanza/idiomadanza.github.io/node_modules/@esbuild/openbsd-x64'
+176 silly reify ]
+177 verbose reify failed optional dependency /Users/stephan/dev/anti-idiomadanza/idiomadanza.github.io/node_modules/@esbuild/openbsd-arm64
+178 silly reify mark deleted [
+178 silly reify   '/Users/stephan/dev/anti-idiomadanza/idiomadanza.github.io/node_modules/@esbuild/openbsd-arm64'
+178 silly reify ]
+179 verbose reify failed optional dependency /Users/stephan/dev/anti-idiomadanza/idiomadanza.github.io/node_modules/@esbuild/netbsd-x64
+180 silly reify mark deleted [
+180 silly reify   '/Users/stephan/dev/anti-idiomadanza/idiomadanza.github.io/node_modules/@esbuild/netbsd-x64'
+180 silly reify ]
+181 verbose reify failed optional dependency /Users/stephan/dev/anti-idiomadanza/idiomadanza.github.io/node_modules/@esbuild/netbsd-arm64
+182 silly reify mark deleted [
+182 silly reify   '/Users/stephan/dev/anti-idiomadanza/idiomadanza.github.io/node_modules/@esbuild/netbsd-arm64'
+182 silly reify ]
+183 verbose reify failed optional dependency /Users/stephan/dev/anti-idiomadanza/idiomadanza.github.io/node_modules/@esbuild/linux-x64
+184 silly reify mark deleted [
+184 silly reify   '/Users/stephan/dev/anti-idiomadanza/idiomadanza.github.io/node_modules/@esbuild/linux-x64'
+184 silly reify ]
+185 verbose reify failed optional dependency /Users/stephan/dev/anti-idiomadanza/idiomadanza.github.io/node_modules/@esbuild/linux-s390x
+186 silly reify mark deleted [
+186 silly reify   '/Users/stephan/dev/anti-idiomadanza/idiomadanza.github.io/node_modules/@esbuild/linux-s390x'
+186 silly reify ]
+187 verbose reify failed optional dependency /Users/stephan/dev/anti-idiomadanza/idiomadanza.github.io/node_modules/@esbuild/linux-riscv64
+188 silly reify mark deleted [
+188 silly reify   '/Users/stephan/dev/anti-idiomadanza/idiomadanza.github.io/node_modules/@esbuild/linux-riscv64'
+188 silly reify ]
+189 verbose reify failed optional dependency /Users/stephan/dev/anti-idiomadanza/idiomadanza.github.io/node_modules/@esbuild/linux-ppc64
+190 silly reify mark deleted [
+190 silly reify   '/Users/stephan/dev/anti-idiomadanza/idiomadanza.github.io/node_modules/@esbuild/linux-ppc64'
+190 silly reify ]
+191 verbose reify failed optional dependency /Users/stephan/dev/anti-idiomadanza/idiomadanza.github.io/node_modules/@esbuild/linux-mips64el
+192 silly reify mark deleted [
+192 silly reify   '/Users/stephan/dev/anti-idiomadanza/idiomadanza.github.io/node_modules/@esbuild/linux-mips64el'
+192 silly reify ]
+193 verbose reify failed optional dependency /Users/stephan/dev/anti-idiomadanza/idiomadanza.github.io/node_modules/@esbuild/linux-loong64
+194 silly reify mark deleted [
+194 silly reify   '/Users/stephan/dev/anti-idiomadanza/idiomadanza.github.io/node_modules/@esbuild/linux-loong64'
+194 silly reify ]
+195 verbose reify failed optional dependency /Users/stephan/dev/anti-idiomadanza/idiomadanza.github.io/node_modules/@esbuild/linux-ia32
+196 silly reify mark deleted [
+196 silly reify   '/Users/stephan/dev/anti-idiomadanza/idiomadanza.github.io/node_modules/@esbuild/linux-ia32'
+196 silly reify ]
+197 verbose reify failed optional dependency /Users/stephan/dev/anti-idiomadanza/idiomadanza.github.io/node_modules/@esbuild/linux-arm64
+198 silly reify mark deleted [
+198 silly reify   '/Users/stephan/dev/anti-idiomadanza/idiomadanza.github.io/node_modules/@esbuild/linux-arm64'
+198 silly reify ]
+199 verbose reify failed optional dependency /Users/stephan/dev/anti-idiomadanza/idiomadanza.github.io/node_modules/@esbuild/linux-arm
+200 silly reify mark deleted [
+200 silly reify   '/Users/stephan/dev/anti-idiomadanza/idiomadanza.github.io/node_modules/@esbuild/linux-arm'
+200 silly reify ]
+201 verbose reify failed optional dependency /Users/stephan/dev/anti-idiomadanza/idiomadanza.github.io/node_modules/@esbuild/freebsd-x64
+202 silly reify mark deleted [
+202 silly reify   '/Users/stephan/dev/anti-idiomadanza/idiomadanza.github.io/node_modules/@esbuild/freebsd-x64'
+202 silly reify ]
+203 verbose reify failed optional dependency /Users/stephan/dev/anti-idiomadanza/idiomadanza.github.io/node_modules/@esbuild/freebsd-arm64
+204 silly reify mark deleted [
+204 silly reify   '/Users/stephan/dev/anti-idiomadanza/idiomadanza.github.io/node_modules/@esbuild/freebsd-arm64'
+204 silly reify ]
+205 verbose reify failed optional dependency /Users/stephan/dev/anti-idiomadanza/idiomadanza.github.io/node_modules/@esbuild/darwin-x64
+206 silly reify mark deleted [
+206 silly reify   '/Users/stephan/dev/anti-idiomadanza/idiomadanza.github.io/node_modules/@esbuild/darwin-x64'
+206 silly reify ]
+207 verbose reify failed optional dependency /Users/stephan/dev/anti-idiomadanza/idiomadanza.github.io/node_modules/@esbuild/android-x64
+208 silly reify mark deleted [
+208 silly reify   '/Users/stephan/dev/anti-idiomadanza/idiomadanza.github.io/node_modules/@esbuild/android-x64'
+208 silly reify ]
+209 verbose reify failed optional dependency /Users/stephan/dev/anti-idiomadanza/idiomadanza.github.io/node_modules/@esbuild/android-arm64
+210 silly reify mark deleted [
+210 silly reify   '/Users/stephan/dev/anti-idiomadanza/idiomadanza.github.io/node_modules/@esbuild/android-arm64'
+210 silly reify ]
+211 verbose reify failed optional dependency /Users/stephan/dev/anti-idiomadanza/idiomadanza.github.io/node_modules/@esbuild/android-arm
+212 silly reify mark deleted [
+212 silly reify   '/Users/stephan/dev/anti-idiomadanza/idiomadanza.github.io/node_modules/@esbuild/android-arm'
+212 silly reify ]
+213 verbose reify failed optional dependency /Users/stephan/dev/anti-idiomadanza/idiomadanza.github.io/node_modules/@esbuild/aix-ppc64
+214 silly reify mark deleted [
+214 silly reify   '/Users/stephan/dev/anti-idiomadanza/idiomadanza.github.io/node_modules/@esbuild/aix-ppc64'
+214 silly reify ]
+215 http cache vite@https://registry.npmjs.org/vite/-/vite-7.3.2.tgz 0ms (cache hit)
+216 silly tarball no local data for vite@https://registry.npmjs.org/vite/-/vite-7.3.2.tgz. Extracting by manifest.
+217 http fetch GET 200 https://registry.npmjs.org/vite/-/vite-7.3.2.tgz 328ms (cache miss)
+218 http fetch POST 200 https://registry.npmjs.org/-/npm/v1/security/advisories/bulk 364ms
+219 silly audit report {}
+220 silly ADD
+221 silly ADD
+222 silly ADD
+223 silly ADD
+224 silly ADD
+225 silly ADD
+226 silly ADD
+227 silly ADD
+228 silly ADD
+229 silly ADD
+230 silly ADD
+231 silly ADD
+232 silly ADD
+233 silly ADD
+234 silly ADD
+235 silly ADD
+236 silly ADD
+237 silly ADD
+238 silly ADD
+239 silly ADD
+240 silly ADD
+241 silly ADD
+242 silly ADD
+243 silly ADD
+244 silly ADD
+245 silly ADD
+246 silly ADD
+247 silly ADD
+248 silly ADD
+249 silly ADD
+250 silly ADD
+251 silly ADD
+252 silly ADD
+253 silly ADD
+254 silly ADD
+255 silly ADD
+256 silly ADD
+257 silly ADD
+258 silly ADD
+259 silly ADD
+260 silly ADD
+261 silly ADD
+262 silly ADD
+263 silly ADD
+264 silly ADD
+265 silly ADD
+266 silly ADD
+267 silly ADD
+268 silly ADD
+269 silly ADD
+270 silly ADD
+271 silly ADD
+272 silly ADD
+273 silly ADD
+274 silly ADD
+275 silly ADD
+276 silly ADD
+277 silly ADD
+278 silly ADD
+279 silly ADD
+280 silly ADD
+281 silly ADD
+282 silly ADD
+283 silly ADD
+284 silly ADD
+285 silly ADD
+286 silly ADD
+287 silly ADD
+288 silly ADD
+289 silly ADD
+290 silly ADD
+291 silly ADD
+292 silly ADD
+293 silly ADD
+294 silly ADD
+295 silly ADD
+296 silly ADD
+297 silly ADD
+298 silly ADD
+299 silly ADD
+300 silly ADD
+301 silly ADD
+302 silly ADD
+303 silly ADD
+304 silly ADD
+305 silly ADD
+306 silly ADD
+307 silly ADD
+308 silly ADD
+309 silly ADD
+310 silly ADD
+311 silly ADD
+312 silly CHANGE node_modules/vite
+313 verbose cwd /Users/stephan/dev/anti-idiomadanza/idiomadanza.github.io
+314 verbose os Darwin 25.3.0
+315 verbose node v22.17.0
+316 verbose npm  v10.9.2
+317 verbose exit 0
+318 info ok

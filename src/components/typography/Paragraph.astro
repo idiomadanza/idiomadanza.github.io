@@ -1,0 +1,19 @@
+---
+import Text from '../primitives/Text.astro';
+
+interface Props {
+  size?: 'base' | 'lg' | 'sm';
+  class?: string;
+}
+
+const { size = 'base', class: className } = Astro.props;
+---
+
+<Text 
+  as="p" 
+  size={size} 
+  family="sans" 
+  class:list={['leading-relaxed opacity-80 max-w-prose', className]}
+>
+  <slot />
+</Text>

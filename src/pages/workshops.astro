@@ -1,42 +1,14 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import { getCollection } from 'astro:content';
+import { Image } from 'astro:assets';
 
-// Beispielhafte Workshop-Daten
-const workshops = [
-  {
-    title: "Bachata Sensual Intensive Boot Camp",
-    date: "SA, 13. April 2024",
-    time: "14:00 - 18:00 Uhr",
-    location: "Studio Fortuna",
-    instructor: "Stephan & Patricia",
-    price: "45€ / 35€ für Mitglieder",
-    description: "4 Stunden intensives Training für alle, die ihre Sensual-Technik, Body-Isolation und Verbindung aufs nächste Level heben wollen.",
-    level: "Ab Mittelstufe",
-    featured: true
-  },
-  {
-    title: "Salsa On2 Styling & Footwork",
-    date: "SO, 21. April 2024",
-    time: "11:00 - 14:00 Uhr",
-    location: "Raum für Engagement",
-    instructor: "Francisco Pancho",
-    price: "35€ / 25€ für Mitglieder",
-    description: "Fokus auf Eleganz, präzises Footwork und den Rhythmus von Salsa On2. Perfekt für alle, die ihren Style veredeln wollen.",
-    level: "Alle Level",
-    featured: false
-  },
-  {
-    title: "Musicality Workshop: Bachata",
-    date: "SA, 4. Mai 2024",
-    time: "15:00 - 17:30 Uhr",
-    location: "Studio Fortuna",
-    instructor: "Chris & Nalini",
-    price: "30€ / 20€ für Mitglieder",
-    description: "Verstehe die Instrumente der Bachata und lerne, wie du sie in deinem Tanz interpretierst. Höre die Musik mit neuen Ohren.",
-    level: "Foundations & Up",
-    featured: false
-  }
-];
+import actionImg from '../assets/images/about/action.png';
+import bgImg from '../assets/images/testimonials/bg.png';
+
+const workshopsDocs = await getCollection('workshops');
+const workshops = workshopsDocs.map(doc => doc.data);
+
 const siteUrl = "https://idiomadanza.de";
 
 const eventSchema = workshops.map(w => ({
@@ -62,7 +34,7 @@ const eventSchema = workshops.map(w => ({
   <!-- HERO SECTION -->
   <section class="relative py-28 overflow-hidden bg-brand-dark">
     <div class="absolute inset-0 z-0">
-      <img src="/images/about/action.png" alt="Workshops Background" class="w-full h-full object-cover opacity-30 blur-[2px] scale-110">
+      <Image src={actionImg} alt="Workshops Background" width={1920} height={1080} loading="lazy" decoding="async" class="w-full h-full object-cover opacity-30 blur-[2px] scale-110" />
       <div class="absolute inset-0 bg-gradient-to-b from-brand-dark/95 via-brand-dark/80 to-brand-dark"></div>
     </div>
     
@@ -78,45 +50,51 @@ const eventSchema = workshops.map(w => ({
   <!-- UPCOMING WORKSHOPS BOARD -->
   <section class="py-24 bg-brand-light dark:bg-brand-dark relative z-10 -mt-10 md:-mt-20">
     <div class="container mx-auto px-4">
-      <div class="grid grid-cols-1 lg:grid-cols-3 gap-12 max-w-7xl mx-auto">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-12 max-w-7xl mx-auto">
         
         {workshops.map((workshop) => (
-          <div class={`group relative flex flex-col h-full bg-white/70 dark:bg-brand-dark/50 backdrop-blur-xl rounded-idioma border p-10 shadow-glass transition-all duration-500 hover:-translate-y-4 ${workshop.featured ? 'border-2 border-brand-rose' : 'border-white/20 dark:border-white/10'}`}>
+          <div class={`group relative flex flex-col h-full bg-white/70 dark:bg-brand-dark/50 backdrop-blur-xl rounded-idioma border overflow-hidden shadow-glass transition-all duration-500 hover:-translate-y-4 ${workshop.featured ? 'border-2 border-brand-rose' : 'border-white/20 dark:border-white/10'}`}>
             
-            {workshop.featured && (
-              <div class="absolute -top-4 left-1/2 -translate-x-1/2 bg-brand-rose text-white text-[10px] font-bold px-6 py-2 rounded-full tracking-widest uppercase shadow-glow-rose">Highlight</div>
-            )}
-
-            <div class="text-center mb-8">
-              <span class="text-brand-rose font-bold text-sm uppercase tracking-widest block mb-2">{workshop.date}</span>
-              <h3 class="text-3xl font-display font-bold text-brand-dark dark:text-white leading-tight min-h-[4.5rem] group-hover:text-brand-rose transition-colors">{workshop.title}</h3>
+            <div class="relative overflow-hidden bg-brand-dark/20">
+               <Image src={workshop.image} alt={workshop.title} width={600} height={338} loading="lazy" decoding="async" class="w-full h-auto object-contain group-hover:scale-105 transition-transform duration-700" />
+               <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-60"></div>
+               {workshop.featured && (
+                 <div class="absolute top-4 right-4 bg-brand-rose text-white text-[10px] font-bold px-6 py-2 rounded-full tracking-widest uppercase shadow-glow-rose z-10">Highlight</div>
+               )}
             </div>
 
-            <div class="space-y-6 flex-grow mb-10">
-              <div class="flex items-center gap-4 text-sm opacity-70 dark:text-brand-light/70 translate-y-0 group-hover:translate-x-2 transition-transform">
-                <span class="text-xl">🕒</span>
-                <span>{workshop.time}</span>
+            <div class="p-8 flex flex-col flex-grow">
+              <div class="mb-6">
+                <span class="text-brand-rose font-bold text-sm uppercase tracking-widest block mb-2">{workshop.date}</span>
+                <h3 class="text-3xl font-display font-bold text-brand-dark dark:text-white leading-tight group-hover:text-brand-rose transition-colors">{workshop.title}</h3>
               </div>
-              <div class="flex items-center gap-4 text-sm opacity-70 dark:text-brand-light/70 translate-y-0 group-hover:translate-x-2 transition-transform duration-300">
-                <span class="text-xl">📍</span>
-                <span>{workshop.location}</span>
-              </div>
-              <div class="flex items-center gap-4 text-sm opacity-70 dark:text-brand-light/70 translate-y-0 group-hover:translate-x-2 transition-transform duration-500">
-                <span class="text-xl">🕺</span>
-                <span>mit <strong>{workshop.instructor}</strong></span>
-              </div>
-              <div class="p-6 bg-brand-rose/5 rounded-idioma border border-brand-rose/10 mt-6 group-hover:bg-brand-rose/10 transition-colors">
-                 <p class="text-sm italic dark:text-white/80 leading-relaxed">"{workshop.description}"</p>
-              </div>
-            </div>
 
-            <div class="pt-8 border-t border-brand-dark/5 dark:border-white/10 flex flex-col items-center">
-               <div class="flex items-center gap-2 mb-6">
-                  <span class="text-xs uppercase font-bold opacity-30 dark:text-white">Level:</span>
-                  <span class="px-4 py-1 rounded-full bg-brand-glow/20 text-brand-glow text-[10px] font-bold uppercase tracking-widest">{workshop.level}</span>
-               </div>
-               <div class="text-2xl font-black text-brand-dark dark:text-white mb-6 font-display">{workshop.price}</div>
-               <a href="/kontakt" class="w-full py-4 text-center bg-brand-dark dark:bg-white text-white dark:text-brand-dark font-bold rounded-full group-hover:bg-brand-rose group-hover:text-white transition-all shadow-lg shadow-black/10">Ticket anfragen</a>
+              <div class="space-y-4 flex-grow mb-10">
+                <div class="flex items-center gap-4 text-sm opacity-70 dark:text-brand-light/70 translate-y-0 group-hover:translate-x-2 transition-transform">
+                  <span class="text-xl">🕒</span>
+                  <span>{workshop.time}</span>
+                </div>
+                <div class="flex items-center gap-4 text-sm opacity-70 dark:text-brand-light/70 translate-y-0 group-hover:translate-x-2 transition-transform duration-300">
+                  <span class="text-xl">📍</span>
+                  <span>{workshop.location}</span>
+                </div>
+                <div class="flex items-center gap-4 text-sm opacity-70 dark:text-brand-light/70 translate-y-0 group-hover:translate-x-2 transition-transform duration-500">
+                  <span class="text-xl">🕺</span>
+                  <span>mit <strong>{workshop.instructor}</strong></span>
+                </div>
+                <div class="p-6 bg-brand-violet/5 rounded-idioma border border-brand-violet/10 mt-6 group-hover:bg-brand-violet/10 transition-colors">
+                   <p class="text-sm italic dark:text-white/80 leading-relaxed">"{workshop.description}"</p>
+                </div>
+              </div>
+
+              <div class="pt-8 border-t border-brand-dark/5 dark:border-white/10 flex flex-col items-center">
+                 <div class="flex items-center gap-2 mb-6">
+                    <span class="text-xs uppercase font-bold opacity-30 dark:text-white">Level:</span>
+                    <span class="px-4 py-1 rounded-full bg-brand-glow/20 text-brand-glow text-[10px] font-bold uppercase tracking-widest">{workshop.level}</span>
+                 </div>
+                 <div class="text-2xl font-black text-brand-dark dark:text-white mb-6 font-display">{workshop.price}</div>
+                 <a href={workshop.ticketUrl || "/kontakt"} target={workshop.ticketUrl ? "_blank" : "_self"} rel={workshop.ticketUrl ? "noopener noreferrer" : ""} class="w-full py-4 text-center bg-brand-dark dark:bg-white text-white dark:text-brand-dark font-bold rounded-full group-hover:bg-brand-rose group-hover:text-white transition-all shadow-lg shadow-black/10">{workshop.buttonText || "Ticket anfragen"}</a>
+              </div>
             </div>
           </div>
         ))}
@@ -127,7 +105,7 @@ const eventSchema = workshops.map(w => ({
       <div class="mt-32 max-w-5xl mx-auto overflow-hidden rounded-idioma shadow-glow-rose group">
          <div class="grid grid-cols-1 md:grid-cols-2">
             <div class="relative bg-brand-dark h-64 md:h-auto overflow-hidden">
-               <img src="/images/testimonials/bg.png" alt="Private Class" class="w-full h-full object-cover opacity-50 blur-[1px] group-hover:scale-105 transition-transform duration-700">
+               <Image src={bgImg} alt="Private Class" width={1920} height={1080} loading="lazy" decoding="async" class="w-full h-full object-cover opacity-50 blur-[1px] group-hover:scale-105 transition-transform duration-700" />
                <div class="absolute inset-0 bg-brand-rose/30"></div>
             </div>
             <div class="p-12 md:p-16 bg-white/10 backdrop-blur-2xl dark:bg-brand-dark/90 text-white flex flex-col justify-center space-y-6">
@@ -139,15 +117,5 @@ const eventSchema = workshops.map(w => ({
          </div>
       </div>
     </div>
-  </section>
-
-  <!-- TESTIMONIAL MINI -->
-  <section class="py-24 bg-brand-dark relative overflow-hidden text-center text-white">
-      <div class="container mx-auto px-4 relative z-10">
-         <div class="max-w-3xl mx-auto italic opacity-60 text-xl leading-relaxed">
-            "Die Workshops bei Idiomadanza sind immer ein Energie-Boost. In nur 3-4 Stunden nehme ich mehr mit als in manchen Monaten normalen Trainings. Absolut zu empfehlen!"
-         </div>
-         <div class="mt-6 font-bold text-brand-rose uppercase tracking-widest text-sm">- Lukas R., Workshop Teilnehmer</div>
-      </div>
   </section>
 </Layout>
