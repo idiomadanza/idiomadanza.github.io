@@ -25,6 +25,7 @@ const workshopsCollection = defineCollection({
     id: z.string().optional(),
     title: z.string(),
     date: z.string(),
+    startDate: z.string().datetime(),
     time: z.string(),
     location: z.string(),
     instructor: z.string(),
