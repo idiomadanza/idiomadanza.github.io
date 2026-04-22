@@ -1,4 +1,6 @@
+.npm-cache/
+node_modules/
+dist/
+_cacache/
+_logs/
 .DS_Store
-node_modules
-
-post-review-task.md
