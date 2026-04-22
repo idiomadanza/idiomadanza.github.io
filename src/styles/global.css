@@ -29,6 +29,15 @@
 
   /* Tap Target Accessibility */
   --size-touch-target: 44px;
+
+  @keyframes pulse-glow {
+    0%, 100% { box-shadow: 0 0 10px rgba(252, 211, 77, 0.4); }
+    50% { box-shadow: 0 0 25px rgba(252, 211, 77, 0.8); }
+  }
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 4s ease-in-out infinite;
 }
 
 

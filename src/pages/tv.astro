@@ -75,13 +75,19 @@ const slides = workshops.map(w => ({
             border: 1px solid rgba(255, 255, 255, 0.1);
         }
 
+        @keyframes pulse-glow {
+            0%, 100% { filter: drop-shadow(0 0 15px rgba(252, 211, 77, 0.4)); }
+            50% { filter: drop-shadow(0 0 35px rgba(252, 211, 77, 0.8)); }
+        }
+
         .logo {
             position: absolute;
             top: 2rem;
             left: 2rem;
             width: 120px;
-            filter: drop-shadow(0 0 10px rgba(252, 211, 77, 0.3));
-            opacity: 0.8;
+            filter: drop-shadow(0 0 25px rgba(252, 211, 77, 0.6));
+            opacity: 1;
+            animation: pulse-glow 4s ease-in-out infinite;
         }
 
         .qr-placeholder {

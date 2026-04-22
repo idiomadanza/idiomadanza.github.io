@@ -120,10 +120,10 @@ const danceSchoolSchema = {
     <header class="sticky top-0 z-50 w-full backdrop-blur-md bg-white/70 dark:bg-brand-dark/80 border-b border-white/10">
       <nav class="container mx-auto px-4 py-4 flex justify-between items-center">
         <a href="/" class="flex items-center gap-4 group">
-          <div class="relative w-12 h-12 rounded-full overflow-hidden border-2 border-brand-glow/30">
+          <div class="relative w-12 h-12 rounded-full overflow-hidden border-2 border-brand-glow/60 shadow-glow-amber animate-pulse-glow transition-transform duration-300 group-hover:scale-105">
             <Image src={logoImg} alt="Logo" width={48} height={48} class="p-1" decoding="async" />
           </div>
-          <span class="text-2xl font-display font-bold text-brand-rose">Idiomadanza</span>
+          <span class="text-2xl font-display font-bold text-brand-rose drop-shadow-[0_0_10px_rgba(139,92,246,0.3)]">Idiomadanza</span>
         </a>
         <div class="hidden md:flex gap-8 items-center font-medium">
           <a href="/kurse" class="hover:text-brand-rose transition-colors">Kurse</a>
@@ -133,8 +133,61 @@ const danceSchoolSchema = {
           <a href="/blog" class="hover:text-brand-rose transition-colors">Journal</a>
           <a href="/kontakt" class="bg-brand-rose px-6 py-2 rounded-full text-white shadow-glow-rose hover:-translate-y-0.5 transition-all">Probestunde</a>
         </div>
+
+        <!-- Mobile Menu Button -->
+        <button id="menu-toggle" class="md:hidden p-2 text-brand-rose focus:outline-none group/menu" aria-label="Menü öffnen">
+          <div class="relative w-8 h-6 flex flex-col justify-between">
+            <span class="w-8 h-1 bg-brand-rose rounded-full transition-all duration-300 group-hover/menu:bg-brand-glow shadow-[0_0_8px_rgba(139,92,246,0.5)] animate-pulse-glow"></span>
+            <span class="w-6 h-1 bg-brand-rose rounded-full ml-auto transition-all duration-300 group-hover/menu:bg-brand-glow shadow-[0_0_8px_rgba(139,92,246,0.5)] animate-pulse-glow"></span>
+            <span class="w-8 h-1 bg-brand-rose rounded-full transition-all duration-300 group-hover/menu:bg-brand-glow shadow-[0_0_8px_rgba(139,92,246,0.5)] animate-pulse-glow"></span>
+          </div>
+        </button>
       </nav>
     </header>
+
+    <!-- Mobile Menu Overlay -->
+    <div id="mobile-menu" class="fixed inset-0 z-[60] bg-brand-dark/95 backdrop-blur-xl translate-x-full transition-transform duration-500 md:hidden flex flex-col items-center justify-center gap-10 text-3xl font-display">
+      <button id="menu-close" class="absolute top-6 right-6 p-4 text-brand-rose hover:text-brand-glow transition-colors" aria-label="Menü schließen">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 drop-shadow-[0_0_10px_rgba(139,92,246,0.5)]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+        </svg>
+      </button>
+      <a href="/kurse" class="hover:text-brand-rose transition-all hover:scale-110">Kurse</a>
+      <a href="/workshops" class="hover:text-brand-rose transition-all hover:scale-110">Workshops</a>
+      <a href="/ueber-uns" class="hover:text-brand-rose transition-all hover:scale-110">Über Uns</a>
+      <a href="/mitglied-werden" class="hover:text-brand-rose transition-all hover:scale-110">Mitgliedschaft</a>
+      <a href="/blog" class="hover:text-brand-rose transition-all hover:scale-110">Journal</a>
+      <a href="/kontakt" class="bg-brand-rose px-10 py-4 rounded-full text-white shadow-glow-rose hover:scale-105 transition-all mt-4 text-xl">Probestunde</a>
+    </div>
+
+    <script>
+      function setupMenu() {
+        const menuToggle = document.getElementById('menu-toggle');
+        const menuClose = document.getElementById('menu-close');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const menuLinks = mobileMenu?.querySelectorAll('a');
+
+        function toggleMenu() {
+          mobileMenu?.classList.toggle('translate-x-full');
+          document.body.classList.toggle('overflow-hidden');
+        }
+
+        menuToggle?.addEventListener('click', toggleMenu);
+        menuClose?.addEventListener('click', toggleMenu);
+        menuLinks?.forEach(link => {
+          link.addEventListener('click', () => {
+            mobileMenu?.classList.add('translate-x-full');
+            document.body.classList.remove('overflow-hidden');
+          });
+        });
+      }
+
+      // Initial setup
+      setupMenu();
+
+      // Re-setup on view transitions
+      document.addEventListener('astro:after-swap', setupMenu);
+    </script>
 
     <main class="flex-grow">
       <slot />
@@ -146,7 +199,7 @@ const danceSchoolSchema = {
           <!-- Brand & About -->
           <div class="space-y-6">
             <div class="flex items-center gap-4">
-              <div class="relative w-12 h-12 rounded-full overflow-hidden border border-brand-glow/30">
+              <div class="relative w-12 h-12 rounded-full overflow-hidden border border-brand-glow/60 shadow-glow-amber">
                 <Image src={logoImg} alt="Idiomadanza Logo" width={48} height={48} class="p-1" decoding="async" />
               </div>
               <span class="text-2xl font-display font-bold text-brand-rose">Idiomadanza e.V.</span>
