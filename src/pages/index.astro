@@ -83,10 +83,10 @@ const danceSchoolSchema = {
         {latestPost && (
           <a href={`/blog/${latestPost.id}`} class="group bg-white/70 dark:bg-brand-dark/50 border border-brand-dark/10 rounded-2xl overflow-hidden shadow-glass hover:shadow-glow-rose transition-all hover:-translate-y-2 flex flex-col h-full">
             <div class="aspect-video overflow-hidden relative">
-              <Image src={blogFallbackImg} alt={latestPost.data.title} class="w-full h-full object-cover" />
+              <Image src={blogFallbackImg} alt={latestPost.data.title} width={600} height={338} loading="lazy" decoding="async" class="w-full h-full object-cover" />
             </div>
             <div class="p-6 flex-grow">
-              <h4 class="text-xl font-display font-bold text-brand-dark dark:text-white">{latestPost.data.title}</h4>
+              <h3 class="text-xl font-display font-bold text-brand-dark dark:text-white">{latestPost.data.title}</h3>
               <p class="text-sm opacity-70 mt-2 line-clamp-3">{latestPost.data.excerpt}</p>
             </div>
           </a>
@@ -100,6 +100,10 @@ const danceSchoolSchema = {
               <Image 
                 src={workshop.data.image} 
                 alt={workshop.data.title} 
+                width={600}
+                height={338}
+                loading="lazy"
+                decoding="async"
                 class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" 
               />
               <div class="absolute top-4 left-4 bg-brand-rose text-white text-[10px] font-bold uppercase px-3 py-1 rounded-full shadow-lg">
@@ -109,9 +113,9 @@ const danceSchoolSchema = {
 
             {/* Content Bereich */}
             <div class="p-6 flex flex-col flex-grow">
-              <h4 class="text-xl font-display font-bold text-brand-dark dark:text-white leading-tight mb-2">
+              <h3 class="text-xl font-display font-bold text-brand-dark dark:text-white leading-tight mb-2">
                 {workshop.data.title}
-              </h4>
+              </h3>
               
               <p class="text-sm opacity-70 mb-6 line-clamp-2 dark:text-white/70">
                 {workshop.data.description}
@@ -153,10 +157,14 @@ const danceSchoolSchema = {
             <Image 
               src={teamGroupImg} 
               alt="Idiomadanza Team" 
+              width={1200}
+              height={800}
+              loading="lazy"
+              decoding="async"
               class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500 scale-105"
             />
           </div>
-          <div class="absolute -bottom-8 -right-8 bg-brand-dark/80 backdrop-blur-md p-6 rounded-2xl border border-white/10 hidden md:block shadow-glow-rose z-20">
+          <div class="absolute -bottom-8 -right-8 bg-white/10 backdrop-blur-md p-6 rounded-2xl border border-white/20 hidden md:block shadow-glow-rose z-20">
             <div class="text-3xl font-bold text-brand-rose mb-1 text-center">13</div>
             <div class="text-[10px] uppercase tracking-widest font-bold text-white/60">Trainer</div>
           </div>
@@ -179,7 +187,7 @@ const danceSchoolSchema = {
   {/* Testimonials */}
   <section id="testimonials" class="relative py-32 overflow-hidden bg-brand-dark">
     <div class="absolute inset-0 z-0 opacity-20">
-      <Image src={testimonialsBg} alt="Atmosphere" class="w-full h-full object-cover" />
+      <Image src={testimonialsBg} alt="Atmosphere" width={1920} height={1080} loading="lazy" decoding="async" class="w-full h-full object-cover" />
     </div>
     
     <div class="container mx-auto px-4 relative z-10">
@@ -192,7 +200,7 @@ const danceSchoolSchema = {
         {testimonials.map((t) => (
           <div class="group bg-white/5 backdrop-blur-xl p-8 rounded-2xl border border-white/10 flex flex-col items-center text-center shadow-glass hover:border-brand-rose/50 transition-all duration-500 hover:-translate-y-2">
             <div class="w-20 h-20 mb-6 rounded-full border-4 border-brand-rose/30 group-hover:border-brand-rose overflow-hidden transition-colors shadow-glow-rose">
-              <Image src={t.data.image} alt={t.data.name} class="w-full h-full object-cover" />
+              <Image src={t.data.image} alt={t.data.name} width={80} height={80} loading="lazy" decoding="async" class="w-full h-full object-cover" />
             </div>
             
             <div class="flex gap-1 mb-4">
@@ -237,9 +245,9 @@ const danceSchoolSchema = {
         </p>
         <input type="hidden" name="form-name" value="home-probestunde" />
         
-        <input type="text" name="name" required placeholder="Dein Name" class="w-full bg-white/10 border border-white/20 rounded-xl px-6 py-4 outline-none focus:border-brand-rose transition-colors">
-        <input type="email" name="email" required placeholder="E-Mail Adresse" class="w-full bg-white/10 border border-white/20 rounded-xl px-6 py-4 outline-none focus:border-brand-rose transition-colors">
-        <button type="submit" class="w-full bg-brand-rose py-4 rounded-xl font-bold shadow-glow-rose hover:-translate-y-1 transition-all">Anfrage senden</button>
+        <input type="text" name="name" required placeholder="Dein Name" class="w-full bg-white/10 border border-white/20 rounded-xl px-6 py-4 outline-none focus:ring-2 focus:ring-brand-rose focus:border-transparent transition-colors">
+        <input type="email" name="email" required placeholder="E-Mail Adresse" class="w-full bg-white/10 border border-white/20 rounded-xl px-6 py-4 outline-none focus:ring-2 focus:ring-brand-rose focus:border-transparent transition-colors">
+        <button type="submit" class="w-full bg-brand-rose py-4 rounded-xl font-bold shadow-glow-rose hover:-translate-y-1 focus:outline-none focus:ring-2 focus:ring-brand-rose focus:ring-offset-2 focus:ring-offset-brand-dark transition-all">Anfrage senden</button>
       </form>
     </div>
   </section>

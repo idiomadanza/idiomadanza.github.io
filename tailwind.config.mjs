@@ -6,7 +6,7 @@ export default {
     extend: {
       colors: {
         brand: {
-          rose: '#8B5CF6',    // Electric Violet (replacing Red)
+          rose: '#7C3AED',    // Electric Violet (WCAG AA compliant contrast)
           glow: '#FCD34D',    // Amber Glow (Gold) - kept as is to match logo
           dark: '#020617',    // Deep slate/black
           light: '#F8FAFC',   // Soft Shell
