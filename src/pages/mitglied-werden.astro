@@ -253,7 +253,7 @@ import aboutBg from '../assets/images/about/about-bg.png';
       // Honeypot Check
       const botField = (document.getElementById('bot-field') as HTMLInputElement)?.value;
       if (botField) {
-        console.warn('Bot detected');
+        // Silent bot detection - return without submitting
         return;
       }
       
@@ -290,8 +290,7 @@ import aboutBg from '../assets/images/about/about-bg.png';
         if (btnText) btnText.textContent = 'Antrag erfolgreich!';
         btnSpinner?.classList.add('hidden');
 
-      } catch (error) {
-        console.error('Error:', error);
+      } catch (_err) {
         feedback?.classList.remove('hidden', 'bg-green-500/10', 'text-green-500');
         feedback?.classList.add('bg-red-500/10', 'text-red-500', 'block');
         if (feedback) feedback.textContent = 'Es gab ein Problem. Bitte versuche es später erneut oder kontaktiere uns direkt.';
