@@ -75,13 +75,19 @@ const slides = workshops.map(w => ({
             border: 1px solid rgba(255, 255, 255, 0.1);
         }
 
+        @keyframes pulse-glow {
+            0%, 100% { filter: drop-shadow(0 0 15px rgba(252, 211, 77, 0.4)); }
+            50% { filter: drop-shadow(0 0 35px rgba(252, 211, 77, 0.8)); }
+        }
+
         .logo {
             position: absolute;
             top: 2rem;
             left: 2rem;
             width: 120px;
-            filter: drop-shadow(0 0 10px rgba(252, 211, 77, 0.3));
-            opacity: 0.8;
+            filter: drop-shadow(0 0 25px rgba(252, 211, 77, 0.6));
+            opacity: 1;
+            animation: pulse-glow 4s ease-in-out infinite;
         }
 
         .qr-placeholder {
@@ -106,11 +112,11 @@ const slides = workshops.map(w => ({
     <div class="slide-container" id="carousel">
         {slides.map((slide, index) => (
             <div class={`slide ${index === 0 ? 'active' : ''}`} data-index={index}>
-                <Image src={slide.image} alt={slide.title} class="slide-img" />
+                <Image src={slide.image} alt={slide.title} class="slide-img" width={1920} height={1080} decoding="async" />
                 <Image src={logoImg} class="logo" alt="Logo" width={120} height={120} />
                 <div class="overlay">
                     <div class="qr-placeholder flex items-center justify-center">
-                        <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://idiomadanza.de/workshops" alt="QR Code" />
+                        <Image src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://idiomadanza.de/workshops" alt="QR Code" width={150} height={150} />
                     </div>
                     <span>Workshops & Info</span>
                 </div>

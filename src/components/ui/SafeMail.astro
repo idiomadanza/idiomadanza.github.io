@@ -1,0 +1,45 @@
+---
+interface Props {
+  email: string;
+  class?: string;
+}
+
+const { email, class: className } = Astro.props;
+
+// Simple Base64 encoding for the email address
+const base64Email = Buffer.from(email).toString('base64');
+---
+
+<a 
+  href="#" 
+  data-enc={base64Email} 
+  class:list={["email-safe", className]}
+>
+  <slot>
+    {email.replace('@', ' [at] ')}
+  </slot>
+</a>
+
+<script>
+  const decodeEmails = () => {
+    document.querySelectorAll('.email-safe').forEach((el) => {
+      const enc = el.getAttribute('data-enc');
+      if (enc) {
+        try {
+          const email = atob(enc);
+          (el as HTMLAnchorElement).href = `mailto:${email}`;
+          // If the slot is empty or still contains [at], we update the text
+          if (el.textContent?.includes('[at]')) {
+            el.textContent = email;
+          }
+        } catch (e) {
+          console.error("Failed to decode email", e);
+        }
+      }
+    });
+  };
+
+  // Initial decode and after Astro view transitions
+  decodeEmails();
+  document.addEventListener('astro:after-swap', decodeEmails);
+</script>

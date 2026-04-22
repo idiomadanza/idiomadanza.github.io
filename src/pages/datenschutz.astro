@@ -1,5 +1,6 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import SafeMail from '../components/ui/SafeMail.astro';
 ---
 
 <Layout title="Datenschutz | Idiomadanza e.V." description="Datenschutzerklärung des Idiomadanza e.V. (Regensburg) – Informationen zur Verarbeitung personenbezogener Daten.">
@@ -20,7 +21,7 @@ import Layout from '../layouts/Layout.astro';
         <div class="mt-4 p-6 bg-brand-rose/5 border border-brand-rose/10 rounded-lg">
           <p><strong>Idiomadanza e.V.</strong><br />
           Isarstr. 85, 93057 Regensburg<br />
-          E-Mail: <a href="#" data-email="mail|idiomadanza.de" class="email-decode text-brand-rose">mail [at] idiomadanza.de</a><br />
+          E-Mail: <SafeMail email="mail@idiomadanza.de" class="text-brand-rose" /><br />
           Web: <a href="https://idiomadanza.de" class="text-brand-rose">www.idiomadanza.de</a></p>
         </div>
       </section>
