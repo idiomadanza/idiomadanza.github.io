@@ -30,7 +30,7 @@ const overviewTeam = [
   <!-- HERO SECTION -->
   <section class="relative py-24 md:py-32 lg:py-48 overflow-hidden bg-brand-dark">
     <div class="absolute inset-0 z-0">
-      <Image src={heroBg} alt="Hero Background" class="w-full h-full object-cover opacity-50 blur-[2px]" />
+      <Image src={heroBg} alt="Hero Background" width={1920} height={1080} loading="lazy" decoding="async" class="w-full h-full object-cover opacity-50 blur-[2px]" />
       <div class="absolute inset-0 bg-gradient-to-b from-brand-dark/80 via-brand-dark/60 to-brand-dark"></div>
     </div>
     
@@ -83,6 +83,10 @@ const overviewTeam = [
                 <Image 
                   src={member.data.image} 
                   alt={member.data.name} 
+                  width={400}
+                  height={400}
+                  loading="lazy"
+                  decoding="async"
                   class={`w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500 scale-110 group-hover:scale-100 ${member.data.imagePosition}`}
                 />
               </div>
@@ -165,6 +169,10 @@ const overviewTeam = [
                 <Image 
                   src={member.data.image} 
                   alt={member.data.name} 
+                  width={400}
+                  height={500}
+                  loading="lazy"
+                  decoding="async"
                   class={`w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700 ${member.data.imagePosition || 'object-center'}`} 
                 />
                 <div class="absolute inset-0 bg-gradient-to-t from-brand-dark via-brand-dark/20 to-transparent opacity-90"></div>
