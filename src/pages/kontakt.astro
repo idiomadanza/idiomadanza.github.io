@@ -3,12 +3,36 @@ import Layout from '../layouts/Layout.astro';
 import { Image } from 'astro:assets';
 import contactBg from '../assets/images/testimonials/bg.png';
 import SafeMail from '../components/ui/SafeMail.astro';
+import FAQAccordion from '../components/FAQAccordion.astro';
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Kann ich eine kostenlose Probestunde machen?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Ja! Bei Idiomadanza e.V. ist die erste Schnupperstunde (z. B. in der Bachata Influence Session am Mittwoch) kostenlos. Eine kurze Anmeldung via WhatsApp oder Kontaktformular genügt." }
+    },
+    {
+      "@type": "Question",
+      "name": "Brauche ich einen Tanzpartner?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Nein. In unseren Kursen wird regelmäßig gewechselt. Du lernst so das Führen und Folgen viel effektiver. Du kannst allein, mit Freunden oder als Paar kommen." }
+    },
+    {
+      "@type": "Question",
+      "name": "Wie sind die Kündigungsfristen?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Unsere Mitgliedschaft hat eine Mindestlaufzeit von 3 Monaten. Danach ist sie flexibel monatlich kündbar." }
+    }
+  ]
+};
 ---
 
 <Layout 
   title="Kontakt & Anmeldung | Idiomadanza e.V. – Tanzverein Regensburg"
   description="Kontaktiere Idiomadanza e.V. in Regensburg: Probestunde anfragen, Mitglied werden oder Workshop-Infos erhalten. High-End Dance-Education meets Community Spirit."
 >
+  <script slot="head" type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
   <!-- HERO SECTION -->
   <section class="relative py-20 overflow-hidden bg-brand-dark">
     <div class="absolute inset-0 z-0">
@@ -175,6 +199,37 @@ import SafeMail from '../components/ui/SafeMail.astro';
 (Jeden Dienstag ab 18 Uhr)</p>
              <a href="https://maps.app.goo.gl/3YF5Xq6Z6vWv8q9T7" target="_blank" rel="noopener noreferrer" class="text-brand-rose font-bold text-xs uppercase tracking-widest hover:text-brand-glow transition-colors">Route berechnen →</a>
           </div>
+        </div>
+      </div>
+
+      <!-- FAQ SECTION -->
+      <div class="mt-24 max-w-4xl mx-auto animate-fade-in">
+        <div class="text-center mb-12">
+          <h3 class="text-3xl font-display font-bold dark:text-white">Häufige <span class="text-brand-rose">Fragen</span></h3>
+          <p class="opacity-60 dark:text-brand-light/60 mt-2">Alles was du über den Einstieg bei Idiomadanza e.V. wissen musst.</p>
+        </div>
+        
+        <div class="space-y-4">
+          <FAQAccordion 
+            question="Kann ich eine kostenlose Probestunde machen?" 
+            answer="Ja! Bei Idiomadanza e.V. ist die erste Schnupperstunde (z. B. in der Bachata Influence Session am Mittwoch) kostenlos. Eine kurze Anmeldung via WhatsApp oder Kontaktformular genügt." 
+          />
+          <FAQAccordion 
+            question="Brauche ich einen Tanzpartner?" 
+            answer="Nein. In unseren Kursen wird regelmäßig gewechselt. Du lernst so das Führen und Folgen viel effektiver. Du kannst allein, mit Freunden oder als Paar kommen." 
+          />
+          <FAQAccordion 
+            question="Wie sind die Kündigungsfristen?" 
+            answer="Unsere Mitgliedschaft hat eine Mindestlaufzeit von 3 Monaten. Danach ist sie flexibel monatlich kündbar." 
+          />
+          <FAQAccordion 
+            question="Welche Schuhe und Kleidung brauche ich?" 
+            answer="Bequeme Alltagskleidung ist ideal. Saubere Sneaker, Hallenschuhe oder Socken genügen. Wichtig: Keine Straßenschuhe auf der Tanzfläche!" 
+          />
+          <FAQAccordion 
+            question="Muss ich Salsa können, um Bachata zu lernen?" 
+            answer="Nein. Bachata und Salsa sind eigenständige Tänze. Unsere Anfängerkurs erfordern keinerlei Vorkenntnisse." 
+          />
         </div>
       </div>
     </div>

@@ -1,0 +1,21 @@
+---
+import Box from './primitives/Box.astro';
+import Text from './primitives/Text.astro';
+
+interface Props {
+  question: string;
+  answer: string;
+}
+
+const { question, answer } = Astro.props;
+---
+
+<Box as="details" class="group bg-brand-dark border border-white/10 rounded-idioma overflow-hidden mb-4">
+  <summary class="cursor-pointer p-6 font-bold text-white flex justify-between items-center hover:bg-white/5 transition-colors focus:outline-none focus:ring-2 focus:ring-brand-rose focus:ring-offset-2 focus:ring-offset-brand-dark" aria-label={`Frage aufklappen: ${question}`}>
+    <Text as="span" size="lg" family="display">{question}</Text>
+    <span class="text-brand-rose group-open:rotate-180 transition-transform duration-300" aria-hidden="true">▼</span>
+  </summary>
+  <Box padding="p-6 pt-0" class="text-white/70">
+    <Text>{answer}</Text>
+  </Box>
+</Box>

@@ -115,6 +115,7 @@ const danceSchoolSchema = {
 
     <script type="application/ld+json" set:html={JSON.stringify(danceSchoolSchema)} />
     {breadcrumbSchema && <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />}
+    <slot name="head" />
   </head>
   <body class="font-sans min-h-screen flex flex-col bg-brand-light dark:bg-brand-dark text-brand-dark dark:text-white">
     <header class="sticky top-0 z-50 w-full backdrop-blur-md bg-white/70 dark:bg-brand-dark/80 border-b border-white/10">
