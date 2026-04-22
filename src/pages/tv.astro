@@ -106,11 +106,11 @@ const slides = workshops.map(w => ({
     <div class="slide-container" id="carousel">
         {slides.map((slide, index) => (
             <div class={`slide ${index === 0 ? 'active' : ''}`} data-index={index}>
-                <Image src={slide.image} alt={slide.title} class="slide-img" />
+                <Image src={slide.image} alt={slide.title} class="slide-img" width={1920} height={1080} decoding="async" />
                 <Image src={logoImg} class="logo" alt="Logo" width={120} height={120} />
                 <div class="overlay">
                     <div class="qr-placeholder flex items-center justify-center">
-                        <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://idiomadanza.de/workshops" alt="QR Code" />
+                        <Image src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://idiomadanza.de/workshops" alt="QR Code" width={150} height={150} />
                     </div>
                     <span>Workshops & Info</span>
                 </div>

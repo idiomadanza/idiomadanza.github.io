@@ -3,6 +3,7 @@ import { ClientRouter } from 'astro:transitions';
 import { Image } from 'astro:assets';
 import '../styles/global.css';
 import CookieBanner from '../components/CookieBanner.astro';
+import SafeMail from '../components/ui/SafeMail.astro';
 import logoImg from '../assets/images/logo.png';
 
 interface Props {
@@ -14,7 +15,7 @@ interface Props {
 
 const { 
   title, 
-  description = "Idiomadanza e.V. – Bachata und Salsa Tanzkurse in Regensburg.",
+  description = "Idiomadanza e.V. – High-End Dance-Education meets Community Spirit. Bachata und Salsa Tanzkurse in Regensburg.",
   canonical,
   ogImage = "/images/og-default.png"
 } = Astro.props;
@@ -22,7 +23,7 @@ const {
 const siteUrl = "https://idiomadanza.de";
 const canonicalUrl = canonical ? `${siteUrl}${canonical}` : `${siteUrl}${Astro.url.pathname}`;
 
-// Breadcrumb-Logik (Sicher deklariert)
+// Breadcrumb-Logik
 const pathSegments = Astro.url.pathname.split('/').filter(Boolean);
 const breadcrumbLabels: Record<string, string> = {
   'kurse': 'Tanzkurse',
@@ -51,6 +52,33 @@ const breadcrumbSchema = autoBreadcrumb.length > 0 ? {
     }))
   ]
 } : null;
+
+const danceSchoolSchema = {
+  "@context": "https://schema.org",
+  "@type": "DanceSchool",
+  "name": "Idiomadanza e.V.",
+  "description": "Bachata & Salsa Tanzverein in Regensburg. High-End Dance-Education meets Community Spirit.",
+  "url": "https://idiomadanza.de",
+  "logo": "https://idiomadanza.de/favicon.png",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "Isarstr. 85",
+    "addressLocality": "Regensburg",
+    "postalCode": "93057",
+    "addressCountry": "DE"
+  },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": 49.0245,
+    "longitude": 12.1158
+  },
+  "telephone": "+4915678659226",
+  "openingHours": "Tu 18:00-21:00, We 18:00-21:00",
+  "sameAs": [
+    "https://instagram.com/idiomadanza",
+    "https://facebook.com/idiomadanza"
+  ]
+};
 ---
 
 <!DOCTYPE html>
@@ -62,6 +90,7 @@ const breadcrumbSchema = autoBreadcrumb.length > 0 ? {
     
     <!-- Critical Font Preloading -->
     <link rel="preload" href="/fonts/inter-400.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/fonts/golos-text-v7-latin_latin-ext-regular.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="preload" href="/fonts/playfair-400.woff2" as="font" type="font/woff2" crossorigin />
 
     <ClientRouter />
@@ -84,6 +113,7 @@ const breadcrumbSchema = autoBreadcrumb.length > 0 ? {
     <meta property="twitter:description" content={description} />
     <meta property="twitter:image" content={new URL(ogImage, siteUrl)} />
 
+    <script type="application/ld+json" set:html={JSON.stringify(danceSchoolSchema)} />
     {breadcrumbSchema && <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />}
   </head>
   <body class="font-sans min-h-screen flex flex-col bg-brand-light dark:bg-brand-dark text-brand-dark dark:text-white">
@@ -91,7 +121,7 @@ const breadcrumbSchema = autoBreadcrumb.length > 0 ? {
       <nav class="container mx-auto px-4 py-4 flex justify-between items-center">
         <a href="/" class="flex items-center gap-4 group">
           <div class="relative w-12 h-12 rounded-full overflow-hidden border-2 border-brand-glow/30">
-            <Image src={logoImg} alt="Logo" width={48} height={48} class="p-1" />
+            <Image src={logoImg} alt="Logo" width={48} height={48} class="p-1" decoding="async" />
           </div>
           <span class="text-2xl font-display font-bold text-brand-rose">Idiomadanza</span>
         </a>
@@ -117,7 +147,7 @@ const breadcrumbSchema = autoBreadcrumb.length > 0 ? {
           <div class="space-y-6">
             <div class="flex items-center gap-4">
               <div class="relative w-12 h-12 rounded-full overflow-hidden border border-brand-glow/30">
-                <Image src={logoImg} alt="Idiomadanza Logo" width={48} height={48} class="p-1" />
+                <Image src={logoImg} alt="Idiomadanza Logo" width={48} height={48} class="p-1" decoding="async" />
               </div>
               <span class="text-2xl font-display font-bold text-brand-rose">Idiomadanza e.V.</span>
             </div>
@@ -129,7 +159,7 @@ const breadcrumbSchema = autoBreadcrumb.length > 0 ? {
           <!-- Legal -->
           <div class="space-y-6">
             <h3 class="text-xs font-bold uppercase tracking-[0.2em] text-brand-glow">Rechtliches</h3>
-            <ul class="space-y-4 text-sm text-white/60">
+            <ul class="space-y-6 text-sm text-white/60">
               <li><a href="/impressum" class="hover:text-brand-rose transition-colors">Impressum</a></li>
               <li><a href="/datenschutz" class="hover:text-brand-rose transition-colors">Datenschutz</a></li>
               <li><a href="/cookie-richtlinie" class="hover:text-brand-rose transition-colors">Cookies</a></li>
@@ -142,7 +172,7 @@ const breadcrumbSchema = autoBreadcrumb.length > 0 ? {
           <!-- Explore -->
           <div class="space-y-6">
             <h3 class="text-xs font-bold uppercase tracking-[0.2em] text-brand-glow">Entdecken</h3>
-            <ul class="space-y-4 text-sm text-white/60">
+            <ul class="space-y-6 text-sm text-white/60">
               <li><a href="/kurse" class="hover:text-brand-rose transition-colors">Wöchentliche Kurse</a></li>
               <li><a href="/kurse#preise" class="hover:text-brand-rose transition-colors">Preise & Mitgliedschaft</a></li>
               <li><a href="/ueber-uns" class="hover:text-brand-rose transition-colors">Über den Verein</a></li>
@@ -153,7 +183,7 @@ const breadcrumbSchema = autoBreadcrumb.length > 0 ? {
           <!-- Contact -->
           <div class="space-y-6">
             <h3 class="text-xs font-bold uppercase tracking-[0.2em] text-brand-glow">Kontakt</h3>
-            <ul class="space-y-4 text-sm text-white/60">
+            <ul class="space-y-6 text-sm text-white/60">
               <li class="flex items-start gap-3">
                 <span class="text-brand-rose">📍</span>
                 <span>Isarstr. 85, 93057 Regensburg</span>
@@ -164,7 +194,7 @@ const breadcrumbSchema = autoBreadcrumb.length > 0 ? {
               </li>
               <li class="flex items-start gap-3">
                 <span class="text-brand-rose">📧</span>
-                <a href="#" data-email="mail|idiomadanza.de" class="email-decode hover:text-brand-rose transition-colors">mail [at] idiomadanza.de</a>
+                <SafeMail email="mail@idiomadanza.de" class="hover:text-brand-rose transition-colors" />
               </li>
             </ul>
           </div>
@@ -172,7 +202,7 @@ const breadcrumbSchema = autoBreadcrumb.length > 0 ? {
 
         <div class="pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-white/30">
           <p>&copy; {new Date().getFullYear()} Idiomadanza e.V. Alle Rechte vorbehalten.</p>
-          <div class="flex gap-6">
+          <div class="flex gap-8">
             <a href="https://instagram.com/idiomadanza" target="_blank" rel="noopener" aria-label="Idiomadanza auf Instagram" class="hover:text-brand-rose transition-colors">Instagram</a>
             <a href="https://facebook.com/idiomadanza" target="_blank" rel="noopener" aria-label="Idiomadanza auf Facebook" class="hover:text-brand-rose transition-colors">Facebook</a>
           </div>
@@ -180,25 +210,5 @@ const breadcrumbSchema = autoBreadcrumb.length > 0 ? {
       </div>
     </footer>
     <CookieBanner />
-
-    <!-- Anti-Spam Email Decoder -->
-    <script>
-      const decodeEmails = () => {
-        document.querySelectorAll('.email-decode').forEach((el) => {
-          const email = el.getAttribute('data-email')?.replace('|', '@');
-          if (email) {
-            (el as HTMLAnchorElement).href = `mailto:${email}`;
-            // Optional: Restore text if it contains [at]
-            if (el.textContent?.includes('[at]')) {
-              el.textContent = email;
-            }
-          }
-        });
-      };
-      
-      // Run on load and after view transitions
-      decodeEmails();
-      document.addEventListener('astro:after-swap', decodeEmails);
-    </script>
   </body>
 </html>

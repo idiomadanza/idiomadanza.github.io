@@ -19,44 +19,12 @@ const testimonials = await getCollection('testimonials') || [];
 import blogFallbackImg from '../assets/images/testimonials/bg.png';
 import testimonialsBg from '../assets/images/testimonials/bg.png';
 import teamGroupImg from '../assets/images/team/team-group-cropped.png';
-
-// 4. Team-Collage vorbereiten (wie auf Über Uns)
-// (Nicht mehr benötigt, da durch Gruppenbild ersetzt)
-
-const danceSchoolSchema = {
-  "@context": "https://schema.org",
-  "@type": "DanceSchool",
-  "name": "Idiomadanza e.V.",
-  "description": "Bachata & Salsa Tanzverein in Regensburg. Höchste tänzerische Qualität trifft auf echte Gemeinschaft.",
-  "url": "https://idiomadanza.de",
-  "logo": "https://idiomadanza.de/favicon.png",
-  "address": {
-    "@type": "PostalAddress",
-    "streetAddress": "Isarstr. 85",
-    "addressLocality": "Regensburg",
-    "postalCode": "93057",
-    "addressCountry": "DE"
-  },
-  "geo": {
-    "@type": "GeoCoordinates",
-    "latitude": 49.0245,
-    "longitude": 12.1158
-  },
-  "telephone": "+4915678659226",
-  "openingHours": "Tu 18:00-21:00, We 18:00-21:00",
-  "sameAs": [
-    "https://instagram.com/idiomadanza",
-    "https://facebook.com/idiomadanza"
-  ]
-};
 ---
 
 <Layout 
   title="Idiomadanza e.V. | Bachata & Salsa Tanzkurse in Regensburg"
   description="Lerne Bachata und Salsa in Regensburg bei Idiomadanza e.V. – Qualität und Gemeinschaft."
 >
-  <script type="application/ld+json" set:html={JSON.stringify(danceSchoolSchema)} />
-  
   <HeroSection 
     title="Deine Sprache. Dein Rhythmus. Dein Verein."
     subtitle="Erlebe Bachata & Salsa in Regensburg. Höchste tänzerische Qualität trifft auf echte Gemeinschaft."
@@ -144,8 +112,6 @@ const danceSchoolSchema = {
       </div>
     </div>
   </section>
-
-
 
   {/* Team Collage Section */}
   <section class="py-24 bg-brand-dark/95 relative overflow-hidden">

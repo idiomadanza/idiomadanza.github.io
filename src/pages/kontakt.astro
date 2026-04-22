@@ -2,16 +2,24 @@
 import Layout from '../layouts/Layout.astro';
 import { Image } from 'astro:assets';
 import contactBg from '../assets/images/testimonials/bg.png';
+import SafeMail from '../components/ui/SafeMail.astro';
 ---
 
 <Layout 
   title="Kontakt & Anmeldung | Idiomadanza e.V. – Tanzverein Regensburg"
-  description="Kontaktiere Idiomadanza e.V. in Regensburg: Probestunde anfragen, Mitglied werden oder Workshop-Infos erhalten. Wir freuen uns auf dich!"
+  description="Kontaktiere Idiomadanza e.V. in Regensburg: Probestunde anfragen, Mitglied werden oder Workshop-Infos erhalten. High-End Dance-Education meets Community Spirit."
 >
   <!-- HERO SECTION -->
   <section class="relative py-20 overflow-hidden bg-brand-dark">
     <div class="absolute inset-0 z-0">
-      <Image src={contactBg} alt="Contact Background" class="w-full h-full object-cover opacity-20 blur-[1px]" />
+      <Image 
+        src={contactBg} 
+        alt="Contact Background" 
+        width={1920}
+        height={1080}
+        decoding="async"
+        class="w-full h-full object-cover opacity-20 blur-[1px]" 
+      />
       <div class="absolute inset-0 bg-gradient-to-b from-brand-dark/90 via-brand-dark/60 to-brand-dark"></div>
     </div>
     
@@ -116,7 +124,7 @@ import contactBg from '../assets/images/testimonials/bg.png';
             </div>
             <div>
               <h4 class="font-bold mb-1 dark:text-white">Email</h4>
-              <a href="#" data-email="mail|idiomadanza.de" class="email-decode text-sm text-brand-rose hover:text-brand-glow font-bold transition-colors">mail [at] idiomadanza.de</a>
+              <SafeMail email="mail@idiomadanza.de" class="text-sm font-bold" />
             </div>
           </div>
         </div>
@@ -207,6 +215,4 @@ import contactBg from '../assets/images/testimonials/bg.png';
     // Re-check periodically or on storage changes
     window.addEventListener('storage', updateMap);
   </script>
-
-
 </Layout>

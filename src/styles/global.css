@@ -1,8 +1,8 @@
 @import "tailwindcss";
 
 @theme {
-  --font-display: "Playfair Display", serif;
-  --font-sans: "Inter", sans-serif;
+  --font-display: "Golos Text", "Playfair Display", serif;
+  --font-sans: "Inter", "Golos Text", sans-serif;
 
   --color-brand-dark: #020617;
   --color-brand-darker: #010411;
@@ -26,6 +26,9 @@
   --shadow-glow-rose: 0 0 15px rgba(139, 92, 246, 0.5);
   --shadow-glow-amber: 0 0 15px rgba(252, 211, 77, 0.5);
   --shadow-glass: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+
+  /* Tap Target Accessibility */
+  --size-touch-target: 44px;
 }
 
 
@@ -36,6 +39,22 @@
   font-weight: 400 700;
   font-display: swap;
   src: url('/fonts/inter-400.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Golos Text';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('/fonts/golos-text-v7-latin_latin-ext-regular.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Golos Text';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url('/fonts/golos-text-v7-latin_latin-ext-700.woff2') format('woff2');
 }
 
 @font-face {
