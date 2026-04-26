@@ -1,0 +1,77 @@
+---
+import { Image } from 'astro:assets';
+
+interface CarouselImage {
+  src: ImageMetadata;
+  position?: string;
+}
+
+interface Props {
+  images: (ImageMetadata | CarouselImage)[];
+  alt: string;
+  class?: string;
+}
+
+const { images, alt, class: className } = Astro.props;
+---
+
+<div class={`relative overflow-hidden ${className}`} id="image-carousel">
+  {images.map((imgData, index) => {
+    const src = 'src' in imgData ? imgData.src : imgData;
+    const position = 'position' in imgData ? imgData.position : 'object-center';
+    
+    return (
+      <div 
+        class={`absolute inset-0 transition-opacity duration-1000 ease-in-out ${index === 0 ? 'opacity-100 z-10' : 'opacity-0 z-0'} carousel-item`}
+        data-index={index}
+      >
+        <Image 
+          src={src} 
+          alt={`${alt} - Bild ${index + 1}`} 
+          class={`w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-1000 scale-125 group-hover:scale-110 ${position}`}
+          width={1200}
+          height={800}
+        />
+        <div class="absolute inset-0 bg-gradient-to-t from-brand-dark/40 to-transparent opacity-60"></div>
+      </div>
+    );
+  })}
+</div>
+
+<script>
+  function setupCarousel() {
+    const carousel = document.getElementById('image-carousel');
+    if (!carousel) return;
+
+    const items = carousel.querySelectorAll('.carousel-item');
+    let currentIndex = 0;
+
+    if (items.length <= 1) return;
+
+    // Clear any existing intervals to prevent double-timers on re-renders/swaps
+    if (window.carouselInterval) clearInterval(window.carouselInterval);
+
+    window.carouselInterval = setInterval(() => {
+      // Current item fade out
+      items[currentIndex].classList.replace('opacity-100', 'opacity-0');
+      items[currentIndex].classList.replace('z-10', 'z-0');
+      
+      // Next item fade in
+      currentIndex = (currentIndex + 1) % items.length;
+      items[currentIndex].classList.replace('opacity-0', 'opacity-100');
+      items[currentIndex].classList.replace('z-10', 'z-0'); // Reset first
+      items[currentIndex].classList.add('z-10');
+    }, 5000);
+  }
+
+  // Type for global interval storage
+  declare global {
+    interface Window { carouselInterval: any; }
+  }
+
+  // Initial setup
+  setupCarousel();
+  
+  // Re-run after view transitions if applicable
+  document.addEventListener('astro:after-swap', setupCarousel);
+</script>
