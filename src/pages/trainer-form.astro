@@ -1,0 +1,507 @@
+---
+import Layout from '../layouts/Layout.astro';
+import trainersData from '../data/trainers.json';
+import scheduleData from '../data/schedule.json';
+
+// Token-Schutz (gleicher Token wie /trainer-check)
+const VALID_TOKEN = "idio-trainer-2026";
+const url = new URL(Astro.request.url);
+const token = url.searchParams.get('token');
+const isAuthorized = token === VALID_TOKEN;
+
+// Stammdaten für Client
+const trainers = trainersData;
+const initialSchedule = scheduleData;
+---
+
+<Layout
+  title="Trainer-Verwaltung | Idiomadanza e.V."
+  description="Planung, Übersicht und Abrechnung – Trainer-Management."
+>
+  <section class="py-24 bg-brand-dark min-h-screen">
+    <div class="container mx-auto px-4">
+      {!isAuthorized ? (
+        <div class="max-w-md mx-auto text-center">
+          <div class="bg-white/5 backdrop-blur-xl border border-rose-500/30 rounded-2xl p-8">
+            <h1 class="text-2xl font-display font-bold text-white mb-2">Zugriff verweigert</h1>
+            <p class="text-white/60 text-sm">
+              Diese Seite ist nur für Vorstand und Trainer mit gültigem Token zugänglich.
+            </p>
+          </div>
+        </div>
+      ) : (
+        <div class="max-w-6xl mx-auto">
+          <div class="text-center mb-12">
+            <h1 class="font-display text-4xl md:text-5xl font-bold text-white mb-4">
+              Trainer-<span class="text-brand-rose">Verwaltung</span>
+            </h1>
+            <p class="text-white/60">Planung · Übersicht · Abrechnung</p>
+          </div>
+
+          <!-- Tabs -->
+          <div class="flex flex-wrap gap-2 mb-8 justify-center">
+            <button data-tab="plan" class="tab-btn px-6 py-3 rounded-xl bg-brand-rose text-white font-bold uppercase tracking-widest text-xs">
+              📅 Planung
+            </button>
+            <button data-tab="overview" class="tab-btn px-6 py-3 rounded-xl bg-white/5 text-white/60 hover:bg-white/10 font-bold uppercase tracking-widest text-xs">
+              📊 Übersicht
+            </button>
+            <button data-tab="billing" class="tab-btn px-6 py-3 rounded-xl bg-white/5 text-white/60 hover:bg-white/10 font-bold uppercase tracking-widest text-xs">
+              💰 Billing
+            </button>
+          </div>
+
+          <!-- Tab: Planung -->
+          <div id="tab-plan" class="tab-content">
+            <div class="grid grid-cols-1 lg:grid-cols-[1fr_1.5fr] gap-6">
+              <!-- Formular -->
+              <div class="bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl p-6">
+                <h2 class="text-lg font-display font-bold text-white mb-4">
+                  <span class="text-brand-glow">+</span> Neuer Eintrag
+                </h2>
+                <form id="entry-form" class="space-y-3">
+                  <div>
+                    <label for="f-date" class="block text-xs uppercase tracking-widest text-brand-glow mb-1">Datum</label>
+                    <input id="f-date" type="date" required class="w-full bg-white/10 border border-white/20 rounded-xl px-4 py-2 outline-none focus:ring-2 focus:ring-brand-rose text-white" />
+                  </div>
+                  <div class="grid grid-cols-2 gap-2">
+                    <div>
+                      <label for="f-time" class="block text-xs uppercase tracking-widest text-brand-glow mb-1">Zeit</label>
+                      <input id="f-time" type="time" required value="20:00" class="w-full bg-white/10 border border-white/20 rounded-xl px-4 py-2 outline-none focus:ring-2 focus:ring-brand-rose text-white" />
+                    </div>
+                    <div>
+                      <label for="f-duration" class="block text-xs uppercase tracking-widest text-brand-glow mb-1">Dauer (h)</label>
+                      <input id="f-duration" type="number" step="0.5" min="0.5" max="8" required value="1.5" class="w-full bg-white/10 border border-white/20 rounded-xl px-4 py-2 outline-none focus:ring-2 focus:ring-brand-rose text-white" />
+                    </div>
+                  </div>
+                  <div>
+                    <label for="f-course" class="block text-xs uppercase tracking-widest text-brand-glow mb-1">Kurs</label>
+                    <input id="f-course" type="text" required placeholder="z.B. Bachata Foundations" class="w-full bg-white/10 border border-white/20 rounded-xl px-4 py-2 outline-none focus:ring-2 focus:ring-brand-rose text-white" />
+                  </div>
+                  <div>
+                    <label for="f-level" class="block text-xs uppercase tracking-widest text-brand-glow mb-1">Level</label>
+                    <input id="f-level" type="text" placeholder="z.B. Anfänger, Mittelstufe" class="w-full bg-white/10 border border-white/20 rounded-xl px-4 py-2 outline-none focus:ring-2 focus:ring-brand-rose text-white" />
+                  </div>
+                  <div>
+                    <label for="f-location" class="block text-xs uppercase tracking-widest text-brand-glow mb-1">Ort</label>
+                    <input id="f-location" type="text" value="Fortuna Regensburg" class="w-full bg-white/10 border border-white/20 rounded-xl px-4 py-2 outline-none focus:ring-2 focus:ring-brand-rose text-white" />
+                  </div>
+                  <div>
+                    <label for="f-trainer" class="block text-xs uppercase tracking-widest text-brand-glow mb-1">Trainer</label>
+                    <select id="f-trainer" required class="w-full bg-white/10 border border-white/20 rounded-xl px-4 py-2 outline-none focus:ring-2 focus:ring-brand-rose text-white">
+                      <option value="">– Trainer wählen –</option>
+                    </select>
+                    <p class="text-[10px] text-white/40 mt-1">Mehrere: Strg/Cmd + Klick</p>
+                  </div>
+                  <div>
+                    <label for="f-status" class="block text-xs uppercase tracking-widest text-brand-glow mb-1">Status</label>
+                    <select id="f-status" required class="w-full bg-white/10 border border-white/20 rounded-xl px-4 py-2 outline-none focus:ring-2 focus:ring-brand-rose text-white">
+                      <option value="scheduled">scheduled (Geplant)</option>
+                      <option value="performed">performed (Gehalten)</option>
+                      <option value="complete">complete (Abgerechnet)</option>
+                    </select>
+                  </div>
+                  <div>
+                    <label for="f-notes" class="block text-xs uppercase tracking-widest text-brand-glow mb-1">Notizen</label>
+                    <input id="f-notes" type="text" placeholder="Optional" class="w-full bg-white/10 border border-white/20 rounded-xl px-4 py-2 outline-none focus:ring-2 focus:ring-brand-rose text-white" />
+                  </div>
+                  <div class="flex gap-2 pt-2">
+                    <button type="submit" class="flex-1 bg-brand-rose text-white py-3 rounded-xl font-bold shadow-glow-rose hover:-translate-y-0.5 transition-all">
+                      + Eintrag hinzufügen
+                    </button>
+                  </div>
+                </form>
+
+                <div class="mt-6 pt-6 border-t border-white/10">
+                  <button id="export-btn" class="w-full bg-emerald-500/20 border border-emerald-500/30 text-emerald-400 py-3 rounded-xl font-bold hover:bg-emerald-500/30 transition-all">
+                    📥 JSON Export (schedule.json)
+                  </button>
+                  <p class="text-[10px] text-white/40 mt-2 text-center">
+                    Speichert die exportierte Datei in src/data/schedule.json
+                  </p>
+                </div>
+              </div>
+
+              <!-- Aktuelle Einträge -->
+              <div class="bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl p-6">
+                <h2 class="text-lg font-display font-bold text-white mb-4">
+                  📋 Aktuelle Einträge
+                </h2>
+                <div class="mb-4">
+                  <label for="month-filter" class="block text-xs uppercase tracking-widest text-brand-glow mb-1">Monat filtern</label>
+                  <select id="month-filter" class="w-full bg-white/10 border border-white/20 rounded-xl px-4 py-2 outline-none focus:ring-2 focus:ring-brand-rose text-white">
+                    <option value="all">Alle Monate</option>
+                  </select>
+                </div>
+                <div id="entries-list" class="space-y-2 max-h-[600px] overflow-y-auto pr-2">
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Tab: Übersicht -->
+          <div id="tab-overview" class="tab-content hidden">
+            <div class="bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl p-6">
+              <h2 class="text-lg font-display font-bold text-white mb-4">📊 Übersicht pro Monat</h2>
+              <div id="overview-table" class="space-y-4">
+              </div>
+            </div>
+          </div>
+
+          <!-- Tab: Billing -->
+          <div id="tab-billing" class="tab-content hidden">
+            <div class="bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl p-6">
+              <h2 class="text-lg font-display font-bold text-white mb-2">💰 Abrechnung (vergangene Monate)</h2>
+              <p class="text-sm text-white/60 mb-4">Nur <code class="text-xs bg-white/10 px-2 py-1 rounded">performed</code> und <code class="text-xs bg-white/10 px-2 py-1 rounded">complete</code> Einträge, gruppiert nach Monat und Trainer.</p>
+              <div id="billing-table" class="space-y-4">
+              </div>
+            </div>
+          </div>
+
+          <!-- Footer Note -->
+          <div class="mt-12 max-w-2xl mx-auto bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl p-6 text-center">
+            <p class="text-white/60 text-sm">
+              <strong class="text-brand-glow">💾 Datenspeicherung:</strong> Diese Einträge werden in deinem Browser (LocalStorage) gespeichert.
+              Über "JSON Export" kannst du die finale <code class="text-xs bg-white/10 px-2 py-1 rounded">schedule.json</code> herunterladen und ins Repo committen.
+            </p>
+          </div>
+        </div>
+      )}
+    </div>
+  </section>
+</Layout>
+
+<script define:vars={{ trainers, initialSchedule }}>
+  // ---------- Helpers ----------
+  const STORAGE_KEY = 'idiomadanza_schedule_v1';
+
+  let schedule = JSON.parse(localStorage.getItem(STORAGE_KEY) || 'null') || initialSchedule;
+  const trainerList = trainers;
+
+  function saveLocal() {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(schedule));
+  }
+
+  // ---------- Init ----------
+  function init() {
+    populateTrainerSelect();
+    populateMonthFilter();
+    renderEntries();
+    setupTabs();
+    setupForm();
+    setupExport();
+    renderOverview();
+    renderBilling();
+  }
+
+  function populateTrainerSelect() {
+    const select = document.getElementById('f-trainer');
+    trainerList.forEach(t => {
+      const opt = document.createElement('option');
+      opt.value = t.id;
+      opt.textContent = `${t.id} (${t.hourlyRate}€/h)`;
+      select.appendChild(opt);
+    });
+  }
+
+  function populateMonthFilter() {
+    const select = document.getElementById('month-filter');
+    const months = new Set();
+    schedule.forEach(e => {
+      const ym = e.date.substring(0, 7);
+      months.add(ym);
+    });
+    Array.from(months).sort().reverse().forEach(ym => {
+      const [year, month] = ym.split('-');
+      const monthName = new Date(year, month - 1).toLocaleDateString('de-DE', { month: 'long', year: 'numeric' });
+      const opt = document.createElement('option');
+      opt.value = ym;
+      opt.textContent = monthName;
+      select.appendChild(opt);
+    });
+    select.addEventListener('change', renderEntries);
+  }
+
+  // ---------- Tabs ----------
+  function setupTabs() {
+    document.querySelectorAll('.tab-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const target = btn.dataset.tab;
+        document.querySelectorAll('.tab-btn').forEach(b => {
+          b.classList.remove('bg-brand-rose', 'text-white');
+          b.classList.add('bg-white/5', 'text-white/60');
+        });
+        btn.classList.remove('bg-white/5', 'text-white/60');
+        btn.classList.add('bg-brand-rose', 'text-white');
+        document.querySelectorAll('.tab-content').forEach(c => c.classList.add('hidden'));
+        document.getElementById(`tab-${target}`).classList.remove('hidden');
+      });
+    });
+  }
+
+  // ---------- Form ----------
+  function setupForm() {
+    document.getElementById('entry-form').addEventListener('submit', (e) => {
+      e.preventDefault();
+      const entry = {
+        id: `S-${String(schedule.length + 1).padStart(3, '0')}-${Date.now().toString(36).slice(-4)}`,
+        date: document.getElementById('f-date').value,
+        time: document.getElementById('f-time').value,
+        duration: parseFloat(document.getElementById('f-duration').value),
+        course: document.getElementById('f-course').value.trim(),
+        level: document.getElementById('f-level').value.trim(),
+        location: document.getElementById('f-location').value.trim() || 'Fortuna Regensburg',
+        trainerIds: Array.from(document.getElementById('f-trainer').selectedOptions).map(o => o.value),
+        status: document.getElementById('f-status').value,
+        notes: document.getElementById('f-notes').value.trim(),
+      };
+      if (entry.trainerIds.length === 0) {
+        alert('Bitte mindestens einen Trainer auswählen.');
+        return;
+      }
+      schedule.push(entry);
+      schedule.sort((a, b) => new Date(a.date) - new Date(b.date));
+      saveLocal();
+      renderEntries();
+      renderOverview();
+      renderBilling();
+      e.target.reset();
+      document.getElementById('f-time').value = '20:00';
+      document.getElementById('f-duration').value = '1.5';
+      document.getElementById('f-location').value = 'Fortuna Regensburg';
+    });
+  }
+
+  // ---------- Render Entries ----------
+  function renderEntries() {
+    const list = document.getElementById('entries-list');
+    const filter = document.getElementById('month-filter').value;
+    const filtered = filter === 'all' ? schedule : schedule.filter(e => e.date.startsWith(filter));
+    const sorted = [...filtered].sort((a, b) => new Date(a.date) - new Date(b.date));
+
+    if (sorted.length === 0) {
+      list.innerHTML = '<p class="text-white/40 text-sm text-center py-8">Keine Einträge für diesen Filter.</p>';
+      return;
+    }
+
+    list.innerHTML = sorted.map(e => {
+      const statusColors = {
+        scheduled: 'text-sky-400 bg-sky-500/20 border-sky-500/30',
+        performed: 'text-emerald-400 bg-emerald-500/20 border-emerald-500/30',
+        complete: 'text-violet-400 bg-violet-500/20 border-violet-500/30',
+      };
+      const c = statusColors[e.status] || statusColors.scheduled;
+      return `
+        <div class="bg-white/5 border border-white/10 rounded-xl p-3 hover:border-white/20 transition-colors">
+          <div class="flex items-start justify-between gap-2">
+            <div class="flex-1 min-w-0">
+              <div class="flex items-center gap-2 mb-1">
+                <span class="inline-block px-2 py-0.5 rounded-full ${c} text-[9px] font-bold uppercase tracking-widest border">${e.status}</span>
+                <span class="text-[10px] text-white/40 font-mono">${e.id}</span>
+              </div>
+              <div class="text-sm font-bold text-white truncate">${e.course}</div>
+              <div class="text-xs text-white/60 mt-0.5">
+                ${e.date} · ${e.time} (${e.duration}h)
+              </div>
+              <div class="text-[10px] text-brand-rose mt-1">
+                ${e.trainerIds.map(t => `<span class="inline-block mr-1">${t}</span>`).join('')}
+              </div>
+            </div>
+            <div class="flex flex-col gap-1">
+              <select data-entry-id="${e.id}" class="status-select bg-white/10 border border-white/20 rounded text-[10px] px-2 py-1 text-white">
+                <option value="scheduled" ${e.status === 'scheduled' ? 'selected' : ''}>scheduled</option>
+                <option value="performed" ${e.status === 'performed' ? 'selected' : ''}>performed</option>
+                <option value="complete" ${e.status === 'complete' ? 'selected' : ''}>complete</option>
+              </select>
+              <button data-delete-id="${e.id}" class="delete-btn text-rose-400 hover:text-rose-300 text-[10px] uppercase tracking-widest">
+                Löschen
+              </button>
+            </div>
+          </div>
+        </div>
+      `;
+    }).join('');
+
+    list.querySelectorAll('.status-select').forEach(sel => {
+      sel.addEventListener('change', (e) => {
+        const id = e.target.dataset.entryId;
+        const entry = schedule.find(x => x.id === id);
+        if (entry) {
+          entry.status = e.target.value;
+          saveLocal();
+          renderEntries();
+          renderOverview();
+          renderBilling();
+        }
+      });
+    });
+    list.querySelectorAll('.delete-btn').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        const id = e.target.dataset.deleteId;
+        if (confirm(`Eintrag ${id} wirklich löschen?`)) {
+          schedule = schedule.filter(x => x.id !== id);
+          saveLocal();
+          renderEntries();
+          renderOverview();
+          renderBilling();
+        }
+      });
+    });
+  }
+
+  // ---------- Overview ----------
+  function renderOverview() {
+    const container = document.getElementById('overview-table');
+    const byMonth = {};
+    schedule.forEach(e => {
+      const ym = e.date.substring(0, 7);
+      if (!byMonth[ym]) byMonth[ym] = [];
+      byMonth[ym].push(e);
+    });
+    const months = Object.keys(byMonth).sort().reverse();
+
+    if (months.length === 0) {
+      container.innerHTML = '<p class="text-white/40 text-sm text-center py-8">Keine Daten verfügbar.</p>';
+      return;
+    }
+
+    container.innerHTML = months.map(ym => {
+      const entries = byMonth[ym].sort((a, b) => new Date(a.date) - new Date(b.date));
+      const stats = {
+        total: entries.length,
+        scheduled: entries.filter(e => e.status === 'scheduled').length,
+        performed: entries.filter(e => e.status === 'performed').length,
+        complete: entries.filter(e => e.status === 'complete').length,
+        totalHours: entries.reduce((sum, e) => sum + e.duration, 0),
+      };
+      const [year, month] = ym.split('-');
+      const monthName = new Date(year, month - 1).toLocaleDateString('de-DE', { month: 'long', year: 'numeric' });
+
+      return `
+        <div class="bg-white/5 border border-white/10 rounded-xl p-4">
+          <div class="flex items-center justify-between mb-3">
+            <h3 class="font-display font-bold text-white text-lg">${monthName}</h3>
+            <div class="flex gap-2 text-xs">
+              <span class="px-2 py-0.5 rounded bg-sky-500/20 text-sky-400">${stats.scheduled} geplant</span>
+              <span class="px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-400">${stats.performed} gehalten</span>
+              <span class="px-2 py-0.5 rounded bg-violet-500/20 text-violet-400">${stats.complete} abger.</span>
+              <span class="px-2 py-0.5 rounded bg-white/10 text-white">${stats.totalHours.toFixed(1)}h</span>
+            </div>
+          </div>
+          <table class="w-full text-xs">
+            <thead class="text-white/40 uppercase tracking-widest">
+              <tr><th class="text-left py-1">Datum</th><th class="text-left">Kurs</th><th class="text-left">Trainer</th><th class="text-left">Status</th><th class="text-right">Dauer</th></tr>
+            </thead>
+            <tbody class="text-white/80">
+              ${entries.map(e => `
+                <tr class="border-t border-white/5">
+                  <td class="py-1.5">${e.date}</td>
+                  <td>${e.course}</td>
+                  <td>${e.trainerIds.join(', ')}</td>
+                  <td><span class="text-[10px]">${e.status}</span></td>
+                  <td class="text-right">${e.duration}h</td>
+                </tr>
+              `).join('')}
+            </tbody>
+          </table>
+        </div>
+      `;
+    }).join('');
+  }
+
+  // ---------- Billing ----------
+  function renderBilling() {
+    const container = document.getElementById('billing-table');
+    const billable = schedule.filter(e => e.status === 'performed' || e.status === 'complete');
+
+    if (billable.length === 0) {
+      container.innerHTML = '<p class="text-white/40 text-sm text-center py-8">Keine abrechenbaren Einträge (nur <code>performed</code> und <code>complete</code>).</p>';
+      return;
+    }
+
+    const grouped = {};
+    billable.forEach(e => {
+      const ym = e.date.substring(0, 7);
+      e.trainerIds.forEach(tid => {
+        const key = `${ym}|${tid}`;
+        if (!grouped[key]) {
+          const trainer = trainerList.find(t => t.id === tid);
+          grouped[key] = {
+            month: ym,
+            trainerId: tid,
+            hourlyRate: trainer?.hourlyRate || 0,
+            entries: [],
+          };
+        }
+        grouped[key].entries.push(e);
+      });
+    });
+
+    const groups = Object.values(grouped).sort((a, b) => {
+      if (a.month !== b.month) return b.month.localeCompare(a.month);
+      return a.trainerId.localeCompare(b.trainerId);
+    });
+
+    container.innerHTML = groups.map(g => {
+      const totalHours = g.entries.reduce((sum, e) => sum + e.duration, 0);
+      const totalAmount = totalHours * g.hourlyRate;
+      const completedCount = g.entries.filter(e => e.status === 'complete').length;
+      const performedCount = g.entries.filter(e => e.status === 'performed').length;
+      const [year, month] = g.month.split('-');
+      const monthName = new Date(year, month - 1).toLocaleDateString('de-DE', { month: 'long', year: 'numeric' });
+
+      return `
+        <div class="bg-white/5 border border-white/10 rounded-xl p-4">
+          <div class="flex flex-wrap items-center justify-between gap-2 mb-3">
+            <div>
+              <h3 class="font-display font-bold text-white">${monthName} · ${g.trainerId}</h3>
+              <p class="text-xs text-white/40">Stundensatz: ${g.hourlyRate}€/h</p>
+            </div>
+            <div class="text-right">
+              <div class="text-2xl font-display font-bold text-white">${totalAmount.toFixed(2)}€</div>
+              <div class="text-xs text-white/60">${totalHours.toFixed(1)}h × ${g.hourlyRate}€/h</div>
+            </div>
+          </div>
+          <div class="flex gap-2 mb-3 text-xs">
+            <span class="px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-400">${performedCount} performed</span>
+            <span class="px-2 py-0.5 rounded bg-violet-500/20 text-violet-400">${completedCount} complete</span>
+          </div>
+          <table class="w-full text-xs">
+            <thead class="text-white/40 uppercase tracking-widest">
+              <tr><th class="text-left py-1">Datum</th><th class="text-left">Kurs</th><th class="text-right">Dauer</th><th class="text-right">Betrag</th><th class="text-right">Status</th></tr>
+            </thead>
+            <tbody class="text-white/80">
+              ${g.entries.sort((a, b) => new Date(a.date) - new Date(b.date)).map(e => `
+                <tr class="border-t border-white/5">
+                  <td class="py-1.5">${e.date}</td>
+                  <td>${e.course}</td>
+                  <td class="text-right">${e.duration}h</td>
+                  <td class="text-right">${(e.duration * g.hourlyRate).toFixed(2)}€</td>
+                  <td class="text-right"><span class="text-[10px]">${e.status}</span></td>
+                </tr>
+              `).join('')}
+            </tbody>
+          </table>
+        </div>
+      `;
+    }).join('');
+  }
+
+  // ---------- JSON Export ----------
+  function setupExport() {
+    document.getElementById('export-btn').addEventListener('click', () => {
+      const dataStr = JSON.stringify(schedule, null, 2);
+      const blob = new Blob([dataStr], { type: 'application/json' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `schedule-${new Date().toISOString().split('T')[0]}.json`;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+    });
+  }
+
+  init();
+</script>
