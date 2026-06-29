@@ -1,0 +1,302 @@
+---
+import Layout from '../layouts/Layout.astro';
+import trainersData from '../data/trainers.json';
+import courses from '../data/courses.json';
+
+// Apps Script Web App URL (aus netlify.toml / env)
+// Im Dev leer = Mock-Modus (POST wird geloggt, nicht gesendet)
+const APPS_SCRIPT_URL = import.meta.env.PUBLIC_TRAINER_FORM_URL || '';
+---
+
+<Layout
+  title="Trainer-Anmeldung | Idiomadanza e.V."
+  description="Trainer-Eintrag für geplante oder gehaltene Stunden."
+>
+  <section class="py-24 bg-brand-dark min-h-screen">
+    <div class="container mx-auto px-4">
+      <div class="max-w-2xl mx-auto">
+        <div class="text-center mb-12">
+          <h1 class="font-display text-4xl md:text-5xl font-bold text-white mb-4">
+            Trainer-<span class="text-brand-rose">Anmeldung</span>
+          </h1>
+          <p class="text-white/60">
+            Trage deine geplanten oder gehaltenen Stunden ein.
+            Die Daten landen automatisch im Vereins-Spreadsheet.
+          </p>
+        </div>
+
+        <!-- Status Display -->
+        <div id="status-display" class="mb-8 hidden">
+          <div id="status-icon" class="w-20 h-20 mx-auto rounded-full flex items-center justify-center mb-4"></div>
+          <h2 id="status-title" class="text-2xl font-display font-bold text-center mb-2"></h2>
+          <p id="status-message" class="text-center text-white/60 text-sm"></p>
+        </div>
+
+        <!-- Formular -->
+        <form id="trainer-form" class="bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl p-8 space-y-5">
+          <!-- Trainer-ID -->
+          <div>
+            <label for="trainer-id" class="block text-xs uppercase tracking-widest text-brand-glow mb-2">
+              Trainer-ID <span class="text-rose-400">*</span>
+            </label>
+            <select id="trainer-id" required class="w-full bg-white/10 border border-white/20 rounded-xl px-4 py-3 outline-none focus:ring-2 focus:ring-brand-rose focus:border-transparent transition-colors text-white">
+              <option value="">– Trainer wählen –</option>
+              {trainersData.map(t => (
+                <option value={t.id}>{t.id} ({t.hourlyRate}€/h)</option>
+              ))}
+            </select>
+            <p class="text-[10px] text-white/40 mt-1">Deine anonymisierte Trainer-ID (vom Vorstand vergeben)</p>
+          </div>
+
+          <!-- Datum + Zeit -->
+          <div class="grid grid-cols-2 gap-3">
+            <div>
+              <label for="entry-date" class="block text-xs uppercase tracking-widest text-brand-glow mb-2">
+                Datum <span class="text-rose-400">*</span>
+              </label>
+              <input
+                id="entry-date"
+                type="date"
+                required
+                class="w-full bg-white/10 border border-white/20 rounded-xl px-4 py-3 outline-none focus:ring-2 focus:ring-brand-rose focus:border-transparent transition-colors text-white"
+              />
+            </div>
+            <div>
+              <label for="entry-time" class="block text-xs uppercase tracking-widest text-brand-glow mb-2">
+                Zeit <span class="text-rose-400">*</span>
+              </label>
+              <input
+                id="entry-time"
+                type="time"
+                required
+                value="20:00"
+                class="w-full bg-white/10 border border-white/20 rounded-xl px-4 py-3 outline-none focus:ring-2 focus:ring-brand-rose focus:border-transparent transition-colors text-white"
+              />
+            </div>
+          </div>
+
+          <!-- Dauer -->
+          <div>
+            <label for="entry-duration" class="block text-xs uppercase tracking-widest text-brand-glow mb-2">
+              Dauer (Stunden) <span class="text-rose-400">*</span>
+            </label>
+            <input
+              id="entry-duration"
+              type="number"
+              step="0.5"
+              min="0.5"
+              max="8"
+              required
+              value="1.5"
+              class="w-full bg-white/10 border border-white/20 rounded-xl px-4 py-3 outline-none focus:ring-2 focus:ring-brand-rose focus:border-transparent transition-colors text-white"
+            />
+          </div>
+
+          <!-- Kurs -->
+          <div>
+            <label for="entry-course" class="block text-xs uppercase tracking-widest text-brand-glow mb-2">
+              Kurs <span class="text-rose-400">*</span>
+            </label>
+            <select id="entry-course" required class="w-full bg-white/10 border border-white/20 rounded-xl px-4 py-3 outline-none focus:ring-2 focus:ring-brand-rose focus:border-transparent transition-colors text-white">
+              <option value="">– Kurs wählen –</option>
+              {courses.map(c => (
+                <option value={c.name}>{c.name}{c.level ? ` (${c.level})` : ''}</option>
+              ))}
+            </select>
+          </div>
+
+          <!-- Level -->
+          <div>
+            <label for="entry-level" class="block text-xs uppercase tracking-widest text-brand-glow mb-2">
+              Level
+            </label>
+            <select id="entry-level" class="w-full bg-white/10 border border-white/20 rounded-xl px-4 py-3 outline-none focus:ring-2 focus:ring-brand-rose focus:border-transparent transition-colors text-white">
+              <option value="">– Level wählen (optional) –</option>
+              <option value="Anfänger">Anfänger</option>
+              <option value="Mittelstufe">Mittelstufe</option>
+              <option value="Fortgeschritten">Fortgeschritten</option>
+              <option value="All Levels">All Levels</option>
+            </select>
+          </div>
+
+          <!-- Ort -->
+          <div>
+            <label for="entry-location" class="block text-xs uppercase tracking-widest text-brand-glow mb-2">
+              Ort
+            </label>
+            <input
+              id="entry-location"
+              type="text"
+              value="Fortuna Regensburg"
+              class="w-full bg-white/10 border border-white/20 rounded-xl px-4 py-3 outline-none focus:ring-2 focus:ring-brand-rose focus:border-transparent transition-colors text-white"
+            />
+          </div>
+
+          <!-- Status -->
+          <div>
+            <label for="entry-status" class="block text-xs uppercase tracking-widest text-brand-glow mb-2">
+              Status <span class="text-rose-400">*</span>
+            </label>
+            <select id="entry-status" required class="w-full bg-white/10 border border-white/20 rounded-xl px-4 py-3 outline-none focus:ring-2 focus:ring-brand-rose focus:border-transparent transition-colors text-white">
+              <option value="scheduled">scheduled (Geplant)</option>
+              <option value="performed">performed (Gehalten)</option>
+              <option value="complete">complete (Bezahlt/Abger.)</option>
+            </select>
+            <p class="text-[10px] text-white/40 mt-1">
+              Trainer setzt in der Regel "scheduled" oder "performed".
+              "complete" wird vom Vorstand nach Bezahlung gesetzt.
+            </p>
+          </div>
+
+          <!-- Notizen -->
+          <div>
+            <label for="entry-notes" class="block text-xs uppercase tracking-widest text-brand-glow mb-2">
+              Notizen
+            </label>
+            <textarea
+              id="entry-notes"
+              rows="3"
+              placeholder="z.B. 'Vertretung für T-003' oder 'Workshop Spezial'"
+              class="w-full bg-white/10 border border-white/20 rounded-xl px-4 py-3 outline-none focus:ring-2 focus:ring-brand-rose focus:border-transparent transition-colors text-white resize-none"
+            ></textarea>
+          </div>
+
+          <!-- Honeypot (Spam-Schutz, unsichtbar) -->
+          <div class="absolute opacity-0 pointer-events-none" style="position:absolute;left:-9999px">
+            <label for="bot-field">Nicht ausfüllen</label>
+            <input id="bot-field" type="text" name="bot-field" tabindex="-1" autocomplete="off" />
+          </div>
+
+          <!-- Submit -->
+          <button
+            type="submit"
+            id="submit-btn"
+            class="w-full bg-brand-rose text-white py-4 rounded-xl font-bold shadow-glow-rose hover:-translate-y-0.5 transition-all focus:outline-none focus:ring-2 focus:ring-brand-rose focus:ring-offset-2 focus:ring-offset-brand-dark"
+          >
+            Eintrag absenden
+          </button>
+        </form>
+
+        <!-- Footer Note -->
+        <div class="mt-8 bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl p-6 text-center">
+          <p class="text-white/60 text-xs">
+            <strong class="text-brand-glow">🔒 Datenschutz:</strong>
+            Es werden nur anonymisierte Daten (Trainer-ID statt Name) übertragen.
+            Die Klarnamen-Zuordnung kennt nur der Vorstand.
+          </p>
+        </div>
+
+        <!-- Dev-Mode Notice -->
+        {!APPS_SCRIPT_URL && (
+          <div class="mt-4 bg-amber-500/10 border border-amber-500/30 rounded-xl p-4 text-center">
+            <p class="text-amber-300 text-xs">
+              <strong>⚠ Dev-Modus:</strong> Keine Apps Script URL konfiguriert.
+              Submissions werden nur lokal geloggt.
+              <br />URL in <code class="text-[10px] bg-black/30 px-1.5 py-0.5 rounded">netlify.toml</code> als <code class="text-[10px] bg-black/30 px-1.5 py-0.5 rounded">PUBLIC_TRAINER_FORM_URL</code> setzen.
+            </p>
+          </div>
+        )}
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<script define:vars={{ APPS_SCRIPT_URL }}>
+  const form = document.getElementById('trainer-form');
+  const submitBtn = document.getElementById('submit-btn');
+  const statusDisplay = document.getElementById('status-display');
+  const statusIcon = document.getElementById('status-icon');
+  const statusTitle = document.getElementById('status-title');
+  const statusMessage = document.getElementById('status-message');
+
+  // Status-Helfer
+  function showStatus(state, title, message) {
+    const config = {
+      success: { bg: 'bg-emerald-500/20', ring: 'ring-emerald-500/30', title: 'text-emerald-300', svg: '<svg class="w-10 h-10 text-emerald-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7" /></svg>' },
+      error: { bg: 'bg-rose-500/20', ring: 'ring-rose-500/30', title: 'text-rose-300', svg: '<svg class="w-10 h-10 text-rose-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M6 18L18 6M6 6l12 12" /></svg>' },
+      loading: { bg: 'bg-brand-rose/20', ring: 'ring-brand-rose/30', title: 'text-brand-rose', svg: '<svg class="w-10 h-10 text-brand-rose animate-spin" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" /></svg>' },
+    };
+    const cfg = config[state];
+    statusIcon.className = `w-20 h-20 mx-auto rounded-full ${cfg.bg} ring-8 ${cfg.ring} flex items-center justify-center mb-4`;
+    statusIcon.innerHTML = cfg.svg;
+    statusTitle.className = `text-2xl font-display font-bold text-center mb-2 ${cfg.title}`;
+    statusTitle.textContent = title;
+    statusMessage.textContent = message;
+    statusDisplay.classList.remove('hidden');
+  }
+
+  form?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    // Honeypot-Check (Spam-Bots füllen oft alle Felder)
+    const botField = document.getElementById('bot-field');
+    if (botField && botField.value) {
+      console.warn('Bot detected');
+      return;
+    }
+
+    // Daten sammeln
+    const payload = {
+      trainerId: document.getElementById('trainer-id').value,
+      date: document.getElementById('entry-date').value,
+      time: document.getElementById('entry-time').value,
+      duration: parseFloat(document.getElementById('entry-duration').value),
+      course: document.getElementById('entry-course').value,
+      level: document.getElementById('entry-level').value,
+      location: document.getElementById('entry-location').value || 'Fortuna Regensburg',
+      status: document.getElementById('entry-status').value,
+      notes: document.getElementById('entry-notes').value,
+    };
+
+    // Validierung
+    if (!payload.trainerId || !payload.date || !payload.time || !payload.course || !payload.status) {
+      showStatus('error', 'Fehler', 'Bitte alle Pflichtfelder ausfüllen.');
+      return;
+    }
+
+    // Submit
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Wird gesendet...';
+    showStatus('loading', 'Sende Daten...', 'Bitte warten.');
+
+    try {
+      if (!APPS_SCRIPT_URL) {
+        // Dev-Modus: nur loggen
+        console.log('Trainer-Submission (Dev-Mode, not sent):', payload);
+        await new Promise(r => setTimeout(r, 800));
+        showStatus('success', 'Dev-Mode OK', 'Eintrag wurde geloggt. In Production wird er an Google Sheets gesendet.');
+      } else {
+        // Production: POST an Apps Script
+        const response = await fetch(APPS_SCRIPT_URL, {
+          method: 'POST',
+          mode: 'no-cors', // Apps Script Web Apps benötigen no-cors für Cross-Origin
+          headers: { 'Content-Type': 'text/plain' }, // Apps Script erwartet text/plain für JSON-Payload
+          body: JSON.stringify(payload),
+        });
+        // Bei no-cors ist response.opaque (kein status lesbar), aber Request wurde gesendet
+        showStatus('success', 'Eingetragen ✓', 'Dein Eintrag wurde an die Vorstands-Tabelle gesendet.');
+      }
+
+      // Formular zurücksetzen (nach 3 Sekunden Status ausblenden)
+      form.reset();
+      // Default-Werte wieder setzen
+      document.getElementById('entry-time').value = '20:00';
+      document.getElementById('entry-duration').value = '1.5';
+      document.getElementById('entry-location').value = 'Fortuna Regensburg';
+      document.getElementById('entry-status').value = 'scheduled';
+
+      setTimeout(() => {
+        statusDisplay.classList.add('hidden');
+      }, 5000);
+    } catch (err) {
+      console.error('Submission error:', err);
+      showStatus('error', 'Fehler', 'Eintrag konnte nicht gesendet werden. Bitte Vorstand kontaktieren.');
+    } finally {
+      submitBtn.disabled = false;
+      submitBtn.textContent = 'Eintrag absenden';
+    }
+  });
+
+  // Datum-Default: heute
+  document.getElementById('entry-date').value = new Date().toISOString().split('T')[0];
+</script>

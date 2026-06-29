@@ -1,0 +1,12 @@
+[
+  { "name": "Bachata Foundations", "level": "Anfänger" },
+  { "name": "Bachata Sensual", "level": "Mittelstufe" },
+  { "name": "Bachata Advanced", "level": "Fortgeschritten" },
+  { "name": "Salsa Cubana", "level": "Mittelstufe" },
+  { "name": "Salsa Linea", "level": "Anfänger" },
+  { "name": "Salsa On1", "level": "Mittelstufe" },
+  { "name": "Bachata Lady Style", "level": "Mittelstufe" },
+  { "name": "Bachata Men Style", "level": "Mittelstufe" },
+  { "name": "Workshop Spezial", "level": "All Levels" },
+  { "name": "Privatstunde", "level": "" }
+]
