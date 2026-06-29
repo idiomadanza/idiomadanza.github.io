@@ -1,0 +1,32 @@
+[
+  {
+    "id": "stephan-lopez",
+    "name": "Stephan Lopez",
+    "hash": "50a6375c",
+    "membershipStatus": "active"
+  },
+  {
+    "id": "patricia-meier",
+    "name": "Patricia Meier",
+    "hash": "b0055583",
+    "membershipStatus": "active"
+  },
+  {
+    "id": "max-mustermann",
+    "name": "Max Mustermann",
+    "hash": "c71158ed",
+    "membershipStatus": "active"
+  },
+  {
+    "id": "erika-mustermann",
+    "name": "Erika Mustermann",
+    "hash": "bd5395be",
+    "membershipStatus": "warning"
+  },
+  {
+    "id": "former-member",
+    "name": "Tom Alt",
+    "hash": "9c682cb3",
+    "membershipStatus": "inactive"
+  }
+]

@@ -1,0 +1,134 @@
+---
+import Layout from '../layouts/Layout.astro';
+import membersData from '../data/members.json';
+
+// Members-Daten ins Frontmatter einlesen (wird per Script-Tag ans Client ausgeliefert)
+const hashMap: Record<string, { name: string; status: string }> = {};
+for (const m of membersData) {
+  hashMap[m.hash.toLowerCase()] = {
+    name: m.name,
+    status: m.membershipStatus,
+  };
+}
+---
+
+<Layout
+  title="Mitglied verifizieren | Idiomadanza e.V."
+  description="Trainer-Verifizierung der Mitgliedschaft – Idiomadanza e.V."
+>
+  <section class="min-h-screen flex items-center justify-center bg-brand-dark py-24 px-4">
+    <div class="max-w-md w-full text-center">
+      <!-- Status Display -->
+      <div id="status-display" class="mb-8">
+        <div id="status-icon" class="w-32 h-32 mx-auto rounded-full bg-white/5 flex items-center justify-center mb-6 transition-all duration-500">
+          <svg class="w-16 h-16 text-white/30 animate-pulse" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
+          </svg>
+        </div>
+        <h1 id="status-title" class="text-3xl font-display font-bold text-white mb-2">
+          Scanne einen QR-Code
+        </h1>
+        <p id="status-message" class="text-white/60 text-sm">
+          Verwende die Kamera deines Geräts, um den QR-Code eines Mitglieds zu scannen.
+        </p>
+      </div>
+
+      <!-- Manual Hash Input (Fallback) -->
+      <div class="bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl p-6 mt-8">
+        <label for="hash-input" class="block text-xs uppercase tracking-widest text-brand-glow mb-2 text-left">
+          Oder Hash manuell eingeben:
+        </label>
+        <div class="flex gap-2">
+          <input
+            id="hash-input"
+            type="text"
+            placeholder="z.B. 50a6375c"
+            maxlength="8"
+            class="flex-1 bg-white/10 border border-white/20 rounded-xl px-4 py-3 outline-none focus:ring-2 focus:ring-brand-rose focus:border-transparent transition-colors font-mono text-white"
+          />
+          <button
+            id="check-btn"
+            type="button"
+            class="bg-brand-rose px-6 py-3 rounded-xl font-bold text-white shadow-glow-rose hover:-translate-y-0.5 transition-all focus:outline-none focus:ring-2 focus:ring-brand-rose"
+          >
+            Prüfen
+          </button>
+        </div>
+      </div>
+
+      <!-- Status History (hidden by default) -->
+      <div id="history" class="hidden mt-6 text-left text-xs text-white/40">
+        <p>Letzte Prüfung: <span id="history-hash" class="font-mono text-white/60"></span></p>
+        <p>Mitglied: <span id="history-name" class="text-white/80"></span></p>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<script define:vars={{ hashMap }}>
+  const statusDisplay = document.getElementById('status-display');
+  const statusIcon = document.getElementById('status-icon');
+  const statusTitle = document.getElementById('status-title');
+  const statusMessage = document.getElementById('status-message');
+  const history = document.getElementById('history');
+  const historyHash = document.getElementById('history-hash');
+  const historyName = document.getElementById('history-name');
+
+  // SVG-Icons
+  const icons = {
+    green: '<svg class="w-16 h-16 text-emerald-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7" /></svg>',
+    yellow: '<svg class="w-16 h-16 text-amber-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M12 9v2m0 4h.01M5 19h14a2 2 0 001.84-2.75L13.74 4a2 2 0 00-3.48 0L3.16 16.25A2 2 0 005 19z" /></svg>',
+    red: '<svg class="w-16 h-16 text-rose-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M6 18L18 6M6 6l12 12" /></svg>',
+  };
+
+  function setStatus(state, title, message) {
+    const config = {
+      green: { bg: 'bg-emerald-500/20', ring: 'ring-emerald-500/30', title: 'text-emerald-300' },
+      yellow: { bg: 'bg-amber-500/20', ring: 'ring-amber-500/30', title: 'text-amber-300' },
+      red: { bg: 'bg-rose-500/20', ring: 'ring-rose-500/30', title: 'text-rose-300' },
+      idle: { bg: 'bg-white/5', ring: 'ring-white/10', title: 'text-white' },
+    };
+    const cfg = config[state];
+    statusIcon.className = `w-32 h-32 mx-auto rounded-full ${cfg.bg} ring-8 ${cfg.ring} flex items-center justify-center mb-6 transition-all duration-500`;
+    statusIcon.innerHTML = icons[state] || '';
+    statusTitle.className = `text-3xl font-display font-bold ${cfg.title} mb-2`;
+    statusTitle.textContent = title;
+    statusMessage.textContent = message;
+  }
+
+  function checkHash(rawHash) {
+    const hash = (rawHash || '').toLowerCase().trim();
+    if (!hash) {
+      setStatus('idle', 'Scanne einen QR-Code', 'Verwende die Kamera deines Geräts, um den QR-Code eines Mitglieds zu scannen.');
+      return;
+    }
+    const entry = hashMap[hash];
+    if (entry && entry.status === 'active') {
+      setStatus('green', '✓ Mitglied aktiv', `${entry.name} ist aktives Mitglied. Zugang gewährt.`);
+    } else if (entry && entry.status === 'warning') {
+      setStatus('yellow', '⚠ Hinweis erforderlich', `${entry.name} ist Mitglied, aber es liegt ein offener Punkt vor. Bitte Vorstand informieren.`);
+    } else if (entry && entry.status === 'inactive') {
+      setStatus('red', '✗ Nicht mehr aktiv', `${entry.name} ist nicht mehr im aktiven Mitgliederverzeichnis.`);
+    } else {
+      setStatus('red', '✗ Unbekannt', `Hash "${hash}" ist im System nicht hinterlegt. Bitte Vorstand kontaktieren.`);
+    }
+    history.classList.remove('hidden');
+    historyHash.textContent = hash;
+    historyName.textContent = entry ? entry.name : '(unbekannt)';
+  }
+
+  // Hash aus URL-Query lesen (vom QR-Scan)
+  const urlParams = new URLSearchParams(window.location.search);
+  const hashFromUrl = urlParams.get('hash');
+  if (hashFromUrl) {
+    checkHash(hashFromUrl);
+  }
+
+  // Manual Input Handler
+  const hashInput = document.getElementById('hash-input');
+  const checkBtn = document.getElementById('check-btn');
+  checkBtn?.addEventListener('click', () => checkHash(hashInput.value));
+  hashInput?.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter') checkHash(hashInput.value);
+  });
+</script>

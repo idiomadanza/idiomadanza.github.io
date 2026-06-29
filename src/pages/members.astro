@@ -1,0 +1,51 @@
+---
+import Layout from '../layouts/Layout.astro';
+import MemberCard from '../components/ui/MemberCard.astro';
+import membersData from '../data/members.json';
+
+const siteUrl = 'https://idiomadanza.de';
+const members = membersData.map(m => ({
+  ...m,
+  verifyUrl: `${siteUrl}/verify?hash=${m.hash}`,
+}));
+
+// Nur aktive + warning in der öffentlichen Liste
+const visibleMembers = members.filter(m => m.membershipStatus !== 'inactive');
+---
+
+<Layout
+  title="Mitglieder Übersicht | Idiomadanza e.V."
+  description="Übersicht aller aktiven Mitglieder des Idiomadanza e.V. – Tanzen verbindet."
+>
+  <section class="py-24 bg-brand-dark min-h-screen">
+    <div class="container mx-auto px-4">
+      <div class="text-center mb-16">
+        <h1 class="font-display text-4xl md:text-6xl font-bold text-white mb-4">
+          Unsere <span class="text-brand-rose">Community</span>
+        </h1>
+        <p class="text-white/60 max-w-2xl mx-auto text-lg">
+          Übersicht aller aktiven Mitglieder des Idiomadanza e.V. – Bachata & Salsa in Regensburg.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 max-w-7xl mx-auto">
+        {visibleMembers.map(member => (
+          <MemberCard
+            id={member.id}
+            name={member.name}
+            hash={member.hash}
+            status={member.membershipStatus as 'active' | 'warning'}
+            verifyUrl={member.verifyUrl}
+          />
+        ))}
+      </div>
+
+      <div class="mt-16 max-w-2xl mx-auto bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl p-6 text-center">
+        <p class="text-white/60 text-sm">
+          <strong class="text-brand-glow">Hinweis:</strong> Die QR-Codes sind für Trainer zur Verifizierung der Mitgliedschaft beim Einlass.
+          Die Verifizierung erfolgt client-seitig über die <a href="/verify" class="text-brand-rose underline hover:text-white transition-colors">Verifizierungs-Seite</a>.
+        </p>
+      </div>
+    </div>
+  </section>
+</Layout>
