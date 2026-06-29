@@ -25,9 +25,12 @@ const { images, alt, class: className } = Astro.props;
         class={`absolute inset-0 transition-opacity duration-1000 ease-in-out ${index === 0 ? 'opacity-100 z-10' : 'opacity-0 z-0'} carousel-item`}
         data-index={index}
       >
-        <Image 
-          src={src} 
-          alt={`${alt} - Bild ${index + 1}`} 
+        <Image
+          src={src}
+          alt={`${alt} - Bild ${index + 1}`}
+          loading={index === 0 ? 'eager' : 'lazy'}
+          fetchpriority={index === 0 ? 'high' : 'auto'}
+          decoding={index === 0 ? 'sync' : 'async'}
           class={`w-full h-full object-cover md:grayscale md:group-hover:grayscale-0 transition-all duration-1000 scale-125 group-hover:scale-110 ${position}`}
           width={1200}
           height={800}
