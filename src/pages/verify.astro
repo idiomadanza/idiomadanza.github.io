@@ -2,11 +2,12 @@
 import Layout from '../layouts/Layout.astro';
 import membersData from '../data/members.json';
 
-// Members-Daten ins Frontmatter einlesen (wird per Script-Tag ans Client ausgeliefert)
-const hashMap: Record<string, { name: string; status: string }> = {};
+// Members-Daten ins Frontmatter einlesen (anonymisiert)
+// hash -> { id, status }
+const hashMap: Record<string, { id: string; status: string }> = {};
 for (const m of membersData) {
   hashMap[m.hash.toLowerCase()] = {
-    name: m.name,
+    id: m.id,
     status: m.membershipStatus,
   };
 }
@@ -56,11 +57,15 @@ for (const m of membersData) {
         </div>
       </div>
 
-      <!-- Status History (hidden by default) -->
+      <!-- Last checked (hidden by default, anonymized) -->
       <div id="history" class="hidden mt-6 text-left text-xs text-white/40">
         <p>Letzte Prüfung: <span id="history-hash" class="font-mono text-white/60"></span></p>
-        <p>Mitglied: <span id="history-name" class="text-white/80"></span></p>
+        <p>Mitglieds-ID: <span id="history-id" class="text-white/80"></span></p>
       </div>
+
+      <p class="text-[10px] text-white/30 mt-8 uppercase tracking-widest">
+        Datenschutz: Keine Klarnamen werden gespeichert oder angezeigt.
+      </p>
     </div>
   </section>
 </Layout>
@@ -72,7 +77,7 @@ for (const m of membersData) {
   const statusMessage = document.getElementById('status-message');
   const history = document.getElementById('history');
   const historyHash = document.getElementById('history-hash');
-  const historyName = document.getElementById('history-name');
+  const historyId = document.getElementById('history-id');
 
   // SVG-Icons
   const icons = {
@@ -104,17 +109,17 @@ for (const m of membersData) {
     }
     const entry = hashMap[hash];
     if (entry && entry.status === 'active') {
-      setStatus('green', '✓ Mitglied aktiv', `${entry.name} ist aktives Mitglied. Zugang gewährt.`);
+      setStatus('green', '✓ Aktiv', `Mitglied ${entry.id} ist aktiv. Zugang gewährt.`);
     } else if (entry && entry.status === 'warning') {
-      setStatus('yellow', '⚠ Hinweis erforderlich', `${entry.name} ist Mitglied, aber es liegt ein offener Punkt vor. Bitte Vorstand informieren.`);
+      setStatus('yellow', '⚠ Hinweis', `Mitglied ${entry.id} ist aktiv, aber es liegt ein Hinweis vor. Bitte Vorstand informieren.`);
     } else if (entry && entry.status === 'inactive') {
-      setStatus('red', '✗ Nicht mehr aktiv', `${entry.name} ist nicht mehr im aktiven Mitgliederverzeichnis.`);
+      setStatus('red', '✗ Nicht aktiv', `Mitglied ${entry.id} ist nicht mehr aktiv.`);
     } else {
       setStatus('red', '✗ Unbekannt', `Hash "${hash}" ist im System nicht hinterlegt. Bitte Vorstand kontaktieren.`);
     }
     history.classList.remove('hidden');
     historyHash.textContent = hash;
-    historyName.textContent = entry ? entry.name : '(unbekannt)';
+    historyId.textContent = entry ? entry.id : '(unbekannt)';
   }
 
   // Hash aus URL-Query lesen (vom QR-Scan)

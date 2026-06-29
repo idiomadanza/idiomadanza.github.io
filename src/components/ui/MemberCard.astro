@@ -3,13 +3,12 @@ import QRCode from 'qrcode';
 
 interface Props {
   id: string;
-  name: string;
   hash: string;
   status: 'active' | 'warning' | 'inactive';
   verifyUrl: string;
 }
 
-const { id, name, hash, status, verifyUrl } = Astro.props;
+const { id, hash, status, verifyUrl } = Astro.props;
 
 // QR-Code als Data-URL (SVG) generieren
 const qrCodeSvg = await QRCode.toString(verifyUrl, {
@@ -26,7 +25,7 @@ const qrCodeSvg = await QRCode.toString(verifyUrl, {
 // Status-spezifische Farben
 const statusConfig = {
   active: { label: 'Aktiv', color: 'text-emerald-400', bg: 'bg-emerald-500/20', border: 'border-emerald-500/30' },
-  warning: { label: 'Warnung', color: 'text-amber-400', bg: 'bg-amber-500/20', border: 'border-amber-500/30' },
+  warning: { label: 'Hinweis', color: 'text-amber-400', bg: 'bg-amber-500/20', border: 'border-amber-500/30' },
   inactive: { label: 'Inaktiv', color: 'text-rose-400', bg: 'bg-rose-500/20', border: 'border-rose-500/30' },
 };
 const cfg = statusConfig[status];
@@ -36,7 +35,7 @@ const cfg = statusConfig[status];
   <div class={`inline-block px-3 py-1 rounded-full ${cfg.bg} ${cfg.color} text-[10px] font-bold uppercase tracking-widest mb-4`}>
     {cfg.label}
   </div>
-  <h3 class="text-lg font-display font-bold text-white mb-1">{name}</h3>
+  <h3 class="text-lg font-display font-bold text-white mb-1">Mitglied {id}</h3>
   <p class="text-xs text-white/40 font-mono mb-4 tracking-wider">{hash}</p>
   <div class="bg-white p-3 rounded-xl shadow-lg" set:html={qrCodeSvg} />
   <p class="text-[10px] text-white/30 mt-3 uppercase tracking-widest">Trainer-Scan</p>

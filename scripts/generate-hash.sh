@@ -1,26 +1,30 @@
 #!/bin/bash
-# generate-hash.sh - Generiert einen SHA-512 Hash (8 Zeichen) für ein neues Mitglied
-# Nutzung: ./scripts/generate-hash.sh "max-mustermann"
+# generate-hash.sh - Generiert einen SHA-512 Hash (8 Zeichen) für eine neue Mitglieds-ID
+# Nutzung: ./scripts/generate-hash.sh "M-042"
+#
+# Datenschutz-Hinweis: Die ID sollte KEINE Rückschlüsse auf die Person zulassen.
+# Empfehlung: Durchnummerierte IDs (M-001, M-002, ...) oder zufällige Strings.
 
 if [ -z "$1" ]; then
-  echo "❌ Nutzung: $0 <slug>"
-  echo "   Beispiel: $0 max-mustermann"
+  echo "❌ Nutzung: $0 <mitglieds-id>"
+  echo "   Beispiel: $0 M-042"
+  echo ""
+  echo "⚠️  Datenschutz: Verwende eine zufällige/anonymisierte ID, KEINEN Namen!"
   exit 1
 fi
 
-SLUG="$1"
-HASH=$(echo -n "$SLUG" | shasum -a 512 | cut -c1-8)
+ID="$1"
+HASH=$(echo -n "$ID" | shasum -a 512 | cut -c1-8)
 
 echo ""
 echo "✓ Neues Mitglied:"
-echo "  Slug: $SLUG"
+echo "  ID:   $ID"
 echo "  Hash: $HASH"
 echo ""
 echo "JSON-Eintrag (in src/data/members.json hinzufügen):"
 cat <<EOF
 {
-  "id": "$SLUG",
-  "name": "<VORNAME NACHNAME>",
+  "id": "$ID",
   "hash": "$HASH",
   "membershipStatus": "active"
 }

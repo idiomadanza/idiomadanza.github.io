@@ -32,7 +32,6 @@ const visibleMembers = members.filter(m => m.membershipStatus !== 'inactive');
         {visibleMembers.map(member => (
           <MemberCard
             id={member.id}
-            name={member.name}
             hash={member.hash}
             status={member.membershipStatus as 'active' | 'warning'}
             verifyUrl={member.verifyUrl}
@@ -43,7 +42,8 @@ const visibleMembers = members.filter(m => m.membershipStatus !== 'inactive');
       <div class="mt-16 max-w-2xl mx-auto bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl p-6 text-center">
         <p class="text-white/60 text-sm">
           <strong class="text-brand-glow">Hinweis:</strong> Die QR-Codes sind für Trainer zur Verifizierung der Mitgliedschaft beim Einlass.
-          Die Verifizierung erfolgt client-seitig über die <a href="/verify" class="text-brand-rose underline hover:text-white transition-colors">Verifizierungs-Seite</a>.
+          Die Verifizierung erfolgt anonym über die <a href="/verify" class="text-brand-rose underline hover:text-white transition-colors">Verifizierungs-Seite</a>.
+          Aus Datenschutzgründen werden keine Klarnamen veröffentlicht.
         </p>
       </div>
     </div>
