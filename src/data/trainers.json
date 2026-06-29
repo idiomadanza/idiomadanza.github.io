@@ -1,0 +1,22 @@
+[
+  {
+    "id": "T-001",
+    "hourlyRate": 25,
+    "active": true
+  },
+  {
+    "id": "T-002",
+    "hourlyRate": 30,
+    "active": true
+  },
+  {
+    "id": "T-003",
+    "hourlyRate": 25,
+    "active": true
+  },
+  {
+    "id": "T-004",
+    "hourlyRate": 35,
+    "active": true
+  }
+]

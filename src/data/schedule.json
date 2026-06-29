@@ -1,0 +1,62 @@
+[
+  {
+    "id": "S-001",
+    "date": "2026-09-08",
+    "time": "20:00",
+    "duration": 1.5,
+    "course": "Bachata Foundations",
+    "level": "Anfänger",
+    "location": "Fortuna Regensburg",
+    "trainerIds": ["T-001"],
+    "status": "scheduled",
+    "notes": ""
+  },
+  {
+    "id": "S-002",
+    "date": "2026-09-15",
+    "time": "20:00",
+    "duration": 1.5,
+    "course": "Bachata Foundations",
+    "level": "Anfänger",
+    "location": "Fortuna Regensburg",
+    "trainerIds": ["T-001"],
+    "status": "scheduled",
+    "notes": ""
+  },
+  {
+    "id": "S-003",
+    "date": "2026-09-22",
+    "time": "20:00",
+    "duration": 1.5,
+    "course": "Bachata Foundations",
+    "level": "Anfänger",
+    "location": "Fortuna Regensburg",
+    "trainerIds": ["T-002"],
+    "status": "scheduled",
+    "notes": ""
+  },
+  {
+    "id": "S-004",
+    "date": "2026-09-29",
+    "time": "20:00",
+    "duration": 1.5,
+    "course": "Bachata Foundations",
+    "level": "Anfänger",
+    "location": "Fortuna Regensburg",
+    "trainerIds": ["T-001", "T-002"],
+    "status": "scheduled",
+    "notes": "Gemeinsam"
+  },
+  {
+    "id": "S-005",
+    "date": "2026-09-10",
+    "time": "19:30",
+    "duration": 1.0,
+    "course": "Salsa Cubana",
+    "level": "Mittelstufe",
+    "location": "Fortuna Regensburg",
+    "trainerIds": ["T-003"],
+    "status": "scheduled",
+    "notes": ""
+  }
+]

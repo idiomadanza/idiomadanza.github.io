@@ -1,0 +1,202 @@
+---
+import Layout from '../layouts/Layout.astro';
+import trainersData from '../data/trainers.json';
+import scheduleData from '../data/schedule.json';
+
+// Token-Schutz: Konfigurierbar via Astro Config / Env
+// Default für Dev: "idio-trainer-2026" (kann in netlify.toml als Env überschrieben werden)
+const VALID_TOKEN = "idio-trainer-2026";
+
+// Token aus URL-Query lesen (statisch generiert, daher wird Token serverseitig geprüft)
+const url = new URL(Astro.request.url);
+const token = url.searchParams.get('token');
+const isAuthorized = token === VALID_TOKEN;
+
+// Daten für UI
+const trainerMap: Record<string, { hourlyRate: number; active: boolean }> = {};
+for (const t of trainersData) {
+  trainerMap[t.id] = { hourlyRate: t.hourlyRate, active: t.active };
+}
+
+// Schedule nach Datum sortieren (neueste zuerst für Check-UI)
+const sortedSchedule = [...scheduleData].sort((a, b) => 
+  new Date(b.date).getTime() - new Date(a.date).getTime()
+);
+
+function formatDate(dateStr: string): string {
+  const date = new Date(dateStr);
+  return date.toLocaleDateString('de-DE', { 
+    weekday: 'short', 
+    day: '2-digit', 
+    month: 'short', 
+    year: 'numeric' 
+  });
+}
+
+// Statistiken für Vorstand
+const stats = {
+  scheduled: sortedSchedule.filter(s => s.status === 'scheduled').length,
+  performed: sortedSchedule.filter(s => s.status === 'performed').length,
+  complete: sortedSchedule.filter(s => s.status === 'complete').length,
+  totalHours: sortedSchedule
+    .filter(s => s.status !== 'scheduled')
+    .reduce((sum, s) => sum + s.duration, 0),
+};
+---
+
+<Layout
+  title="Trainer-Check | Idiomadanza e.V."
+  description="Trainer-Verwaltung – Status-Updates für geplante Stunden."
+>
+  <section class="py-24 bg-brand-dark min-h-screen">
+    <div class="container mx-auto px-4">
+      {!isAuthorized ? (
+        <!-- Unauthorized -->
+        <div class="max-w-md mx-auto text-center">
+          <div class="bg-white/5 backdrop-blur-xl border border-rose-500/30 rounded-2xl p-8">
+            <div class="w-16 h-16 mx-auto rounded-full bg-rose-500/20 flex items-center justify-center mb-4">
+              <svg class="w-8 h-8 text-rose-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+              </svg>
+            </div>
+            <h1 class="text-2xl font-display font-bold text-white mb-2">Zugriff verweigert</h1>
+            <p class="text-white/60 text-sm mb-6">
+              Diese Seite ist nur für Trainer und Vorstand zugänglich.
+              Bitte verwende den dir zur Verfügung gestellten Link mit gültigem Token.
+            </p>
+            <p class="text-xs text-white/40">
+              Wenn du keinen Zugang hast, wende dich an den Vorstand.
+            </p>
+          </div>
+        </div>
+      ) : (
+        <!-- Authorized -->
+        <div class="max-w-6xl mx-auto">
+          <div class="text-center mb-12">
+            <h1 class="font-display text-4xl md:text-5xl font-bold text-white mb-4">
+              Trainer-<span class="text-brand-rose">Check</span>
+            </h1>
+            <p class="text-white/60">Status-Updates für geplante Stunden</p>
+          </div>
+
+          <!-- Stats Overview -->
+          <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-12">
+            <div class="bg-white/5 backdrop-blur-xl border border-sky-500/30 rounded-2xl p-4 text-center">
+              <div class="text-3xl font-display font-bold text-sky-400">{stats.scheduled}</div>
+              <div class="text-xs text-white/60 uppercase tracking-widest mt-1">Geplant</div>
+            </div>
+            <div class="bg-white/5 backdrop-blur-xl border border-emerald-500/30 rounded-2xl p-4 text-center">
+              <div class="text-3xl font-display font-bold text-emerald-400">{stats.performed}</div>
+              <div class="text-xs text-white/60 uppercase tracking-widest mt-1">Performed</div>
+            </div>
+            <div class="bg-white/5 backdrop-blur-xl border border-violet-500/30 rounded-2xl p-4 text-center">
+              <div class="text-3xl font-display font-bold text-violet-400">{stats.complete}</div>
+              <div class="text-xs text-white/60 uppercase tracking-widest mt-1">Complete</div>
+            </div>
+            <div class="bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl p-4 text-center">
+              <div class="text-3xl font-display font-bold text-white">{stats.totalHours.toFixed(1)}h</div>
+              <div class="text-xs text-white/60 uppercase tracking-widest mt-1">Stunden Konto</div>
+            </div>
+          </div>
+
+          <!-- Schedule Liste -->
+          <div class="space-y-4">
+            {sortedSchedule.map(entry => {
+              const statusColors = {
+                scheduled: { border: 'border-sky-500/30', label: 'Geplant', color: 'text-sky-400', bg: 'bg-sky-500/20' },
+                performed: { border: 'border-emerald-500/30', label: 'Performed', color: 'text-emerald-400', bg: 'bg-emerald-500/20' },
+                complete: { border: 'border-violet-500/30', label: 'Complete', color: 'text-violet-400', bg: 'bg-violet-500/20' },
+              };
+              const cfg = statusColors[entry.status as keyof typeof statusColors];
+              
+              return (
+                <div class={`bg-white/5 backdrop-blur-xl border ${cfg.border} rounded-2xl p-6`}>
+                  <div class="flex flex-wrap items-center justify-between gap-4">
+                    <!-- Info -->
+                    <div class="flex-1 min-w-[200px]">
+                      <div class="flex items-center gap-2 mb-2">
+                        <span class={`inline-block px-2 py-0.5 rounded-full ${cfg.bg} ${cfg.color} text-[10px] font-bold uppercase tracking-widest`}>
+                          {cfg.label}
+                        </span>
+                        <span class="text-xs text-white/40">{entry.id}</span>
+                      </div>
+                      <h3 class="text-lg font-display font-bold text-white">{entry.course}</h3>
+                      <div class="flex flex-wrap gap-x-4 gap-y-1 text-sm text-white/60 mt-1">
+                        <span>📅 {formatDate(entry.date)}</span>
+                        <span>🕐 {entry.time} Uhr ({entry.duration}h)</span>
+                      </div>
+                      <div class="flex flex-wrap gap-1 mt-2">
+                        {entry.trainerIds.map((tid: string) => (
+                          <span class="inline-block bg-white/5 border border-white/10 rounded-md px-2 py-0.5 text-xs font-mono text-brand-rose">
+                            {tid}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+
+                    <!-- Status Display (read-only) -->
+                    <div class="flex items-center gap-2">
+                      {entry.status === 'scheduled' && (
+                        <div class="px-4 py-2 rounded-xl bg-sky-500/10 border border-sky-500/30 text-sky-400 text-xs font-bold uppercase tracking-widest">
+                          ⏵ Ausstehend
+                        </div>
+                      )}
+                      {entry.status === 'performed' && (
+                        <div class="px-4 py-2 rounded-xl bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-xs font-bold uppercase tracking-widest">
+                          ✓ Performed
+                        </div>
+                      )}
+                      {entry.status === 'complete' && (
+                        <div class="px-4 py-2 rounded-xl bg-violet-500/10 border border-violet-500/30 text-violet-400 text-xs font-bold uppercase tracking-widest">
+                          ✓ Complete
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+
+          <!-- Quick Reference: Status-Update Anleitung -->
+          <div class="mt-12 grid grid-cols-1 md:grid-cols-2 gap-4 max-w-4xl mx-auto">
+            <div class="bg-white/5 backdrop-blur-xl border border-emerald-500/30 rounded-2xl p-6">
+              <h3 class="text-sm font-bold uppercase tracking-widest text-emerald-400 mb-2">
+                ⏵ Performed (Trainer setzt)
+              </h3>
+              <p class="text-xs text-white/60 mb-3">
+                Trainer bestätigt nach der Stunde, dass sie gehalten wurde.
+              </p>
+              <code class="block text-xs bg-black/30 p-3 rounded font-mono text-white/80">
+                "status": "scheduled"<br/>
+                <span class="text-emerald-400">↓</span><br/>
+                "status": "performed"
+              </code>
+            </div>
+            <div class="bg-white/5 backdrop-blur-xl border border-violet-500/30 rounded-2xl p-6">
+              <h3 class="text-sm font-bold uppercase tracking-widest text-violet-400 mb-2">
+                ⏵ Complete (Vorstand setzt)
+              </h3>
+              <p class="text-xs text-white/60 mb-3">
+                Vorstand markiert nach erfolgter Abrechnung + Überweisung.
+              </p>
+              <code class="block text-xs bg-black/30 p-3 rounded font-mono text-white/80">
+                "status": "performed"<br/>
+                <span class="text-violet-400">↓</span><br/>
+                "status": "complete"
+              </code>
+            </div>
+          </div>
+
+          <div class="mt-8 max-w-2xl mx-auto bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl p-6 text-center">
+            <p class="text-white/60 text-sm">
+              <strong class="text-brand-glow">Hinweis:</strong> Diese Seite ist <em>read-only</em>.
+              Status-Änderungen werden manuell in <code class="text-xs bg-white/10 px-2 py-1 rounded">src/data/schedule.json</code>
+              vorgenommen, committet und gepusht. Vorteil: Git-History als Audit-Trail.
+            </p>
+          </div>
+        </div>
+      )}
+    </div>
+  </section>
+</Layout>
