@@ -31,12 +31,63 @@ const carouselImages = [
   { src: carousel2, position: 'object-center' },
   { src: carousel3, position: 'object-center' }
 ];
+
+// 5. JSON-LD Event-Schemas (Agentic SEO)
+const siteUrl = 'https://idiomadanza.de';
+const eventSchemas = latestWorkshops.map((w) => {
+  const startDate = w.data.startDate;
+  // endDate: 1 Tag Puffer (für mehrtägige Events)
+  const start = new Date(startDate);
+  const end = new Date(start);
+  end.setDate(end.getDate() + 1);
+  return {
+    "@context": "https://schema.org",
+    "@type": "Event",
+    "name": w.data.title,
+    "description": w.data.description || w.data.title,
+    "startDate": start.toISOString(),
+    "endDate": end.toISOString(),
+    "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+    "eventStatus": "https://schema.org/EventScheduled",
+    "location": {
+      "@type": "Place",
+      "name": w.data.location || "Idiomadanza e.V., Isarstr. 85, 93057 Regensburg",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Isarstr. 85",
+        "addressLocality": "Regensburg",
+        "postalCode": "93057",
+        "addressCountry": "DE"
+      }
+    },
+    "image": `${siteUrl}/images/og-default.png`,
+    "organizer": {
+      "@type": "Organization",
+      "name": "Idiomadanza e.V.",
+      "url": siteUrl
+    },
+    "offers": {
+      "@type": "Offer",
+      "price": w.data.price?.replace(/[^0-9.,]/g, '').replace(',', '.') || "0",
+      "priceCurrency": "EUR",
+      "url": w.data.ticketUrl || `${siteUrl}/workshops`,
+      "availability": w.data.isSoldOut ? "https://schema.org/SoldOut" : "https://schema.org/InStock"
+    }
+  };
+});
 ---
 
 <Layout 
-  title="Idiomadanza e.V. | Bachata & Salsa Tanzkurse in Regensburg"
-  description="Lerne Bachata und Salsa in Regensburg bei Idiomadanza e.V. – Qualität und Gemeinschaft."
+  title="Bachata & Salsa Regensburg | Idiomadanza e.V."
+  description="Bachata und Salsa Tanzkurse in Regensburg. Idiomadanza e.V. – High-End Dance-Education meets Community Spirit. Jetzt Probestunde sichern!"
 >
+  {/* JSON-LD Event Schemas (Agentic SEO) */}
+  {eventSchemas.map((schema) => (
+    <Fragment slot="head">
+      <script type="application/ld+json" set:html={JSON.stringify(schema)} />
+    </Fragment>
+  ))}
+
   <HeroSection 
     title="Deine Sprache. Dein Rhythmus. Dein Verein."
     subtitle="Erlebe Bachata & Salsa in Regensburg. Höchste tänzerische Qualität trifft auf echte Gemeinschaft."
@@ -183,7 +234,7 @@ const carouselImages = [
 
             <div class="mt-auto">
               <p class="text-brand-rose font-bold uppercase tracking-widest text-[10px] mb-1">{t.data.name}</p>
-              <p class="text-white/40 text-[9px] uppercase tracking-wider">{t.data.role}</p>
+              <p class="text-white/50 text-[9px] uppercase tracking-wider">{t.data.role}</p>
               
               {t.data.videoUrl && (
                 <a href={t.data.videoUrl} target="_blank" rel="noopener noreferrer" class="mt-4 inline-flex items-center gap-2 text-[10px] font-bold text-brand-glow hover:text-white transition-colors uppercase tracking-widest">
@@ -213,8 +264,10 @@ const carouselImages = [
         </p>
         <input type="hidden" name="form-name" value="home-probestunde" />
         
-        <input type="text" name="name" required placeholder="Dein Name" class="w-full bg-white/10 border border-white/20 rounded-xl px-6 py-4 outline-none focus:ring-2 focus:ring-brand-rose focus:border-transparent transition-colors">
-        <input type="email" name="email" required placeholder="E-Mail Adresse" class="w-full bg-white/10 border border-white/20 rounded-xl px-6 py-4 outline-none focus:ring-2 focus:ring-brand-rose focus:border-transparent transition-colors">
+        <label for="home-name" class="sr-only">Dein Name</label>
+        <input id="home-name" type="text" name="name" required placeholder="Dein Name" class="w-full bg-white/10 border border-white/20 rounded-xl px-6 py-4 outline-none focus:ring-2 focus:ring-brand-rose focus:border-transparent transition-colors">
+        <label for="home-email" class="sr-only">E-Mail Adresse</label>
+        <input id="home-email" type="email" name="email" required placeholder="E-Mail Adresse" class="w-full bg-white/10 border border-white/20 rounded-xl px-6 py-4 outline-none focus:ring-2 focus:ring-brand-rose focus:border-transparent transition-colors">
         <button type="submit" class="w-full bg-brand-rose py-4 rounded-xl font-bold shadow-glow-rose hover:-translate-y-1 focus:outline-none focus:ring-2 focus:ring-brand-rose focus:ring-offset-2 focus:ring-offset-brand-dark transition-all">Anfrage senden</button>
       </form>
     </div>

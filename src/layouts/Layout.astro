@@ -118,6 +118,9 @@ const danceSchoolSchema = {
     <slot name="head" />
   </head>
   <body class="font-sans min-h-screen flex flex-col bg-brand-light dark:bg-brand-dark text-brand-dark dark:text-white">
+    <a href="#main-content" class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-[100] focus:px-4 focus:py-2 focus:bg-brand-rose focus:text-white focus:rounded-lg focus:shadow-glow-rose focus:outline-none focus:ring-2 focus:ring-brand-glow">
+      Zum Hauptinhalt springen
+    </a>
     <header class="sticky top-0 z-50 w-full backdrop-blur-md bg-white/70 dark:bg-brand-dark/80 border-b border-white/10">
       <nav class="container mx-auto px-4 py-4 flex justify-between items-center">
         <a href="/" class="flex items-center gap-4 group">
@@ -136,7 +139,7 @@ const danceSchoolSchema = {
         </div>
 
         <!-- Mobile Menu Button -->
-        <button id="menu-toggle" class="md:hidden p-2 text-brand-rose focus:outline-none group/menu" aria-label="Menü öffnen">
+        <button id="menu-toggle" class="md:hidden p-2 text-brand-rose focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-rose rounded group/menu" aria-label="Menü öffnen" aria-expanded="false" aria-controls="mobile-menu">
           <div class="relative w-8 h-6 flex flex-col justify-between">
             <span class="w-8 h-1 bg-brand-rose rounded-full transition-all duration-300 group-hover/menu:bg-brand-glow shadow-[0_0_8px_rgba(139,92,246,0.5)] animate-pulse-glow"></span>
             <span class="w-6 h-1 bg-brand-rose rounded-full ml-auto transition-all duration-300 group-hover/menu:bg-brand-glow shadow-[0_0_8px_rgba(139,92,246,0.5)] animate-pulse-glow"></span>
@@ -163,24 +166,31 @@ const danceSchoolSchema = {
 
     <script>
       function setupMenu() {
-        const menuToggle = document.getElementById('menu-toggle');
-        const menuClose = document.getElementById('menu-close');
-        const mobileMenu = document.getElementById('mobile-menu');
-        const menuLinks = mobileMenu?.querySelectorAll('a');
+            const menuToggle = document.getElementById('menu-toggle');
+            const menuClose = document.getElementById('menu-close');
+            const mobileMenu = document.getElementById('mobile-menu');
+            const menuLinks = mobileMenu?.querySelectorAll('a');
 
-        function toggleMenu() {
-          mobileMenu?.classList.toggle('translate-x-full');
-          document.body.classList.toggle('overflow-hidden');
-        }
+            function toggleMenu() {
+              const isOpen = !mobileMenu?.classList.contains('translate-x-full');
+              mobileMenu?.classList.toggle('translate-x-full');
+              document.body.classList.toggle('overflow-hidden');
+              if (menuToggle) {
+                menuToggle.setAttribute('aria-expanded', String(!isOpen));
+                menuToggle.setAttribute('aria-label', isOpen ? 'Menü öffnen' : 'Menü schließen');
+              }
+            }
 
-        menuToggle?.addEventListener('click', toggleMenu);
-        menuClose?.addEventListener('click', toggleMenu);
-        menuLinks?.forEach(link => {
-          link.addEventListener('click', () => {
-            mobileMenu?.classList.add('translate-x-full');
-            document.body.classList.remove('overflow-hidden');
-          });
-        });
+            menuToggle?.addEventListener('click', toggleMenu);
+            menuClose?.addEventListener('click', toggleMenu);
+            menuLinks?.forEach(link => {
+              link.addEventListener('click', () => {
+                mobileMenu?.classList.add('translate-x-full');
+                document.body.classList.remove('overflow-hidden');
+                menuToggle?.setAttribute('aria-expanded', 'false');
+                menuToggle?.setAttribute('aria-label', 'Menü öffnen');
+              });
+            });
       }
 
       // Initial setup
@@ -190,7 +200,7 @@ const danceSchoolSchema = {
       document.addEventListener('astro:after-swap', setupMenu);
     </script>
 
-    <main class="flex-grow">
+    <main id="main-content" class="flex-grow">
       <slot />
     </main>
 

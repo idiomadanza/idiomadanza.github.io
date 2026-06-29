@@ -28,7 +28,7 @@ const { images, alt, class: className } = Astro.props;
         <Image 
           src={src} 
           alt={`${alt} - Bild ${index + 1}`} 
-          class={`w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-1000 scale-125 group-hover:scale-110 ${position}`}
+          class={`w-full h-full object-cover md:grayscale md:group-hover:grayscale-0 transition-all duration-1000 scale-125 group-hover:scale-110 ${position}`}
           width={1200}
           height={800}
         />
