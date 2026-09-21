@@ -1,6 +1,6 @@
 ---
-title: "Neuer Bachata Anfängerkurs startet im Mai!"
-excerpt: "Endlich wieder Foundations: Ab dem 05. Mai 2026 um 20:00 Uhr öffnen wir unsere Türen für alle Neu-Einsteiger im Fortuna."
+title: "Bachata Foundations – Einstieg jederzeit möglich"
+excerpt: "Unsere Bachata-Kurse laufen wöchentlich im Fortuna. Mit der Flatrate steigst du jederzeit ein – ganz ohne fixen Starttermin."
 category: "Events"
 date: "25. März 2026"
 image: ../../assets/images/testimonials/bg.png
