@@ -31,7 +31,7 @@ const breadcrumbLabels: Record<string, string> = {
   'ueber-uns': 'Über Uns',
   'mitglied-werden': 'Mitgliedschaft',
   'kontakt': 'Kontakt',
-  'blog': 'Journal'
+  'blog': 'Blog'
 };
 
 const autoBreadcrumb = pathSegments.map((seg, index) => ({
@@ -55,11 +55,14 @@ const breadcrumbSchema = autoBreadcrumb.length > 0 ? {
 
 const danceSchoolSchema = {
   "@context": "https://schema.org",
-  "@type": "DanceSchool",
+  "@type": ["DanceSchool", "SportsClub"],
   "name": "Idiomadanza e.V.",
-  "description": "Bachata & Salsa Tanzverein in Regensburg. High-End Dance-Education meets Community Spirit.",
+  "alternateName": "Idiomadanza Bachata & Salsa Regensburg",
+  "description": "Gemeinnütziger Bachata & Salsa Tanzverein in Regensburg. High-End Dance-Education meets Community Spirit. Zertifiziert nach Korke & Judith (Creators of Bachata Sensual, Level 1 & 2), Evelin La Negra (Bachata), Dutch International Zouk Congress (Level 2), Masa & Polina (BachaZouk) sowie BLSV Breitensport-Übungsleiter.",
   "url": "https://idiomadanza.de",
   "logo": "https://idiomadanza.de/favicon.png",
+  "image": "https://idiomadanza.de/images/og-default.png",
+  "priceRange": "19€ - 39€ / Monat (All-Inclusive Flatrate)",
   "address": {
     "@type": "PostalAddress",
     "streetAddress": "Isarstr. 85",
@@ -67,16 +70,64 @@ const danceSchoolSchema = {
     "postalCode": "93057",
     "addressCountry": "DE"
   },
+  "location": [
+    {
+      "@type": "Place",
+      "name": "Fortuna Regensburg (Hauptstandort Dienstag)",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Metzgerweg 48",
+        "addressLocality": "Regensburg",
+        "postalCode": "93055",
+        "addressCountry": "DE"
+      }
+    },
+    {
+      "@type": "Place",
+      "name": "Raum für Engagement (Standort Mittwoch)",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Hemauerstraße 20c",
+        "addressLocality": "Regensburg",
+        "postalCode": "93047",
+        "addressCountry": "DE"
+      }
+    }
+  ],
   "geo": {
     "@type": "GeoCoordinates",
     "latitude": 49.0245,
     "longitude": 12.1158
   },
   "telephone": "+4915678659226",
-  "openingHours": "Tu 18:00-21:00, We 18:00-21:00",
+  "openingHours": "Tu 18:00-21:00, We 18:15-22:00",
+  "areaServed": [
+    { "@type": "City", "name": "Regensburg" },
+    { "@type": "AdministrativeArea", "name": "Oberpfalz" },
+    { "@type": "AdministrativeArea", "name": "Bayern" }
+  ],
+  "knowsAbout": [
+    "Bachata",
+    "Bachata Sensual",
+    "Bachata Fusion",
+    "BachaZouk",
+    "Brazilian Zouk",
+    "Salsa",
+    "RoleRotation",
+    "Social Dancing",
+    "Musicality & Body Movement"
+  ],
+  "hasCredential": [
+    "Bachata Sensual Instructor Level 1 & 2 (Korke & Judith)",
+    "Bachata Certified Instructor (Evelin La Negra)",
+    "Dutch International Zouk Congress Certification Level 2",
+    "BachaZouk Certified Instructors (Masa & Polina)",
+    "BLSV Übungsleiter C Breitensport"
+  ],
   "sameAs": [
     "https://instagram.com/idiomadanza",
-    "https://facebook.com/idiomadanza"
+    "https://facebook.com/idiomadanza",
+    "https://www.bachataregensburg.de"
   ]
 };
 ---
@@ -131,7 +182,7 @@ const danceSchoolSchema = {
           <a href="/workshops" class="hover:text-brand-rose transition-colors">Workshops</a>
           <a href="/ueber-uns" class="hover:text-brand-rose transition-colors">Über Uns</a>
           <a href="/mitglied-werden" class="hover:text-brand-rose transition-colors">Mitgliedschaft</a>
-          <a href="/blog" class="hover:text-brand-rose transition-colors">Journal</a>
+          <a href="/blog" class="hover:text-brand-rose transition-colors">Blog</a>
           <a href="/kontakt" class="bg-brand-rose px-6 py-2 rounded-full text-white shadow-glow-rose hover:-translate-y-0.5 transition-all">Probestunde</a>
         </div>
 
@@ -157,7 +208,7 @@ const danceSchoolSchema = {
       <a href="/workshops" class="hover:text-brand-rose transition-all hover:scale-110">Workshops</a>
       <a href="/ueber-uns" class="hover:text-brand-rose transition-all hover:scale-110">Über Uns</a>
       <a href="/mitglied-werden" class="hover:text-brand-rose transition-all hover:scale-110">Mitgliedschaft</a>
-      <a href="/blog" class="hover:text-brand-rose transition-all hover:scale-110">Journal</a>
+      <a href="/blog" class="hover:text-brand-rose transition-all hover:scale-110">Blog</a>
       <a href="/kontakt" class="bg-brand-rose px-10 py-4 rounded-full text-white shadow-glow-rose hover:scale-105 transition-all mt-4 text-xl">Probestunde</a>
     </div>
 
@@ -230,6 +281,7 @@ const danceSchoolSchema = {
               <li><a href="/kurse" class="hover:text-brand-rose transition-colors">Wöchentliche Kurse</a></li>
               <li><a href="/kurse#preise" class="hover:text-brand-rose transition-colors">Preise & Mitgliedschaft</a></li>
               <li><a href="/ueber-uns" class="hover:text-brand-rose transition-colors">Über den Verein</a></li>
+              <li><a href="/blog" class="hover:text-brand-rose transition-colors">Blog & Ratgeber</a></li>
               <li><a href="/mitglied-werden" class="hover:text-brand-rose transition-colors font-bold text-brand-rose/80">Mitglied werden</a></li>
             </ul>
           </div>
