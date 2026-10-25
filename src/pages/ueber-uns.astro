@@ -25,7 +25,7 @@ const overviewTeam = [
 
 <Layout 
   title="Über Uns - Idiomadanza e.V. | Bachata & Salsa Verein Regensburg"
-  description="Lerne das Team hinter Idiomadanza e.V. kennen: 12 leidenschaftliche Bachata & Salsa Trainer in Regensburg. Unsere Mission, Werte und Community."
+  description="Lerne das Team hinter Idiomadanza e.V. kennen: 10 leidenschaftliche Bachata & Salsa Trainer in Regensburg. Unsere Mission, Werte und Community."
 >
   <!-- HERO SECTION -->
   <section class="relative py-24 md:py-32 lg:py-48 overflow-hidden bg-brand-dark">
@@ -85,7 +85,7 @@ const overviewTeam = [
             />
           </div>
           <div class="absolute -bottom-8 -right-8 bg-white/10 backdrop-blur-md p-8 rounded-idioma border border-white/20 hidden md:block shadow-glow-rose z-20">
-            <div class="text-4xl font-bold text-brand-rose mb-1">12</div>
+            <div class="text-4xl font-bold text-brand-rose mb-1">{allTeam.length + allTeam.filter(t => t.id.includes('_und_')).length}</div>
             <div class="text-sm uppercase tracking-widest font-bold dark:text-white/60">Trainer</div>
           </div>
         </div>
@@ -138,6 +138,106 @@ const overviewTeam = [
           </div>
           <h3 class="text-2xl font-bold mb-4">Leidenschaft</h3>
           <p class="opacity-70 leading-relaxed">Jeder Kurstag ist ein Event. Wir leben und lieben die lateinamerikanischen Rhythmen.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- QUALITY & CERTIFICATIONS (E-E-A-T) -->
+  <section class="py-20 bg-brand-light dark:bg-brand-dark/60 border-t border-b border-white/5 relative overflow-hidden">
+    <div class="container mx-auto px-4">
+      <div class="text-center mb-16">
+        <span class="inline-block py-1 px-4 rounded-full bg-brand-glow/20 text-brand-glow text-xs font-bold tracking-widest uppercase mb-4">Exzellenz & Ausbildung</span>
+        <h2 class="font-display text-4xl md:text-5xl font-bold dark:text-white">Zertifizierte <span class="text-brand-rose">Qualität</span></h2>
+        <div class="w-24 h-1 bg-brand-rose mx-auto rounded-full mt-4 mb-6"></div>
+        <p class="max-w-3xl mx-auto text-base md:text-lg opacity-80 dark:text-brand-light">
+          Bei uns lernst du direkt nach fundierten internationalen Ausbildungsstandards – anatomisch gesund, präzise und mit Fokus auf echten Social Dance.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+        <!-- 1. Bachata Sensual -->
+        <div class="p-8 bg-white/70 dark:bg-white/5 backdrop-blur-xl rounded-idioma border border-white/10 shadow-glass flex flex-col justify-between hover:-translate-y-2 transition-transform duration-300">
+          <div>
+            <div class="text-3xl mb-4">🏆</div>
+            <h3 class="text-xl font-bold text-brand-rose mb-2">Korke & Judith Zertifiziert</h3>
+            <p class="text-sm opacity-70 leading-relaxed mb-4">
+              Level 1 & Level 2 zertifiziert direkt bei Korke & Judith (Creators of Bachata Sensual). Präzise Führungsimpulse, geschmeidige Körperisolationen und gesunde Führungstechnik.
+            </p>
+          </div>
+          <span class="text-xs font-bold uppercase tracking-wider text-brand-glow">Bachata Sensual Level 1 & 2</span>
+        </div>
+
+        <!-- 2. Bachata Tradicional / Evelin La Negra -->
+        <div class="p-8 bg-white/70 dark:bg-white/5 backdrop-blur-xl rounded-idioma border border-white/10 shadow-glass flex flex-col justify-between hover:-translate-y-2 transition-transform duration-300">
+          <div>
+            <div class="text-3xl mb-4">🇩🇴</div>
+            <h3 class="text-xl font-bold text-brand-rose mb-2">Evelin La Negra Zertifiziert</h3>
+            <p class="text-sm opacity-70 leading-relaxed mb-4">
+              Zertifiziert in ursprünglicher Bachata. Wir respektieren die karibischen Wurzeln und Kultur des Tanzes (im Dominikanischen schlicht als „Bachata“ gewürdigt) mit Fokus auf Footwork und Musicality.
+            </p>
+          </div>
+          <span class="text-xs font-bold uppercase tracking-wider text-brand-glow">Original Bachata Heritage</span>
+        </div>
+
+        <!-- 3. Dutch International Zouk Congress -->
+        <div class="p-8 bg-white/70 dark:bg-white/5 backdrop-blur-xl rounded-idioma border border-white/10 shadow-glass flex flex-col justify-between hover:-translate-y-2 transition-transform duration-300">
+          <div>
+            <div class="text-3xl mb-4">✨</div>
+            <h3 class="text-xl font-bold text-brand-rose mb-2">Dutch International Zouk Congress</h3>
+            <p class="text-sm opacity-70 leading-relaxed mb-4">
+              Level 2 zertifiziert auf dem renommierten Dutch International Zouk Congress. Fundierte Ausbildung in Brazilian Zouk: fließende Head Movements, organische Wellen, Achsenstabilität und tiefe Tanzpaar-Connection.
+            </p>
+          </div>
+          <span class="text-xs font-bold uppercase tracking-wider text-brand-glow">Brazilian Zouk Level 2</span>
+        </div>
+
+        <!-- 4. BachaZouk nach Masa & Polina -->
+        <div class="p-8 bg-white/70 dark:bg-white/5 backdrop-blur-xl rounded-idioma border border-white/10 shadow-glass flex flex-col justify-between hover:-translate-y-2 transition-transform duration-300">
+          <div>
+            <div class="text-3xl mb-4">🌀</div>
+            <h3 class="text-xl font-bold text-brand-rose mb-2">BachaZouk nach Masa & Polina</h3>
+            <p class="text-sm opacity-70 leading-relaxed mb-4">
+              Offiziell zertifiziert nach Masa & Polina. Die faszinierende Fusion aus Bachata und Zouk: Dynamische Head Movements, Circular Motion, Musikalität und fließende Übergänge – sicher geführt und social-dance-erprobt.
+            </p>
+          </div>
+          <span class="text-xs font-bold uppercase tracking-wider text-brand-glow">BachaZouk Certified</span>
+        </div>
+
+        <!-- 5. BLSV Breitensport -->
+        <div class="p-8 bg-white/70 dark:bg-white/5 backdrop-blur-xl rounded-idioma border border-white/10 shadow-glass flex flex-col justify-between hover:-translate-y-2 transition-transform duration-300">
+          <div>
+            <div class="text-3xl mb-4">🏅</div>
+            <h3 class="text-xl font-bold text-brand-rose mb-2">BLSV Übungsleiter</h3>
+            <p class="text-sm opacity-70 leading-relaxed mb-4">
+              Offiziell ausgebildeter Übungsleiter C im Breitensport nach den Richtlinien des Bayerischen Landes-Sportverbandes (BLSV). Pädagogisch strukturierter und sportwissenschaftlich fundierter Unterricht.
+            </p>
+          </div>
+          <span class="text-xs font-bold uppercase tracking-wider text-brand-glow">Sportverband Qualitätssiegel</span>
+        </div>
+
+        <!-- 6. Leaders & Followers + RoleRotation -->
+        <div class="p-8 bg-white/70 dark:bg-white/5 backdrop-blur-xl rounded-idioma border border-white/10 shadow-glass flex flex-col justify-between hover:-translate-y-2 transition-transform duration-300">
+          <div>
+            <div class="text-3xl mb-4">🔄</div>
+            <h3 class="text-xl font-bold text-brand-rose mb-2">Leaders & Followers Pionier</h3>
+            <p class="text-sm opacity-70 leading-relaxed mb-4">
+              Als erste Tanzschule in Regensburg haben wir uns von überholten Begriffen wie „Damen/Herren“ verabschiedet. Wir fördern RoleRotation: Wer beide Rollen versteht, tanzt auf einem völlig neuen Niveau.
+            </p>
+          </div>
+          <span class="text-xs font-bold uppercase tracking-wider text-brand-glow">Moderne Tanzkultur</span>
+        </div>
+
+        <!-- 7. Dancefloor Approved -->
+        <div class="p-8 bg-white/70 dark:bg-white/5 backdrop-blur-xl rounded-idioma border border-white/10 shadow-glass flex flex-col justify-between hover:-translate-y-2 transition-transform duration-300">
+          <div>
+            <div class="text-3xl mb-4">💃🕺</div>
+            <h3 class="text-xl font-bold text-brand-rose mb-2">Dancefloor Approved</h3>
+            <p class="text-sm opacity-70 leading-relaxed mb-4">
+              Unsere Trainer nehmen regelmäßig an Social Dance Competitions teil. Keine starren Show-Choreos, sondern echtes, improvisiertes Führen & Folgen auf Social Partys weltweit.
+            </p>
+          </div>
+          <span class="text-xs font-bold uppercase tracking-wider text-brand-glow">Social Dance Competitors</span>
         </div>
       </div>
     </div>

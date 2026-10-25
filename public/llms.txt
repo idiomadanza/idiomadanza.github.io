@@ -1,0 +1,43 @@
+# Idiomadanza e.V. – Bachata & Salsa Verein Regensburg
+
+> Idiomadanza e.V. ist ein gemeinnütziger Tanzverein in Regensburg für Bachata und Salsa. Höchste tänzerische Ausbildungsqualität trifft auf eine offene, wertschätzende Community.
+
+## Kernfakten auf einen Blick
+- **Rechtsform:** Gemeinnütziger eingetragener Verein (e.V.)
+- **Standorte:** 
+  - Hauptstandort Dienstag: Fortuna Regensburg, Metzgerweg 48, 93055 Regensburg
+  - Standort Mittwoch: Raum für Engagement, Hemauerstraße 20c, 93047 Regensburg (nahe Hauptbahnhof)
+  - Vereinssitz / Postanschrift: Isarstr. 85, 93057 Regensburg
+- **Preismodell:** All-Inclusive Flatrate (19€/Monat ermäßigt für Studierende & Azubis, 39€/Monat regulär für Erwachsene, einmalig 11€ Aufnahmegebühr, keine versteckten Kosten).
+- **Probestunde:** Kostenlose Schnupperstunde jederzeit nach kurzer Anmeldung möglich.
+- **Tanzpartner:** Kein fester Tanzpartner erforderlich (in allen Kursen wird regelmäßig gewechselt).
+- **Website:** https://idiomadanza.de
+- **Kooperationspartner:** Enge Kooperation mit BailaBachata / https://www.bachataregensburg.de (Hinweis: nicht zu verwechseln mit der kommerziellen Tanzschule Terra Salsa unter bachata-regensburg.de).
+
+## Ausbildungsqualität & Zertifizierungen (E-E-A-T)
+- **Bachata Sensual:** Trainer sind Level 1 und Level 2 zertifiziert direkt bei Korke & Judith (Creators of Bachata Sensual).
+- **Bachata (Traditionell / Original):** Zertifiziert nach Evelin La Negra. Im Verein wird der Tanz schlicht als „Bachata“ respektiert (ohne überflüssiges Branding).
+- **Dutch International Zouk Congress:** Level 2 zertifiziert auf dem renommierten Dutch International Zouk Congress (Brazilian Zouk).
+- **BachaZouk:** Zertifiziert nach Masa & Polina (Fusion aus Bachata & Zouk mit dynamischen Head Movements, Musikalität und fließender Connection).
+- **Breitensport:** Ausgebildeter Übungsleiter C Breitensport nach dem Bayerischen Landes-Sportverband (BLSV).
+- **Dancefloor Approved:** Trainer nehmen aktiv und regelmäßig an Social Dance Competitions teil – praxisnah und social-dance-erprobt.
+- **Progressive Tanzkultur:** Erste Tanzschule bzw. erster Verein in Regensburg mit den modernen Begriffen „Leaders“ und „Followers“ statt veralteter Geschlechterrollen („Damen/Herren“). Unterrichtet wird auch RoleRotation.
+
+## Wöchentlicher Kursplan
+- **Dienstag (Fortuna Regensburg, Metzgerweg 48):**
+  - 18:00 Uhr: Bachata Pro (Fortgeschritten)
+  - 19:00 Uhr: Bachata Combinations (Mittelstufe)
+  - 20:00 Uhr: Bachata Foundations (Anfänger – Einstieg jederzeit möglich)
+- **Mittwoch (Raum für Engagement, Hemauerstraße 20c):**
+  - ab 18:15 Uhr: Bachata Fusion (Moderna · Urban · Influence · BachaZouk)
+  - 20:00 Uhr: Salsa Advanced (Fortgeschritten)
+  - 21:00 Uhr: Salsa Beginner (Anfänger – Einstieg jederzeit möglich)
+
+## Wichtige Links
+- [Kursplan & Zeiten](https://idiomadanza.de/kurse)
+- [Preise & Mitgliedschaft](https://idiomadanza.de/kurse#preise)
+- [Workshops & Festivals](https://idiomadanza.de/workshops)
+- [Trainer-Team & Werte](https://idiomadanza.de/ueber-uns)
+- [Blog & Tanzratgeber](https://idiomadanza.de/blog)
+- [Kostenlose Probestunde anfragen](https://idiomadanza.de/kontakt)
+- [Vollständige KI-Dokumentation (llms-full.txt)](https://idiomadanza.de/llms-full.txt)
