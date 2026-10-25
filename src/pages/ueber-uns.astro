@@ -11,22 +11,21 @@ import { getCollection } from 'astro:content';
 const allTeam = await getCollection('team');
 
 const founders = allTeam.filter(t => t.data.isFounder).sort((a, b) => {
-  const order = ['patricia', 'stephan', 'chris_und_nalini'];
+  const order = ['patricia', 'stephan'];
   return order.indexOf(a.id) - order.indexOf(b.id);
 });
 const trainers = allTeam.filter(t => !t.data.isFounder);
 
 // Curated list for the 8-tile collage: Patricia & Stephan first, then trainers.
-// Chris & Nalini are intentionally moved to the full list below the collage to focus on the founders.
 const overviewTeam = [
-  ...founders.filter(f => f.id !== 'chris_und_nalini').slice(0, 2),
+  ...founders.slice(0, 2),
   ...trainers
 ].slice(0, 8);
 ---
 
 <Layout 
   title="Über Uns - Idiomadanza e.V. | Bachata & Salsa Verein Regensburg"
-  description="Lerne das Team hinter Idiomadanza e.V. kennen: 13 leidenschaftliche Bachata & Salsa Trainer in Regensburg. Unsere Mission, Werte und Community."
+  description="Lerne das Team hinter Idiomadanza e.V. kennen: 12 leidenschaftliche Bachata & Salsa Trainer in Regensburg. Unsere Mission, Werte und Community."
 >
   <!-- HERO SECTION -->
   <section class="relative py-24 md:py-32 lg:py-48 overflow-hidden bg-brand-dark">
@@ -86,7 +85,7 @@ const overviewTeam = [
             />
           </div>
           <div class="absolute -bottom-8 -right-8 bg-white/10 backdrop-blur-md p-8 rounded-idioma border border-white/20 hidden md:block shadow-glow-rose z-20">
-            <div class="text-4xl font-bold text-brand-rose mb-1">13</div>
+            <div class="text-4xl font-bold text-brand-rose mb-1">12</div>
             <div class="text-sm uppercase tracking-widest font-bold dark:text-white/60">Trainer</div>
           </div>
         </div>
