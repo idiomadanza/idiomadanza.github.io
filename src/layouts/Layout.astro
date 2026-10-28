@@ -161,7 +161,7 @@ const danceSchoolSchema = {
       <a href="/kontakt" class="bg-brand-rose px-10 py-4 rounded-full text-white shadow-glow-rose hover:scale-105 transition-all mt-4 text-xl">Probestunde</a>
     </div>
 
-    <script>
+    <script nonce={Astro.locals.nonce}>
       function setupMenu() {
         const menuToggle = document.getElementById('menu-toggle');
         const menuClose = document.getElementById('menu-close');

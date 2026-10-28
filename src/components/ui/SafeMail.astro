@@ -20,7 +20,7 @@ const base64Email = Buffer.from(email).toString('base64');
   </slot>
 </a>
 
-<script>
+<script nonce={(Astro as any).locals?.nonce}>
   const decodeEmails = () => {
     document.querySelectorAll('.email-safe').forEach((el) => {
       const enc = el.getAttribute('data-enc');

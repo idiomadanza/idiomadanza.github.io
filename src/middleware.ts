@@ -1,11 +1,28 @@
 import { defineMiddleware } from "astro:middleware";
+import { readFileSync } from "node:fs";
+import { join } from "node:path";
+
+function loadNonce(): string {
+  try {
+    const filePath = join(process.cwd(), "public", ".csp-nonce.json");
+    const data = JSON.parse(readFileSync(filePath, "utf-8"));
+    return data.nonce || "build-time-nonce";
+  } catch {
+    return "build-time-nonce";
+  }
+}
+
+const NONCE = loadNonce();
 
 export const onRequest = defineMiddleware(async ({ request, locals }, next) => {
+  locals.nonce = NONCE;
+
   const response = await next();
-  
-  // Strikte CSP Policy
-  const csp = "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; connect-src 'self'; font-src 'self' data: woff2;";
-  
+
+  // Strikte CSP Policy mit Nonce-basierten Directives
+  // Der Nonce-Wert wird beim Build generiert und ist in HTML + Header identisch
+  const csp = `default-src 'self'; script-src 'self' 'nonce-${NONCE}'; style-src 'self' 'nonce-${NONCE}'; img-src 'self' data:; connect-src 'self'; font-src 'self' data: woff2;`;
+
   response.headers.set('Content-Security-Policy', csp);
   response.headers.set('Strict-Transport-Security', 'max-age=63072000; includeSubDomains; preload');
   response.headers.set('X-Content-Type-Options', 'nosniff');
