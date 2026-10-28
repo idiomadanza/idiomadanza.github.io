@@ -89,6 +89,19 @@ Accessibility: WCAG AA Konformität.
 
 Legal: DSGVO-konforme Einbindung von Assets (keine externen CDNs ohne Consent).
 
+🧹 Worktree-Aufräumen
+
+Kanban-Karten für diese Website werden von Filius in einem eigenen Git-Worktree unter `.worktrees/<task-id>` bearbeitet. Der Hermes-Dispatcher entfernt diese Worktrees nach Kartenabschluss NICHT automatisch — `worktree`-Workspaces sind von der Reaping-Logik bewusst ausgenommen (nur `scratch`-Workspaces werden aufgeräumt). Ohne manuelles Eingreifen wächst `.worktrees/` mit jeder Karte unbegrenzt weiter (inkl. `node_modules/`).
+
+Nach erfolgtem Merge eines Pull Requests entfernt Alastor (nicht Filius) den zugehörigen Worktree und Branch:
+
+```bash
+git worktree remove .worktrees/<task-id> --force
+git branch -d wt/<task-id>
+```
+
+`--force` ist bei uncommitted `node_modules`-Resten nötig. Zuständig ist Alastor nach erfolgter Abnahme/Merge — Filius legt Worktrees nur an und arbeitet darin, räumt sie aber nicht selbst weg.
+
 📍 Kontakt & Grounding
 
 Idiomadanza e.V. Isarstr. 85, 93057 Regensburg
