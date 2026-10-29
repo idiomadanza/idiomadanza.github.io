@@ -169,8 +169,8 @@ const danceSchoolSchema = {
     <slot name="head" />
   </head>
   <body class="font-sans min-h-screen flex flex-col bg-brand-light dark:bg-brand-dark text-brand-dark dark:text-white">
-    <header class="sticky top-0 z-50 w-full backdrop-blur-md bg-white/70 dark:bg-brand-dark/80 border-b border-white/10">
-      <nav class="container mx-auto px-4 py-4 flex justify-between items-center">
+    <header role="banner" class="sticky top-0 z-50 w-full backdrop-blur-md bg-white/70 dark:bg-brand-dark/80 border-b border-white/10">
+      <nav role="navigation" aria-label="Hauptnavigation" class="container mx-auto px-4 py-4 flex justify-between items-center">
         <a href="/" class="flex items-center gap-4 group">
           <div class="relative w-12 h-12 rounded-full overflow-hidden border-2 border-brand-glow/60 shadow-glow-amber animate-pulse-glow transition-transform duration-300 group-hover:scale-105">
             <Image src={logoImg} alt="Logo" width={48} height={48} class="p-1" decoding="async" />
@@ -248,11 +248,11 @@ const danceSchoolSchema = {
       document.addEventListener('astro:after-swap', setupMenu);
     </script>
 
-<main id="main-content" class="flex-grow">
+<main id="main-content" role="main" class="flex-grow">
       <slot />
     </main>
 
-    <footer class="bg-brand-dark border-t border-white/5 pt-20 pb-10 overflow-hidden">
+    <footer role="contentinfo" class="bg-brand-dark border-t border-white/5 pt-20 pb-10 overflow-hidden">
       <div class="container mx-auto px-4">
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
           <!-- Brand & About -->
