@@ -8,6 +8,8 @@
   NODE_VERSION = "22"
 
 # ─── Security Headers ───────────────────────────────────────────
+# CSP wird dynamisch vom Astro-Middleware mit Nonce generiert.
+# Fester CSP-Header hier entfernt – Middleware ist Source of Truth.
 [[headers]]
   for = "/*"
   [headers.values]
@@ -17,7 +19,6 @@
     Referrer-Policy = "strict-origin-when-cross-origin"
     Strict-Transport-Security = "max-age=31536000; includeSubDomains; preload"
     Permissions-Policy = "camera=(), microphone=(), geolocation=(self), interest-cohort=()"
-    Content-Security-Policy = "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self' data:; connect-src 'self'; frame-src https://www.google.com; frame-ancestors 'none'; base-uri 'self'; form-action 'self' https://wa.me"
 
 # ─── Cache-Control for static assets (Performance / Web Vitals) ─
 [[headers]]
