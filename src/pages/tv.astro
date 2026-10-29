@@ -1,3 +1,7 @@
+<!--
+  ⚠️ DEPRECATED — Standalone TV slideshow (no Layout.astro).
+  Kept for digital signage. New pages should use Layout.astro for CSP nonce, SEO, cookie consent.
+-->
 ---
 import { getCollection } from 'astro:content';
 import { Image } from 'astro:assets';
@@ -22,7 +26,7 @@ const slides = workshops.map(w => ({
         body {
             margin: 0;
             padding: 0;
-            background: #020617;
+            background: var(--color-brand-dark, #020617);
             overflow: hidden;
             width: 100vw;
             height: 100vh;
@@ -102,7 +106,7 @@ const slides = workshops.map(w => ({
         .overlay span {
             font-size: 0.9rem;
             font-weight: bold;
-            color: #fcd34d;
+            color: var(--color-brand-glow, #fcd34d);
             letter-spacing: 0.1em;
             text-transform: uppercase;
         }
