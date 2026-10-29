@@ -214,9 +214,9 @@ const carouselImages = [
         <input type="hidden" name="form-name" value="home-probestunde" />
         
         <label for="home-name" class="text-xs font-bold uppercase tracking-widest opacity-60">Name</label>
-              <input type="text" id="home-name" name="name" required placeholder="Dein Name" class="w-full bg-white/10 border border-white/20 rounded-xl px-6 py-4 outline-none focus:ring-2 focus:ring-brand-rose focus:border-transparent transition-colors">
+              <input type="text" id="home-name" name="name" required minlength="2" placeholder="Dein Name" class="w-full bg-white/10 border border-white/20 rounded-xl px-6 py-4 outline-none focus:ring-2 focus:ring-brand-rose focus:border-transparent transition-colors">
         <label for="home-email" class="text-xs font-bold uppercase tracking-widest opacity-60">E-Mail</label>
-              <input type="email" id="home-email" name="email" required placeholder="E-Mail Adresse" class="w-full bg-white/10 border border-white/20 rounded-xl px-6 py-4 outline-none focus:ring-2 focus:ring-brand-rose focus:border-transparent transition-colors">
+              <input type="email" id="home-email" name="email" required placeholder="E-Mail Adresse" pattern="^[^\s@]+@[^\s@]+\.[^\s@]+$" class="w-full bg-white/10 border border-white/20 rounded-xl px-6 py-4 outline-none focus:ring-2 focus:ring-brand-rose focus:border-transparent transition-colors">
         <button type="submit" class="w-full bg-brand-rose py-4 rounded-xl font-bold shadow-glow-rose hover:-translate-y-1 focus:outline-none focus:ring-2 focus:ring-brand-rose focus:ring-offset-2 focus:ring-offset-brand-dark transition-all">Anfrage senden</button>
       </form>
     </div>

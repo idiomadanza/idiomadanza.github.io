@@ -58,11 +58,11 @@ import SafeMail from '../components/ui/SafeMail.astro';
               <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
                 <div class="space-y-2">
                   <label for="vorname" class="text-xs font-bold uppercase tracking-widest opacity-60 dark:text-white">Vorname*</label>
-                  <input type="text" id="vorname" name="vorname" required class="w-full bg-white dark:bg-brand-dark/80 border border-brand-dark/10 dark:border-white/10 rounded-idioma px-6 py-4 focus:border-brand-rose focus:ring-1 focus:ring-brand-rose outline-none transition-all dark:text-white">
+                  <input type="text" id="vorname" name="vorname" required minlength="2" placeholder="Max" class="w-full bg-white dark:bg-brand-dark/80 border border-brand-dark/10 dark:border-white/10 rounded-idioma px-6 py-4 focus:border-brand-rose focus:ring-1 focus:ring-brand-rose outline-none transition-all dark:text-white">
                 </div>
                 <div class="space-y-2">
                   <label for="nachname" class="text-xs font-bold uppercase tracking-widest opacity-60 dark:text-white">Nachname*</label>
-                  <input type="text" id="nachname" name="nachname" required class="w-full bg-white dark:bg-brand-dark/80 border border-brand-dark/10 dark:border-white/10 rounded-idioma px-6 py-4 focus:border-brand-rose focus:ring-1 focus:ring-brand-rose outline-none transition-all dark:text-white">
+                  <input type="text" id="nachname" name="nachname" required minlength="2" placeholder="Mustermann" class="w-full bg-white dark:bg-brand-dark/80 border border-brand-dark/10 dark:border-white/10 rounded-idioma px-6 py-4 focus:border-brand-rose focus:ring-1 focus:ring-brand-rose outline-none transition-all dark:text-white">
                 </div>
               </div>
 
@@ -119,7 +119,7 @@ import SafeMail from '../components/ui/SafeMail.astro';
 
               <div class="space-y-2">
                 <label for="telefon" class="text-xs font-bold uppercase tracking-widest opacity-60 dark:text-white">Telefonnummer</label>
-                <input type="tel" id="telefon" name="telefon" class="w-full bg-white dark:bg-brand-dark/80 border border-brand-dark/10 dark:border-white/10 rounded-idioma px-6 py-4 focus:border-brand-rose focus:ring-1 focus:ring-brand-rose outline-none transition-all dark:text-white">
+                <input type="tel" id="telefon" name="telefon" pattern="^[+]?[\d\s\-().]{4,}$" placeholder="+49 ..." class="w-full bg-white dark:bg-brand-dark/80 border border-brand-dark/10 dark:border-white/10 rounded-idioma px-6 py-4 focus:border-brand-rose focus:ring-1 focus:ring-brand-rose outline-none transition-all dark:text-white">
               </div>
             </div>
 
@@ -160,7 +160,7 @@ import SafeMail from '../components/ui/SafeMail.astro';
               <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
                 <div class="space-y-2 text-white">
                   <label for="kontoinhaber" class="text-xs font-bold uppercase tracking-widest opacity-60 dark:text-white">Kontoinhaber*</label>
-                  <input type="text" id="kontoinhaber" name="kontoinhaber" required class="w-full bg-white dark:bg-brand-dark/80 border border-brand-dark/10 dark:border-white/10 rounded-idioma px-6 py-4 focus:border-brand-rose focus:ring-1 focus:ring-brand-rose outline-none transition-all dark:text-white">
+                  <input type="text" id="kontoinhaber" name="kontoinhaber" required minlength="2" placeholder="Max Mustermann" class="w-full bg-white dark:bg-brand-dark/80 border border-brand-dark/10 dark:border-white/10 rounded-idioma px-6 py-4 focus:border-brand-rose focus:ring-1 focus:ring-brand-rose outline-none transition-all dark:text-white">
                 </div>
                 <div class="space-y-2">
                   <label for="bank" class="text-xs font-bold uppercase tracking-widest opacity-60 dark:text-white">Bank</label>
@@ -238,7 +238,7 @@ import SafeMail from '../components/ui/SafeMail.astro';
     </div>
   </section>
 
-  <script>
+  <script nonce={Astro.locals.nonce}>
     const form = document.querySelector('#membership-form') as HTMLFormElement;
     const feedback = document.getElementById('form-feedback');
     const btnText = document.getElementById('btn-text');
