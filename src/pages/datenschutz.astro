@@ -4,6 +4,18 @@ import SafeMail from '../components/ui/SafeMail.astro';
 ---
 
 <Layout title="Datenschutz | Idiomadanza e.V." description="Datenschutzerklärung des Idiomadanza e.V. (Regensburg) – Informationen zur Verarbeitung personenbezogener Daten.">
+  <script slot="head" type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": "Datenschutzerklärung",
+    "description": "Datenschutzerklärung des Idiomadanza e.V. – Informationen zur Verarbeitung personenbezogener Daten gemäß DSGVO.",
+    "url": "https://idiomadanza.de/datenschutz",
+    "inLanguage": "de",
+    "publisher": {
+      "@type": "Organization",
+      "name": "Idiomadanza e.V."
+    }
+  })} />
   <div class="container mx-auto px-4 py-20 max-w-4xl">
     <!-- Header -->
     <div class="text-center mb-12">

@@ -3,6 +3,18 @@ import Layout from '../layouts/Layout.astro';
 ---
 
 <Layout title="Satzung | Idiomadanza e.V." description="Die offizielle Satzung des Idiomadanza e.V. (Regensburg) – Stand Januar 2025.">
+  <script slot="head" type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": "Satzung",
+    "description": "Die Satzung des Idiomadanza e.V. – Vereinssatzung für Bachata & Salsa in Regensburg.",
+    "url": "https://idiomadanza.de/satzung",
+    "inLanguage": "de",
+    "publisher": {
+      "@type": "Organization",
+      "name": "Idiomadanza e.V."
+    }
+  })} />
   <div class="container mx-auto px-4 py-20 max-w-4xl">
     <!-- Header/Hero der Seite -->
     <div class="text-center mb-12">

@@ -32,6 +32,29 @@ if (typeof finalImage === 'string') {
 ---
 
 <Layout title={`${entry.data.title} | Idiomadanza e.V.`} description={entry.data.excerpt}>
+  <script slot="head" type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": entry.data.title,
+    "description": entry.data.excerpt,
+    "datePublished": entry.data.date,
+    "dateModified": entry.data.date,
+    "author": {
+      "@type": "Person",
+      "name": entry.data.author || "Idiomadanza Vorstand"
+    },
+    "publisher": {
+      "@type": "DanceSchool",
+      "name": "Idiomadanza e.V.",
+      "alternateName": "Idiomadanza Bachata & Salsa Regensburg"
+    },
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": `https://idiomadanza.de/blog/${entry.id}`
+    },
+    "image": entry.data.image ? `https://idiomadanza.de${entry.data.image}` : undefined,
+    "keywords": entry.data.tags ? entry.data.tags.join(", ") : "Bachata, Salsa, Tanz, Regensburg"
+  })} />
   <article class="py-12 md:py-20 bg-brand-light dark:bg-brand-dark min-h-screen">
     <div class="container mx-auto px-4 max-w-4xl">
       
