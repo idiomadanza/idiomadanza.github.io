@@ -27,6 +27,28 @@ const overviewTeam = [
   title="Über Uns - Idiomadanza e.V. | Bachata & Salsa Verein Regensburg"
   description="Lerne das Team hinter Idiomadanza e.V. kennen: 10 leidenschaftliche Bachata & Salsa Trainer in Regensburg. Unsere Mission, Werte und Community."
 >
+  <script slot="head" type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "Idiomadanza e.V.",
+    "alternateName": "Idiomadanza Bachata & Salsa Regensburg",
+    "url": "https://idiomadanza.de",
+    "logo": "https://idiomadanza.de/favicon.png",
+    "description": "Gemeinnütziger Bachata & Salsa Tanzverein in Regensburg. High-End Dance-Education meets Community Spirit.",
+    "foundingDate": "2020",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Isarstr. 85",
+      "addressLocality": "Regensburg",
+      "postalCode": "93057",
+      "addressCountry": "DE"
+    },
+    "sameAs": [
+      "https://instagram.com/idiomadanza",
+      "https://facebook.com/idiomadanza"
+    ],
+    "knowsAbout": ["Bachata", "Salsa", "Brazilian Zouk", "BachaZouk", "Dance Education"]
+  })} />
   <!-- HERO SECTION -->
   <section class="relative py-24 md:py-32 lg:py-48 overflow-hidden bg-brand-dark">
     <div class="absolute inset-0 z-0">

@@ -3,6 +3,18 @@ import Layout from '../layouts/Layout.astro';
 ---
 
 <Layout title="Vereinsordnung | Idiomadanza e.V." description="Die offizielle Vereinsordnung des Idiomadanza e.V. (Regensburg) – Stand Juli 2026.">
+  <script slot="head" type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": "Vereinsordnung",
+    "description": "Die Vereinsordnung des Idiomadanza e.V. – Regeln und Richtlinien für Bachata & Salsa in Regensburg.",
+    "url": "https://idiomadanza.de/vereinsordnung",
+    "inLanguage": "de",
+    "publisher": {
+      "@type": "Organization",
+      "name": "Idiomadanza e.V."
+    }
+  })} />
   <div class="container mx-auto px-4 py-20 max-w-4xl">
     <!-- Header/Hero der Seite -->
     <div class="text-center mb-12">

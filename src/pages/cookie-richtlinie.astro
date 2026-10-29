@@ -3,6 +3,18 @@ import Layout from '../layouts/Layout.astro';
 ---
 
 <Layout title="Cookie-Richtlinie | Idiomadanza e.V." description="Informationen über die Verwendung von Cookies auf der Website des Idiomadanza e.V. (Regensburg).">
+  <script slot="head" type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": "Cookie-Richtlinie",
+    "description": "Informationen über die Verwendung von Cookies auf der Website des Idiomadanza e.V.",
+    "url": "https://idiomadanza.de/cookie-richtlinie",
+    "inLanguage": "de",
+    "publisher": {
+      "@type": "Organization",
+      "name": "Idiomadanza e.V."
+    }
+  })} />
   <div class="container mx-auto px-4 py-20 max-w-4xl">
     <!-- Header -->
     <div class="text-center mb-12">
