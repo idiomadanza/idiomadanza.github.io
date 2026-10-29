@@ -21,7 +21,14 @@ export const onRequest = defineMiddleware(async ({ request, locals }, next) => {
 
   // Strikte CSP Policy mit Nonce-basierten Directives
   // Der Nonce-Wert wird beim Build generiert und ist in HTML + Header identisch
-  const csp = `default-src 'self'; script-src 'self' 'nonce-${NONCE}'; style-src 'self' 'nonce-${NONCE}'; img-src 'self' data:; connect-src 'self'; font-src 'self' data: woff2;`;
+  // CSP mit Reporting: Blockierte Resources werden gemeldet
+  const csp = \`default-src 'self'; script-src 'self' 'nonce-\${NONCE}'; style-src 'self' 'nonce-\${NONCE}'; img-src 'self' data:; connect-src 'self' https://*.googleapis.com; font-src 'self' data: woff2; report-to csp-endpoint;\`;
+
+  // Report-To Header definiert den Endpoint-Group
+  response.headers.set(
+    'Report-To',
+    '{"group":"csp-endpoint","max_age":86400,"endpoints":[{"url":"https://idiomadanza.de/__csp-report__"}]}'
+  );
 
   response.headers.set('Content-Security-Policy', csp);
   response.headers.set('Strict-Transport-Security', 'max-age=63072000; includeSubDomains; preload');
