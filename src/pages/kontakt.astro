@@ -83,7 +83,8 @@ const faqSchema = {
               <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div class="space-y-2">
                   <label for="name" class="text-xs font-bold uppercase tracking-widest opacity-60 dark:text-white">Name</label>
-                  <input type="text" id="name" name="name" required placeholder="Dein Name" class="w-full bg-white dark:bg-brand-dark/50 border border-brand-dark/10 dark:border-white/10 rounded-idioma px-4 py-3 focus:border-brand-rose focus:ring-1 focus:ring-brand-rose outline-none transition-all dark:text-white">
+                  <label for="name" class="text-xs font-bold uppercase tracking-widest opacity-60 dark:text-white">Name</label>
+              <input type="text" id="name" name="name" required placeholder="Dein Name" class="w-full bg-white dark:bg-brand-dark/50 border border-brand-dark/10 dark:border-white/10 rounded-idioma px-4 py-3 focus:border-brand-rose focus:ring-1 focus:ring-brand-rose outline-none transition-all dark:text-white">
                 </div>
                 <div class="space-y-2">
                   <label for="email" class="text-xs font-bold uppercase tracking-widest opacity-60 dark:text-white">E-Mail</label>
@@ -100,11 +101,13 @@ const faqSchema = {
               </div>
               <div class="space-y-2">
                 <label for="message" class="text-xs font-bold uppercase tracking-widest opacity-60 dark:text-white">Nachricht</label>
-                <textarea id="message" name="message" rows="4" required placeholder="Wie können wir dir helfen?" class="w-full bg-white dark:bg-brand-dark/50 border border-brand-dark/10 dark:border-white/10 rounded-idioma px-4 py-3 focus:border-brand-rose focus:ring-1 focus:ring-brand-rose outline-none transition-all dark:text-white mb-4"></textarea>
+                <label for="message" class="text-xs font-bold uppercase tracking-widest opacity-60 dark:text-white">Nachricht</label>
+              <textarea id="message" name="message" rows="4" required placeholder="Wie können wir dir helfen?" class="w-full bg-white dark:bg-brand-dark/50 border border-brand-dark/10 dark:border-white/10 rounded-idioma px-4 py-3 focus:border-brand-rose focus:ring-1 focus:ring-brand-rose outline-none transition-all dark:text-white mb-4"></textarea>
               </div>
 
               <div class="flex items-start gap-4 mb-8">
-                <input type="checkbox" id="privacy-consent" name="privacy-consent" required class="mt-1 w-5 h-5 rounded border-gray-300 text-brand-rose focus:ring-brand-rose cursor-pointer">
+                <label for="privacy-consent" class="text-xs font-bold uppercase tracking-widest opacity-60 dark:text-white">Datenschutz</label>
+              <input type="checkbox" id="privacy-consent" name="privacy-consent" required class="mt-1 w-5 h-5 rounded border-gray-300 text-brand-rose focus:ring-brand-rose cursor-pointer">
                 <label for="privacy-consent" class="text-xs opacity-60 dark:text-white/60 leading-relaxed cursor-pointer select-none">
                   Ich habe die <a href="/datenschutz" class="underline hover:text-brand-rose transition-colors font-bold">Datenschutzerklärung</a> gelesen und bin damit einverstanden, dass meine eingegebenen Daten zum Zweck der Kontaktaufnahme gespeichert und verarbeitet werden. *
                 </label>
