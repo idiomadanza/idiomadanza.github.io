@@ -196,6 +196,13 @@ const danceSchoolSchema = {
         </button>
       </nav>
     </header>
+  <!-- A11y: Skip to main content link -->
+  <a
+    href="#main-content"
+    class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-50 focus:bg-brand-rose focus:text-white focus:px-4 focus:py-2 focus:rounded-lg focus:shadow-glow-rose"
+  >
+    Zum Hauptinhalt springen
+  </a>
 
     <!-- Mobile Menu Overlay -->
     <div id="mobile-menu" class="fixed inset-0 z-[60] bg-brand-dark/95 backdrop-blur-xl translate-x-full transition-transform duration-500 md:hidden flex flex-col items-center justify-center gap-10 text-3xl font-display">
@@ -241,7 +248,7 @@ const danceSchoolSchema = {
       document.addEventListener('astro:after-swap', setupMenu);
     </script>
 
-    <main class="flex-grow">
+<main id="main-content" class="flex-grow">
       <slot />
     </main>
 
