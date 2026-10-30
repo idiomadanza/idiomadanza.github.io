@@ -38,7 +38,7 @@ const { images, alt, class: className } = Astro.props;
   })}
 </div>
 
-<script>
+<script nonce={Astro.locals.nonce}>
   function setupCarousel() {
     const carousel = document.getElementById('image-carousel');
     if (!carousel) return;
