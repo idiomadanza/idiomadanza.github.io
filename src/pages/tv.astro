@@ -128,7 +128,7 @@ const slides = workshops.map(w => ({
         ))}
     </div>
 
-    <script>
+    <script nonce={Astro.locals.nonce}>
         document.addEventListener('DOMContentLoaded', () => {
             const slides = document.querySelectorAll('.slide');
             if (slides.length === 0) return;

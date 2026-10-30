@@ -83,7 +83,7 @@ const faqSchema = {
               <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div class="space-y-2">
                   <label for="name" class="text-xs font-bold uppercase tracking-widest opacity-60 dark:text-white">Name</label>
-              <input type="text" id="name" name="name" required minlength="2" placeholder="Dein Name" class="w-full bg-white dark:bg-brand-dark/50 border border-brand-dark/10 dark:border-white/10 rounded-idioma px-4 py-3 focus:border-brand-rose focus:ring-1 focus:ring-brand-rose outline-none transition-all dark:text-white">
+              <input type="text" id="name" name="name" required minlength="2" pattern=".{2,}" placeholder="Dein Name" class="w-full bg-white dark:bg-brand-dark/50 border border-brand-dark/10 dark:border-white/10 rounded-idioma px-4 py-3 focus:border-brand-rose focus:ring-1 focus:ring-brand-rose outline-none transition-all dark:text-white">
                 </div>
                 <div class="space-y-2">
                   <label for="email" class="text-xs font-bold uppercase tracking-widest opacity-60 dark:text-white">E-Mail</label>
@@ -236,7 +236,7 @@ const faqSchema = {
     </div>
   </section>
 
-  <script>
+  <script nonce={Astro.locals.nonce}>
     function updateMap() {
       const placeholder = document.getElementById('maps-placeholder');
       const container = document.getElementById('maps-iframe-container');
