@@ -2,7 +2,7 @@
 
 @theme {
   --font-display: "Golos Text", "Playfair Display", serif;
-  --font-sans: "Inter", "Golos Text", sans-serif;
+  --font-sans: "Golos Text", sans-serif;
 
   --color-brand-dark: #020617;
   --color-brand-darker: #010411;
@@ -42,14 +42,6 @@
 
 
 /* Lokal gehostete Fonts (DSGVO-konform) */
-@font-face {
-  font-family: 'Inter';
-  font-style: normal;
-  font-weight: 400 700;
-  font-display: swap;
-  src: url('/fonts/inter-400.woff2') format('woff2');
-}
-
 @font-face {
   font-family: 'Golos Text';
   font-style: normal;
