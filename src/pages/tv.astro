@@ -1,6 +1,6 @@
 <!--
   ⚠️ DEPRECATED — Standalone TV slideshow (no Layout.astro).
-  Kept for digital signage. New pages should use Layout.astro for CSP nonce, SEO, cookie consent.
+  Kept for digital signage. New pages should use Layout.astro for CSP, SEO, cookie consent.
 -->
 ---
 import { getCollection } from 'astro:content';
@@ -128,7 +128,7 @@ const slides = workshops.map(w => ({
         ))}
     </div>
 
-    <script nonce={Astro.locals.nonce}>
+    <script>
         document.addEventListener('DOMContentLoaded', () => {
             const slides = document.querySelectorAll('.slide');
             if (slides.length === 0) return;

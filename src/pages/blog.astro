@@ -29,7 +29,7 @@ const blogEntries = await getCollection('blog');
       "description": post.data.excerpt,
       "datePublished": post.data.date,
       "author": { "@type": "Person", "name": post.data.author || "Idiomadanza Vorstand" },
-      "url": `https://idiomadanza.de/blog/${post.id}`
+      "url": `https://idiomadanza.de/blog/${post.id}/`
     }))
   })} />
   <!-- HERO SECTION -->
@@ -53,7 +53,7 @@ const blogEntries = await getCollection('blog');
     <div class="container mx-auto px-4">
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 max-w-7xl mx-auto">
         {blogEntries.map((post) => (
-          <a href={`/blog/${post.id}`} class="group relative flex flex-col h-full bg-white/70 dark:bg-brand-dark/50 backdrop-blur-xl rounded-idioma border border-white/20 dark:border-white/10 overflow-hidden shadow-glass transition-all duration-500 hover:-translate-y-4">
+          <a href={`/blog/${post.id}/`} class="group relative flex flex-col h-full bg-white/70 dark:bg-brand-dark/50 backdrop-blur-xl rounded-idioma border border-white/20 dark:border-white/10 overflow-hidden shadow-glass transition-all duration-500 hover:-translate-y-4">
             <div class="p-8 flex flex-col flex-grow">
               <span class="text-brand-rose font-bold text-sm uppercase tracking-widest block mb-2">{post.data.date}</span>
               <h2 class="text-2xl font-display font-bold text-brand-dark dark:text-white leading-tight group-hover:text-brand-rose transition-colors mb-4">{post.data.title}</h2>
