@@ -8,8 +8,10 @@
   NODE_VERSION = "22"
 
 # ─── Security Headers ───────────────────────────────────────────
-# CSP wird dynamisch vom Astro-Middleware mit Nonce generiert.
-# Fester CSP-Header hier entfernt – Middleware ist Source of Truth.
+# CSP wird als fester Header ausgeliefert. Astro statisch: Middleware-Header
+# erreichen Netlify nicht, deshalb ist netlify.toml hier die Source of Truth.
+# Inline-Skripte gibt es nicht mehr (Astro bündelt sie nach /_astro/*.js),
+# daher genügt script-src 'self' ohne Nonce/Hashes.
 [[headers]]
   for = "/*"
   [headers.values]
@@ -18,6 +20,7 @@
     Referrer-Policy = "strict-origin-when-cross-origin"
     Strict-Transport-Security = "max-age=31536000; includeSubDomains; preload"
     Permissions-Policy = "camera=(), microphone=(), geolocation=(self), interest-cohort=()"
+    Content-Security-Policy = "default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://api.qrserver.com; font-src 'self' data:; connect-src 'self' https://script.google.com; frame-src https://www.openstreetmap.org; object-src 'none'; base-uri 'self'; form-action 'self' https://wa.me; frame-ancestors 'none'"
 
 # ─── Cache-Control for static assets (Performance / Web Vitals) ─
 [[headers]]
