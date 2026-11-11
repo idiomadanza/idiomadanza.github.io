@@ -1,7 +1,3 @@
-<!--
-  ⚠️ DEPRECATED — Standalone TV slideshow (no Layout.astro).
-  Kept for digital signage. New pages should use Layout.astro for CSP, SEO, cookie consent.
--->
 ---
 import { getCollection } from 'astro:content';
 import { Image } from 'astro:assets';
@@ -16,6 +12,10 @@ const slides = workshops.map(w => ({
 }));
 ---
 
+<!--
+  ⚠️ DEPRECATED — Standalone TV slideshow (no Layout.astro).
+  Kept for digital signage. New pages should use Layout.astro for CSP, SEO, cookie consent.
+-->
 <!DOCTYPE html>
 <html lang="de" class="dark">
 <head>

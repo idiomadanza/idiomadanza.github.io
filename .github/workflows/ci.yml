@@ -36,8 +36,5 @@ jobs:
       - name: Struktur-Prüfung (dist)
         run: node scripts/ci_check.mjs
 
-      # Vorübergehend nicht blockierend: astro 6.x hat eine offene Critical-Meldung,
-      # der Fix ist ein Major-Upgrade (Issue #116). Nach dem Upgrade blockierend stellen.
-      - name: Dependency-Audit (Report)
-        continue-on-error: true
+      - name: Dependency-Audit (High/Critical, blockierend)
         run: npm audit --audit-level=high
