@@ -52,7 +52,8 @@ Jeder PR gegen `production` läuft durch `.github/workflows/ci.yml`:
 
 1. `npm ci` → `npm run build` (18 Seiten)
 2. `node scripts/ci_check.mjs` — Pflichtdateien in `dist/`, **keine Inline-Skripte** (die CSP erlaubt nur `script-src 'self'`), `canonical`/`og:image` je Seite inkl. Existenzprüfung des Bildes, alle internen Links müssen ein Ziel haben
-3. `npm audit --audit-level=high` (derzeit nur Report — offene Critical-Meldung, siehe Issue #116)
+3. `node scripts/content_truth.mjs` — prüft `dist/` gegen `content-facts.json`: Trainerzahl, ausgeschiedene Personen, kommende Workshop-Termine, Preise
+4. `npm audit --audit-level=high`
 
 Zusätzlich manuell auf dem Agenten-Host: `/opt/website/tools/csp_check.mjs` (Playwright, prüft alle Routen gegen die echte CSP) und Lighthouse.
 
