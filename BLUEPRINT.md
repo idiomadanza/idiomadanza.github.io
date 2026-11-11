@@ -1,8 +1,16 @@
 🏗️ Idiomadanza Website Blueprint v1.1
 
-Status: Active / Source of Truth
+> ⚠️ **HISTORISCH (Stand 13.04.2026).** Diese Datei beschreibt Produktidee und
+> Informationsarchitektur. **Verbindlich für das Design ist `DESIGN.md`** — sie bildet den
+> tatsächlich gebauten Stand ab und schlägt §5 dieser Datei ausdrücklich.
+> Für Stack, Build und Prozess gilt `README.md`.
+>
+> Nicht mehr aktuell in dieser Datei: Quick-Info-Banner „Kursstart" auf der Startseite
+> (entfernt), Trainer-Liste, Agentic-SEO-Details.
+
+Status: historisch / Referenz
 Design-Philosophie: Premium-Minimalismus
-Technologie: Astro 6.0 (SSG) + Tailwind CSS 4.0
+Technologie: Astro 6 (SSG) + Tailwind CSS 4
 
 1. Strategische Ausrichtung
 
