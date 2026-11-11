@@ -108,4 +108,4 @@ Unsere Kurse finden an zwei optimal erreichbaren Standorten in Regensburg statt:
 
 ## 7. Wie kann ich einsteigen?
 
-Eine kostenlose Schnupperstunde ist jederzeit möglich. Schreibe uns einfach eine kurze Nachricht über unser [Kontaktformular](/kontakt) oder melde dich unkompliziert per WhatsApp unter [+49 15678 659226](https://wa.me/+4915678659226). Wir freuen uns auf dich auf der Tanzfläche!
+Eine kostenlose Schnupperstunde ist jederzeit möglich. Schreibe uns einfach eine kurze Nachricht über unser [Kontaktformular](/kontakt/) oder melde dich unkompliziert per WhatsApp unter [+49 15678 659226](https://wa.me/+4915678659226). Wir freuen uns auf dich auf der Tanzfläche!
