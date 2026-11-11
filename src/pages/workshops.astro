@@ -40,7 +40,7 @@ const eventSchema = workshops.map(w => ({
     
     <div class="container mx-auto px-4 relative z-10 text-center">
       <span class="inline-block py-1 px-4 rounded-full bg-brand-glow/20 text-brand-glow text-sm font-bold tracking-widest uppercase mb-4 backdrop-blur-sm border border-brand-glow/30">Next Level Tanz</span>
-      <h1 class="font-display text-5xl md:text-7xl font-bold text-white mb-6">Meistere den <span class="text-brand-rose">Vibe</span></h1>
+      <h1 class="font-display text-5xl md:text-7xl font-bold text-white mb-6">Meistere den <span class="text-brand-rose-bright">Vibe</span></h1>
       <p class="max-w-2xl mx-auto text-xl text-white/80 leading-relaxed font-light">
         Unsere Workshops sind intensive Einheiten, um Technik, Ausdruck und Gefühl in Rekordzeit zu verbessern.
       </p>
@@ -89,7 +89,7 @@ const eventSchema = workshops.map(w => ({
 
               <div class="pt-8 border-t border-brand-dark/5 dark:border-white/10 flex flex-col items-center">
                  <div class="flex items-center gap-2 mb-6">
-                    <span class="text-xs uppercase font-bold opacity-30 dark:text-white">Level:</span>
+                    <span class="text-xs uppercase font-bold text-brand-dark/70 dark:text-white">Level:</span>
                     <span class="px-4 py-1 rounded-full bg-brand-glow/20 text-brand-glow text-[10px] font-bold uppercase tracking-widest">{workshop.level}</span>
                  </div>
                  <div class="text-2xl font-black text-brand-dark dark:text-white mb-6 font-display">{workshop.price}</div>
@@ -108,7 +108,7 @@ const eventSchema = workshops.map(w => ({
                <Image src={bgImg} alt="Private Class" width={1920} height={1080} loading="lazy" decoding="async" class="w-full h-full object-cover opacity-50 blur-[1px] group-hover:scale-105 transition-transform duration-700" />
                <div class="absolute inset-0 bg-brand-rose/30"></div>
             </div>
-            <div class="p-12 md:p-16 bg-white/10 backdrop-blur-2xl dark:bg-brand-dark/90 text-white flex flex-col justify-center space-y-6">
+            <div class="p-12 md:p-16 bg-brand-dark/85 backdrop-blur-2xl text-white flex flex-col justify-center space-y-6">
                <h2 class="text-3xl font-display font-bold">Privatstunden</h2>
                <p class="opacity-70 leading-relaxed text-lg italic">"Perfektioniere deinen Tanz in deinem eigenen Tempo. Erhalte individuelles Feedback und lerne gezielt, was dich voranbringt."</p>
                <p class="text-xs font-bold uppercase tracking-[0.3em] text-brand-glow">Einzelperson oder Paare</p>
