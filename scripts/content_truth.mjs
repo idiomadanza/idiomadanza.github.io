@@ -53,10 +53,15 @@ function routeFile(route) {
 const all = pages(DIST);
 
 // 1) Ausgeschiedene Personen dürfen nirgends stehen
+// Wortgrenzen + Groß/Klein-Unterscheidung: "Anna" darf nicht in "Annahme" anschlagen
+const departedPatterns = (facts.departed || []).map((name) => ({
+  name,
+  re: new RegExp(`(^|[^\\p{L}])${name.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}([^\\p{L}]|$)`, 'u'),
+}));
 for (const page of all) {
   const t = text(page);
-  for (const name of facts.departed || []) {
-    if (t.includes(name)) {
+  for (const { name, re } of departedPatterns) {
+    if (re.test(t)) {
       errors.push(`${page.replace(DIST, '')}: enthält ausgeschiedene Person "${name}"`);
     }
   }
