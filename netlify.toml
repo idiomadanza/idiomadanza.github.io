@@ -33,7 +33,3 @@
   [headers.values]
     Cache-Control = "public, max-age=2592000"
 
-# Netlify Functions
-[functions]
-  directory = "netlify/functions"
-  node_bundler = "esbuild"

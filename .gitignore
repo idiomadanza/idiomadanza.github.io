@@ -1,6 +1,7 @@
 .npm-cache/
 node_modules/
 dist/
+.astro/
 _cacache/
 _logs/
 .DS_Store
