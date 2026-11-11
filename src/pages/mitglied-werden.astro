@@ -215,13 +215,13 @@ import SafeMail from '../components/ui/SafeMail.astro';
                 <label class="flex items-start gap-4 cursor-pointer group">
                   <input type="checkbox" required class="mt-1 w-5 h-5 rounded border-gray-300 text-brand-rose focus:ring-brand-rose cursor-pointer">
                   <span class="text-xs opacity-60 dark:text-white/60 leading-relaxed italic">
-                    Ich akzeptiere die <a href="/satzung" target="_blank" class="text-brand-rose underline hover:text-brand-glow transition-colors">Vereinssatzung</a>* 
+                    Ich akzeptiere die <a href="/satzung/" target="_blank" class="text-brand-rose underline hover:text-brand-glow transition-colors">Vereinssatzung</a>* 
                   </span>
                 </label>
                 <label class="flex items-start gap-4 cursor-pointer group">
                   <input type="checkbox" required class="mt-1 w-5 h-5 rounded border-gray-300 text-brand-rose focus:ring-brand-rose cursor-pointer">
                   <span class="text-xs opacity-60 dark:text-white/60 leading-relaxed italic">
-                    Ich akzeptiere die <a href="/datenschutz" target="_blank" class="text-brand-rose underline hover:text-brand-glow transition-colors">Datenschutzerklärung</a>*
+                    Ich akzeptiere die <a href="/datenschutz/" target="_blank" class="text-brand-rose underline hover:text-brand-glow transition-colors">Datenschutzerklärung</a>*
                   </span>
                 </label>
               </div>
@@ -238,7 +238,7 @@ import SafeMail from '../components/ui/SafeMail.astro';
     </div>
   </section>
 
-  <script nonce={Astro.locals.nonce}>
+  <script>
     const form = document.querySelector('#membership-form') as HTMLFormElement;
     const feedback = document.getElementById('form-feedback');
     const btnText = document.getElementById('btn-text');

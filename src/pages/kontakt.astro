@@ -108,7 +108,7 @@ const faqSchema = {
                 <label for="privacy-consent" class="text-xs font-bold uppercase tracking-widest opacity-60 dark:text-white">Datenschutz</label>
               <input type="checkbox" id="privacy-consent" name="privacy-consent" required class="mt-1 w-5 h-5 rounded border-gray-300 text-brand-rose focus:ring-brand-rose cursor-pointer">
                 <label for="privacy-consent" class="text-xs opacity-60 dark:text-white/60 leading-relaxed cursor-pointer select-none">
-                  Ich habe die <a href="/datenschutz" class="underline hover:text-brand-rose transition-colors font-bold">Datenschutzerklärung</a> gelesen und bin damit einverstanden, dass meine eingegebenen Daten zum Zweck der Kontaktaufnahme gespeichert und verarbeitet werden. *
+                  Ich habe die <a href="/datenschutz/" class="underline hover:text-brand-rose transition-colors font-bold">Datenschutzerklärung</a> gelesen und bin damit einverstanden, dass meine eingegebenen Daten zum Zweck der Kontaktaufnahme gespeichert und verarbeitet werden. *
                 </label>
               </div>
               
@@ -236,7 +236,7 @@ const faqSchema = {
     </div>
   </section>
 
-  <script nonce={Astro.locals.nonce}>
+  <script>
     function updateMap() {
       const placeholder = document.getElementById('maps-placeholder');
       const container = document.getElementById('maps-iframe-container');

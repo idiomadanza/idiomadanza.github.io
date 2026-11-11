@@ -14,6 +14,12 @@ export default defineConfig({
     formats: ['avif', 'webp'],
   },
   vite: {
-    plugins: [tailwindcss()]
-  }
+    plugins: [tailwindcss()],
+    build: {
+      // Skripte nie inline ausliefern: nur so kann die CSP mit script-src 'self'
+      // ohne Nonce/Hashes auskommen. Astro würde kleine Bundles sonst in den
+      // HTML-Output einbetten (assetsInlineLimit).
+      assetsInlineLimit: (filePath) => (filePath.endsWith('.js') ? false : undefined),
+    },
+  },
 });
