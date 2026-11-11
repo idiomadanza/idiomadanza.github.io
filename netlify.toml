@@ -5,7 +5,7 @@
 
 [build.environment]
   # Behebt den Build-Fehler: Zwingt Netlify dazu, Node.js Version 22 (statt 18) zu verwenden
-  NODE_VERSION = "22"
+  NODE_VERSION = "22.23.5"
 
 # ─── Security Headers ───────────────────────────────────────────
 # CSP wird als fester Header ausgeliefert. Astro statisch: Middleware-Header
