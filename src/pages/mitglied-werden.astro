@@ -274,11 +274,9 @@ import SafeMail from '../components/ui/SafeMail.astro';
         // Da wir kein CORS Problem in der Cloud haben wollen, nutzen wir den Redirect-Handler von Apps Script
         const response = await fetch(WEB_APP_URL, {
           method: 'POST',
-          mode: 'no-cors', // Apps Script benötigt oft no-cors für einfache Redirects
+          mode: 'no-cors', // Apps Script antwortet mit 302 auf script.googleusercontent.com
           cache: 'no-cache',
-          headers: {
-            'Content-Type': 'application/json',
-          },
+          // Kein Content-Type-Header: in no-cors darf der Browser ihn nicht setzen
           body: JSON.stringify(data)
         });
 
