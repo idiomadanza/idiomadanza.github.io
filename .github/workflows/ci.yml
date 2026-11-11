@@ -36,5 +36,9 @@ jobs:
       - name: Struktur-Prüfung (dist)
         run: node scripts/ci_check.mjs
 
+      - name: Issue-Verknüpfung im PR ("Closes #<n>")
+        if: github.event_name == 'pull_request'
+        run: node scripts/ci_pr_link.mjs
+
       - name: Dependency-Audit (High/Critical, blockierend)
         run: npm audit --audit-level=high
