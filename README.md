@@ -1,113 +1,73 @@
-Idiomadanza e.V. — Bachata & Salsa Regensburg
+# Idiomadanza e.V. — Website
 
-Idiomadanza e.V. ist ein Tanzsportverein in Regensburg, der die technische Präzision von Bachata und Salsa mit einem modernen, wertebasierten Gemeinschaftsgefühl vereint. Diese Webseite ist ein SSG-Projekt (Static Site Generation), optimiert für Performance und Agentic SEO.
+Statische Website des Tanzsportvereins **Idiomadanza e.V.** (Bachata & Salsa, Regensburg):
+Astro 6 mit Static Site Generation, deployt über Netlify auf **https://idiomadanza.de**.
 
-🏛️ Identität & Mission
+## Fakten
 
-Mission
+| | |
+|---|---|
+| **Framework** | Astro 6.4 (`astro@^6.4.8`), SSG — alle Seiten werden als HTML gebaut |
+| **Styling** | Tailwind CSS **v4** über `@tailwindcss/vite`; Tokens im `@theme`-Block von `src/styles/global.css` |
+| **Node** | **22** (`engines: >=22`, `.nvmrc`, `netlify.toml`) |
+| **Deploy** | Netlify, `publish = dist`, `NODE_VERSION=22` — keine GitHub-Action für das Deployment |
+| **Hauptzweig** | **`production`** (geschützt: PR-Pflicht, 1 Approval, grüne Checks, kein Force-Push) |
+| **Repo** | `https://github.com/idiomadanza/idiomadanza.github.io` (öffentlich) |
 
-Wir schaffen in Regensburg einen Raum, in dem Tanz als universelle Ausdrucksform gelebt wird. Unabhängig vom Level steht bei uns die Verbindung zum Partner, die Freude an der Musik und die tänzerische Qualität im Zentrum.
+⚠️ **Merge = Deploy.** Ein Merge nach `production` wird von Netlify sofort live gebaut. Es gibt keine Staging-Stufe; der Deploy-Preview des PRs ist die Vorschau.
 
-Vision
-
-"Tanz und Bewegung sind wie eine Sprache, nur eben mit dem ganzen Körper. Jeder drückt sich anders aus und verleiht dem Tanz seine eigene persönliche Note."
-— Auszug aus dem Gründungsprotokoll
-
-🛠️ Tech-Stack & Architektur
-
-Dieses Projekt nutzt einen modernen Stack für maximale Performance und Wartbarkeit:
-
-Framework: Astro (v4+) für optimierte statische Inhalte.
-
-Styling: Tailwind CSS für ein Constraint-based Design System.
-
-Content: JSON-basiertes Datenmodell für Teammitglieder und Workshops im src/content/ Ordner.
-
-Deployment: Optimiert für Netlify/Vercel (SSG).
-
-🚀 Entwicklung & Installation
-
-Voraussetzungen
-
-Stelle sicher, dass Node.js (v18+) installiert ist.
-
-Installation
-
-# Repository klonen
-git clone [https://github.com/dein-benutzername/idiomadanza.git](https://github.com/dein-benutzername/idiomadanza.git)
-
-# In den Ordner wechseln
-cd idiomadanza
-
-# Abhängigkeiten installieren
-npm install
-
-
-Befehle
-
-Befehl
-
-Aktion
-
-npm run dev
-
-Startet den lokalen Entwicklungsserver auf localhost:4321.
-
-npm run build
-
-Erstellt die optimierten statischen Dateien in /dist.
-
-npm run preview
-
-Startet eine lokale Vorschau des fertigen Builds.
-
-npx astro check
-
-Führt ein statisches Linting des Codes durch.
-
-👥 Organisation & Team
-
-Vorstand
-
-Stephan Lopez: 1. Vorsitzender
-
-Patricia Lopez: Kassenwart
-
-Silke Gall: Schriftführerin
-
-Trainer-Kollektiv
-
-Patricia | Stephan | Chris | Nalini | Francisco Pancho | Anna | Omar | Antonia | Sebastian | Silke | Janis | Katharina | Vikky
-
-🔍 Governance & Audit
-
-Jeder Build muss die Kriterien der Post-Build Review Checkliste erfüllen.
-
-Zero-Leak Policy: Keine API-Keys oder Env-Variablen im Client-Code.
-
-Accessibility: WCAG AA Konformität.
-
-Legal: DSGVO-konforme Einbindung von Assets (keine externen CDNs ohne Consent).
-
-🧹 Worktree-Aufräumen
-
-Kanban-Karten für diese Website werden von Filius in einem eigenen Git-Worktree unter `.worktrees/<task-id>` bearbeitet. Der Hermes-Dispatcher entfernt diese Worktrees nach Kartenabschluss NICHT automatisch — `worktree`-Workspaces sind von der Reaping-Logik bewusst ausgenommen (nur `scratch`-Workspaces werden aufgeräumt). Ohne manuelles Eingreifen wächst `.worktrees/` mit jeder Karte unbegrenzt weiter (inkl. `node_modules/`).
-
-Nach erfolgtem Merge eines Pull Requests entfernt Alastor (nicht Filius) den zugehörigen Worktree und Branch:
+## Entwicklung
 
 ```bash
-git worktree remove .worktrees/<task-id> --force
-git branch -d wt/<task-id>
+git clone https://github.com/idiomadanza/idiomadanza.github.io.git
+cd idiomadanza.github.io
+npm ci --no-fund --no-audit   # Lockfile-exakt; niemals "npm install"
+npm run dev                   # http://localhost:4321
+npm run build                 # erzeugt dist/ — muss grün sein
+npm run preview               # gebauten Stand lokal ansehen
 ```
 
-`--force` ist bei uncommitted `node_modules`-Resten nötig. Zuständig ist Alastor nach erfolgter Abnahme/Merge — Filius legt Worktrees nur an und arbeitet darin, räumt sie aber nicht selbst weg.
+`npm ci` statt `npm install` ist Absicht: `.npmrc` setzt `ignore-scripts=true`, exakte Pins und `save-exact`. Neue Abhängigkeiten brauchen eine eigene Freigabe.
 
-📍 Kontakt & Grounding
+## Struktur
 
-Idiomadanza e.V. Isarstr. 85, 93057 Regensburg
+```
+src/
+  pages/          Routen: /, /kurse, /workshops, /ueber-uns, /mitglied-werden,
+                  /kontakt, /blog, /schedule, /satzung, /vereinsordnung,
+                  /datenschutz, /impressum, /cookie-richtlinie, /tv (Signage, noindex)
+  layouts/        Layout.astro — Head, Meta/OG, JSON-LD, Navigation, Footer
+  components/     UI-Bausteine (ui/, FAQAccordion, CookieBanner, SafeMail …)
+  content/        Content Collections: team/, workshops/, blog/, testimonials/
+  styles/         global.css — Design-Tokens (einzige Quelle für Farben/Typo)
+  data/           schedule/course-Daten
+public/           statische Dateien (favicon-Set, logo.png, og-default.png, robots.txt, llms.txt)
+netlify.toml      Header (CSP, HSTS, Permissions-Policy), Cache-Regeln
+DESIGN.md         verbindliches Design-System (schlägt BLUEPRINT.md §5)
+```
 
-Location: Raum für Engagement, Regensburg Hauptbahnhof
+## Qualitätssicherung
 
-Web: www.idiomadanza.de
+Jeder PR gegen `production` läuft durch `.github/workflows/ci.yml`:
 
-Stand: April 2026 — Gebaut mit Präzision und Leidenschaft in Regensburg.
+1. `npm ci` → `npm run build` (18 Seiten)
+2. `node scripts/ci_check.mjs` — Pflichtdateien in `dist/`, **keine Inline-Skripte** (die CSP erlaubt nur `script-src 'self'`), `canonical`/`og:image` je Seite inkl. Existenzprüfung des Bildes, alle internen Links müssen ein Ziel haben
+3. `npm audit --audit-level=high` (derzeit nur Report — offene Critical-Meldung, siehe Issue #116)
+
+Zusätzlich manuell auf dem Agenten-Host: `/opt/website/tools/csp_check.mjs` (Playwright, prüft alle Routen gegen die echte CSP) und Lighthouse.
+
+## Ablauf für Änderungen
+
+1. Issue anlegen (Befund, Auswirkung, Abnahmekriterium)
+2. Branch vom aktuellen `production`, Worktree pro Aufgabe
+3. Ändern → `npm run build` grün → committen → pushen → PR mit `Closes #<issue>`
+4. Abnahme (Screenshots, Lighthouse, Inhalt gegen `SecondBrain`-Vault) → Approval → Squash-Merge
+5. Nach dem Merge: Live-Gegenprobe auf https://idiomadanza.de
+
+## Inhaltliche Wahrheit
+
+Kursdaten, Termine, Trainer und Preise stammen aus dem Vault (`/opt/SecondBrain`), nicht aus dem Kopf. Erfundene oder veraltete Angaben auf einer öffentlichen Vereinsseite sind ein Reputationsrisiko.
+
+## Kontakt
+
+Idiomadanza e.V. · Isarstr. 85 · 93057 Regensburg · www.idiomadanza.de
