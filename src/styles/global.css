@@ -72,8 +72,10 @@
     @apply antialiased text-brand-dark dark:text-brand-light bg-brand-light dark:bg-brand-dark transition-colors duration-300;
   }
 
-  /* Global Accessibility: Focus States */
+  /* Global Accessibility: Focus States
+     Kein transition-all: der Ring muss sofort sichtbar sein, nicht erst
+     nach 200 ms eingeblendet werden (sonst kein Fokusindikator im ersten Moment). */
   :focus-visible {
-    @apply outline-none ring-2 ring-brand-rose ring-offset-2 ring-offset-brand-light dark:ring-offset-brand-dark transition-all duration-200;
+    @apply outline-none ring-2 ring-brand-rose ring-offset-2 ring-offset-brand-light dark:ring-offset-brand-dark;
   }
 }
