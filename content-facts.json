@@ -1,0 +1,11 @@
+{
+  "_hinweis": "Fakten aus dem Vault (/opt/SecondBrain, Stammdaten.md + Termine). Aendern, wenn sich der Verein aendert — dann prueft die CI die Seite gegen diese Werte.",
+  "stand": "2026-11-11",
+  "trainerCount": 9,
+  "departed": ["Nalini", "Francisco Pancho", "Pancho", "Anna Lopez", "Chris"],
+  "upcomingWorkshopTexts": ["28. - 29. November 2026"],
+  "priceTexts": ["19€", "39€"],
+  "teamPage": "/ueber-uns/",
+  "workshopPage": "/workshops/",
+  "coursePage": "/kurse/"
+}

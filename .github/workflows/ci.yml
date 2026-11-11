@@ -36,6 +36,9 @@ jobs:
       - name: Struktur-Prüfung (dist)
         run: node scripts/ci_check.mjs
 
+      - name: Content-Truth (dist gegen content-facts.json)
+        run: node scripts/content_truth.mjs
+
       - name: Issue-Verknüpfung im PR ("Closes #<n>")
         if: github.event_name == 'pull_request'
         run: node scripts/ci_pr_link.mjs
