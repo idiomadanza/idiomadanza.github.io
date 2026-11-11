@@ -213,13 +213,13 @@ import SafeMail from '../components/ui/SafeMail.astro';
 
               <div class="space-y-4 pt-4">
                 <label class="flex items-start gap-4 cursor-pointer group">
-                  <input type="checkbox" required class="mt-1 w-5 h-5 rounded border-gray-300 text-brand-rose focus:ring-brand-rose cursor-pointer">
+                  <input type="checkbox" id="satzung_accepted" name="satzung_accepted" required class="mt-1 w-5 h-5 rounded border-gray-300 text-brand-rose focus:ring-brand-rose cursor-pointer">
                   <span class="text-xs text-brand-dark/80 dark:text-white/70 leading-relaxed italic">
                     Ich akzeptiere die <a href="/satzung/" target="_blank" class="text-brand-rose underline hover:text-brand-glow transition-colors">Vereinssatzung</a>* 
                   </span>
                 </label>
                 <label class="flex items-start gap-4 cursor-pointer group">
-                  <input type="checkbox" required class="mt-1 w-5 h-5 rounded border-gray-300 text-brand-rose focus:ring-brand-rose cursor-pointer">
+                  <input type="checkbox" id="datenschutz_accepted" name="datenschutz_accepted" required class="mt-1 w-5 h-5 rounded border-gray-300 text-brand-rose focus:ring-brand-rose cursor-pointer">
                   <span class="text-xs text-brand-dark/80 dark:text-white/70 leading-relaxed italic">
                     Ich akzeptiere die <a href="/datenschutz/" target="_blank" class="text-brand-rose underline hover:text-brand-glow transition-colors">Datenschutzerklärung</a>*
                   </span>
