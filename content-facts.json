@@ -1,13 +1,21 @@
 {
   "_hinweis": "Fakten aus dem Vault (/opt/SecondBrain, Stammdaten.md + Termine). Aendern, wenn sich der Verein aendert — dann prueft die CI die Seite gegen diese Werte.",
-  "stand": "2026-11-11",
+  "stand": "2026-11-12",
   "trainerCount": 9,
   "departed": [
     "Nalini",
     "Pancho",
     "Anna",
+    "Tschauder",
     "Chris"
   ],
+  "_belege": {
+    "Nalini": "Kündigung 11.11.2026 (Stammdaten.md, PR #110)",
+    "Pancho": "Ehemaliger Trainer Salsa Fusion Nürnberg, Austritt 09.11.2026 (Stammdaten.md)",
+    "Anna": "Ehemalige Trainerin Salsa Fusion Nürnberg, Austritt 09.11.2026; voller Name Anna Tschauder von Stephan am 12.11.2026 bestätigt",
+    "Tschauder": "Nachname von Anna Tschauder, Austritt 09.11.2026 (Bestätigung Stephan, 12.11.2026)",
+    "Chris": "Kündigung 20.09.2026 (Stammdaten.md)"
+  },
   "upcomingWorkshopTexts": [
     "28. - 29. November 2026"
   ],
