@@ -1,0 +1,126 @@
+---
+import Layout from '../layouts/Layout.astro';
+import SafeMail from '../components/ui/SafeMail.astro';
+---
+
+<Layout
+  title="Sicher tanzen | Idiomadanza e.V."
+  description="Respekt und Sicherheit bei Idiomadanza: Ansprechpersonen, wie du eine Grenzüberschreitung meldest und was danach passiert."
+>
+  <script slot="head" type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": "Sicher tanzen",
+    "description": "Respekt und Sicherheit bei Idiomadanza: Ansprechpersonen, Meldeweg und Ablauf.",
+    "url": "https://idiomadanza.de/sichertanzen",
+    "inLanguage": "de",
+    "publisher": { "@type": "Organization", "name": "Idiomadanza e.V." }
+  })} />
+
+  <div class="container mx-auto px-4 py-20 max-w-4xl">
+    <div class="text-center mb-12">
+      <h1 class="font-display text-4xl md:text-5xl font-bold text-brand-dark dark:text-brand-light mb-4">
+        Sicher <span class="text-brand-rose">tanzen</span>
+      </h1>
+      <div class="w-24 h-1 bg-brand-glow mx-auto rounded-full mb-6"></div>
+      <p class="opacity-80">Respekt, Grenzen und was du tun kannst</p>
+    </div>
+
+    <div class="bg-white/70 dark:bg-brand-dark/50 backdrop-blur-md rounded-idioma p-8 md:p-12 shadow-glass border border-white/20 dark:border-white/10 legal-content">
+
+      <section class="mb-12">
+        <p class="text-lg">
+          Beim Tanzen kommt man sich nah. Das ist gewollt — und es braucht klare Grenzen.
+          Bei uns hat niemand das Recht, deine Grenzen zu überschreiten. Wenn dir etwas
+          unangenehm war, musst du nichts beweisen: wir hören zu und nehmen jede Meldung ernst.
+        </p>
+      </section>
+
+      <section class="mb-12">
+        <h2>1. An wen du dich wenden kannst</h2>
+        <p>
+          Zwei Personen im Verein sind dafür benannt, Meldungen aufzunehmen. Du kannst dich an
+          beide wenden — auch dann, wenn deine Meldung eine der beiden Personen betrifft.
+        </p>
+        <div class="mt-4 p-6 bg-brand-rose/5 border border-brand-rose/10 rounded-lg">
+          <p>
+            <strong>Patricia Lopez</strong><br />
+            <strong>Stephan Lopez</strong><br />
+            E-Mail: <SafeMail email="mail+sichertanzen@idiomadanza.de" class="text-brand-rose" />
+          </p>
+        </div>
+        <p class="mt-4 text-sm opacity-80">
+          Beide sehen eine Meldung, die an diese Adresse geht. Alles bleibt vertraulich und
+          verlässt den Kreis der Ansprechpersonen nicht.
+        </p>
+      </section>
+
+      <section class="mb-12">
+        <h2>2. Was du melden kannst</h2>
+        <ul>
+          <li>Unangemessene Berührungen oder Übergriffigkeit — im Kurs, beim Social oder danach</li>
+          <li>Grenzüberschreitende Bemerkungen, Sprüche, Nachrichten</li>
+          <li>Druck durch Trainerinnen, Trainer oder andere Mitglieder</li>
+          <li>Machtmissbrauch, Ausnutzen einer Vorbildrolle</li>
+          <li>Alles, was sich für dich falsch angefühlt hat — auch wenn du es nicht benennen kannst</li>
+        </ul>
+        <p class="mt-4">
+          Du musst nicht einschätzen, ob es „schlimm genug" ist. Das ist unsere Aufgabe, nicht deine.
+        </p>
+      </section>
+
+      <section class="mb-12">
+        <h2>3. Wie eine Meldung abläuft</h2>
+        <ol>
+          <li><strong>Du meldest</strong> — per E-Mail an die Ansprechpersonen, mit Namen oder anonym.</li>
+          <li><strong>Wir melden uns</strong> — bei einer Meldung mit Kontaktdaten innerhalb weniger Tage.</li>
+          <li><strong>Wir hören beide Seiten an</strong> — getrennt, vertraulich, ohne Vorverurteilung.</li>
+          <li><strong>Wir entscheiden und handeln</strong> — von einem klärenden Gespräch bis zum Ausschluss.</li>
+          <li><strong>Wir bleiben dran</strong> — du erfährst, was geschehen ist, soweit wir es dürfen.</li>
+        </ol>
+      </section>
+
+      <section class="mb-12">
+        <h2>4. Anonym melden</h2>
+        <p>
+          Du kannst eine Meldung ohne Namen und ohne Kontaktdaten schicken. Wir lesen sie
+          genauso ernst — aber wir können nicht nachfragen und dir nicht zurückmelden, was
+          daraus geworden ist.
+        </p>
+        <p class="mt-4">
+          Wenn du anonym bleibst, schreib bitte so genau wie möglich: was passiert ist, wann,
+          wo und in welchem Kurs. Das hilft uns, dem nachzugehen, ohne dich zu kennen.
+        </p>
+      </section>
+
+      <section class="mb-12">
+        <h2>5. Was wir tun</h2>
+        <p>
+          Wir haben uns im Schutzkonzept auf Null-Toleranz verpflichtet: Schulungen für
+          Trainerinnen und Trainer, erweiterte Führungszeugnisse, benannte Ansprechpersonen.
+          Meldungen werden dokumentiert, damit Fälle nicht verloren gehen und Entscheidungen
+          nachvollziehbar bleiben.
+        </p>
+      </section>
+
+      <section class="mb-12 p-6 border border-brand-rose/20 rounded-lg">
+        <h2 class="mt-0">Außerhalb des Vereins</h2>
+        <p class="text-sm opacity-80">
+          <strong>[zu ergänzen]</strong> Hier entstehen Verweise auf Beratungs- und
+          Beschwerdestellen außerhalb des Vereins — für den Fall, dass du dich nicht an uns
+          wenden möchtest. Bis dahin gilt: Bei einer Straftat kannst du dich jederzeit direkt
+          an die Polizei wenden.
+        </p>
+      </section>
+
+      <section class="p-6 border border-white/10 rounded-lg">
+        <h2 class="mt-0">Schutzkonzept</h2>
+        <p class="text-sm opacity-80">
+          <strong>[zu ergänzen]</strong> Das vollständige Schutzkonzept des Vereins wird hier
+          als PDF hinterlegt (Vereinsordnung Teil VIII).
+        </p>
+      </section>
+
+    </div>
+  </div>
+</Layout>
