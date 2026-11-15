@@ -24,14 +24,14 @@
     </div>
     
     <p class="text-sm opacity-70 dark:text-brand-light/70 mb-6 leading-relaxed">
-      Wir nutzen Cookies, um dir ein optimales Webseiten-Erlebnis zu bieten. Dazu zählen technisch notwendige Cookies sowie Dienste von Drittanbietern (z.B. Google Maps).
+      Diese Website setzt <strong>keine Cookies</strong> zu Analyse- oder Marketingzwecken. Wir fragen dich nur, ob wir die Karte von OpenStreetMap laden dürfen — dabei wird deine IP-Adresse an OpenStreetMap übermittelt. Ohne Zustimmung bleibt die Karte aus; die Seite funktioniert vollständig.
     </p>
 
     <div class="space-y-3 mb-8">
       <label class="flex items-center justify-between p-3 bg-brand-rose/5 rounded-lg border border-brand-rose/10 cursor-not-allowed opacity-80">
         <span class="text-xs font-bold uppercase tracking-widest flex flex-col">
-          Essentiell
-          <span class="text-[10px] font-normal lowercase opacity-50 mt-1">Technisch notwendig</span>
+          Keine Cookies
+          <span class="text-[10px] font-normal lowercase opacity-50 mt-1">nur lokale Einstellung</span>
         </span>
         <div class="w-10 h-5 bg-brand-rose rounded-full flex items-center px-1">
           <div class="w-3.5 h-3.5 bg-white rounded-full"></div>
@@ -41,21 +41,24 @@
       <label class="flex items-center justify-between p-3 bg-brand-glow/5 rounded-lg border border-brand-glow/10 cursor-pointer hover:bg-brand-glow/10 transition-colors">
         <span class="text-xs font-bold uppercase tracking-widest flex flex-col">
           Externe Medien
-          <span class="text-[10px] font-normal lowercase opacity-50 mt-1">Google Maps</span>
+          <span class="text-[10px] font-normal lowercase opacity-50 mt-1">OpenStreetMap-Karte</span>
         </span>
         <div class="relative inline-flex items-center cursor-pointer">
-          <input type="checkbox" id="cookie-maps" class="sr-only peer" checked>
+          <input type="checkbox" id="cookie-maps" class="sr-only peer">
           <div class="w-10 h-5 bg-gray-300 dark:bg-gray-700 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[3px] after:left-[3px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-3.5 after:w-3.5 after:transition-all peer-checked:bg-brand-glow"></div>
         </div>
       </label>
     </div>
 
-    <div class="grid grid-cols-2 gap-3">
-      <button id="cookie-accept-all" class="bg-brand-rose text-white text-xs font-bold uppercase py-3 rounded-full shadow-glow-rose hover:-translate-y-0.5 transition-all">
-        Alle akzeptieren
+    <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+      <button id="cookie-reject" class="border border-brand-light/20 dark:border-brand-light/20 text-brand-dark dark:text-brand-light text-xs font-bold uppercase py-3 rounded-full hover:bg-brand-rose/5 transition-all">
+        Nur notwendige
       </button>
       <button id="cookie-save" class="border border-brand-rose/30 text-brand-rose text-xs font-bold uppercase py-3 rounded-full hover:bg-brand-rose/5 transition-all">
-        Sichern
+        Auswahl sichern
+      </button>
+      <button id="cookie-accept-all" class="bg-brand-rose text-white text-xs font-bold uppercase py-3 rounded-full shadow-glow-rose hover:-translate-y-0.5 transition-all">
+        Alle akzeptieren
       </button>
     </div>
 
@@ -70,6 +73,7 @@
   const banner = document.getElementById('cookie-banner');
   const acceptAll = document.getElementById('cookie-accept-all');
   const save = document.getElementById('cookie-save');
+  const reject = document.getElementById('cookie-reject');
   const mapsToggle = document.getElementById('cookie-maps') as HTMLInputElement;
 
   function toggleBanner() {
@@ -96,6 +100,10 @@
   trigger?.addEventListener('click', toggleBanner);
   acceptAll?.addEventListener('click', () => saveSettings(true));
   save?.addEventListener('click', () => saveSettings(false));
+  reject?.addEventListener('click', () => {
+    if (mapsToggle) mapsToggle.checked = false;
+    saveSettings(false);
+  });
 
   // Show on first visit
   window.addEventListener('load', () => {

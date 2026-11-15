@@ -23,5 +23,3 @@ Allow: /
 # Sitemap & LLM-Dokumentation für Agenten
 Sitemap: https://idiomadanza.de/sitemap-index.xml
 
-# Sensible Verzeichnisse schützen
-Disallow: /admin/
