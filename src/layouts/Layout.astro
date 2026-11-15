@@ -182,7 +182,9 @@ const danceSchoolSchema = {
     })} />
     {breadcrumbSchema && <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />}
     <slot name="head" />
-  </head>
+    <!-- Reichweitenmessung: Umami, selbst gehostet, cookielos -->
+  <script defer src="https://statistic.idiomadanza.de/script.js" data-website-id="43e6ad43-2c8b-47c9-a7fd-d63e434dadb2"></script>
+</head>
   <body class="font-sans min-h-screen flex flex-col bg-brand-light dark:bg-brand-dark text-brand-dark dark:text-white">
     <header role="banner" class="sticky top-0 z-50 w-full backdrop-blur-md bg-white/70 dark:bg-brand-dark/80 border-b border-white/10">
       <nav role="navigation" aria-label="Hauptnavigation" class="container mx-auto px-4 py-4 flex justify-between items-center">
