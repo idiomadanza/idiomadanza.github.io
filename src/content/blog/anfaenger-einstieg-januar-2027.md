@@ -35,6 +35,7 @@ Zur Fairness gegenüber allen Mitgliedern: Bei Kursausfällen gibt es keine Nach
 
 - **Anfänger-Einstieg:** Dienstag, 12. Januar 2027, 20 Uhr · Bachata Foundations · Fortuna, Isarstraße 85, 93057 Regensburg
 - **Schnupperstunde:** jederzeit kostenlos möglich
+- **Mittwoch:** Raum für Engagement, D.-Martin-Luther-Str. 19, 93047 Regensburg (am Bahnhof)
 - **Alle Kurse und Zeiten:** [Kursplan](/kurse/)
 - **Mitglied werden:** [Flatrate und Aufnahme](/mitglied-werden/)
 
