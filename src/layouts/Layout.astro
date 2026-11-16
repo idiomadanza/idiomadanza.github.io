@@ -273,73 +273,71 @@ const danceSchoolSchema = {
       <slot />
     </main>
 
-    <footer role="contentinfo" class="bg-brand-dark border-t border-white/5 pt-20 pb-10 overflow-hidden">
+    <footer role="contentinfo" class="bg-brand-ink border-t border-brand-line pt-20 pb-10 overflow-hidden">
       <div class="container mx-auto px-4">
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
           <!-- Brand & About -->
           <div class="space-y-6">
             <div class="flex items-center gap-4">
-              <div class="relative w-12 h-12 rounded-full overflow-hidden border border-brand-glow/60 shadow-glow-amber">
+              <div class="relative w-12 h-12 rounded-full overflow-hidden border border-brand-gold/50">
                 <Image src={logoImg} alt="Idiomadanza Logo" width={48} height={48} widths={[48, 96]} sizes="48px" class="p-1" decoding="async" />
               </div>
-              <span class="text-2xl font-display font-bold text-brand-rose-bright">Idiomadanza e.V.</span>
+              <span class="text-2xl font-display font-bold text-brand-paper">Idiomadanza e.V.</span>
             </div>
-            <p class="text-sm text-white/65 leading-relaxed max-w-xs">
+            <p class="text-sm text-brand-muted leading-relaxed max-w-xs">
               Tanzen verbindet: Dein Verein für Bachata & Salsa in Regensburg. Erlebe Leidenschaft und Community.
             </p>
           </div>
 
           <!-- Legal -->
           <div class="space-y-6">
-            <h3 class="text-xs font-bold uppercase tracking-[0.2em] text-brand-glow">Rechtliches</h3>
-            <ul class="space-y-6 text-sm text-white/60">
-              <li><a href="/impressum/" class="hover:text-brand-rose transition-colors">Impressum</a></li>
-              <li><a href="/datenschutz/" class="hover:text-brand-rose transition-colors">Datenschutz</a></li>
-              <li><a href="/cookie-richtlinie/" class="hover:text-brand-rose transition-colors">Cookies</a></li>
-              <li><a href="/satzung/" class="hover:text-brand-rose transition-colors">Satzung</a></li>
-              <li><a href="/vereinsordnung/" class="hover:text-brand-rose transition-colors">Vereinsordnung</a></li>
-              <li><a href="/sichertanzen/" class="hover:text-brand-rose transition-colors">Sicher tanzen</a></li>
-              <li><a href="/kurse/#faq" class="hover:text-brand-rose transition-colors">Häufige Fragen</a></li>
+            <h3 class="font-display text-xs font-bold uppercase tracking-[0.2em] text-brand-gold">Rechtliches</h3>
+            <ul class="space-y-1 text-sm text-brand-muted">
+              <li><a href="/impressum/" class="inline-flex min-h-[44px] items-center underline decoration-brand-muted underline-offset-4 transition-colors hover:text-brand-gold hover:decoration-brand-gold">Impressum</a></li>
+              <li><a href="/datenschutz/" class="inline-flex min-h-[44px] items-center underline decoration-brand-muted underline-offset-4 transition-colors hover:text-brand-gold hover:decoration-brand-gold">Datenschutz</a></li>
+              <li><a href="/cookie-richtlinie/" class="inline-flex min-h-[44px] items-center underline decoration-brand-muted underline-offset-4 transition-colors hover:text-brand-gold hover:decoration-brand-gold">Cookies</a></li>
+              <li><a href="/satzung/" class="inline-flex min-h-[44px] items-center underline decoration-brand-muted underline-offset-4 transition-colors hover:text-brand-gold hover:decoration-brand-gold">Satzung</a></li>
+              <li><a href="/vereinsordnung/" class="inline-flex min-h-[44px] items-center underline decoration-brand-muted underline-offset-4 transition-colors hover:text-brand-gold hover:decoration-brand-gold">Vereinsordnung</a></li>
+              <li><a href="/sichertanzen/" class="inline-flex min-h-[44px] items-center underline decoration-brand-muted underline-offset-4 transition-colors hover:text-brand-gold hover:decoration-brand-gold">Sicher tanzen</a></li>
+              <li><a href="/kurse/#faq" class="inline-flex min-h-[44px] items-center underline decoration-brand-muted underline-offset-4 transition-colors hover:text-brand-gold hover:decoration-brand-gold">Häufige Fragen</a></li>
             </ul>
           </div>
 
           <!-- Explore -->
           <div class="space-y-6">
-            <h3 class="text-xs font-bold uppercase tracking-[0.2em] text-brand-glow">Entdecken</h3>
-            <ul class="space-y-6 text-sm text-white/60">
-              <li><a href="/kurse/" class="hover:text-brand-rose transition-colors">Wöchentliche Kurse</a></li>
-              <li><a href="/kurse/#preise" class="hover:text-brand-rose transition-colors">Preise & Mitgliedschaft</a></li>
-              <li><a href="/ueber-uns/" class="hover:text-brand-rose transition-colors">Über den Verein</a></li>
-              <li><a href="/blog/" class="hover:text-brand-rose transition-colors">Blog & Ratgeber</a></li>
-              <li><a href="/mitglied-werden/" class="hover:text-brand-rose transition-colors font-bold text-brand-rose-bright">Mitglied werden</a></li>
+            <h3 class="font-display text-xs font-bold uppercase tracking-[0.2em] text-brand-gold">Entdecken</h3>
+            <ul class="space-y-1 text-sm text-brand-muted">
+              <li><a href="/kurse/" class="inline-flex min-h-[44px] items-center underline decoration-brand-muted underline-offset-4 transition-colors hover:text-brand-gold hover:decoration-brand-gold">Wöchentliche Kurse</a></li>
+              <li><a href="/kurse/#preise" class="inline-flex min-h-[44px] items-center underline decoration-brand-muted underline-offset-4 transition-colors hover:text-brand-gold hover:decoration-brand-gold">Preise & Mitgliedschaft</a></li>
+              <li><a href="/ueber-uns/" class="inline-flex min-h-[44px] items-center underline decoration-brand-muted underline-offset-4 transition-colors hover:text-brand-gold hover:decoration-brand-gold">Über den Verein</a></li>
+              <li><a href="/blog/" class="inline-flex min-h-[44px] items-center underline decoration-brand-muted underline-offset-4 transition-colors hover:text-brand-gold hover:decoration-brand-gold">Blog & Ratgeber</a></li>
+              <li><a href="/mitglied-werden/" class="inline-flex min-h-[44px] items-center underline decoration-brand-muted underline-offset-4 transition-colors hover:text-brand-gold hover:decoration-brand-gold font-bold text-brand-paper">Mitglied werden</a></li>
             </ul>
           </div>
 
           <!-- Contact -->
           <div class="space-y-6">
-            <h3 class="text-xs font-bold uppercase tracking-[0.2em] text-brand-glow">Kontakt</h3>
-            <ul class="space-y-6 text-sm text-white/60">
-              <li class="flex items-start gap-3">
-                <span class="text-brand-rose-bright">📍</span>
-                <span>Isarstr. 85, 93057 Regensburg</span>
+            <h3 class="font-display text-xs font-bold uppercase tracking-[0.2em] text-brand-gold">Kontakt</h3>
+            <ul class="space-y-1 text-sm text-brand-muted">
+              <li class="flex items-center gap-3">
+                <Icon name="ort" size={18} strokeWidth={1.75} class="shrink-0 text-brand-gold" />
+                <span class="inline-flex min-h-[44px] items-center">Isarstr. 85, 93057 Regensburg</span>
               </li>
-              <li class="flex items-start gap-3">
-                <span class="text-brand-rose-bright">💬</span>
-                <a href="https://wa.me/+4915678659226?text=Hallo%20Idiomadanza,%20ich%20habe%20weitere%20Fragen%20zu%20..." target="_blank" class="hover:text-brand-rose transition-colors font-bold">Chat on WhatsApp</a>
+              <li>
+                <a href="https://wa.me/+4915678659226?text=Hallo%20Idiomadanza,%20ich%20habe%20weitere%20Fragen%20zu%20..." target="_blank" rel="noopener noreferrer" class="inline-flex min-h-[44px] items-center underline decoration-brand-muted underline-offset-4 transition-colors hover:text-brand-gold hover:decoration-brand-gold font-bold">Chat on WhatsApp</a>
               </li>
-              <li class="flex items-start gap-3">
-                <span class="text-brand-rose-bright">📧</span>
-                <SafeMail email="mail@idiomadanza.de" class="hover:text-brand-rose transition-colors" />
+              <li>
+                <SafeMail email="mail@idiomadanza.de" class="inline-flex min-h-[44px] items-center underline decoration-brand-muted underline-offset-4 transition-colors hover:text-brand-gold hover:decoration-brand-gold" />
               </li>
             </ul>
           </div>
         </div>
 
-        <div class="pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-white/60">
+        <div class="pt-8 border-t border-brand-line/60 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-brand-muted">
           <p>&copy; {new Date().getFullYear()} Idiomadanza e.V. Alle Rechte vorbehalten.</p>
           <div class="flex gap-8">
-            <a href="https://instagram.com/idiomadanza" target="_blank" rel="noopener noreferrer" aria-label="Idiomadanza auf Instagram" class="hover:text-brand-rose transition-colors">Instagram</a>
-            <a href="https://facebook.com/idiomadanza" target="_blank" rel="noopener noreferrer" aria-label="Idiomadanza auf Facebook" class="hover:text-brand-rose transition-colors">Facebook</a>
+            <a href="https://instagram.com/idiomadanza" target="_blank" rel="noopener noreferrer" aria-label="Idiomadanza auf Instagram" class="inline-flex min-h-[44px] items-center underline decoration-brand-muted underline-offset-4 transition-colors hover:text-brand-gold hover:decoration-brand-gold">Instagram</a>
+            <a href="https://facebook.com/idiomadanza" target="_blank" rel="noopener noreferrer" aria-label="Idiomadanza auf Facebook" class="inline-flex min-h-[44px] items-center underline decoration-brand-muted underline-offset-4 transition-colors hover:text-brand-gold hover:decoration-brand-gold">Facebook</a>
           </div>
         </div>
       </div>
