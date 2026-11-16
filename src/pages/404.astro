@@ -1,58 +1,41 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import Icon from '../components/Icon.astro';
 ---
 
 <Layout 
   title="404 - Seite nicht gefunden | Idiomadanza e.V."
   description="Ups! Diese Seite scheint beim Tanzen verloren gegangen zu sein. Keine Sorge, wir führen dich zurück zur Tanzfläche."
 >
-  <section class="min-h-[85vh] flex items-center justify-center relative overflow-hidden bg-brand-dark">
-    <!-- Dynamic Background Elements -->
-    <div class="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_50%_50%,rgba(139,92,246,0.1)_0%,transparent_50%)]"></div>
-    <div class="absolute -top-24 -left-24 w-96 h-96 bg-brand-rose/20 rounded-full blur-[100px] animate-pulse"></div>
-    <div class="absolute -bottom-24 -right-24 w-96 h-96 bg-brand-glow/10 rounded-full blur-[100px]"></div>
-    
-    <div class="container mx-auto px-4 relative z-10 text-center">
-      <div class="max-w-3xl mx-auto">
-        <!-- 404 Display -->
-        <div class="relative inline-block mb-12">
-          <span class="text-[12rem] md:text-[20rem] font-display font-black text-white/5 leading-none select-none">404</span>
-          <div class="absolute inset-0 flex items-center justify-center">
-             <h1 class="text-4xl md:text-6xl font-display font-bold text-white drop-shadow-glow">
-              Oje! <span class="text-brand-rose">Takt</span> verloren?
-            </h1>
-          </div>
-        </div>
-        
-        <div class="bg-white/5 backdrop-blur-xl border border-white/10 p-8 md:p-12 rounded-3xl shadow-glass transform hover:scale-[1.02] transition-all duration-500">
-          <p class="text-xl md:text-2xl text-white/80 mb-10 font-light leading-relaxed">
-            Es sieht so aus, als ob diese Seite im Getümmel der Tanzfläche verschwunden ist. <br class="hidden md:block" />
-            Keine Panik – bei uns bleibt niemand allein am Rand stehen!
-          </p>
+  <section class="flex min-h-[80vh] items-center justify-center bg-brand-ink px-[clamp(20px,5vw,80px)] py-[clamp(48px,8vw,112px)]">
+    <div class="mx-auto flex max-w-[900px] flex-col items-center gap-10 text-center">
+      <div class="relative inline-flex items-center justify-center">
+        <span aria-hidden="true" class="select-none font-display text-[clamp(120px,28vw,300px)] font-black leading-none text-brand-paper/5">404</span>
+        <h1 class="absolute font-display text-[clamp(32px,5vw,64px)] font-extrabold leading-[1.05] tracking-[-0.03em] text-brand-paper">
+          Oje! <span class="text-brand-gold">Takt</span> verloren?
+        </h1>
+      </div>
 
-          <div class="flex flex-col sm:flex-row gap-6 justify-center items-center">
-            <a href="/" class="group px-12 py-5 bg-brand-rose text-white font-black uppercase tracking-[0.2em] text-xs rounded-full shadow-glow-rose hover:-translate-y-1 hover:shadow-2xl transition-all duration-300 flex items-center gap-3">
-              Zurück zur Startseite
-              <span class="group-hover:translate-x-1 transition-transform">→</span>
-            </a>
-            <a href="/kurse/" class="px-12 py-5 bg-white/10 text-white font-black uppercase tracking-[0.2em] text-xs rounded-full border border-white/20 hover:bg-white/20 transition-all">
-              Kursplan ansehen
-            </a>
-          </div>
+      <div class="flex flex-col gap-8 rounded-[36px] bg-brand-surface px-[clamp(24px,4vw,48px)] py-[clamp(24px,4vw,48px)]">
+        <h2 class="text-[clamp(18px,1.7vw,22px)] font-normal leading-relaxed text-brand-paper/85">
+          Es sieht so aus, als ob diese Seite im Getümmel der Tanzfläche verschwunden ist. <br class="hidden md:block" />
+          Keine Panik – bei uns bleibt niemand allein am Rand stehen!
+        </h2>
+
+        <div class="flex flex-col items-center justify-center gap-4 sm:flex-row">
+          <a href="/" class="inline-flex min-h-[56px] items-center gap-2.5 rounded-full bg-brand-gold px-8 text-lg font-bold text-brand-ink transition-colors hover:bg-brand-gold-soft">
+            Zurück zur Startseite
+            <span aria-hidden="true">&rarr;</span>
+          </a>
+          <a href="/kurse/" class="inline-flex min-h-[56px] items-center rounded-full border-[1.5px] border-brand-paper/35 px-8 text-lg font-semibold text-brand-paper transition-colors hover:border-brand-gold hover:text-brand-gold">
+            Kursplan ansehen
+          </a>
         </div>
 
-        <div class="mt-16 flex justify-center gap-8 opacity-40 hover:opacity-100 transition-opacity duration-700">
-          <span class="text-4xl grayscale hover:grayscale-0 cursor-default transition-all">💃</span>
-          <span class="text-4xl grayscale hover:grayscale-0 cursor-default transition-all">🕺</span>
-          <span class="text-4xl grayscale hover:grayscale-0 cursor-default transition-all">🎶</span>
+        <div class="flex justify-center pt-2">
+          <Icon name="musik" size={40} strokeWidth={1.5} class="text-brand-gold" />
         </div>
       </div>
     </div>
   </section>
 </Layout>
-
-<style>
-  .drop-shadow-glow {
-    filter: drop-shadow(0 0 20px rgba(139, 92, 246, 0.4));
-  }
-</style>

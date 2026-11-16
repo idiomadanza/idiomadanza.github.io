@@ -1,7 +1,6 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import { Image } from 'astro:assets';
-import contactBg from '../assets/images/testimonials/bg.png';
+import Icon from '../components/Icon.astro';
 import SafeMail from '../components/ui/SafeMail.astro';
 import FAQAccordion from '../components/FAQAccordion.astro';
 
@@ -33,209 +32,197 @@ const faqSchema = {
   description="Kontaktiere Idiomadanza e.V. in Regensburg: Probestunde anfragen, Mitglied werden oder Workshop-Infos erhalten. High-End Dance-Education meets Community Spirit."
 >
   <script slot="head" type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
-  <!-- HERO SECTION -->
-  <section class="relative py-20 overflow-hidden bg-brand-dark">
-    <div class="absolute inset-0 z-0">
-      <Image 
-        src={contactBg} 
-        alt="Contact Background" 
-        width={1920}
-        height={1080}
-        decoding="async"
-        class="w-full h-full object-cover opacity-20 blur-[1px]" 
-      />
-      <div class="absolute inset-0 bg-gradient-to-b from-brand-dark/90 via-brand-dark/60 to-brand-dark"></div>
-    </div>
-    
-    <div class="container mx-auto px-4 relative z-10 text-center">
-      <h1 class="font-display text-5xl md:text-7xl font-bold text-white mb-6 drop-shadow-2xl">
-        Sag <span class="text-brand-rose">Hola!</span>
+  {/* HERO */}
+  <section class="bg-brand-ink px-[clamp(20px,5vw,80px)] pb-[clamp(32px,4vw,56px)] pt-[clamp(40px,6vw,88px)]">
+    <div class="mx-auto flex max-w-[1280px] flex-col gap-7">
+      <p class="text-sm font-semibold uppercase tracking-[0.14em] text-brand-gold">Kontakt &amp; Anmeldung</p>
+      <h1 class="font-display text-[clamp(42px,6.8vw,96px)] font-extrabold leading-[0.94] tracking-[-0.03em] text-brand-paper">
+        Sag <span class="text-brand-gold">Hola!</span>
       </h1>
-      <p class="max-w-xl mx-auto text-xl text-white/80 leading-relaxed font-light">
+      <p class="max-w-[44ch] text-[clamp(18px,1.6vw,22px)] text-brand-paper/85">
         Wir freuen uns darauf, von dir zu hören. Egal ob Fragen zu Kursen, Probestunden oder Mitgliedschaft.
       </p>
     </div>
   </section>
 
-  <!-- CONTACT GRID -->
-  <section class="py-24 bg-brand-light dark:bg-brand-dark">
-    <div class="container mx-auto px-4">
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-16 max-w-6xl mx-auto">
-        
-        <!-- Contact Form -->
-        <div class="lg:col-span-12 max-w-4xl mx-auto w-full order-1">
-          <div class="p-8 md:p-12 bg-white/70 dark:bg-white/5 backdrop-blur-xl rounded-idioma border border-white/20 dark:border-white/10 shadow-glass">
-            <h3 class="text-2xl font-display font-bold mb-8 dark:text-white">Schreib uns eine Nachricht</h3>
-            
-            <form 
-              name="contact" 
-              method="POST" 
-              data-netlify="true" 
-              netlify-honeypot="bot-field"
-              action="/success" 
-              class="space-y-6"
-            >
-              <p class="hidden">
-                <label>Don’t fill this out if you’re human: <input name="bot-field" /></label>
-              </p>
-              <input type="hidden" name="form-name" value="contact" />
-              
-              <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div class="space-y-2">
-                  <label for="name" class="text-xs font-bold uppercase tracking-widest opacity-60 dark:text-white">Name</label>
-              <input type="text" id="name" name="name" required minlength="2" pattern=".{2,}" placeholder="Dein Name" class="w-full bg-white dark:bg-brand-dark/50 border border-brand-dark/10 dark:border-white/10 rounded-idioma px-4 py-3 focus:border-brand-rose focus:ring-1 focus:ring-brand-rose outline-none transition-all dark:text-white">
-                </div>
-                <div class="space-y-2">
-                  <label for="email" class="text-xs font-bold uppercase tracking-widest opacity-60 dark:text-white">E-Mail</label>
-                  <input type="email" id="email" name="email" required placeholder="mail@example.com" pattern="^[^\s@]+@[^\s@]+\.[^\s@]+$" class="w-full bg-white dark:bg-brand-dark/50 border border-brand-dark/10 dark:border-white/10 rounded-idioma px-4 py-3 focus:border-brand-rose focus:ring-1 focus:ring-brand-rose outline-none transition-all dark:text-white">
-                </div>
-              </div>
-              <div class="space-y-2">
-                <label for="interest" class="text-xs font-bold uppercase tracking-widest opacity-60 dark:text-white">Interesse</label>
-                <select id="interest" name="interest" class="w-full bg-white dark:bg-brand-dark/50 border border-brand-dark/10 dark:border-white/10 rounded-idioma px-4 py-3 focus:border-brand-rose focus:ring-1 focus:ring-brand-rose outline-none transition-all dark:text-white appearance-none">
-                  <option value="probestunde">Probestunde anfragen</option>
-                  <option value="awareness">Security Awareness</option>
-                  <option value="frage">Allgemeine Frage</option>
-                  <option value="workshops">Workshop Infos</option>
-                </select>
-              </div>
-              <div class="space-y-2">
-                <label for="message" class="text-xs font-bold uppercase tracking-widest opacity-60 dark:text-white">Nachricht</label>
-              <textarea id="message" name="message" rows="4" required minlength="2" pattern=".{2,}" placeholder="Wie können wir dir helfen?" class="w-full bg-white dark:bg-brand-dark/50 border border-brand-dark/10 dark:border-white/10 rounded-idioma px-4 py-3 focus:border-brand-rose focus:ring-1 focus:ring-brand-rose outline-none transition-all dark:text-white mb-4"></textarea>
-              </div>
+  {/* FORMULAR + KONTAKTWEGE */}
+  <section class="bg-brand-paper px-[clamp(20px,5vw,80px)] py-[clamp(56px,8vw,112px)] text-brand-ink">
+    <div class="mx-auto flex max-w-[1280px] flex-col gap-[clamp(32px,4vw,56px)]">
+      <div class="rounded-[36px] bg-white p-[clamp(24px,4vw,48px)]">
+        <h2 class="mb-8 font-display text-[clamp(28px,3.2vw,40px)] font-extrabold tracking-[-0.025em]">Schreib uns eine Nachricht</h2>
 
-              <div class="flex items-start gap-4 mb-8">
-                <label for="privacy-consent" class="text-xs font-bold uppercase tracking-widest opacity-60 dark:text-white">Datenschutz</label>
-              <input type="checkbox" id="privacy-consent" name="privacy-consent" required class="mt-1 w-5 h-5 rounded border-gray-300 text-brand-rose focus:ring-brand-rose cursor-pointer">
-                <label for="privacy-consent" class="text-xs opacity-60 dark:text-white/60 leading-relaxed cursor-pointer select-none">
-                  Ich habe die <a href="/datenschutz/" class="underline hover:text-brand-rose transition-colors font-bold">Datenschutzerklärung</a> gelesen und bin damit einverstanden, dass meine eingegebenen Daten zum Zweck der Kontaktaufnahme gespeichert und verarbeitet werden. *
-                </label>
-              </div>
-              
-              <button type="submit" class="w-full py-4 bg-brand-rose text-white font-bold rounded-full shadow-glow-rose hover:-translate-y-1 transition-all">Nachricht absenden</button>
-            </form>
-          </div>
-        </div>
+        <form
+          name="contact"
+          method="POST"
+          data-netlify="true"
+          netlify-honeypot="bot-field"
+          action="/success"
+          class="flex flex-col gap-6"
+        >
+          <p class="hidden">
+            <label>Don’t fill this out if you’re human: <input name="bot-field" /></label>
+          </p>
+          <input type="hidden" name="form-name" value="contact" />
 
-        <!-- Contact Info -->
-        <div class="lg:col-span-12 grid grid-cols-1 md:grid-cols-3 gap-12 order-2 mt-12 pt-12 border-t border-brand-dark/5 dark:border-white/5">
-          <div class="flex items-start gap-4 group">
-            <div class="w-12 h-12 rounded-full bg-brand-rose/10 flex items-center justify-center text-brand-rose text-xl shadow-glow-rose group-hover:scale-110 transition-transform">
-              📍
+          <div class="grid gap-6 md:grid-cols-2">
+            <div class="flex flex-col gap-2">
+              <label for="name" class="text-xs font-bold uppercase tracking-[0.14em] text-brand-line">Name</label>
+              <input type="text" id="name" name="name" required minlength="2" pattern=".{2,}" placeholder="Dein Name" class="min-h-[48px] w-full rounded-2xl border border-brand-line/40 bg-brand-paper px-4 py-3 text-brand-ink outline-none transition-colors focus:border-brand-rose focus:ring-2 focus:ring-brand-rose/40">
             </div>
-            <div>
-              <h4 class="font-bold mb-1 dark:text-white">Locations</h4>
-              <p class="text-sm opacity-60 dark:text-brand-light/60">
-                Dienstag: Fortuna, Regensburg<br>
-                Mittwoch: Raum für Engagement, Regensburg
-              </p>
+            <div class="flex flex-col gap-2">
+              <label for="email" class="text-xs font-bold uppercase tracking-[0.14em] text-brand-line">E-Mail</label>
+              <input type="email" id="email" name="email" required placeholder="mail@example.com" pattern="^[^\s@]+@[^\s@]+\.[^\s@]+$" class="min-h-[48px] w-full rounded-2xl border border-brand-line/40 bg-brand-paper px-4 py-3 text-brand-ink outline-none transition-colors focus:border-brand-rose focus:ring-2 focus:ring-brand-rose/40">
             </div>
           </div>
 
-          <div class="flex items-start gap-4 group">
-            <div class="w-12 h-12 rounded-full bg-brand-glow/10 flex items-center justify-center text-brand-glow text-xl shadow-glow-amber group-hover:scale-110 transition-transform">
-              💬
-            </div>
-            <div>
-              <h4 class="font-bold mb-1 dark:text-white">WhatsApp</h4>
-              <a href="https://wa.me/+4915678659226?text=Hallo%20Idiomadanza,%20ich%20habe%20weitere%20Fragen%20zu%20..." class="text-sm text-brand-rose hover:text-brand-glow font-bold transition-colors">
-                Chat on WhatsApp
-              </a>
-            </div>
+          <div class="flex flex-col gap-2">
+            <label for="interest" class="text-xs font-bold uppercase tracking-[0.14em] text-brand-line">Interesse</label>
+            <select id="interest" name="interest" class="min-h-[48px] w-full appearance-none rounded-2xl border border-brand-line/40 bg-brand-paper px-4 py-3 text-brand-ink outline-none transition-colors focus:border-brand-rose focus:ring-2 focus:ring-brand-rose/40">
+              <option value="probestunde">Probestunde anfragen</option>
+              <option value="awareness">Security Awareness</option>
+              <option value="frage">Allgemeine Frage</option>
+              <option value="workshops">Workshop Infos</option>
+            </select>
           </div>
 
-          <div class="flex items-start gap-4 group">
-            <div class="w-12 h-12 rounded-full bg-brand-rose/10 flex items-center justify-center text-brand-rose text-xl shadow-glow-rose group-hover:scale-110 transition-transform">
-              📧
-            </div>
-            <div>
-              <h4 class="font-bold mb-1 dark:text-white">Email</h4>
-              <SafeMail email="mail@idiomadanza.de" class="text-sm font-bold" />
-            </div>
+          <div class="flex flex-col gap-2">
+            <label for="message" class="text-xs font-bold uppercase tracking-[0.14em] text-brand-line">Nachricht</label>
+            <textarea id="message" name="message" rows="4" required minlength="2" pattern=".{2,}" placeholder="Wie können wir dir helfen?" class="w-full rounded-2xl border border-brand-line/40 bg-brand-paper px-4 py-3 text-brand-ink outline-none transition-colors focus:border-brand-rose focus:ring-2 focus:ring-brand-rose/40"></textarea>
           </div>
-        </div>
+
+          <div class="flex items-start gap-4">
+            <input type="checkbox" id="privacy-consent" name="privacy-consent" required class="mt-1 size-5 shrink-0 cursor-pointer rounded border-brand-line/60 text-brand-rose focus:ring-2 focus:ring-brand-rose/40">
+            <label for="privacy-consent" class="cursor-pointer select-none text-[15px] leading-relaxed text-brand-line">
+              Ich habe die <a href="/datenschutz/" class="font-bold underline underline-offset-4 hover:text-brand-rose">Datenschutzerklärung</a> gelesen und bin damit einverstanden, dass meine eingegebenen Daten zum Zweck der Kontaktaufnahme gespeichert und verarbeitet werden. *
+            </label>
+          </div>
+
+          <button type="submit" class="inline-flex min-h-[56px] w-full items-center justify-center rounded-full bg-brand-rose px-8 text-lg font-bold text-white transition-colors hover:bg-brand-rose-bright">Nachricht absenden</button>
+        </form>
       </div>
 
-      <!-- GOOGLE MAPS SECTION -->
-      <div class="mt-24 max-w-6xl mx-auto space-y-8 animate-fade-in">
-        <div class="flex flex-col md:flex-row justify-between items-end gap-6 mb-8">
+      {/* Kontaktwege */}
+      <div class="grid gap-6 border-t border-brand-line/25 pt-[clamp(32px,4vw,56px)] md:grid-cols-3">
+        <div class="flex items-start gap-4">
+          <div class="flex size-12 shrink-0 items-center justify-center rounded-full bg-brand-ink">
+            <Icon name="ort" size={24} strokeWidth={1.75} class="text-brand-gold" />
+          </div>
           <div>
-            <h2 class="text-3xl font-display font-bold dark:text-white">Unsere <span class="text-brand-rose">Standorte</span></h2>
-            <p class="opacity-60 dark:text-brand-light/60 mt-2">Wir tanzen an zwei zentralen Orten in Regensburg.</p>
-          </div>
-          <div class="flex gap-4">
-            <a href="https://www.google.com/maps/search/Isarstra%C3%9Fe+85+Regensburg" target="_blank" rel="noopener noreferrer" class="px-6 py-2 bg-white/10 backdrop-blur-md rounded-full border border-white/20 text-xs font-bold uppercase tracking-widest text-brand-rose hover:bg-brand-rose hover:text-white transition-all shadow-glow-rose">Fortuna (Di)</a>
-            <a href="https://www.google.com/maps/search/D.-Martin-Luther-Str.+19+Regensburg" target="_blank" rel="noopener noreferrer" class="px-6 py-2 bg-white/10 backdrop-blur-md rounded-full border border-white/20 text-xs font-bold uppercase tracking-widest text-brand-gold-ink dark:text-brand-glow hover:bg-brand-gold-ink hover:text-white transition-all shadow-glow-amber">Raum für Engagement (Mi)</a>
-          </div>
-        </div>
-
-        <div id="maps-placeholder" class="relative bg-brand-dark h-[500px] rounded-idioma overflow-hidden border border-white/10 shadow-glass flex items-center justify-center p-8 text-center hidden">
-          <div class="max-w-md">
-            <div class="text-4xl mb-4">📍</div>
-            <h2 class="text-xl font-bold text-white mb-2 italic">Interaktive Karte deaktiviert</h2>
-            <p class="text-sm text-white/60 mb-8 leading-relaxed">
-              Um unsere Standorte auf der Karte zu sehen, musst die Nutzung von **externen Medien** erlauben. Deine Privatsphäre ist uns wichtig!
+            <h3 class="font-display text-xl font-bold tracking-[-0.01em]">Locations</h3>
+            <p class="mt-1 text-[15px] text-brand-line">
+              Dienstag: Fortuna, Regensburg<br />
+              Mittwoch: Raum für Engagement, Regensburg
             </p>
-            <button id="map-enable" class="px-8 py-3 bg-brand-rose text-white text-xs font-bold uppercase tracking-widest rounded-full shadow-glow-rose hover:-translate-y-1 transition-all">Karte laden & Cookies akzeptieren</button>
           </div>
         </div>
 
-        <div id="maps-iframe-container" class="relative bg-brand-dark h-[500px] rounded-idioma overflow-hidden border border-white/10 shadow-glass group hidden">
-          <iframe 
-            src="https://www.openstreetmap.org/export/embed.html?bbox=12.096%2C49.016%2C12.104%2C49.021&amp;layer=mapnik&amp;marker=loc_49.0187%2C12.1000"
-            class="absolute inset-0 w-full h-full border-0 grayscale opacity-70 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-700" 
-            allowfullscreen="" 
-            loading="lazy"
-            referrerpolicy="no-referrer"
-            title="Idiomadanza e.V. – Isarstraße 85, Regensburg"
-          ></iframe>
-          
-          <!-- Map Overlay Detail Card -->
-          <div class="absolute bottom-10 left-10 p-8 bg-brand-dark/80 backdrop-blur-xl border border-white/10 rounded-idioma shadow-glow-rose hidden md:block max-w-sm transform group-hover:-translate-y-2 transition-transform duration-500">
-             <div class="flex items-center gap-3 mb-4">
-               <span class="w-8 h-8 rounded-full bg-brand-rose flex items-center justify-center text-sm shadow-glow-rose">📍</span>
-               <h4 class="text-xl font-bold text-white">Hauptstandort</h4>
-             </div>
-             <p class="text-sm text-white/65 mb-6 font-bold">Idiomadanza e.V.</p>
-             <p class="text-sm text-white/65 mb-6">Isarstraße 85, 93057 Regensburg</p>
-             <a href="https://www.google.com/maps/search/Isarstra%C3%9Fe+85+Regensburg" target="_blank" rel="noopener noreferrer" class="text-brand-rose-bright font-bold text-xs uppercase tracking-widest hover:text-brand-glow transition-colors">Route berechnen →</a>
+        <div class="flex items-start gap-4">
+          <div class="flex size-12 shrink-0 items-center justify-center rounded-full bg-brand-ink">
+            <Icon name="probestunde" size={24} strokeWidth={1.75} class="text-brand-gold" />
+          </div>
+          <div>
+            <h3 class="font-display text-xl font-bold tracking-[-0.01em]">WhatsApp</h3>
+            <a href="https://wa.me/+4915678659226?text=Hallo%20Idiomadanza,%20ich%20habe%20weitere%20Fragen%20zu%20..." class="mt-1 inline-flex min-h-[44px] items-center text-[15px] font-bold text-brand-rose underline underline-offset-4 hover:text-brand-rose-bright">
+              Chat on WhatsApp
+            </a>
           </div>
         </div>
-      </div>
 
-      <!-- FAQ SECTION -->
-      <div class="mt-24 max-w-4xl mx-auto animate-fade-in">
-        <div class="text-center mb-12">
-          <h2 class="text-3xl font-display font-bold dark:text-white">Häufige <span class="text-brand-rose">Fragen</span></h2>
-          <p class="opacity-60 dark:text-brand-light/60 mt-2">Alles was du über den Einstieg bei Idiomadanza e.V. wissen musst.</p>
-        </div>
-        
-        <div class="space-y-4">
-          <FAQAccordion 
-            question="Kann ich eine kostenlose Probestunde machen?" 
-            answer="Ja! Bei Idiomadanza e.V. ist die erste Schnupperstunde (z. B. am Dienstag ab 20:00 Uhr) kostenlos. Eine kurze Anmeldung via WhatsApp oder Kontaktformular genügt." 
-          />
-          <FAQAccordion 
-            question="Brauche ich einen Tanzpartner?" 
-            answer="Nein. In unseren Kursen wird regelmäßig gewechselt. Du lernst so das Führen und Folgen viel effektiver. Du kannst allein, mit Freunden oder als Paar kommen." 
-          />
-          <FAQAccordion 
-            question="Wie sind die Kündigungsfristen?" 
-            answer="Unsere Mitgliedschaft hat eine Mindestlaufzeit von 3 Monaten. Danach ist sie flexibel monatlich kündbar." 
-          />
-          <FAQAccordion 
-            question="Welche Schuhe und Kleidung brauche ich?" 
-            answer="Bequeme Alltagskleidung ist ideal. Saubere Sneaker, Hallenschuhe oder Socken genügen. Wichtig: Keine Straßenschuhe auf der Tanzfläche!" 
-          />
-          <FAQAccordion 
-            question="Muss ich Salsa können, um Bachata zu lernen?" 
-            answer="Nein. Bachata und Salsa sind eigenständige Tänze. Unsere Anfängerkurs erfordern keinerlei Vorkenntnisse." 
-          />
+        <div class="flex items-start gap-4">
+          <div class="flex size-12 shrink-0 items-center justify-center rounded-full bg-brand-ink">
+            <Icon name="aushang" size={24} strokeWidth={1.75} class="text-brand-gold" />
+          </div>
+          <div>
+            <h3 class="font-display text-xl font-bold tracking-[-0.01em]">Email</h3>
+            <SafeMail email="mail@idiomadanza.de" class="mt-1 inline-flex min-h-[44px] items-center text-[15px] font-bold text-brand-rose" />
+          </div>
         </div>
       </div>
     </div>
   </section>
 
+  {/* STANDORTE */}
+  <section class="bg-brand-surface px-[clamp(20px,5vw,80px)] py-[clamp(56px,8vw,112px)]">
+    <div class="mx-auto flex max-w-[1280px] flex-col gap-[clamp(24px,3vw,40px)]">
+      <div class="flex flex-wrap items-end justify-between gap-5">
+        <div class="flex max-w-[720px] flex-col gap-3.5">
+          <p class="text-sm font-semibold uppercase tracking-[0.14em] text-brand-gold">Anfahrt</p>
+          <h2 class="font-display text-[clamp(34px,4.4vw,60px)] font-extrabold leading-none tracking-[-0.025em] text-brand-paper">Unsere Standorte</h2>
+          <p class="text-[19px] text-brand-muted">Wir tanzen an zwei zentralen Orten in Regensburg.</p>
+        </div>
+        <div class="flex flex-wrap gap-3">
+          <a href="https://www.google.com/maps/search/Isarstra%C3%9Fe+85+Regensburg" target="_blank" rel="noopener noreferrer" class="inline-flex min-h-[44px] items-center rounded-full border-[1.5px] border-brand-paper/35 px-5 text-sm font-bold text-brand-paper transition-colors hover:border-brand-gold hover:text-brand-gold">Fortuna (Di)</a>
+          <a href="https://www.google.com/maps/search/D.-Martin-Luther-Str.+19+Regensburg" target="_blank" rel="noopener noreferrer" class="inline-flex min-h-[44px] items-center rounded-full border-[1.5px] border-brand-paper/35 px-5 text-sm font-bold text-brand-paper transition-colors hover:border-brand-gold hover:text-brand-gold">Raum für Engagement (Mi)</a>
+        </div>
+      </div>
+
+      <div id="maps-placeholder" class="relative hidden h-[420px] items-center justify-center rounded-[36px] bg-brand-ink p-8 text-center">
+        <div class="flex max-w-md flex-col items-center gap-4">
+          <Icon name="ort" size={40} strokeWidth={1.75} class="text-brand-gold" />
+          <h3 class="font-display text-2xl font-bold italic tracking-[-0.01em] text-brand-paper">Interaktive Karte deaktiviert</h3>
+          <p class="text-[15px] text-brand-muted">
+            Um unsere Standorte auf der Karte zu sehen, musst die Nutzung von **externen Medien** erlauben. Deine Privatsphäre ist uns wichtig!
+          </p>
+          <button id="map-enable" class="inline-flex min-h-[48px] items-center rounded-full bg-brand-gold px-6 font-bold text-brand-ink transition-colors hover:bg-brand-gold-soft">Karte laden &amp; Cookies akzeptieren</button>
+        </div>
+      </div>
+
+      <div id="maps-iframe-container" class="relative hidden h-[420px] overflow-hidden rounded-[36px] bg-brand-ink">
+        <iframe
+          src="https://www.openstreetmap.org/export/embed.html?bbox=12.096%2C49.016%2C12.104%2C49.021&amp;layer=mapnik&amp;marker=loc_49.0187%2C12.1000"
+          class="absolute inset-0 h-full w-full border-0"
+          allowfullscreen=""
+          loading="lazy"
+          referrerpolicy="no-referrer"
+          title="Idiomadanza e.V. – Isarstraße 85, Regensburg"
+        ></iframe>
+
+        <div class="absolute bottom-6 left-6 hidden max-w-sm rounded-3xl bg-brand-ink/90 p-6 backdrop-blur-md md:block">
+          <div class="mb-3 flex items-center gap-3">
+            <Icon name="ort" size={22} strokeWidth={1.75} class="text-brand-gold" />
+            <h3 class="font-display text-xl font-bold tracking-[-0.01em] text-brand-paper">Hauptstandort</h3>
+          </div>
+          <p class="text-sm font-bold text-brand-muted">Idiomadanza e.V.</p>
+          <p class="mt-1 text-sm text-brand-muted">Isarstraße 85, 93057 Regensburg</p>
+          <a href="https://www.google.com/maps/search/Isarstra%C3%9Fe+85+Regensburg" target="_blank" rel="noopener noreferrer" class="mt-4 inline-flex min-h-[44px] items-center text-xs font-bold uppercase tracking-[0.14em] text-brand-gold underline underline-offset-4">Route berechnen &rarr;</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {/* FAQ */}
+  <section class="bg-brand-ink px-[clamp(20px,5vw,80px)] pb-[clamp(56px,8vw,112px)]">
+    <div class="mx-auto flex max-w-[900px] flex-col gap-[clamp(24px,3vw,40px)]">
+      <div class="flex max-w-[720px] flex-col gap-3.5">
+        <p class="text-sm font-semibold uppercase tracking-[0.14em] text-brand-gold">FAQ</p>
+        <h2 class="font-display text-[clamp(34px,4.4vw,60px)] font-extrabold leading-none tracking-[-0.025em] text-brand-paper">Häufige Fragen</h2>
+        <p class="text-[19px] text-brand-muted">Alles was du über den Einstieg bei Idiomadanza e.V. wissen musst.</p>
+      </div>
+
+      <div>
+        <FAQAccordion
+          question="Kann ich eine kostenlose Probestunde machen?"
+          answer="Ja! Bei Idiomadanza e.V. ist die erste Schnupperstunde (z. B. am Dienstag ab 20:00 Uhr) kostenlos. Eine kurze Anmeldung via WhatsApp oder Kontaktformular genügt."
+        />
+        <FAQAccordion
+          question="Brauche ich einen Tanzpartner?"
+          answer="Nein. In unseren Kursen wird regelmäßig gewechselt. Du lernst so das Führen und Folgen viel effektiver. Du kannst allein, mit Freunden oder als Paar kommen."
+        />
+        <FAQAccordion
+          question="Wie sind die Kündigungsfristen?"
+          answer="Unsere Mitgliedschaft hat eine Mindestlaufzeit von 3 Monaten. Danach ist sie flexibel monatlich kündbar."
+        />
+        <FAQAccordion
+          question="Welche Schuhe und Kleidung brauche ich?"
+          answer="Bequeme Alltagskleidung ist ideal. Saubere Sneaker, Hallenschuhe oder Socken genügen. Wichtig: Keine Straßenschuhe auf der Tanzfläche!"
+        />
+        <FAQAccordion
+          question="Muss ich Salsa können, um Bachata zu lernen?"
+          answer="Nein. Bachata und Salsa sind eigenständige Tänze. Unsere Anfängerkurs erfordern keinerlei Vorkenntnisse."
+        />
+      </div>
+    </div>
+  </section>
   <script>
     function updateMap() {
       const placeholder = document.getElementById('maps-placeholder');

@@ -1,8 +1,7 @@
 ---
 import { getCollection } from 'astro:content';
 import Layout from '../layouts/Layout.astro';
-import { Image } from 'astro:assets';
-import coursesBg from '../assets/images/testimonials/bg.png';
+import Icon from '../components/Icon.astro';
 
 const workshopsDocs = await getCollection('workshops');
 const workshops = workshopsDocs.map(doc => doc.data);
@@ -110,277 +109,218 @@ const workshopSchema = workshops.map(w => ({
   <!-- Course & Workshop Schema for Agentic SEO -->
   <script slot="head" type="application/ld+json" set:html={JSON.stringify({ "@context": "https://schema.org", "@graph": [...courseSchema, ...workshopSchema] })} />
 
-  <!-- HERO SECTION -->
-  <section class="relative py-20 overflow-hidden bg-brand-dark">
-    <div class="absolute inset-0 z-0">
-      <Image src={coursesBg} alt="Courses Background" class="w-full h-full object-cover opacity-30 blur-sm" />
-      <div class="absolute inset-0 bg-gradient-to-b from-brand-dark/80 via-brand-dark/60 to-brand-dark"></div>
-    </div>
-    
-    <div class="container mx-auto px-4 relative z-10 text-center">
-      <h1 class="font-display text-5xl md:text-7xl font-bold text-white mb-6 drop-shadow-2xl">
-        Reguläre <span class="text-brand-rose-bright">Kurse</span>
+  {/* HERO */}
+  <section class="bg-brand-ink px-[clamp(20px,5vw,80px)] pb-[clamp(32px,4vw,56px)] pt-[clamp(40px,6vw,88px)]">
+    <div class="mx-auto flex max-w-[1280px] flex-col gap-7">
+      <p class="text-sm font-semibold uppercase tracking-[0.14em] text-brand-gold">Wöchentlich &middot; Dienstag und Mittwoch</p>
+      <h1 class="font-display text-[clamp(42px,6.8vw,96px)] font-extrabold leading-[0.94] tracking-[-0.03em] text-brand-paper">
+        Reguläre <span class="text-brand-gold">Kurse</span>
       </h1>
-      <p class="max-w-2xl mx-auto text-xl text-white/80 leading-relaxed font-light">
+      <p class="max-w-[42ch] text-[clamp(18px,1.6vw,22px)] text-brand-paper/85">
         Finde deinen Rhythmus. Entdecke unsere wöchentlichen Bachata und Salsa Kurse in Regensburg.
       </p>
     </div>
   </section>
 
-  <!-- CONCEPT SECTION -->
-  <section class="py-24 bg-brand-dark text-white relative overflow-hidden border-b border-white/5">
-    <div class="container mx-auto px-4 relative z-10">
-      <div class="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
-        <div class="space-y-8">
-          <span class="text-brand-rose-bright font-bold uppercase tracking-[0.3em] text-sm">Das Idioma Konzept</span>
-          <h2 class="text-4xl md:text-6xl font-display font-bold leading-tight">Foundations & <br/><span class="text-brand-glow">Combinations</span></h2>
-          <div class="space-y-6 text-lg opacity-80 leading-relaxed font-light">
-            <p>
-              Wir möchten mit unserem neuen Kurskonzept „Foundations & Combinations“ einen neuen Weg gehen, der jeden Tänzer anspricht – egal ob mit oder ohne Erfahrung.
+  {/* KONZEPT */}
+  <section class="bg-brand-surface px-[clamp(20px,5vw,80px)] py-[clamp(56px,8vw,112px)]">
+    <div class="mx-auto grid max-w-[1280px] items-start gap-[clamp(32px,5vw,72px)] lg:grid-cols-[1.05fr_0.95fr]">
+      <div class="flex flex-col gap-6">
+        <p class="text-sm font-semibold uppercase tracking-[0.14em] text-brand-gold">Das Idioma Konzept</p>
+        <h2 class="font-display text-[clamp(34px,4.4vw,60px)] font-extrabold leading-none tracking-[-0.025em] text-brand-paper">
+          Foundations &amp;<br /><span class="text-brand-gold">Combinations</span>
+        </h2>
+        <div class="flex flex-col gap-6 text-[19px] text-brand-paper/85">
+          <p>
+            Wir möchten mit unserem neuen Kurskonzept „Foundations &amp; Combinations“ einen neuen Weg gehen, der jeden Tänzer anspricht – egal ob mit oder ohne Erfahrung.
+          </p>
+          <p class="border-l-2 border-brand-gold pl-6 font-display text-[clamp(20px,2.2vw,28px)] font-medium italic leading-[1.25] text-brand-paper">
+            „Build a strong foundation and you can reach even the most unthinkable heights“
+          </p>
+          <p>
+            Dieses Motto beschreibt unseren Ansatz perfekt: Nur mit einer stabilen Grundlage können anspruchsvollere Kombinationen kreiert und sicher geführt werden. Selbst Profis arbeiten ständig an den Fundamentals. Dank der bewährten Methode von <strong class="text-brand-paper">Korke &amp; Judith</strong> (Creators von Bachata Sensual) vermitteln wir dir alle Elemente, um diesen Stil sicher zu meistern.
+          </p>
+        </div>
+      </div>
+
+      <div class="flex flex-col gap-7 rounded-3xl bg-brand-ink px-[clamp(22px,3vw,36px)] py-[clamp(22px,3vw,36px)]">
+        <h3 class="font-display text-2xl font-bold tracking-[-0.01em] text-brand-paper">Inhalte im Fokus:</h3>
+        <ul class="grid list-none grid-cols-1 gap-x-6 gap-y-3.5 p-0 sm:grid-cols-2">
+          {[
+            "Smoothes Leading & Following",
+            "Weiche Transitions",
+            "Musikalische Struktur",
+            "Bachata Timing & Rhythmus",
+            "Hits, Breaks & Akzente",
+            "Styling & Ausdruck",
+            "Bachata Footwork",
+            "Improvisation (Social Dance)"
+          ].map((item) => (
+            <li class="flex items-start gap-3 text-[15px] font-medium text-brand-paper">
+              <span aria-hidden="true" class="mt-2 size-2.5 shrink-0 rounded-full bg-brand-gold"></span>
+              {item}
+            </li>
+          ))}
+        </ul>
+        <div class="border-t border-brand-paper/15 pt-6">
+          <p class="font-display text-xl font-bold text-brand-gold">Spaß auf der Tanzfläche</p>
+          <p class="mt-1 text-sm text-brand-muted">Das ist unser oberstes Ziel für jeden Social Dance.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {/* KURSPLAN */}
+  <section class="bg-brand-ink px-[clamp(20px,5vw,80px)] py-[clamp(56px,8vw,112px)]">
+    <div class="mx-auto flex max-w-[1280px] flex-col gap-[clamp(32px,4vw,56px)]">
+      <div class="flex flex-wrap items-end justify-between gap-5">
+        <div class="flex max-w-[720px] flex-col gap-3.5">
+          <p class="text-sm font-semibold uppercase tracking-[0.14em] text-brand-gold">Kursplan</p>
+          <h2 class="font-display text-[clamp(34px,4.4vw,60px)] font-extrabold leading-none tracking-[-0.025em] text-brand-paper">Zwei Abende. Sieben Kurse.</h2>
+        </div>
+        <a href="/schedule/" class="inline-flex min-h-[44px] items-center gap-2 font-semibold text-brand-paper underline underline-offset-4 decoration-brand-paper/40 hover:text-brand-gold">
+          Terminübersicht <span aria-hidden="true">&rarr;</span>
+        </a>
+      </div>
+
+      <div class="grid gap-6 lg:grid-cols-2">
+        {/* Dienstag */}
+        <div class="flex flex-col gap-2 rounded-3xl bg-brand-surface px-[clamp(22px,3vw,36px)] py-[clamp(22px,3vw,36px)]">
+          <div class="flex flex-wrap items-baseline justify-between gap-2 pb-4">
+            <h2 class="flex items-center gap-3 font-display text-[34px] font-extrabold tracking-[-0.02em] text-brand-paper">
+              <Icon name="termin" size={26} strokeWidth={1.75} class="shrink-0 text-brand-gold" />
+              Dienstag
+            </h2>
+            <p class="inline-flex items-center gap-1.5 text-[15px] text-brand-paper/80">
+              <Icon name="ort" size={18} strokeWidth={1.75} class="shrink-0 text-brand-gold" />
+              Location: Fortuna
             </p>
-            <p class="italic text-brand-rose-bright font-display text-2xl py-4 border-l-2 border-brand-rose/30 pl-8">
-              „Build a strong foundation and you can reach even the most unthinkable heights“
-            </p>
-            <p>
-              Dieses Motto beschreibt unseren Ansatz perfekt: Nur mit einer stabilen Grundlage können anspruchsvollere Kombinationen kreiert und sicher geführt werden. Selbst Profis arbeiten ständig an den Fundamentals. Dank der bewährten Methode von <strong>Korke & Judith</strong> (Creators von Bachata Sensual) vermitteln wir dir alle Elemente, um diesen Stil sicher zu meistern.
-            </p>
+          </div>
+
+          <div class="grid grid-cols-[74px_minmax(0,1fr)_auto] items-center gap-4 border-t border-brand-paper/15 py-[18px]">
+            <span class="font-display text-2xl font-bold text-brand-gold">18:00</span>
+            <div>
+              <h3 class="text-[19px] font-bold text-brand-paper">Bachata Pro</h3>
+              <div class="text-[15px] text-brand-muted">Fortgeschritten</div>
+            </div>
+          </div>
+          <div class="grid grid-cols-[74px_minmax(0,1fr)_auto] items-center gap-4 border-t border-brand-paper/15 py-[18px]">
+            <span class="font-display text-2xl font-bold text-brand-gold">19:00</span>
+            <div>
+              <h3 class="text-[19px] font-bold text-brand-paper">Bachata Combinations</h3>
+              <div class="text-[15px] text-brand-muted">Mittelstufe</div>
+            </div>
+          </div>
+          <div class="grid grid-cols-[74px_minmax(0,1fr)_auto] items-center gap-4 border-t border-brand-paper/15 py-[18px]">
+            <span class="font-display text-2xl font-bold text-brand-gold">20:00</span>
+            <div>
+              <h3 class="text-[19px] font-bold text-brand-paper">Bachata Foundations</h3>
+              <div class="text-[15px] text-brand-muted">Unser Anfängerkurs – perfekt für den Einstieg ohne Vorkenntnisse.</div>
+            </div>
+            <span class="hidden shrink-0 rounded-full bg-brand-gold px-3 py-1 text-xs font-bold uppercase tracking-[0.1em] text-brand-ink sm:inline-block">Einstieg jederzeit</span>
           </div>
         </div>
 
-        <div class="bg-white/5 backdrop-blur-2xl rounded-idioma p-10 border border-white/10 shadow-glow-rose">
-          <h3 class="text-2xl font-bold mb-8 text-brand-glow">Inhalte im Fokus:</h3>
-          <ul class="grid grid-cols-1 sm:grid-cols-2 gap-6">
-            {[
-              "Smoothes Leading & Following",
-              "Weiche Transitions",
-              "Musikalische Struktur",
-              "Bachata Timing & Rhythmus",
-              "Hits, Breaks & Akzente",
-              "Styling & Ausdruck",
-              "Bachata Footwork",
-              "Improvisation (Social Dance)"
-            ].map((item) => (
-              <li class="flex items-center gap-4 text-sm font-medium">
-                <span class="w-6 h-px bg-brand-rose"></span>
-                {item}
-              </li>
-            ))}
-          </ul>
-          <div class="mt-12 pt-8 border-t border-white/10 text-center">
-            <p class="text-brand-rose-bright font-bold text-xl mb-2">Spaß auf der Tanzfläche</p>
-            <p class="text-xs opacity-50 uppercase tracking-widest">Das ist unser oberstes Ziel für jeden Social Dance.</p>
+        {/* Mittwoch */}
+        <div class="flex flex-col gap-2 rounded-3xl bg-brand-surface px-[clamp(22px,3vw,36px)] py-[clamp(22px,3vw,36px)]">
+          <div class="flex flex-wrap items-baseline justify-between gap-2 pb-4">
+            <h2 class="flex items-center gap-3 font-display text-[34px] font-extrabold tracking-[-0.02em] text-brand-paper">
+              <Icon name="termin" size={26} strokeWidth={1.75} class="shrink-0 text-brand-gold" />
+              Mittwoch
+            </h2>
+            <p class="inline-flex items-center gap-1.5 text-[15px] text-brand-paper/80">
+              <Icon name="ort" size={18} strokeWidth={1.75} class="shrink-0 text-brand-gold" />
+              Location: Raum für Engagement – Bahnhof
+            </p>
+          </div>
+
+          <div class="grid grid-cols-[74px_minmax(0,1fr)_auto] items-center gap-4 border-t border-brand-paper/15 py-[18px]">
+            <span class="font-display text-2xl font-bold text-brand-gold">18:00</span>
+            <h3 class="text-[19px] font-bold text-brand-paper">Bachata Influence 1</h3>
+          </div>
+          <div class="grid grid-cols-[74px_minmax(0,1fr)_auto] items-center gap-4 border-t border-brand-paper/15 py-[18px]">
+            <span class="font-display text-2xl font-bold text-brand-gold">19:00</span>
+            <h3 class="text-[19px] font-bold text-brand-paper">Bachata Influence 2</h3>
+          </div>
+          <div class="grid grid-cols-[74px_minmax(0,1fr)_auto] items-center gap-4 border-t border-brand-paper/15 py-[18px]">
+            <span class="font-display text-2xl font-bold text-brand-gold">20:00</span>
+            <div>
+              <h3 class="text-[19px] font-bold text-brand-paper">Salsa Combinations</h3>
+              <div class="text-[15px] text-brand-muted">Salsa-Technik vertiefen – Kombinationen, Styling und Musicality.</div>
+            </div>
+            <span class="hidden shrink-0 rounded-full border border-brand-gold px-3 py-1 text-xs font-bold uppercase tracking-[0.1em] text-brand-gold sm:inline-block">Mittelstufe</span>
+          </div>
+          <div class="grid grid-cols-[74px_minmax(0,1fr)_auto] items-center gap-4 border-t border-brand-paper/15 py-[18px]">
+            <span class="font-display text-2xl font-bold text-brand-gold">21:00</span>
+            <div>
+              <h3 class="text-[19px] font-bold text-brand-paper">Salsa Foundations</h3>
+              <div class="text-[15px] text-brand-muted">Unser Anfängerkurs – Salsa-Grundlagen und Rhythmusgefühl ohne Vorkenntnisse.</div>
+            </div>
+            <span class="hidden shrink-0 rounded-full bg-brand-gold px-3 py-1 text-xs font-bold uppercase tracking-[0.1em] text-brand-ink sm:inline-block">Einstieg jederzeit</span>
           </div>
         </div>
       </div>
     </div>
-    <!-- Decor -->
-    <div class="absolute -top-24 -left-24 w-96 h-96 bg-brand-glow/5 rounded-full blur-[120px]"></div>
   </section>
 
-  <!-- SCHEDULE SECTION -->
-  <section class="py-24 bg-brand-light dark:bg-brand-dark relative overflow-hidden">
-    <div class="container mx-auto px-4">
-      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 max-w-6xl mx-auto">
-        
-        <!-- Tuesday -->
-        <div class="space-y-8 animate-fade-in">
-          <div class="flex items-center gap-4 mb-8">
-            <div class="w-16 h-16 rounded-full bg-brand-rose/20 flex items-center justify-center text-brand-rose text-3xl shadow-glow-rose">
-              📅
-            </div>
-            <div>
-              <h2 class="text-3xl font-display font-bold dark:text-white">Dienstag</h2>
-              <p class="text-brand-rose font-semibold tracking-widest uppercase text-xs">Location: Fortuna</p>
-            </div>
-          </div>
-
-          <div class="space-y-4">
-            <!-- 18:00: Bachata Pro -->
-            <div class="group p-6 bg-white/70 dark:bg-white/5 backdrop-blur-md rounded-idioma border border-white/20 dark:border-white/10 shadow-glass hover:shadow-glow-rose transition-all duration-300">
-              <div class="flex justify-between items-center">
-                <div>
-                  <span class="text-brand-rose font-bold text-xl block mb-1">18:00 Uhr</span>
-                  <h3 class="text-2xl font-bold dark:text-white">Bachata Pro</h3>
-                </div>
-                <div class="hidden sm:block">
-                   <span class="px-4 py-1 rounded-full bg-brand-glow/20 text-brand-gold-ink dark:text-brand-glow text-xs font-bold uppercase tracking-widest">Fortgeschritten</span>
-                </div>
-              </div>
-            </div>
-
-            <!-- 19:00: Bachata Combinations -->
-            <div class="group p-6 bg-white/70 dark:bg-white/5 backdrop-blur-md rounded-idioma border border-white/20 dark:border-white/10 shadow-glass hover:shadow-glow-rose transition-all duration-300">
-              <div class="flex justify-between items-center">
-                <div>
-                  <span class="text-brand-rose font-bold text-xl block mb-1">19:00 Uhr</span>
-                  <h3 class="text-2xl font-bold dark:text-white">Bachata Combinations</h3>
-                </div>
-                <div class="hidden sm:block">
-                   <span class="px-4 py-1 rounded-full bg-brand-rose/10 text-brand-rose text-xs font-bold uppercase tracking-widest">Mittelstufe</span>
-                </div>
-              </div>
-            </div>
-
-            <!-- 20:00: Bachata Foundations -->
-            <div class="group p-6 bg-white/70 dark:bg-white/5 backdrop-blur-md rounded-idioma border border-white/20 dark:border-white/10 shadow-glass hover:shadow-glow-rose transition-all duration-300 relative overflow-hidden">
-              <!-- HIGHLIGHT RIBBON -->
-              <div class="absolute top-0 right-0 bg-brand-rose text-white text-[10px] font-bold px-4 py-1.5 rounded-bl-lg tracking-widest uppercase">Einstieg jederzeit möglich</div>
-              
-              <div class="flex justify-between items-center">
-                <div>
-                  <span class="text-brand-rose font-bold text-xl block mb-1">20:00 Uhr</span>
-                  <h3 class="text-2xl font-bold dark:text-white">Bachata Foundations</h3>
-                  <p class="text-sm opacity-60 mt-2 dark:text-white/60">Unser Anfängerkurs – perfekt für den Einstieg ohne Vorkenntnisse.</p>
-                </div>
-                <div class="hidden sm:block">
-                   <span class="px-4 py-1 rounded-full bg-blue-500/20 text-blue-900 dark:text-blue-300 text-xs font-bold uppercase tracking-widest">Anfänger</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Wednesday -->
-        <div class="space-y-8 animate-fade-in" style="animation-delay: 0.2s;">
-          <div class="flex items-center gap-4 mb-8">
-            <div class="w-16 h-16 rounded-full bg-brand-glow/20 flex items-center justify-center text-brand-glow text-3xl shadow-glow-amber">
-              📅
-            </div>
-            <div>
-              <h2 class="text-3xl font-display font-bold dark:text-white">Mittwoch</h2>
-              <p class="text-brand-gold-ink dark:text-brand-glow font-semibold tracking-widest uppercase text-xs">Location: Raum für Engagement – Bahnhof</p>
-            </div>
-          </div>
-
-          <div class="space-y-4">
-            <!-- 18:00: Bachata Influence 1 -->
-            <div class="group p-6 bg-white/70 dark:bg-white/5 backdrop-blur-md rounded-idioma border border-white/20 dark:border-white/10 shadow-glass hover:shadow-glow-amber transition-all duration-300">
-              <div class="flex justify-between items-center">
-                <div>
-                  <span class="text-brand-gold-ink dark:text-brand-glow font-bold text-xl block mb-1">18:00 Uhr</span>
-                  <h3 class="text-2xl font-bold dark:text-white">Bachata Influence 1</h3>
-                </div>
-              </div>
-            </div>
-
-            <!-- 19:00: Bachata Influence 2 -->
-            <div class="group p-6 bg-white/70 dark:bg-white/5 backdrop-blur-md rounded-idioma border border-white/20 dark:border-white/10 shadow-glass hover:shadow-glow-amber transition-all duration-300">
-              <div class="flex justify-between items-center">
-                <div>
-                  <span class="text-brand-gold-ink dark:text-brand-glow font-bold text-xl block mb-1">19:00 Uhr</span>
-                  <h3 class="text-2xl font-bold dark:text-white">Bachata Influence 2</h3>
-                </div>
-              </div>
-            </div>
-
-            <!-- 20:00: Salsa Combinations -->
-            <div class="group p-6 bg-white/70 dark:bg-white/5 backdrop-blur-md rounded-idioma border border-white/20 dark:border-white/10 shadow-glass hover:shadow-glow-amber transition-all duration-300">
-              <div class="flex justify-between items-center">
-                <div>
-                  <span class="text-brand-gold-ink dark:text-brand-glow font-bold text-xl block mb-1">20:00 Uhr</span>
-                  <h3 class="text-2xl font-bold dark:text-white">Salsa Combinations</h3>
-                  <p class="text-sm opacity-60 mt-2 dark:text-white/60">Salsa-Technik vertiefen – Kombinationen, Styling und Musicality.</p>
-                </div>
-                <div class="hidden sm:block">
-                   <span class="px-4 py-1 rounded-full bg-brand-glow/20 text-brand-gold-ink dark:text-brand-glow text-xs font-bold uppercase tracking-widest">Mittelstufe</span>
-                </div>
-              </div>
-            </div>
-
-            <!-- 21:00: Salsa Foundations -->
-            <div class="group p-6 bg-white/70 dark:bg-white/5 backdrop-blur-md rounded-idioma border border-white/20 dark:border-white/10 shadow-glass hover:shadow-glow-amber transition-all duration-300">
-              <div class="flex justify-between items-center">
-                <div>
-                  <span class="text-brand-gold-ink dark:text-brand-glow font-bold text-xl block mb-1">21:00 Uhr</span>
-                  <h3 class="text-2xl font-bold dark:text-white">Salsa Foundations</h3>
-                  <p class="text-sm opacity-60 mt-2 dark:text-white/60">Unser Anfängerkurs – Salsa-Grundlagen und Rhythmusgefühl ohne Vorkenntnisse.</p>
-                </div>
-                <div class="hidden sm:block">
-                   <span class="px-4 py-1 rounded-full bg-blue-500/20 text-blue-900 dark:text-blue-300 text-xs font-bold uppercase tracking-widest">Anfänger</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+  {/* PREISE */}
+  <section id="preise" class="bg-brand-surface px-[clamp(20px,5vw,80px)] py-[clamp(56px,8vw,112px)]">
+    <div class="mx-auto flex max-w-[1280px] flex-col gap-[clamp(32px,4vw,56px)]">
+      <div class="flex max-w-[820px] flex-col gap-3.5">
+        <p class="text-sm font-semibold uppercase tracking-[0.14em] text-brand-gold">Mitgliedschaft</p>
+        <h2 class="font-display text-[clamp(34px,4.4vw,60px)] font-extrabold leading-none tracking-[-0.025em] text-brand-paper">Mitgliedschaft &amp; Preise</h2>
       </div>
 
-      <div class="mt-12 text-center">
-        <a href="/schedule/" class="inline-flex items-center gap-2 text-brand-rose font-bold hover:text-brand-glow transition-colors underline underline-offset-4 decoration-brand-rose/40">
-          Welches Element wann? <span aria-hidden="true">→</span> Terminübersicht
+      <div class="grid gap-6 md:grid-cols-2">
+        <article class="flex flex-col gap-6 rounded-3xl bg-brand-ink p-8">
+          <div class="flex flex-col gap-2">
+            <h3 class="font-display text-2xl font-bold tracking-[-0.01em] text-brand-paper">Ermäßigt</h3>
+            <p class="text-xs font-bold uppercase tracking-[0.14em] text-brand-muted">Studierende / Azubis</p>
+          </div>
+          <p class="flex items-baseline gap-2">
+            <span class="font-display text-[52px] font-extrabold leading-none tracking-[-0.02em] text-brand-gold">19€</span>
+            <span class="text-[15px] text-brand-muted">/ Monat</span>
+          </p>
+          <ul class="flex list-none flex-col gap-3 p-0 text-[15px] text-brand-paper/90">
+            <li class="flex items-start gap-3"><span aria-hidden="true" class="mt-2 size-2.5 shrink-0 rounded-full bg-brand-gold"></span>Alle Bachata &amp; Salsa Kurse</li>
+            <li class="flex items-start gap-3"><span aria-hidden="true" class="mt-2 size-2.5 shrink-0 rounded-full bg-brand-gold"></span>Unlimitierter Kursbesuch</li>
+            <li class="flex items-start gap-3"><span aria-hidden="true" class="mt-2 size-2.5 shrink-0 rounded-full bg-brand-gold"></span>Keine versteckten Kursgebühren</li>
+          </ul>
+          <a href="/mitglied-werden/" class="inline-flex min-h-[52px] w-full items-center justify-center rounded-full border-[1.5px] border-brand-paper/35 px-6 font-bold text-brand-paper transition-colors hover:border-brand-gold hover:text-brand-gold">Jetzt anmelden</a>
+        </article>
+
+        <article class="flex flex-col gap-6 rounded-3xl bg-brand-ink p-8 ring-[1.5px] ring-brand-gold">
+          <div class="flex flex-col gap-2">
+            <h3 class="font-display text-2xl font-bold tracking-[-0.01em] text-brand-paper">Regulär</h3>
+            <p class="text-xs font-bold uppercase tracking-[0.14em] text-brand-muted">Erwachsene</p>
+          </div>
+          <p class="flex items-baseline gap-2">
+            <span class="font-display text-[52px] font-extrabold leading-none tracking-[-0.02em] text-brand-gold">39€</span>
+            <span class="text-[15px] text-brand-muted">/ Monat</span>
+          </p>
+          <ul class="flex list-none flex-col gap-3 p-0 text-[15px] text-brand-paper/90">
+            <li class="flex items-start gap-3"><span aria-hidden="true" class="mt-2 size-2.5 shrink-0 rounded-full bg-brand-gold"></span>Alle Bachata &amp; Salsa Kurse</li>
+            <li class="flex items-start gap-3"><span aria-hidden="true" class="mt-2 size-2.5 shrink-0 rounded-full bg-brand-gold"></span>Unlimitierter Kursbesuch</li>
+            <li class="flex items-start gap-3"><span aria-hidden="true" class="mt-2 size-2.5 shrink-0 rounded-full bg-brand-gold"></span>Community-Events &amp; Socials</li>
+          </ul>
+          <a href="/mitglied-werden/" class="inline-flex min-h-[52px] w-full items-center justify-center rounded-full bg-brand-gold px-6 font-bold text-brand-ink transition-colors hover:bg-brand-gold-soft">Jetzt Mitglied werden</a>
+        </article>
+      </div>
+
+      <p class="text-[15px] text-brand-muted">Aufnahmegebühr (einmalig): 11 € &middot; Mindestlaufzeit: 3 Monate, danach monatlich kündbar.</p>
+    </div>
+  </section>
+
+  {/* CTA */}
+  <section class="bg-brand-ink px-[clamp(20px,5vw,80px)] pb-[clamp(56px,8vw,112px)]">
+    <div class="mx-auto flex max-w-[1280px] flex-col gap-[18px] rounded-[36px] bg-brand-gold px-[clamp(28px,5vw,72px)] py-[clamp(28px,5vw,72px)] text-brand-ink">
+      <h2 class="font-display text-[clamp(32px,4.4vw,60px)] font-extrabold leading-[0.96] tracking-[-0.03em]">Noch Fragen offen?</h2>
+      <p class="max-w-[44ch] text-[19px]">Wir beraten dich gerne persönlich. Schreib uns einfach!</p>
+      <div class="flex flex-wrap items-center gap-5">
+        <a href="/kontakt/" class="inline-flex min-h-[56px] items-center gap-2.5 rounded-full bg-brand-ink px-8 text-lg font-bold text-brand-paper transition-colors hover:bg-brand-surface">
+          Kontakt aufnehmen
         </a>
       </div>
     </div>
   </section>
-
-  <!-- PRICING SECTION -->
-  <section id="preise" class="py-24 bg-brand-dark/95 relative overflow-hidden text-white border-t border-white/5">
-    <div class="container mx-auto px-4">
-      <div class="text-center mb-16">
-        <h2 class="font-display text-4xl md:text-5xl font-bold">Mitgliedschaft & <span class="text-brand-glow">Preise</span></h2>
-        <div class="w-24 h-1 bg-brand-rose mx-auto rounded-full mt-4"></div>
-      </div>
-
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-12 max-w-5xl mx-auto">
-        <!-- Student Membership -->
-        <div class="group bg-white/5 backdrop-blur-xl p-12 rounded-idioma shadow-glass border border-white/10 flex flex-col items-center hover:-translate-y-4 transition-all duration-500 relative overflow-hidden">
-          <div class="absolute top-0 left-0 w-full h-2 bg-brand-glow"></div>
-          <h3 class="text-3xl font-display font-bold mb-2">Ermäßigt</h3>
-          <p class="text-[10px] opacity-50 mb-8 uppercase tracking-widest font-bold">Studierende / Azubis</p>
-          <div class="mb-10 text-center">
-            <span class="text-6xl font-black text-brand-rose-bright">19€</span>
-            <span class="text-lg opacity-60 ml-2">/ Monat</span>
-          </div>
-          <ul class="space-y-4 mb-12 w-full max-w-xs text-sm opacity-80">
-            <li class="flex items-center gap-3">
-              <span class="text-brand-glow">✓</span> Alle Bachata & Salsa Kurse
-            </li>
-            <li class="flex items-center gap-3">
-              <span class="text-brand-glow">✓</span> Unlimitierter Kursbesuch
-            </li>
-            <li class="flex items-center gap-3">
-              <span class="text-brand-glow">✓</span> Keine versteckten Kursgebühren
-            </li>
-          </ul>
-               <a href="/mitglied-werden/" class="mt-auto w-full py-4 bg-white/10 hover:bg-brand-rose rounded-full font-bold transition-all border border-white/10 text-center">Jetzt anmelden</a>
-        </div>
-
-        <!-- Full Membership -->
-        <div class="group bg-white/5 backdrop-blur-xl p-12 rounded-idioma shadow-glass border border-white/10 flex flex-col items-center hover:-translate-y-4 transition-all duration-500 relative overflow-hidden">
-          <div class="absolute top-0 left-0 w-full h-2 bg-brand-rose"></div>
-          <h3 class="text-3xl font-display font-bold mb-2">Regulär</h3>
-          <p class="text-[10px] opacity-50 mb-8 uppercase tracking-widest font-bold">Erwachsene</p>
-          <div class="mb-10 text-center">
-            <span class="text-6xl font-black text-brand-rose-bright">39€</span>
-            <span class="text-lg opacity-60 ml-2">/ Monat</span>
-          </div>
-          <ul class="space-y-4 mb-12 w-full max-w-xs text-sm opacity-80">
-            <li class="flex items-center gap-3">
-              <span class="text-brand-rose-bright">✓</span> Alle Bachata & Salsa Kurse
-            </li>
-            <li class="flex items-center gap-3">
-              <span class="text-brand-rose-bright">✓</span> Unlimitierter Kursbesuch
-            </li>
-            <li class="flex items-center gap-3">
-              <span class="text-brand-rose-bright">✓</span> Community-Events & Socials
-            </li>
-          </ul>
-          <a href="/mitglied-werden/" class="mt-auto w-full py-4 bg-brand-rose text-white font-bold rounded-full shadow-glow-rose hover:bg-white hover:text-brand-dark transition-all text-center">Jetzt Mitglied werden</a>
-        </div>
-      </div>
-
-      <div class="mt-16 text-center text-xs opacity-60 italic">
-        Aufnahmegebühr (einmalig): 11€ | Mindestlaufzeit: 3 Monate, danach monatlich kündbar.
-      </div>
-    </div>
-  </section>
-
-
-  <!-- CTA -->
-  <div class="py-24 bg-brand-dark border-t border-white/5 text-center">
-    <div class="p-12 bg-white/5 backdrop-blur-lg rounded-idioma border border-white/10 max-w-4xl mx-auto shadow-glow-rose">
-      <h2 class="text-3xl font-display font-bold text-brand-rose-bright mb-6">Noch Fragen offen?</h2>
-      <p class="text-lg opacity-80 mb-10 text-white">Wir beraten dich gerne persönlich. Schreib uns einfach!</p>
-      <a href="/kontakt/" class="inline-block py-4 px-10 bg-brand-rose text-white font-bold rounded-full shadow-glow-rose hover:scale-105 transition-all">Kontakt aufnehmen</a>
-    </div>
-  </div>
 </Layout>

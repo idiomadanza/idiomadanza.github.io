@@ -1,9 +1,9 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import { Image } from 'astro:assets';
+import Icon from '../components/Icon.astro';
 
 // Static Assets
-import heroBg from '../assets/images/testimonials/bg.png';
 import teamGroupImg from '../assets/images/team/team-group.jpg';
 
 import { getCollection } from 'astro:content';
@@ -16,14 +16,15 @@ const founders = allTeam.filter(t => t.data.isFounder).sort((a, b) => {
 });
 const trainers = allTeam.filter(t => !t.data.isFounder);
 
-// Curated list for the 8-tile collage: Patricia & Stephan first, then trainers.
-const overviewTeam = [
-  ...founders.slice(0, 2),
-  ...trainers
-].slice(0, 8);
+const trainerAnzahl = allTeam.length + allTeam.filter(t => t.id.includes('_und_')).length;
+
+// Die Bio-Icons kommen als Emoji aus der Team-Collection (🎓 🥇 🥈 🥉) —
+// sie werden hier auf das eigene Icon-Set abgebildet.
+const bioIcon = (emoji: string) =>
+  ({ '🎓': 'zertifikat', '🥇': 'zertifikat', '🥈': 'zertifikat', '🥉': 'zertifikat' } as Record<string, string>)[emoji];
 ---
 
-<Layout 
+<Layout
   title="Über Uns - Idiomadanza e.V. | Bachata & Salsa Verein Regensburg"
   description="Lerne das Team hinter Idiomadanza e.V. kennen: 9 leidenschaftliche Bachata & Salsa Trainer in Regensburg. Unsere Mission, Werte und Community."
 >
@@ -49,279 +50,300 @@ const overviewTeam = [
     ],
     "knowsAbout": ["Bachata", "Salsa", "Brazilian Zouk", "BachaZouk", "Dance Education"]
   })} />
-  <!-- HERO SECTION -->
-  <section class="relative py-24 md:py-32 lg:py-48 overflow-hidden bg-brand-dark">
-    <div class="absolute inset-0 z-0">
-      <Image src={heroBg} alt="Hero Background" width={1920} height={1080} loading="lazy" decoding="async" class="w-full h-full object-cover opacity-50 blur-[2px]" />
-      <div class="absolute inset-0 bg-gradient-to-b from-brand-dark/80 via-brand-dark/60 to-brand-dark"></div>
+
+  {/* HERO */}
+  <section class="bg-brand-ink px-[clamp(20px,5vw,80px)] pb-[clamp(32px,4vw,56px)] pt-[clamp(40px,6vw,88px)]">
+    <div class="mx-auto max-w-[1280px]">
+      <div class="grid items-center gap-[clamp(32px,5vw,72px)] lg:grid-cols-[1.05fr_0.95fr]">
+        <div class="flex flex-col gap-7">
+          <p class="text-sm font-semibold uppercase tracking-[0.14em] text-brand-gold">Unsere Geschichte</p>
+          <h1 class="font-display text-[clamp(42px,6.4vw,92px)] font-extrabold leading-[0.95] tracking-[-0.03em] text-brand-paper">
+            Tanzen verbindet<br /><span class="text-brand-gold">Menschen</span>
+          </h1>
+          <p class="max-w-[42ch] text-[clamp(18px,1.6vw,22px)] text-brand-paper/85">
+            Idiomadanza e.V. ist mehr als nur ein Tanzverein. Wir sind eine Community, die sich der Leidenschaft für Bachata und Salsa verschrieben hat.
+          </p>
+        </div>
+        <div class="relative pb-7 pl-7">
+          <div aria-hidden="true" class="absolute bottom-0 left-0 aspect-square w-[62%] rounded-full border-2 border-brand-gold"></div>
+          <Image
+            src={teamGroupImg}
+            alt="Das Trainerteam von Idiomadanza e.V. als Gruppe"
+            width={1200}
+            height={900}
+            widths={[480, 768, 1080]}
+            sizes="(min-width: 1024px) 46vw, 92vw"
+            format="webp"
+            quality={58}
+            loading="eager"
+            fetchpriority="high"
+            decoding="async"
+            class="relative block aspect-[4/3] w-full rounded-[28px] object-cover"
+          />
+        </div>
+      </div>
     </div>
-    
-    <div class="container mx-auto px-4 relative z-10 text-center">
-      <span class="inline-block py-1 px-4 rounded-full bg-brand-rose/20 text-brand-rose-bright text-sm font-bold tracking-widest uppercase mb-4 animate-fade-in backdrop-blur-sm border border-brand-rose/30">Unsere Geschichte</span>
-      <h1 class="font-display text-5xl md:text-7xl lg:text-8xl font-bold text-white mb-6 drop-shadow-2xl">
-        Tanzen verbindet <span class="text-brand-rose-bright drop-shadow-[0_0_15px_rgba(190,18,60,0.5)]">Menschen</span>
-      </h1>
-      <p class="max-w-3xl mx-auto text-xl md:text-2xl text-white/90 leading-relaxed font-light drop-shadow-md">
-        Idiomadanza e.V. ist mehr als nur ein Tanzverein. Wir sind eine Community, die sich der Leidenschaft für Bachata und Salsa verschrieben hat.
+  </section>
+
+  {/* NAME / GRÜNDUNG */}
+  <section class="bg-brand-surface px-[clamp(20px,5vw,80px)] py-[clamp(48px,7vw,96px)]">
+    <div class="mx-auto flex max-w-[900px] flex-col gap-8">
+      <p class="flex flex-wrap items-center gap-x-6 gap-y-2 font-display text-[clamp(20px,2.4vw,30px)] font-bold italic text-brand-gold">
+        <span>Idioma – Sprache</span>
+        <span aria-hidden="true" class="h-px w-12 bg-brand-paper/25"></span>
+        <span>Danza – Tanz</span>
       </p>
+      <blockquote class="flex flex-col gap-6">
+        <p class="font-display text-[clamp(20px,2.6vw,32px)] font-medium leading-[1.3] tracking-[-0.01em] text-brand-paper">
+          Jeder Mensch kann sich im Tanzen oder durch seine Bewegungen ausdrücken. Tanz/Bewegung ist wie eine Sprache nur eben mit dem ganzen Körper. Tanzen ist etwas sehr individuelles und jeder drückt sich anders aus und hat somit seine eigene persönliche Note beim Tanz oder in seinen Bewegungen.
+        </p>
+        <footer class="text-sm font-bold uppercase tracking-[0.14em] text-brand-gold">— Aus dem Gründungsprotokoll</footer>
+      </blockquote>
     </div>
   </section>
 
-  <!-- FOUNDING IDENTITY SECTION -->
-  <section class="py-20 bg-brand-dark relative overflow-hidden">
-    <div class="container mx-auto px-4 text-center">
-      <div class="max-w-4xl mx-auto space-y-8">
-        <div class="inline-flex items-center gap-6 text-brand-rose-bright font-display text-2xl md:text-3xl font-bold italic">
-          <span>Idioma – Sprache</span>
-          <span class="w-12 h-px bg-white/20"></span>
-          <span>Danza – Tanz</span>
-        </div>
-        <div class="relative">
-          <div class="absolute -top-10 -left-10 text-9xl font-display text-white/5 italic">"</div>
-          <p class="text-xl md:text-3xl text-white/90 leading-relaxed font-display italic relative z-10">
-            Jeder Mensch kann sich im Tanzen oder durch seine Bewegungen ausdrücken. Tanz/Bewegung ist wie eine Sprache nur eben mit dem ganzen Körper. Tanzen ist etwas sehr individuelles und jeder drückt sich anders aus und hat somit seine eigene persönliche Note beim Tanz oder in seinen Bewegungen.
-          </p>
-          <p class="text-sm uppercase tracking-[0.3em] text-brand-glow font-bold pt-8">— Aus dem Gründungsprotokoll</p>
+  {/* MISSION */}
+  <section class="bg-brand-paper px-[clamp(20px,5vw,80px)] py-[clamp(56px,8vw,112px)] text-brand-ink">
+    <div class="mx-auto grid max-w-[1280px] items-center gap-[clamp(32px,5vw,72px)] lg:grid-cols-2">
+      <div class="relative">
+        <Image
+          src={teamGroupImg}
+          alt="Das Team von Idiomadanza e.V. zusammen auf einem Foto"
+          width={1200}
+          height={900}
+          widths={[480, 768, 1200]}
+          sizes="(min-width: 1024px) 46vw, 92vw"
+          format="webp"
+          loading="lazy"
+          decoding="async"
+          class="block aspect-[4/3] w-full rounded-[28px] object-cover"
+        />
+        <div class="absolute -bottom-6 -right-4 hidden rounded-3xl bg-brand-ink px-7 py-5 text-brand-paper md:block">
+          <div class="font-display text-4xl font-extrabold tracking-[-0.02em] text-brand-gold">{trainerAnzahl}</div>
+          <div class="text-sm font-semibold uppercase tracking-[0.14em] text-brand-muted">Trainer</div>
         </div>
       </div>
-    </div>
-    <!-- Decor -->
-    <div class="absolute -bottom-24 -right-24 w-96 h-96 bg-brand-rose/10 rounded-full blur-[120px]"></div>
-  </section>
 
-  <!-- PHILOSOPHY / STORY SECTION -->
-  <section class="py-24 bg-brand-light dark:bg-brand-dark relative overflow-hidden">
-    <div class="container mx-auto px-4">
-      <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-        <div class="relative">
-          <div class="absolute -top-10 -left-10 w-64 h-64 bg-brand-rose/10 rounded-full blur-[80px] -z-10"></div>
-          <div class="group rounded-idioma overflow-hidden shadow-glow-rose transform hover:rotate-1 hover:scale-[1.02] transition-transform duration-700 bg-white/5 border border-white/20 relative z-10 aspect-[4/3]">
-            <Image 
-              src={teamGroupImg} 
-              alt="Idiomadanza Team" 
-              width={1200}
-              height={900}
-              loading="lazy"
-              decoding="async"
-              class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700 scale-150 group-hover:scale-125 object-center"
-            />
-          </div>
-          <div class="absolute -bottom-8 -right-8 bg-white/10 backdrop-blur-md p-8 rounded-idioma border border-white/20 hidden md:block shadow-glow-rose z-20">
-            <div class="text-4xl font-bold text-brand-rose mb-1">{allTeam.length + allTeam.filter(t => t.id.includes('_und_')).length}</div>
-            <div class="text-sm uppercase tracking-widest font-bold dark:text-white/60">Trainer</div>
-          </div>
-        </div>
-        
-        <div class="space-y-8">
-          <h2 class="font-display text-4xl md:text-5xl font-bold text-brand-dark dark:text-brand-light">Unsere <span class="text-brand-rose">Mission</span></h2>
-          <p class="text-lg opacity-80 leading-relaxed dark:text-brand-light">
-            Wir haben Idiomadanza ins Leben gerufen, um einen Raum in Regensburg zu schaffen, in dem jeder – unabhängig vom Tanzlevel – die Magie von Bachata und Salsa erleben kann. Bei uns geht es nicht nur um perfekte Schritte, sondern um das Gefühl, die Verbindung zum Partner und die Freude an der Musik.
-          </p>
-          <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 pt-4">
-            <div class="p-6 bg-white/50 dark:bg-white/5 rounded-idioma border border-brand-dark/10 dark:border-white/10 shadow-sm">
-              <div class="text-brand-rose text-2xl mb-4">♥</div>
-              <h3 class="font-bold mb-2 dark:text-brand-light">Community First</h3>
-              <p class="text-sm opacity-70 dark:text-brand-light/70">Bei uns bist du keine Nummer, sondern Teil einer wachsenden Tanz-Familie.</p>
+      <div class="flex flex-col gap-[22px]">
+        <p class="text-sm font-bold uppercase tracking-[0.14em] text-brand-rose">Unsere Mission</p>
+        <h2 class="font-display text-[clamp(34px,4.4vw,60px)] font-extrabold leading-none tracking-[-0.025em]">Warum es uns gibt</h2>
+        <p class="max-w-[46ch] text-[19px] text-brand-line">
+          Wir haben Idiomadanza ins Leben gerufen, um einen Raum in Regensburg zu schaffen, in dem jeder – unabhängig vom Tanzlevel – die Magie von Bachata und Salsa erleben kann. Bei uns geht es nicht nur um perfekte Schritte, sondern um das Gefühl, die Verbindung zum Partner und die Freude an der Musik.
+        </p>
+        <div class="grid gap-5 pt-4 sm:grid-cols-2">
+          <div class="flex flex-col gap-3 rounded-3xl bg-white p-6">
+            <div class="flex size-14 items-center justify-center rounded-full bg-brand-ink">
+              <Icon name="gemeinnuetzig" size={28} class="text-brand-gold" />
             </div>
-            <div class="p-6 bg-white/50 dark:bg-white/5 rounded-idioma border border-brand-dark/10 dark:border-white/10 shadow-sm">
-              <div class="text-brand-gold-ink dark:text-brand-glow text-2xl mb-4">★</div>
-              <h3 class="font-bold mb-2 dark:text-brand-light">Qualität & Herz</h3>
-              <p class="text-sm opacity-70 dark:text-brand-light/70">Unsere Trainer brennen für das, was sie tun und vermitteln Technik mit viel Empathie.</p>
+            <h3 class="font-display text-xl font-bold tracking-[-0.01em]">Community First</h3>
+            <p class="text-brand-line">Bei uns bist du keine Nummer, sondern Teil einer wachsenden Tanz-Familie.</p>
+          </div>
+          <div class="flex flex-col gap-3 rounded-3xl bg-white p-6">
+            <div class="flex size-14 items-center justify-center rounded-full bg-brand-ink">
+              <Icon name="zertifikat" size={28} class="text-brand-gold" />
             </div>
+            <h3 class="font-display text-xl font-bold tracking-[-0.01em]">Qualität &amp; Herz</h3>
+            <p class="text-brand-line">Unsere Trainer brennen für das, was sie tun und vermitteln Technik mit viel Empathie.</p>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- VALUES SECTION -->
-  <section class="py-24 bg-brand-dark text-white relative overflow-hidden">
-    <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-brand-rose to-transparent opacity-30"></div>
-    <div class="container mx-auto px-4 relative z-10 text-center">
-      <h2 class="font-display text-4xl md:text-5xl font-bold mb-16">Wofür wir <span class="text-brand-glow">brennen</span></h2>
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
-        <div class="group">
-          <div class="w-20 h-20 bg-brand-rose/20 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform shadow-glow-rose">
-             <span class="text-3xl">🕺</span>
+  {/* WERTE */}
+  <section class="bg-brand-ink px-[clamp(20px,5vw,80px)] py-[clamp(56px,8vw,112px)]">
+    <div class="mx-auto flex max-w-[1280px] flex-col gap-[clamp(32px,4vw,56px)]">
+      <div class="flex max-w-[760px] flex-col gap-3.5">
+        <p class="text-sm font-semibold uppercase tracking-[0.14em] text-brand-gold">Unsere Werte</p>
+        <h2 class="font-display text-[clamp(34px,4.4vw,60px)] font-extrabold leading-none tracking-[-0.025em] text-brand-paper">Wofür wir brennen</h2>
+      </div>
+      <div class="grid gap-5 md:grid-cols-3">
+        <div class="flex flex-col gap-3.5 rounded-3xl bg-brand-surface p-7">
+          <div class="flex size-14 items-center justify-center rounded-full bg-brand-ink">
+            <Icon name="drehung" size={28} class="text-brand-gold" />
           </div>
-          <h3 class="text-2xl font-bold mb-4">Eleganz</h3>
-          <p class="opacity-70 leading-relaxed">Wir lieben die Ästhetik und den Ausdruck, den Bachata Sensual und Salsa verkörpern.</p>
+          <h3 class="font-display text-2xl font-bold tracking-[-0.01em] text-brand-paper">Eleganz</h3>
+          <p class="text-brand-muted">Wir lieben die Ästhetik und den Ausdruck, den Bachata Sensual und Salsa verkörpern.</p>
         </div>
-        <div class="group">
-          <div class="w-20 h-20 bg-brand-glow/20 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform shadow-glow-amber">
-             <span class="text-3xl">🤝</span>
+        <div class="flex flex-col gap-3.5 rounded-3xl bg-brand-surface p-7">
+          <div class="flex size-14 items-center justify-center rounded-full bg-brand-ink">
+            <Icon name="sicher-tanzen" size={28} class="text-brand-gold" />
           </div>
-          <h3 class="text-2xl font-bold mb-4">Respekt</h3>
-          <p class="opacity-70 leading-relaxed">Ein sicherer Raum für alle Tänzer, in dem gegenseitige Wertschätzung an erster Stelle steht.</p>
+          <h3 class="font-display text-2xl font-bold tracking-[-0.01em] text-brand-paper">Respekt</h3>
+          <p class="text-brand-muted">Ein sicherer Raum für alle Tänzer, in dem gegenseitige Wertschätzung an erster Stelle steht.</p>
         </div>
-        <div class="group">
-          <div class="w-20 h-20 bg-brand-rose/20 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform shadow-glow-rose">
-             <span class="text-3xl">🔥</span>
+        <div class="flex flex-col gap-3.5 rounded-3xl bg-brand-surface p-7">
+          <div class="flex size-14 items-center justify-center rounded-full bg-brand-ink">
+            <Icon name="musik" size={28} class="text-brand-gold" />
           </div>
-          <h3 class="text-2xl font-bold mb-4">Leidenschaft</h3>
-          <p class="opacity-70 leading-relaxed">Jeder Kurstag ist ein Event. Wir leben und lieben die lateinamerikanischen Rhythmen.</p>
+          <h3 class="font-display text-2xl font-bold tracking-[-0.01em] text-brand-paper">Leidenschaft</h3>
+          <p class="text-brand-muted">Jeder Kurstag ist ein Event. Wir leben und lieben die lateinamerikanischen Rhythmen.</p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- QUALITY & CERTIFICATIONS (E-E-A-T) -->
-  <section class="py-20 bg-brand-light dark:bg-brand-dark/60 border-t border-b border-white/5 relative overflow-hidden">
-    <div class="container mx-auto px-4">
-      <div class="text-center mb-16">
-        <span class="inline-block py-1 px-4 rounded-full bg-brand-glow/20 text-brand-gold-ink dark:text-brand-glow text-xs font-bold tracking-widest uppercase mb-4">Exzellenz & Ausbildung</span>
-        <h2 class="font-display text-4xl md:text-5xl font-bold dark:text-white">Zertifizierte <span class="text-brand-rose">Qualität</span></h2>
-        <div class="w-24 h-1 bg-brand-rose mx-auto rounded-full mt-4 mb-6"></div>
-        <p class="max-w-3xl mx-auto text-base md:text-lg opacity-80 dark:text-brand-light">
+  {/* ZERTIFIZIERUNGEN */}
+  <section class="bg-brand-paper px-[clamp(20px,5vw,80px)] py-[clamp(56px,8vw,112px)] text-brand-ink">
+    <div class="mx-auto flex max-w-[1280px] flex-col gap-[clamp(32px,4vw,56px)]">
+      <div class="flex max-w-[820px] flex-col gap-3.5">
+        <p class="text-sm font-bold uppercase tracking-[0.14em] text-brand-rose">Exzellenz &amp; Ausbildung</p>
+        <h2 class="font-display text-[clamp(34px,4.4vw,60px)] font-extrabold leading-none tracking-[-0.025em]">Zertifizierte Qualität</h2>
+        <p class="text-[19px] text-brand-line">
           Bei uns lernst du direkt nach fundierten internationalen Ausbildungsstandards – anatomisch gesund, präzise und mit Fokus auf echten Social Dance.
         </p>
       </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
-        <!-- 1. Bachata Sensual -->
-        <div class="p-8 bg-white/70 dark:bg-white/5 backdrop-blur-xl rounded-idioma border border-white/10 shadow-glass flex flex-col justify-between hover:-translate-y-2 transition-transform duration-300">
-          <div>
-            <div class="text-3xl mb-4">🏆</div>
-            <h3 class="text-xl font-bold text-brand-rose mb-2">Korke & Judith Zertifiziert</h3>
-            <p class="text-sm opacity-70 leading-relaxed mb-4">
-              Level 1 & Level 2 zertifiziert direkt bei Korke & Judith (Creators of Bachata Sensual). Präzise Führungsimpulse, geschmeidige Körperisolationen und gesunde Führungstechnik.
-            </p>
+      <div class="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+        <article class="flex flex-col justify-between gap-6 rounded-3xl bg-white p-7">
+          <div class="flex flex-col gap-3.5">
+            <div class="flex size-14 items-center justify-center rounded-full bg-brand-ink">
+              <Icon name="zertifikat" size={28} class="text-brand-gold" />
+            </div>
+            <h3 class="font-display text-xl font-bold tracking-[-0.01em]">Korke &amp; Judith Zertifiziert</h3>
+            <p class="text-brand-line">Level 1 &amp; Level 2 zertifiziert direkt bei Korke &amp; Judith (Creators of Bachata Sensual). Präzise Führungsimpulse, geschmeidige Körperisolationen und gesunde Führungstechnik.</p>
           </div>
-          <span class="text-xs font-bold uppercase tracking-wider text-brand-gold-ink dark:text-brand-glow">Bachata Sensual Level 1 & 2</span>
-        </div>
+          <span class="text-xs font-bold uppercase tracking-[0.14em] text-brand-gold-ink">Bachata Sensual Level 1 &amp; 2</span>
+        </article>
 
-        <!-- 2. Bachata Tradicional / Evelin La Negra -->
-        <div class="p-8 bg-white/70 dark:bg-white/5 backdrop-blur-xl rounded-idioma border border-white/10 shadow-glass flex flex-col justify-between hover:-translate-y-2 transition-transform duration-300">
-          <div>
-            <div class="text-3xl mb-4">🇩🇴</div>
-            <h3 class="text-xl font-bold text-brand-rose mb-2">Evelin La Negra Zertifiziert</h3>
-            <p class="text-sm opacity-70 leading-relaxed mb-4">
-              Zertifiziert in ursprünglicher Bachata. Wir respektieren die karibischen Wurzeln und Kultur des Tanzes (im Dominikanischen schlicht als „Bachata“ gewürdigt) mit Fokus auf Footwork und Musicality.
-            </p>
+        <article class="flex flex-col justify-between gap-6 rounded-3xl bg-white p-7">
+          <div class="flex flex-col gap-3.5">
+            <div class="flex size-14 items-center justify-center rounded-full bg-brand-ink">
+              <Icon name="schritt" size={28} class="text-brand-gold" />
+            </div>
+            <h3 class="font-display text-xl font-bold tracking-[-0.01em]">Evelin La Negra Zertifiziert</h3>
+            <p class="text-brand-line">Zertifiziert in ursprünglicher Bachata. Wir respektieren die karibischen Wurzeln und Kultur des Tanzes (im Dominikanischen schlicht als „Bachata“ gewürdigt) mit Fokus auf Footwork und Musicality.</p>
           </div>
-          <span class="text-xs font-bold uppercase tracking-wider text-brand-gold-ink dark:text-brand-glow">Original Bachata Heritage</span>
-        </div>
+          <span class="text-xs font-bold uppercase tracking-[0.14em] text-brand-gold-ink">Original Bachata Heritage</span>
+        </article>
 
-        <!-- 3. Dutch International Zouk Congress -->
-        <div class="p-8 bg-white/70 dark:bg-white/5 backdrop-blur-xl rounded-idioma border border-white/10 shadow-glass flex flex-col justify-between hover:-translate-y-2 transition-transform duration-300">
-          <div>
-            <div class="text-3xl mb-4">✨</div>
-            <h3 class="text-xl font-bold text-brand-rose mb-2">Dutch International Zouk Congress</h3>
-            <p class="text-sm opacity-70 leading-relaxed mb-4">
-              Level 2 zertifiziert auf dem renommierten Dutch International Zouk Congress. Fundierte Ausbildung in Brazilian Zouk: fließende Head Movements, organische Wellen, Achsenstabilität und tiefe Tanzpaar-Connection.
-            </p>
+        <article class="flex flex-col justify-between gap-6 rounded-3xl bg-white p-7">
+          <div class="flex flex-col gap-3.5">
+            <div class="flex size-14 items-center justify-center rounded-full bg-brand-ink">
+              <Icon name="paar" size={28} class="text-brand-gold" />
+            </div>
+            <h3 class="font-display text-xl font-bold tracking-[-0.01em]">Dutch International Zouk Congress</h3>
+            <p class="text-brand-line">Level 2 zertifiziert auf dem renommierten Dutch International Zouk Congress. Fundierte Ausbildung in Brazilian Zouk: fließende Head Movements, organische Wellen, Achsenstabilität und tiefe Tanzpaar-Connection.</p>
           </div>
-          <span class="text-xs font-bold uppercase tracking-wider text-brand-gold-ink dark:text-brand-glow">Brazilian Zouk Level 2</span>
-        </div>
+          <span class="text-xs font-bold uppercase tracking-[0.14em] text-brand-gold-ink">Brazilian Zouk Level 2</span>
+        </article>
 
-        <!-- 4. BachaZouk nach Masa & Polina -->
-        <div class="p-8 bg-white/70 dark:bg-white/5 backdrop-blur-xl rounded-idioma border border-white/10 shadow-glass flex flex-col justify-between hover:-translate-y-2 transition-transform duration-300">
-          <div>
-            <div class="text-3xl mb-4">🌀</div>
-            <h3 class="text-xl font-bold text-brand-rose mb-2">BachaZouk nach Masa & Polina</h3>
-            <p class="text-sm opacity-70 leading-relaxed mb-4">
-              Offiziell zertifiziert nach Masa & Polina. Die faszinierende Fusion aus Bachata und Zouk: Dynamische Head Movements, Circular Motion, Musikalität und fließende Übergänge – sicher geführt und social-dance-erprobt.
-            </p>
+        <article class="flex flex-col justify-between gap-6 rounded-3xl bg-white p-7">
+          <div class="flex flex-col gap-3.5">
+            <div class="flex size-14 items-center justify-center rounded-full bg-brand-ink">
+              <Icon name="drehung" size={28} class="text-brand-gold" />
+            </div>
+            <h3 class="font-display text-xl font-bold tracking-[-0.01em]">BachaZouk nach Masa &amp; Polina</h3>
+            <p class="text-brand-line">Offiziell zertifiziert nach Masa &amp; Polina. Die faszinierende Fusion aus Bachata und Zouk: Dynamische Head Movements, Circular Motion, Musikalität und fließende Übergänge – sicher geführt und social-dance-erprobt.</p>
           </div>
-          <span class="text-xs font-bold uppercase tracking-wider text-brand-gold-ink dark:text-brand-glow">BachaZouk Certified</span>
-        </div>
+          <span class="text-xs font-bold uppercase tracking-[0.14em] text-brand-gold-ink">BachaZouk Certified</span>
+        </article>
 
-        <!-- 5. BLSV Breitensport -->
-        <div class="p-8 bg-white/70 dark:bg-white/5 backdrop-blur-xl rounded-idioma border border-white/10 shadow-glass flex flex-col justify-between hover:-translate-y-2 transition-transform duration-300">
-          <div>
-            <div class="text-3xl mb-4">🏅</div>
-            <h3 class="text-xl font-bold text-brand-rose mb-2">BLSV Übungsleiter</h3>
-            <p class="text-sm opacity-70 leading-relaxed mb-4">
-              Offiziell ausgebildeter Übungsleiter C im Breitensport nach den Richtlinien des Bayerischen Landes-Sportverbandes (BLSV). Pädagogisch strukturierter und sportwissenschaftlich fundierter Unterricht.
-            </p>
+        <article class="flex flex-col justify-between gap-6 rounded-3xl bg-white p-7">
+          <div class="flex flex-col gap-3.5">
+            <div class="flex size-14 items-center justify-center rounded-full bg-brand-ink">
+              <Icon name="zertifikat" size={28} class="text-brand-gold" />
+            </div>
+            <h3 class="font-display text-xl font-bold tracking-[-0.01em]">BLSV Übungsleiter</h3>
+            <p class="text-brand-line">Offiziell ausgebildeter Übungsleiter C im Breitensport nach den Richtlinien des Bayerischen Landes-Sportverbandes (BLSV). Pädagogisch strukturierter und sportwissenschaftlich fundierter Unterricht.</p>
           </div>
-          <span class="text-xs font-bold uppercase tracking-wider text-brand-gold-ink dark:text-brand-glow">Sportverband Qualitätssiegel</span>
-        </div>
+          <span class="text-xs font-bold uppercase tracking-[0.14em] text-brand-gold-ink">Sportverband Qualitätssiegel</span>
+        </article>
 
-        <!-- 6. Leaders & Followers + RoleRotation -->
-        <div class="p-8 bg-white/70 dark:bg-white/5 backdrop-blur-xl rounded-idioma border border-white/10 shadow-glass flex flex-col justify-between hover:-translate-y-2 transition-transform duration-300">
-          <div>
-            <div class="text-3xl mb-4">🔄</div>
-            <h3 class="text-xl font-bold text-brand-rose mb-2">Leaders & Followers Pionier</h3>
-            <p class="text-sm opacity-70 leading-relaxed mb-4">
-              Als erste Tanzschule in Regensburg haben wir uns von überholten Begriffen wie „Damen/Herren“ verabschiedet. Wir fördern RoleRotation: Wer beide Rollen versteht, tanzt auf einem völlig neuen Niveau.
-            </p>
+        <article class="flex flex-col justify-between gap-6 rounded-3xl bg-white p-7">
+          <div class="flex flex-col gap-3.5">
+            <div class="flex size-14 items-center justify-center rounded-full bg-brand-ink">
+              <Icon name="role-rotation" size={28} class="text-brand-gold" />
+            </div>
+            <h3 class="font-display text-xl font-bold tracking-[-0.01em]">Leaders &amp; Followers Pionier</h3>
+            <p class="text-brand-line">Als erste Tanzschule in Regensburg haben wir uns von überholten Begriffen wie „Damen/Herren“ verabschiedet. Wir fördern RoleRotation: Wer beide Rollen versteht, tanzt auf einem völlig neuen Niveau.</p>
           </div>
-          <span class="text-xs font-bold uppercase tracking-wider text-brand-gold-ink dark:text-brand-glow">Moderne Tanzkultur</span>
-        </div>
+          <span class="text-xs font-bold uppercase tracking-[0.14em] text-brand-gold-ink">Moderne Tanzkultur</span>
+        </article>
 
-        <!-- 7. Dancefloor Approved -->
-        <div class="p-8 bg-white/70 dark:bg-white/5 backdrop-blur-xl rounded-idioma border border-white/10 shadow-glass flex flex-col justify-between hover:-translate-y-2 transition-transform duration-300">
-          <div>
-            <div class="text-3xl mb-4">💃🕺</div>
-            <h3 class="text-xl font-bold text-brand-rose mb-2">Dancefloor Approved</h3>
-            <p class="text-sm opacity-70 leading-relaxed mb-4">
-              Unsere Trainer nehmen regelmäßig an Social Dance Competitions teil. Keine starren Show-Choreos, sondern echtes, improvisiertes Führen & Folgen auf Social Partys weltweit.
-            </p>
+        <article class="flex flex-col justify-between gap-6 rounded-3xl bg-white p-7">
+          <div class="flex flex-col gap-3.5">
+            <div class="flex size-14 items-center justify-center rounded-full bg-brand-ink">
+              <Icon name="paar" size={28} class="text-brand-gold" />
+            </div>
+            <h3 class="font-display text-xl font-bold tracking-[-0.01em]">Dancefloor Approved</h3>
+            <p class="text-brand-line">Unsere Trainer nehmen regelmäßig an Social Dance Competitions teil. Keine starren Show-Choreos, sondern echtes, improvisiertes Führen &amp; Folgen auf Social Partys weltweit.</p>
           </div>
-          <span class="text-xs font-bold uppercase tracking-wider text-brand-gold-ink dark:text-brand-glow">Social Dance Competitors</span>
-        </div>
+          <span class="text-xs font-bold uppercase tracking-[0.14em] text-brand-gold-ink">Social Dance Competitors</span>
+        </article>
       </div>
     </div>
   </section>
 
-  <!-- FULL TEAM SHOWCASE -->
-  <section id="team" class="py-24 bg-brand-light dark:bg-brand-dark relative overflow-hidden">
-    <div class="container mx-auto px-4">
-      <div class="text-center mb-16">
-        <h2 class="font-display text-4xl md:text-5xl font-bold text-brand-dark dark:text-brand-light mb-4">Die Gesichter hinter <span class="text-brand-rose">Idioma</span></h2>
-        <div class="w-24 h-1 bg-brand-glow mx-auto rounded-full mb-6"></div>
-        <p class="max-w-2xl mx-auto opacity-80 text-lg dark:text-brand-light">Ein Team aus {allTeam.length + allTeam.filter(t => t.id.includes('_und_')).length} leidenschaftlichen Trainern, die darauf brennen, ihr Wissen mit dir zu teilen.</p>
+  {/* TEAM */}
+  <section id="team" class="bg-brand-ink px-[clamp(20px,5vw,80px)] py-[clamp(56px,8vw,112px)]">
+    <div class="mx-auto flex max-w-[1280px] flex-col gap-[clamp(32px,4vw,56px)]">
+      <div class="flex max-w-[760px] flex-col gap-3.5">
+        <p class="text-sm font-semibold uppercase tracking-[0.14em] text-brand-gold">Das Team</p>
+        <h2 class="font-display text-[clamp(34px,4.4vw,60px)] font-extrabold leading-none tracking-[-0.025em] text-brand-paper">Die Gesichter hinter Idioma</h2>
+        <p class="text-[19px] text-brand-muted">Ein Team aus {trainerAnzahl} leidenschaftlichen Trainern, die darauf brennen, ihr Wissen mit dir zu teilen.</p>
       </div>
 
-        <!-- Unified Team Grid -->
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 gap-8 max-w-7xl mx-auto mb-12">
-          {[...founders, ...trainers].map((member) => (
-            <div class="group bg-brand-dark/80 backdrop-blur-md border border-white/10 rounded-2xl overflow-hidden hover:border-brand-rose transition-all duration-500 hover:-translate-y-2 flex flex-col shadow-glass">
-              <div class="aspect-[4/5] overflow-hidden relative">
-                <Image 
-                  src={member.data.image} 
-                  alt={member.data.name} 
-                  width={600}
-                  height={750}
-                  loading="lazy"
-                  decoding="async"
-                  class={`w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700 scale-105 group-hover:scale-110 ${member.data.imagePosition || 'object-center'}`} 
-                />
-                <div class="absolute inset-0 bg-gradient-to-t from-brand-dark via-brand-dark/20 to-transparent opacity-90"></div>
-                
-                <div class="absolute bottom-4 left-6 right-6">
-                  <h3 class="text-2xl font-display font-bold text-white mb-1 drop-shadow-md">{member.data.name}</h3>
-                  <p class="text-brand-rose-bright font-bold text-xs uppercase tracking-widest drop-shadow-md">{member.data.role}</p>
-                </div>
-              </div>
-
-              <div class="p-6 flex-grow flex flex-col justify-between bg-brand-dark/95">
-                <div class="space-y-4">
-                  {member.data.bio && member.data.bio.map((item) => (
-                    <div class="flex items-start gap-3 text-xs text-brand-light/80">
-                      <span class="text-brand-glow text-sm leading-none pt-0.5">{item.icon}</span>
-                      <span class="leading-relaxed">{item.text}</span>
-                    </div>
-                  ))}
-                </div>
-                
-                {member.data.instagram && (
-                  <a href={member.data.instagram} target="_blank" rel="noopener noreferrer" class="mt-6 inline-flex items-center gap-2 text-[11px] font-bold uppercase tracking-widest text-white/60 hover:text-brand-rose transition-colors">
-                    Instagram <span class="text-xs">↗</span>
-                  </a>
-                )}
+      <div class="grid gap-6 sm:grid-cols-2 xl:grid-cols-3">
+        {[...founders, ...trainers].map((member) => (
+          <div class="flex flex-col overflow-hidden rounded-3xl bg-brand-surface">
+            <div class="relative aspect-[4/5] overflow-hidden">
+              <Image
+                src={member.data.image}
+                alt={member.data.name}
+                width={600}
+                height={750}
+                loading="lazy"
+                decoding="async"
+                class={`block h-full w-full object-cover ${member.data.imagePosition || 'object-center'}`}
+              />
+              <div class="absolute bottom-4 left-5 right-5">
+                <h3 class="font-display text-2xl font-bold tracking-[-0.01em] text-brand-paper">{member.data.name}</h3>
+                <p class="text-xs font-bold uppercase tracking-[0.14em] text-brand-gold">{member.data.role}</p>
               </div>
             </div>
-          ))}
-        </div>
-      
-      <div class="mt-24 p-12 bg-brand-dark/85 backdrop-blur-md rounded-idioma border border-white/20 text-center max-w-4xl mx-auto text-white relative overflow-hidden shadow-glow-rose">
-        <div class="absolute top-0 right-0 p-4 opacity-10">
-          <span class="text-9xl font-display italic">"</span>
-        </div>
-        <h3 class="text-3xl font-display font-bold mb-6 italic relative z-10">"Wir unterrichten nicht nur Tanzschritte – wir vermitteln Lebensfreude."</h3>
-        <p class="text-lg opacity-80 relative z-10">- Stephan & Patricia, Gründer von Idiomadanza e.V.</p>
+
+            <div class="flex flex-grow flex-col justify-between gap-4 p-6">
+              <div class="flex flex-col gap-3">
+                {member.data.bio && member.data.bio.map((item) => (
+                  <div class="flex items-start gap-3 text-[15px] text-brand-muted">
+                    {bioIcon(item.icon) && (
+                      <Icon name={bioIcon(item.icon)} size={18} strokeWidth={1.75} class="mt-0.5 shrink-0 text-brand-gold" />
+                    )}
+                    <span>{item.text}</span>
+                  </div>
+                ))}
+              </div>
+
+              {member.data.instagram && (
+                <a href={member.data.instagram} target="_blank" rel="noopener noreferrer" class="inline-flex min-h-[44px] items-center gap-2 text-xs font-bold uppercase tracking-[0.14em] text-brand-paper/70 transition-colors hover:text-brand-gold">
+                  Instagram <span aria-hidden="true">&nearr;</span>
+                </a>
+              )}
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <figure class="flex flex-col gap-5 border-t-2 border-brand-gold pt-7">
+        <blockquote class="font-display text-[clamp(24px,2.8vw,38px)] font-medium leading-[1.2] tracking-[-0.01em] text-brand-paper">
+          „Wir unterrichten nicht nur Tanzschritte – wir vermitteln Lebensfreude.“
+        </blockquote>
+        <figcaption class="text-brand-muted">— Stephan &amp; Patricia, Gründer von Idiomadanza e.V.</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  {/* CTA */}
+  <section class="bg-brand-ink px-[clamp(20px,5vw,80px)] pb-[clamp(56px,8vw,112px)]">
+    <div class="mx-auto flex max-w-[1280px] flex-col gap-[18px] rounded-[36px] bg-brand-gold px-[clamp(28px,5vw,72px)] py-[clamp(28px,5vw,72px)] text-brand-ink">
+      <h2 class="font-display text-[clamp(32px,4.4vw,60px)] font-extrabold leading-[0.96] tracking-[-0.03em]">Komm vorbei und mach dir selbst ein Bild.</h2>
+      <p class="max-w-[44ch] text-[19px]">Die erste Stunde ist gratis – allein, zu zweit oder mit Freunden.</p>
+      <div class="flex flex-wrap items-center gap-5">
+        <a href="/kontakt/" class="inline-flex min-h-[56px] items-center gap-2.5 rounded-full bg-brand-ink px-8 text-lg font-bold text-brand-paper transition-colors hover:bg-brand-surface">
+          Probestunde anfragen
+        </a>
+        <a href="/kurse/" class="inline-flex min-h-[44px] items-center font-semibold underline underline-offset-4">Zum Kursplan</a>
       </div>
     </div>
   </section>

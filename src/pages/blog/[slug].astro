@@ -2,6 +2,7 @@
 import Layout from '../../layouts/Layout.astro';
 import { type CollectionEntry, getCollection, render } from 'astro:content';
 import { Image } from 'astro:assets';
+import Icon from '../../components/Icon.astro';
 
 export async function getStaticPaths() {
   const blogEntries = await getCollection('blog');
@@ -55,99 +56,94 @@ if (typeof finalImage === 'string') {
     "image": entry.data.image ? `https://idiomadanza.de${entry.data.image}` : undefined,
     "keywords": entry.data.tags ? entry.data.tags.join(", ") : "Bachata, Salsa, Tanz, Regensburg"
   })} />
-  <article class="py-12 md:py-20 bg-brand-light dark:bg-brand-dark min-h-screen">
-    <div class="container mx-auto px-4 max-w-4xl">
-      
-      <!-- Back Link & Category -->
-      <div class="flex flex-wrap items-center justify-between gap-4 mb-8">
-        <a href="/blog/" class="inline-flex items-center gap-2 text-xs md:text-sm font-bold text-brand-rose hover:text-brand-glow transition-colors uppercase tracking-widest">
-          <span>←</span> Zurück zur Blog-Übersicht
+  <article class="bg-brand-ink px-[clamp(20px,5vw,80px)] py-[clamp(40px,6vw,88px)]">
+    <div class="mx-auto max-w-[860px]">
+
+      {/* Zurück & Kategorie */}
+      <div class="mb-8 flex flex-wrap items-center justify-between gap-4">
+        <a href="/blog/" class="inline-flex min-h-[44px] items-center gap-2 text-xs font-bold uppercase tracking-[0.14em] text-brand-gold hover:text-brand-gold-soft">
+          <span aria-hidden="true">&larr;</span> Zurück zur Blog-Übersicht
         </a>
-        <span class="inline-block px-3.5 py-1 rounded-full bg-brand-rose/10 text-brand-rose text-xs font-bold uppercase tracking-widest border border-brand-rose/30">
+        <span class="inline-block rounded-full border border-brand-gold px-3.5 py-1 text-xs font-bold uppercase tracking-[0.14em] text-brand-gold">
           {entry.data.category || 'Tanz-Guide'}
         </span>
       </div>
 
-      <!-- Article Header -->
-      <header class="mb-10 md:mb-14">
-        <h1 class="font-display text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-brand-dark dark:text-white leading-[1.15] mb-6 drop-shadow-sm">
+      {/* Artikelkopf */}
+      <header class="mb-10 flex flex-col gap-6 md:mb-14">
+        <h1 class="font-display text-[clamp(32px,4.6vw,64px)] font-extrabold leading-[1.05] tracking-[-0.03em] text-brand-paper">
           {entry.data.title}
         </h1>
-        
+
         {entry.data.excerpt && (
-          <p class="text-base sm:text-lg md:text-xl text-brand-dark/70 dark:text-white/70 leading-relaxed font-light mb-8 italic border-l-2 border-brand-glow pl-4">
+          <p class="border-l-2 border-brand-gold pl-5 text-[clamp(17px,1.5vw,20px)] italic leading-relaxed text-brand-paper/85">
             {entry.data.excerpt}
           </p>
         )}
 
-        <!-- Meta Bar -->
-        <div class="flex flex-wrap items-center gap-4 sm:gap-6 py-4 border-y border-brand-dark/10 dark:border-white/10 text-xs sm:text-sm text-brand-dark/60 dark:text-white/60">
-          <div class="flex items-center gap-2">
-            <span class="text-brand-rose">✍️</span>
-            <span>{entry.data.author || 'Idiomadanza Vorstand'}</span>
-          </div>
-          <span class="opacity-30">•</span>
-          <div class="flex items-center gap-2">
-            <span class="text-brand-gold-ink dark:text-brand-glow">📅</span>
-            <span>{entry.data.date}</span>
-          </div>
-          <span class="opacity-30">•</span>
-          <div class="flex items-center gap-2">
-            <span>⏱️</span>
-            <span>ca. 5 Min. Lesezeit</span>
-          </div>
+        {/* Meta */}
+        <div class="flex flex-wrap items-center gap-x-6 gap-y-3 border-y border-brand-paper/15 py-4 text-sm text-brand-muted">
+          <span class="inline-flex items-center gap-2">{entry.data.author || 'Idiomadanza Vorstand'}</span>
+          <span aria-hidden="true" class="text-brand-paper/30">&middot;</span>
+          <span class="inline-flex items-center gap-2">
+            <Icon name="termin" size={18} strokeWidth={1.75} class="shrink-0 text-brand-gold" />
+            {entry.data.date}
+          </span>
+          <span aria-hidden="true" class="text-brand-paper/30">&middot;</span>
+          <span class="inline-flex items-center gap-2">ca. 5 Min. Lesezeit</span>
         </div>
       </header>
 
-      <!-- Featured Image -->
+      {/* Beitragsbild */}
       {finalImage && (
-        <div class="relative h-[260px] sm:h-[380px] md:h-[480px] rounded-2xl md:rounded-3xl overflow-hidden shadow-glass border border-white/10 mb-14 group">
-          <Image 
-            src={finalImage} 
-            alt={entry.data.title} 
-            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" 
+        <div class="mb-12 overflow-hidden rounded-[28px]">
+          <Image
+            src={finalImage}
+            alt={entry.data.title}
+            width={1200}
+            height={675}
+            widths={[480, 768, 1200]}
+            sizes="(min-width: 860px) 860px, 92vw"
+            format="webp"
+            loading="lazy"
+            decoding="async"
+            class="block aspect-video w-full object-cover"
           />
-          <div class="absolute inset-0 bg-gradient-to-t from-brand-dark/70 via-transparent to-transparent opacity-60"></div>
         </div>
       )}
 
-      <!-- Main Editorial Content -->
+      {/* Inhalt */}
       <div class="blog-prose leading-relaxed">
         <Content />
       </div>
 
-      <!-- Bottom Author / CTA Box -->
-      <footer class="mt-20 pt-12 border-t border-brand-dark/10 dark:border-white/10">
-        <div class="p-8 md:p-12 rounded-3xl bg-white/70 dark:bg-white/5 backdrop-blur-xl border border-white/20 dark:border-white/10 shadow-glass text-center relative overflow-hidden">
-          <div class="absolute -top-12 -right-12 w-48 h-48 bg-brand-rose/20 rounded-full blur-[80px]"></div>
-          
-          <div class="w-16 h-16 rounded-full bg-brand-rose/20 flex items-center justify-center text-3xl mx-auto mb-6 shadow-glow-rose">
-            💃🕺
+      <footer class="mt-16 border-t border-brand-paper/15 pt-12">
+        <div class="flex flex-col gap-6 rounded-[36px] bg-brand-surface p-[clamp(24px,4vw,48px)]">
+          <div class="flex size-16 items-center justify-center rounded-full bg-brand-ink">
+            <Icon name="paar" size={30} class="text-brand-gold" />
           </div>
-          <h2 class="font-display text-2xl md:text-3xl font-bold dark:text-white mb-4">
+          <h2 class="font-display text-[clamp(24px,3vw,36px)] font-extrabold leading-[1.05] tracking-[-0.02em] text-brand-paper">
             Lust bekommen, Bachata oder Salsa auszuprobieren?
           </h2>
-          <p class="max-w-xl mx-auto text-sm md:text-base opacity-75 dark:text-white/70 mb-8 leading-relaxed">
+          <p class="max-w-[52ch] text-[17px] text-brand-muted">
             Komm einfach zu einer kostenlosen Schnupperstunde vorbei – egal ob dienstags im Fortuna oder mittwochs am Bahnhof. Kein Tanzpartner nötig!
           </p>
-          <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <a href="/kontakt/" class="w-full sm:w-auto px-8 py-3.5 rounded-full bg-brand-rose text-white font-bold shadow-glow-rose hover:-translate-y-0.5 hover:shadow-lg transition-all text-sm uppercase tracking-wider">
-              Kostenlose Probestunde anfragen →
+          <div class="flex flex-wrap items-center gap-4">
+            <a href="/kontakt/" class="inline-flex min-h-[56px] items-center gap-2.5 rounded-full bg-brand-rose px-7 text-lg font-bold text-white transition-colors hover:bg-brand-rose-bright">
+              Kostenlose Probestunde anfragen <span aria-hidden="true">&rarr;</span>
             </a>
-            <a href="https://wa.me/+4915678659226?text=Hallo%20Idiomadanza,%20ich%20habe%20eine%20Frage%20zu%20den%20Kursen" target="_blank" rel="noopener noreferrer" class="w-full sm:w-auto px-8 py-3.5 rounded-full bg-white/10 dark:bg-white/10 hover:bg-white/20 border border-white/20 text-brand-dark dark:text-white font-bold transition-all text-sm uppercase tracking-wider flex items-center justify-center gap-2">
-              <span>💬</span> WhatsApp Chat
+            <a href="https://wa.me/+4915678659226?text=Hallo%20Idiomadanza,%20ich%20habe%20eine%20Frage%20zu%20den%20Kursen" target="_blank" rel="noopener noreferrer" class="inline-flex min-h-[56px] items-center rounded-full border-[1.5px] border-brand-paper/35 px-7 text-lg font-semibold text-brand-paper transition-colors hover:border-brand-gold hover:text-brand-gold">
+              WhatsApp Chat
             </a>
           </div>
         </div>
 
-        <!-- Back Link -->
-        <div class="mt-12 text-center">
-          <a href="/blog/" class="inline-flex items-center gap-2 text-sm font-bold text-brand-rose hover:text-brand-glow transition-colors">
-            ← Zurück zu allen Blog-Artikeln
+        <div class="mt-10">
+          <a href="/blog/" class="inline-flex min-h-[44px] items-center gap-2 text-sm font-bold text-brand-gold underline underline-offset-4 hover:text-brand-gold-soft">
+            &larr; Zurück zu allen Blog-Artikeln
           </a>
         </div>
       </footer>
-
     </div>
   </article>
 </Layout>
@@ -155,22 +151,22 @@ if (typeof finalImage === 'string') {
 <style is:global>
   .blog-prose {
     font-size: 1.125rem;
-    color: rgba(255, 255, 255, 0.85);
+    color: var(--color-brand-paper);
   }
-  
+
   .blog-prose h2 {
     font-family: var(--font-display, serif);
     font-size: 1.75rem;
     line-height: 1.25;
     font-weight: 700;
-    color: var(--color-white, #ffffff);
+    color: var(--color-brand-paper);
     margin-top: 3.5rem;
     margin-bottom: 1.25rem;
     padding-bottom: 0.75rem;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    border-bottom: 1px solid color-mix(in srgb, var(--color-brand-paper) 15%, transparent);
     position: relative;
   }
-  
+
   @media (min-width: 768px) {
     .blog-prose h2 {
       font-size: 2.25rem;
@@ -184,79 +180,81 @@ if (typeof finalImage === 'string') {
     left: 0;
     width: 60px;
     height: 2px;
-    background: var(--color-brand-rose, #8b5cf6);
+    background: var(--color-brand-gold);
   }
-  
+
   .blog-prose h3 {
     font-family: var(--font-display, serif);
     font-size: 1.35rem;
     line-height: 1.3;
     font-weight: 700;
-    color: var(--color-brand-rose, #8b5cf6);
+    color: var(--color-brand-gold);
     margin-top: 2.25rem;
     margin-bottom: 0.75rem;
   }
-  
+
   .blog-prose p {
     margin-bottom: 1.5rem;
     line-height: 1.8;
+    color: color-mix(in srgb, var(--color-brand-paper) 88%, transparent);
   }
-  
+
   .blog-prose ul {
     margin-top: 1rem;
     margin-bottom: 2rem;
     padding-left: 0;
     list-style-type: none;
   }
-  
+
   .blog-prose ul li {
     position: relative;
-    padding-left: 2rem;
+    padding-left: 1.75rem;
     margin-bottom: 0.85rem;
     line-height: 1.7;
-    color: rgba(255, 255, 255, 0.85);
+    color: color-mix(in srgb, var(--color-brand-paper) 88%, transparent);
   }
-  
+
   .blog-prose ul li::before {
-    content: "✓";
+    content: "";
     position: absolute;
-    left: 0.25rem;
-    top: 0;
-    color: var(--color-brand-glow, #fcd34d);
-    font-weight: bold;
-    font-size: 0.95rem;
+    left: 0.15rem;
+    top: 0.65em;
+    width: 0.6rem;
+    height: 0.6rem;
+    border-radius: 9999px;
+    background: var(--color-brand-gold);
   }
-  
+
   .blog-prose strong {
-    color: var(--color-white, #ffffff);
+    color: var(--color-brand-paper);
     font-weight: 600;
   }
-  
+
   .blog-prose hr {
     margin: 3.5rem 0;
     border: 0;
     height: 1px;
-    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    background: color-mix(in srgb, var(--color-brand-paper) 18%, transparent);
   }
-  
+
   .blog-prose a {
-    color: var(--color-brand-rose, #8b5cf6);
+    color: var(--color-brand-gold);
     text-decoration: underline;
     text-underline-offset: 4px;
     transition: color 0.2s ease;
   }
-  
+
   .blog-prose a:hover {
-    color: var(--color-brand-glow, #fcd34d);
+    color: var(--color-brand-gold-soft);
   }
-  
+
   .blog-prose blockquote {
-    background: rgba(255, 255, 255, 0.05);
-    border-left: 4px solid var(--color-brand-glow, #fcd34d);
+    background: var(--color-brand-surface);
+    border-left: 4px solid var(--color-brand-gold);
     padding: 1.25rem 1.5rem;
     border-radius: 0 1rem 1rem 0;
     margin: 2.5rem 0;
     font-style: italic;
-    color: rgba(255, 255, 255, 0.95);
+    color: var(--color-brand-paper);
   }
 </style>
