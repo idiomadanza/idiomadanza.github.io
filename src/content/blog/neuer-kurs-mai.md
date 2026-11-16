@@ -29,7 +29,7 @@ Zur Fairness gegenüber allen Mitgliedern: Bei Kursausfällen gibt es keine Nach
 
 - **Kurs:** Bachata Foundations (Anfänger)
 - **Tag:** Dienstag, 20:00 Uhr
-- **Ort:** Fortuna Regensburg, Metzgerweg 48, 93055 Regensburg
+- **Ort:** Fortuna, Isarstraße 85, 93057 Regensburg
 - **Übungsleiter:** Sebastian & Antonia
 
 Komm einfach vorbei und schau es dir an – oder [melde dich bei uns](/kontakt/), wenn du vorher noch eine Frage hast. Wir freuen uns auf dich!
