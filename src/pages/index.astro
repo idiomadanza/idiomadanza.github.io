@@ -61,7 +61,7 @@ const carouselImages = [
       <p class="font-medium flex items-center gap-2">
         <span class="text-brand-glow">🔥</span> <strong>Wöchentliche Kurse</strong> – Einstieg jederzeit möglich
       </p>
-      <a href="/kurse/" aria-label="Details zu den wöchentlichen Kursen ansehen" class="text-white hover:text-brand-rose transition-colors text-xs font-bold uppercase tracking-widest flex items-center gap-2 whitespace-nowrap">
+      <a href="/kurse/" aria-label="Details ansehen – wöchentliche Kurse" class="text-white hover:text-brand-rose transition-colors text-xs font-bold uppercase tracking-widest flex items-center gap-2 whitespace-nowrap">
         Details ansehen →
       </a>
     </div>
@@ -70,6 +70,7 @@ const carouselImages = [
   {/* Aktuelles / Workshops */}
   <section class="py-24 bg-brand-light dark:bg-brand-dark/95">
     <div class="container mx-auto px-4">
+      <h2 class="font-display text-4xl md:text-5xl font-bold text-brand-dark dark:text-white text-center mb-12">Aktuelles &amp; Workshops</h2>
       <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
         {latestPost && (
           <a href={`/blog/${latestPost.id}/`} class="group bg-white/70 dark:bg-brand-dark/50 border border-brand-dark/10 rounded-2xl overflow-hidden shadow-glass hover:shadow-glow-rose transition-all hover:-translate-y-2 flex flex-col h-full">
