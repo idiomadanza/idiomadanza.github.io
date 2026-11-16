@@ -33,3 +33,9 @@
   [headers.values]
     Cache-Control = "public, max-age=2592000"
 
+
+[[headers]]
+  for = "/aushaenge.json"
+  [headers.values]
+    Access-Control-Allow-Origin = "*"
+    Cache-Control = "public, max-age=300"

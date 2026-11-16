@@ -3,6 +3,8 @@ title: "Anfänger-Einstieg im Januar 2027: neue Foundations-Reihe ab Dienstag, 1
 excerpt: "Dreimal im Jahr beginnt bei uns eine neue anfängerfreundliche Kursreihe – im Januar 2027 ist es wieder so weit: Dienstag, 20 Uhr, Bachata Foundations im Fortuna. Dazwischen kannst du jederzeit kostenlos schnuppern."
 category: "Kurse"
 date: "16. November 2026"
+eventDate: "2027-01-12"
+pinned: true
 image: ../../assets/images/testimonials/bg.png
 author: "Idiomadanza Vorstand"
 ---

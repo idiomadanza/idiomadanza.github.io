@@ -48,7 +48,11 @@ const blogCollection = defineCollection({
     category: z.string(),
     date: z.string(),
     image: image(),
-    author: z.string()
+    author: z.string(),
+    // Optionales Datum des Termins, auf den der Beitrag sich bezieht.
+    // Ist es vorbei, erscheint der Beitrag nicht mehr in den Aushängen der App.
+    eventDate: z.string().optional(),
+    pinned: z.boolean().default(false)
   })
 });
 
