@@ -5,7 +5,17 @@ import { Image } from 'astro:assets';
 import HeroSection from '../components/blocks/HeroSection.astro';
 
 // 1. Daten holen
-const blogEntries = await getCollection('blog') || [];
+// Blogdaten liegen als deutsche Textdaten vor ("16. November 2026") – für die
+// Auswahl des Teaser-Beitrags werden sie in einen sortierbaren Zeitstempel übersetzt.
+const MONATE = ['januar', 'februar', 'märz', 'april', 'mai', 'juni', 'juli', 'august', 'september', 'oktober', 'november', 'dezember'];
+const alsZeitstempel = (datum: string): number => {
+  const teile = datum.trim().match(/^(\d{1,2})\.\s*([A-Za-zÄÖÜäöüß]+)\s*(\d{4})$/);
+  if (!teile) return 0;
+  const monat = MONATE.indexOf(teile[2].toLowerCase());
+  return monat < 0 ? 0 : Date.UTC(Number(teile[3]), monat, Number(teile[1]));
+};
+const blogEntries = (await getCollection('blog') || [])
+  .sort((a, b) => alsZeitstempel(b.data.date) - alsZeitstempel(a.data.date));
 const latestPost = blogEntries.length > 0 ? blogEntries[0] : null;
 
 // 2. Workshops holen
