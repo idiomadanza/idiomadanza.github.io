@@ -3,6 +3,7 @@ import { ClientRouter } from 'astro:transitions';
 import { Image } from 'astro:assets';
 import '../styles/global.css';
 import CookieBanner from '../components/CookieBanner.astro';
+import Icon from '../components/Icon.astro';
 import SafeMail from '../components/ui/SafeMail.astro';
 import logoImg from '../assets/images/logo.png';
 
@@ -186,32 +187,35 @@ const danceSchoolSchema = {
   <script defer src="https://statistic.idiomadanza.de/script.js" data-website-id="43e6ad43-2c8b-47c9-a7fd-d63e434dadb2"></script>
 </head>
   <body class="font-sans min-h-screen flex flex-col bg-brand-light dark:bg-brand-dark text-brand-dark dark:text-white">
-    <header role="banner" class="sticky top-0 z-50 w-full backdrop-blur-md bg-white/70 dark:bg-brand-dark/80 border-b border-white/10">
-      <nav role="navigation" aria-label="Hauptnavigation" class="container mx-auto px-4 py-4 flex justify-between items-center">
-        <a href="/" class="flex items-center gap-4 group">
-          <div class="relative w-12 h-12 rounded-full overflow-hidden border-2 border-brand-glow/60 shadow-glow-amber animate-pulse-glow transition-transform duration-300 group-hover:scale-105">
-            <Image src={logoImg} alt="Logo" width={48} height={48} widths={[48, 96]} sizes="48px" class="p-1" decoding="async" />
-          </div>
-          <span class="text-2xl font-display font-bold text-brand-rose drop-shadow-[0_0_10px_rgba(139,92,246,0.3)]">Idiomadanza</span>
+    <header role="banner" class="sticky top-0 z-50 w-full border-b border-brand-paper/15 bg-brand-ink/95 backdrop-blur-md">
+      <div class="mx-auto flex max-w-[1280px] flex-wrap items-center gap-x-8 gap-y-4 px-[clamp(20px,5vw,80px)] py-5">
+        <a href="/" class="flex min-h-[48px] items-center gap-3">
+          <span class="relative size-12 overflow-hidden rounded-full border-[1.5px] border-brand-gold">
+            <Image src={logoImg} alt="Idiomadanza Logo" width={48} height={48} widths={[48, 96]} sizes="48px" class="size-full object-cover" decoding="async" />
+          </span>
+          <span class="font-display text-2xl font-extrabold tracking-[-0.01em] text-brand-paper">Idiomadanza<span class="text-brand-gold"> e.V.</span></span>
         </a>
-        <div class="hidden md:flex gap-8 items-center font-medium">
-          <a href="/kurse/" class="hover:text-brand-rose transition-colors">Kurse</a>
-          <a href="/workshops/" class="hover:text-brand-rose transition-colors">Workshops</a>
-          <a href="/ueber-uns/" class="hover:text-brand-rose transition-colors">Über Uns</a>
-          <a href="/mitglied-werden/" class="hover:text-brand-rose transition-colors">Mitgliedschaft</a>
-          <a href="/blog/" class="hover:text-brand-rose transition-colors">Blog</a>
-          <a href="/kontakt/" class="bg-brand-rose px-6 py-2 rounded-full text-white shadow-glow-rose hover:-translate-y-0.5 transition-all">Probestunde</a>
-        </div>
+        <nav role="navigation" aria-label="Hauptnavigation" class="ml-auto hidden items-center gap-x-7 text-base font-medium md:flex">
+          <a href="/kurse/" class="inline-flex min-h-[44px] items-center text-brand-paper transition-colors hover:text-brand-gold">Kurse</a>
+          <a href="/workshops/" class="inline-flex min-h-[44px] items-center text-brand-paper transition-colors hover:text-brand-gold">Workshops</a>
+          <a href="/ueber-uns/" class="inline-flex min-h-[44px] items-center text-brand-paper transition-colors hover:text-brand-gold">Über uns</a>
+          <a href="/mitglied-werden/" class="inline-flex min-h-[44px] items-center text-brand-paper transition-colors hover:text-brand-gold">Mitgliedschaft</a>
+          <a href="/blog/" class="inline-flex min-h-[44px] items-center text-brand-paper transition-colors hover:text-brand-gold">Blog</a>
+        </nav>
+        <a href="/kontakt/" class="ml-auto inline-flex min-h-[48px] items-center gap-2.5 rounded-full bg-brand-gold px-5 text-brand-ink font-bold transition-colors hover:bg-brand-gold-soft md:ml-0">
+          <Icon name="probestunde" size={20} strokeWidth={1.75} />
+          Probestunde
+        </a>
 
         <!-- Mobile Menu Button -->
-        <button id="menu-toggle" class="md:hidden p-2 text-brand-rose focus:ring-2 focus:ring-brand-rose focus:ring-offset-2 focus:ring-offset-brand-light dark:focus:ring-offset-brand-dark rounded-md group/menu" aria-label="Menü öffnen">
-          <div class="relative w-8 h-6 flex flex-col justify-between">
-            <span class="w-8 h-1 bg-brand-rose rounded-full transition-all duration-300 group-hover/menu:bg-brand-glow shadow-[0_0_8px_rgba(139,92,246,0.5)] animate-pulse-glow"></span>
-            <span class="w-6 h-1 bg-brand-rose rounded-full ml-auto transition-all duration-300 group-hover/menu:bg-brand-glow shadow-[0_0_8px_rgba(139,92,246,0.5)] animate-pulse-glow"></span>
-            <span class="w-8 h-1 bg-brand-rose rounded-full transition-all duration-300 group-hover/menu:bg-brand-glow shadow-[0_0_8px_rgba(139,92,246,0.5)] animate-pulse-glow"></span>
+        <button id="menu-toggle" class="rounded-md p-2 text-brand-gold focus-visible:ring-2 focus-visible:ring-brand-gold focus-visible:ring-offset-2 focus-visible:ring-offset-brand-ink md:hidden" aria-label="Menü öffnen">
+          <div class="relative flex h-6 w-8 flex-col justify-between">
+            <span class="h-1 w-8 rounded-full bg-current"></span>
+            <span class="ml-auto h-1 w-6 rounded-full bg-current"></span>
+            <span class="h-1 w-8 rounded-full bg-current"></span>
           </div>
         </button>
-      </nav>
+      </div>
     </header>
   <!-- A11y: Skip to main content link -->
   <a

@@ -29,7 +29,7 @@ const workshopsCollection = defineCollection({
     time: z.string(),
     location: z.string(),
     instructor: z.string(),
-    price: z.string(),
+    price: z.string().optional(),
     image: image(),
     description: z.string().optional(),
     level: z.string().optional(),

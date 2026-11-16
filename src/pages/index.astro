@@ -2,246 +2,387 @@
 import Layout from '../layouts/Layout.astro';
 import { getCollection } from 'astro:content';
 import { Image } from 'astro:assets';
-import HeroSection from '../components/blocks/HeroSection.astro';
 import Icon from '../components/Icon.astro';
+import LevelDots from '../components/ui/LevelDots.astro';
 
-// 1. Daten holen
-// Blogdaten liegen als deutsche Textdaten vor ("16. November 2026") – für die
-// Auswahl des Teaser-Beitrags werden sie in einen sortierbaren Zeitstempel übersetzt.
-const MONATE = ['januar', 'februar', 'märz', 'april', 'mai', 'juni', 'juli', 'august', 'september', 'oktober', 'november', 'dezember'];
-const alsZeitstempel = (datum: string): number => {
-  const teile = datum.trim().match(/^(\d{1,2})\.\s*([A-Za-zÄÖÜäöüß]+)\s*(\d{4})$/);
-  if (!teile) return 0;
-  const monat = MONATE.indexOf(teile[2].toLowerCase());
-  return monat < 0 ? 0 : Date.UTC(Number(teile[3]), monat, Number(teile[1]));
-};
-const blogEntries = (await getCollection('blog') || [])
-  .sort((a, b) => alsZeitstempel(b.data.date) - alsZeitstempel(a.data.date));
-const latestPost = blogEntries.length > 0 ? blogEntries[0] : null;
+// Bilder (aus dem Design-Mockup, sprechend benannt; werden beim Build zu WebP konvertiert)
+import heroTeam from '../assets/images/startseite/hero-team-sechs.jpg';
+import teamGruppe from '../assets/images/startseite/team-gruppe-sieben.jpg';
+import teamPaare from '../assets/images/startseite/team-paare-dip.jpg';
+import teamRuecken from '../assets/images/startseite/team-rueckenansicht.jpg';
 
-// 2. Workshops holen
-const workshops = await getCollection('workshops') || [];
-const latestWorkshops = workshops.slice(0, 2); // Die ersten zwei Workshops anzeigen
-
-// 3. Testimonials laden
-const testimonials = await getCollection('testimonials') || [];
-
-// 4. Statische Bilder
-import blogFallbackImg from '../assets/images/testimonials/bg.png';
-import testimonialsBg from '../assets/images/testimonials/bg.png';
-import carousel0 from '../assets/carousel-0.jpg';
-import carousel1 from '../assets/carousel-1.jpg';
-import carousel2 from '../assets/carousel-2.jpg';
-import carousel3 from '../assets/carousel-3.jpg';
-
-import ImageCarousel from '../components/ui/ImageCarousel.astro';
-
-const carouselImages = [
-  { src: carousel0, position: 'object-left md:object-[25%_center]' },
-  { src: carousel1, position: 'object-center' },
-  { src: carousel2, position: 'object-center' },
-  { src: carousel3, position: 'object-center' }
+// Inhalte: Quelle ist /opt/SecondBrain/2-Bereiche/Verein/Stammdaten.md
+// (Kursplan, Preise, Standorte) und src/content/* (Team, Workshops, Stimmen).
+const dienstag = [
+  { zeit: '18:00', kurs: 'Bachata Pro', level: 'Fortgeschritten' as const },
+  { zeit: '19:00', kurs: 'Bachata Combinations', level: 'Mittelstufe' as const },
+  { zeit: '20:00', kurs: 'Bachata Foundations', level: 'Anfänger' as const },
 ];
+// Für die vier Mittwochskurse sind im Vault noch keine Levels erfasst — deshalb ohne Einstufung.
+const mittwoch = [
+  { zeit: '18:00', kurs: 'Bachata Influence 1' },
+  { zeit: '19:00', kurs: 'Bachata Influence 2' },
+  { zeit: '20:00', kurs: 'Salsa Combinations' },
+  { zeit: '21:00', kurs: 'Salsa Foundations' },
+];
+
+const team = (await getCollection('team')).sort((a, b) => {
+  const rang = (x: { data: { isFounder?: boolean } }) => (x.data.isFounder ? 0 : 1);
+  return rang(a) - rang(b) || a.data.name.localeCompare(b.data.name, 'de');
+});
+const trainerAnzahl = team.length;
+
+const workshop = (await getCollection('workshops')).find((w) => w.data.featured) ?? (await getCollection('workshops'))[0];
+
+const stimmen = (await getCollection('testimonials')).filter((t) =>
+  ['Jorge Escalona (Korke)', 'Susy K.'].includes(t.data.name),
+);
 ---
 
-<Layout 
+<Layout
   title="Idiomadanza e.V. | Bachata & Salsa Tanzkurse in Regensburg"
-  description="Lerne Bachata und Salsa in Regensburg bei Idiomadanza e.V. – Qualität und Gemeinschaft."
+  description="Bachata und Salsa in Regensburg: zwei Abende, sieben Kurse, eine Flatrate. Gemeinnütziger Tanzverein mit zertifizierten Trainerinnen und Trainern."
 >
-  {/* Last-Minute-Hinweis Kursplan */}
-  <div role="status" class="bg-brand-rose text-white px-4 py-3">
-    <div class="max-w-5xl mx-auto flex flex-col md:flex-row md:items-center gap-2 md:gap-6 text-center md:text-left">
-      <p class="text-sm md:text-base font-semibold leading-snug">
-        <span class="uppercase tracking-widest text-xs font-bold block md:inline md:mr-3">Änderung im Kursplan</span>
+  {/* Aktuelle Kursplan-Änderung */}
+  <div role="status" class="bg-brand-gold text-brand-ink px-[clamp(20px,5vw,80px)] py-3">
+    <div class="mx-auto flex max-w-[1280px] flex-col gap-2 md:flex-row md:items-center md:gap-6">
+      <p class="text-sm font-semibold leading-snug md:text-base">
+        <span class="mb-1 block text-xs font-bold uppercase tracking-[0.14em] md:mb-0 md:inline md:mr-3">Änderung im Kursplan</span>
         Dienstag, 17.11.: nur 20 Uhr (Bachata Foundations) &middot; Mittwoch, 18.11.: alle Kurse entfallen &middot; ab Di, 24.11. wieder regulär
       </p>
-      <a href="/kurse/" class="text-xs font-bold uppercase tracking-widest underline underline-offset-4 decoration-white/60 hover:decoration-white whitespace-nowrap">Kursplan</a>
-    </div>
-  </div>
-
-  <HeroSection 
-    title="Deine Sprache. Dein Rhythmus. Dein Verein."
-    subtitle="Erlebe Bachata & Salsa in Regensburg. Höchste tänzerische Qualität trifft auf echte Gemeinschaft."
-    ctaText="Kostenlose Probestunde"
-    ctaHref="/kontakt/"
-  />
-
-  {/* Quick-Info Banner */}
-  <div class="relative z-20 -mt-10 px-4">
-    <div class="max-w-4xl mx-auto bg-brand-dark/85 backdrop-blur-2xl p-6 rounded-2xl border border-white/20 shadow-glow-rose flex flex-col md:flex-row items-center gap-6 group text-white">
-      <p class="font-medium flex items-center gap-2">
-        <span class="text-brand-glow"><Icon name="termin" size={22} /></span> <strong>Wöchentliche Kurse</strong> – Einstieg jederzeit möglich
-      </p>
-      <a href="/kurse/" aria-label="Details ansehen – wöchentliche Kurse" class="text-white hover:text-brand-rose transition-colors text-xs font-bold uppercase tracking-widest flex items-center gap-2 whitespace-nowrap">
-        Details ansehen →
+      <a
+        href="/kurse/"
+        class="inline-flex min-h-[44px] items-center text-xs font-bold uppercase tracking-[0.14em] underline decoration-brand-ink/50 underline-offset-4 hover:decoration-brand-ink"
+      >
+        Zum Kursplan
       </a>
     </div>
   </div>
 
-  {/* Aktuelles / Workshops */}
-  <section class="py-24 bg-brand-light dark:bg-brand-dark/95">
-    <div class="container mx-auto px-4">
-      <h2 class="font-display text-4xl md:text-5xl font-bold text-brand-dark dark:text-white text-center mb-12">Aktuelles &amp; Workshops</h2>
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-        {latestPost && (
-          <a href={`/blog/${latestPost.id}/`} class="group bg-white/70 dark:bg-brand-dark/50 border border-brand-dark/10 rounded-2xl overflow-hidden shadow-glass hover:shadow-glow-rose transition-all hover:-translate-y-2 flex flex-col h-full">
-            <div class="aspect-video overflow-hidden relative">
-              <Image src={blogFallbackImg} alt={latestPost.data.title} width={600} height={338} loading="lazy" decoding="async" class="w-full h-full object-cover" />
-            </div>
-            <div class="p-6 flex-grow">
-              <h3 class="text-xl font-display font-bold text-brand-dark dark:text-white">{latestPost.data.title}</h3>
-              <p class="text-sm opacity-70 mt-2 line-clamp-3">{latestPost.data.excerpt}</p>
-            </div>
-          </a>
-        )}
-
-        {latestWorkshops.map((workshop) => (
-          <div class="group bg-white/70 dark:bg-brand-dark/50 border border-brand-dark/10 rounded-2xl overflow-hidden shadow-glass hover:shadow-glow-rose transition-all hover:-translate-y-2 flex flex-col h-full">
-            
-            {/* Bild mit Kategorie-Badge */}
-            <div class="aspect-video overflow-hidden relative">
-              <Image 
-                src={workshop.data.image} 
-                alt={workshop.data.title} 
-                width={600}
-                height={338}
-                loading="lazy"
-                decoding="async"
-                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" 
-              />
-              <div class="absolute top-4 left-4 bg-brand-rose text-white text-[10px] font-bold uppercase px-3 py-1 rounded-full shadow-lg">
-                Workshop
-              </div>
-            </div>
-
-            {/* Content Bereich */}
-            <div class="p-6 flex flex-col flex-grow">
-              <h3 class="text-xl font-display font-bold text-brand-dark dark:text-white leading-tight mb-2">
-                {workshop.data.title}
-              </h3>
-              
-              <p class="text-sm opacity-70 mb-6 line-clamp-2 dark:text-white/70">
-                {workshop.data.description}
-              </p>
-
-              {/* Info-Leiste (Datum & Preis) */}
-              <div class="mt-auto pt-4 border-t border-brand-dark/5 dark:border-white/5 flex justify-between items-center">
-                <div class="flex flex-col">
-                  <span class="text-[9px] uppercase text-brand-rose font-bold tracking-widest">Datum</span>
-                  <span class="text-xs font-medium dark:text-white">{workshop.data.date}</span>
-                </div>
-                <div class="text-right flex flex-col">
-                  <span class="text-[9px] uppercase text-brand-rose font-bold tracking-widest">Preis</span>
-                  <span class="text-sm font-display font-bold text-brand-dark dark:text-white">
-                    {workshop.data.price}
-                  </span>
-                </div>
-              </div>
-
-              <a href="/workshops/" class="mt-5 w-full text-center bg-brand-dark dark:bg-white/10 hover:bg-brand-rose dark:hover:bg-brand-rose text-white py-2.5 rounded-xl text-xs font-bold transition-all duration-300">
-                Details & Anmeldung
-              </a>
-            </div>
+  {/* Hero */}
+  <section class="bg-brand-ink px-[clamp(20px,5vw,80px)] pb-[clamp(32px,4vw,56px)] pt-[clamp(40px,6vw,88px)]">
+    <div class="mx-auto max-w-[1280px]">
+      <div class="grid items-center gap-[clamp(32px,5vw,72px)] lg:grid-cols-[1.05fr_0.95fr]">
+        <div class="flex flex-col gap-7">
+          <p class="text-sm font-semibold uppercase tracking-[0.14em] text-brand-gold">Gemeinnütziger Tanzverein &middot; Regensburg</p>
+          <h1 class="font-display text-[clamp(46px,7.2vw,104px)] font-extrabold leading-[0.94] tracking-[-0.03em] text-brand-paper">
+            Deine Sprache.<br />Dein Rhythmus.<br /><span class="text-brand-gold">Dein Verein.</span>
+          </h1>
+          <p class="max-w-[34ch] text-[clamp(18px,1.6vw,22px)] text-brand-paper/85">
+            Bachata und Salsa in Regensburg: tänzerisch anspruchsvoll, getragen von einer Gemeinschaft, in der niemand am Rand steht.
+          </p>
+          <div class="flex flex-wrap gap-3.5">
+            <a
+              href="/kontakt/"
+              class="inline-flex min-h-[56px] items-center gap-2.5 rounded-full bg-brand-rose px-7 text-lg font-bold text-white transition-colors hover:bg-brand-rose-bright"
+            >
+              Kostenlose Probestunde
+              <Icon name="probestunde" size={20} strokeWidth={1.75} />
+            </a>
+            <a
+              href="/kurse/"
+              class="inline-flex min-h-[56px] items-center rounded-full border-[1.5px] border-brand-paper/35 px-7 text-lg font-semibold text-brand-paper transition-colors hover:border-brand-gold hover:text-brand-gold"
+            >
+              Kursplan ansehen
+            </a>
           </div>
-        ))}
-      </div>
-    </div>
-  </section>
+        </div>
 
-  {/* Team Collage Section */}
-  <section class="py-24 bg-brand-dark/95 relative overflow-hidden">
-    <div class="container mx-auto px-4">
-      <div class="grid grid-cols-1 lg:grid-cols-[1.2fr_0.8fr] gap-12 lg:gap-20 items-center max-w-7xl mx-auto">
-        <div class="relative order-2 lg:order-1 group">
-          <div class="absolute -top-10 -left-10 w-64 h-64 bg-brand-rose/10 rounded-full blur-[80px] -z-10"></div>
-          <ImageCarousel 
-            images={carouselImages} 
-            alt="Idiomadanza Impressionen"
-            class="rounded-2xl shadow-glow-rose transform hover:rotate-1 hover:scale-[1.01] transition-all duration-700 bg-white/5 border border-white/20 relative z-10 aspect-[16/10]"
+        <div class="relative pb-7 pl-7">
+          <div aria-hidden="true" class="absolute bottom-0 left-0 aspect-square w-[62%] rounded-full border-2 border-brand-gold"></div>
+          <Image
+            src={heroTeam}
+            alt="Trainerinnen und Trainer von Idiomadanza in Vereins-Shirts, lachend vor einer grauen Lamellenfassade"
+            width={1280}
+            height={960}
+            widths={[480, 768, 1280]}
+            sizes="(min-width: 1024px) 46vw, 92vw"
+            format="webp"
+            loading="eager"
+            fetchpriority="high"
+            decoding="async"
+            class="relative block aspect-[4/3] w-full rounded-[28px] object-cover"
           />
         </div>
-        
-        <div class="space-y-8 order-1 lg:order-2 text-white">
-          <h2 class="font-display text-4xl md:text-5xl font-bold">Die <span class="text-brand-rose-bright">Community</span> brennt</h2>
-          <p class="text-lg opacity-80 leading-relaxed font-light">
-            Hinter Idiomadanza steht ein Team aus leidenschaftlichen Tänzern, die Bachata und Salsa nicht nur unterrichten, sondern leben. Wir bringen die Energie direkt nach Regensburg.
+      </div>
+
+      {/* Vier Kennzahlen */}
+      <ul class="mt-[clamp(40px,5vw,72px)] grid list-none grid-cols-1 border-y border-brand-paper/15 p-0 sm:grid-cols-2 lg:grid-cols-4">
+        <li class="flex items-center gap-3.5 py-[22px] lg:pr-5">
+          <Icon name="gemeinnuetzig" size={30} class="shrink-0 text-brand-gold" />
+          <div>
+            <div class="font-bold text-brand-paper">Gemeinnützig</div>
+            <div class="text-[15px] text-brand-muted">Verein statt Tanzschule</div>
+          </div>
+        </li>
+        <li class="flex items-center gap-3.5 border-brand-paper/15 py-[22px] sm:border-l sm:pl-5 lg:pr-5">
+          <Icon name="paar" size={30} class="shrink-0 text-brand-gold" />
+          <div>
+            <div class="font-bold text-brand-paper">{trainerAnzahl} Trainer im Team</div>
+            <div class="text-[15px] text-brand-muted">Zertifiziert und turniererfahren</div>
+          </div>
+        </li>
+        <li class="flex items-center gap-3.5 border-brand-paper/15 py-[22px] sm:border-t sm:pl-0 lg:border-l lg:border-t-0 lg:pl-5 lg:pr-5">
+          <Icon name="termin" size={30} class="shrink-0 text-brand-gold" />
+          <div>
+            <div class="font-bold text-brand-paper">Dienstag und Mittwoch</div>
+            <div class="text-[15px] text-brand-muted">Einstieg jederzeit möglich</div>
+          </div>
+        </li>
+        <li class="flex items-center gap-3.5 border-brand-paper/15 py-[22px] sm:border-l sm:border-t sm:pl-5 lg:border-t-0">
+          <Icon name="flatrate" size={30} class="shrink-0 text-brand-gold" />
+          <div>
+            <div class="font-bold text-brand-paper">Flatrate ab 19 € im Monat</div>
+            <div class="text-[15px] text-brand-muted">Alle Kurse, so oft du willst</div>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  {/* Verein statt Tanzschule */}
+  <section class="bg-brand-paper px-[clamp(20px,5vw,80px)] py-[clamp(56px,8vw,112px)] text-brand-ink">
+    <div class="mx-auto flex max-w-[1280px] flex-col gap-[clamp(32px,4vw,56px)]">
+      <div class="flex max-w-[760px] flex-col gap-3.5">
+        <p class="text-sm font-bold uppercase tracking-[0.14em] text-brand-rose">Verein statt Tanzschule</p>
+        <h2 class="font-display text-[clamp(34px,4.4vw,60px)] font-extrabold leading-none tracking-[-0.025em]">Vier Dinge, die bei uns anders laufen.</h2>
+      </div>
+      <div class="grid gap-5 sm:grid-cols-2 xl:grid-cols-4">
+        <article class="flex flex-col gap-3.5 rounded-3xl bg-white p-7">
+          <div class="flex size-14 items-center justify-center rounded-full bg-brand-ink">
+            <Icon name="flatrate" size={30} class="text-brand-gold" />
+          </div>
+          <h3 class="font-display text-2xl font-bold tracking-[-0.01em]">Ein Beitrag, alle Kurse</h3>
+          <p class="text-brand-line">39 € im Monat, ermäßigt 19 €. Du tanzt jeden Bachata- und Salsa-Kurs, so oft du möchtest – ohne Einzelstunden abzurechnen.</p>
+        </article>
+        <article class="flex flex-col gap-3.5 rounded-3xl bg-white p-7">
+          <div class="flex size-14 items-center justify-center rounded-full bg-brand-ink">
+            <Icon name="role-rotation" size={30} class="text-brand-gold" />
+          </div>
+          <h3 class="font-display text-2xl font-bold tracking-[-0.01em]">RoleRotation</h3>
+          <p class="text-brand-line">Führen und Folgen lernen statt „Damen und Herren“: Wer beide Rollen versteht, tanzt sicherer und findet immer jemanden zum Tanzen.</p>
+        </article>
+        <article class="flex flex-col gap-3.5 rounded-3xl bg-white p-7">
+          <div class="flex size-14 items-center justify-center rounded-full bg-brand-ink">
+            <Icon name="sicher-tanzen" size={30} class="text-brand-gold" />
+          </div>
+          <h3 class="font-display text-2xl font-bold tracking-[-0.01em]">Sicher tanzen</h3>
+          <p class="text-brand-line">
+            Ein Schutzkonzept mit festen Ansprechpersonen. Grenzen werden respektiert – und du weißt, an wen du dich wenden kannst.
+            <a href="/sichertanzen/" class="font-semibold text-brand-rose underline underline-offset-4">Mehr dazu</a>
           </p>
-          <a href="/ueber-uns/" class="group/btn inline-flex items-center gap-3 px-10 py-4 bg-brand-rose text-white rounded-full font-bold shadow-glow-rose hover:-translate-y-1 transition-all duration-300">
-            Lerne das ganze Team kennen
-            <span class="group-hover/btn:translate-x-1 transition-transform">→</span>
-          </a>
-        </div>
+        </article>
+        <article class="flex flex-col gap-3.5 rounded-3xl bg-white p-7">
+          <div class="flex size-14 items-center justify-center rounded-full bg-brand-ink">
+            <Icon name="zertifikat" size={30} class="text-brand-gold" />
+          </div>
+          <h3 class="font-display text-2xl font-bold tracking-[-0.01em]">Zertifizierte Trainer</h3>
+          <p class="text-brand-line">Bachata Sensual nach Korke &amp; Judith (Level 1 und 2), Bachata nach Evelin La Negra, BachaZouk und BLSV-Übungsleiter.</p>
+        </article>
       </div>
     </div>
   </section>
 
-  {/* Testimonials */}
-  <section id="testimonials" class="relative py-32 overflow-hidden bg-brand-dark">
-    <div class="absolute inset-0 z-0 opacity-20">
-      <Image src={testimonialsBg} alt="Atmosphere" width={1920} height={1080} loading="lazy" decoding="async" class="w-full h-full object-cover" />
-    </div>
-    
-    <div class="container mx-auto px-4 relative z-10">
-      <div class="text-center mb-16">
-        <h2 class="font-display text-4xl md:text-5xl font-bold text-white mb-4">Das sagen unsere <span class="text-brand-glow">Tänzer</span></h2>
-        <div class="w-24 h-1 bg-brand-rose mx-auto rounded-full"></div>
+  {/* Kursplan */}
+  <section id="kurse" class="bg-brand-ink px-[clamp(20px,5vw,80px)] py-[clamp(56px,8vw,112px)]">
+    <div class="mx-auto flex max-w-[1280px] flex-col gap-[clamp(32px,4vw,56px)]">
+      <div class="flex flex-wrap items-end justify-between gap-5">
+        <div class="flex flex-col gap-3.5">
+          <p class="text-sm font-semibold uppercase tracking-[0.14em] text-brand-gold">Kursplan</p>
+          <h2 class="font-display text-[clamp(34px,4.4vw,60px)] font-extrabold leading-none tracking-[-0.025em] text-brand-paper">Zwei Abende. Sieben Kurse.</h2>
+        </div>
+        <div class="flex flex-wrap gap-[18px] text-[15px] text-brand-paper/80">
+          <span class="inline-flex items-center gap-2"><LevelDots level="Anfänger" />Anfänger</span>
+          <span class="inline-flex items-center gap-2"><LevelDots level="Mittelstufe" />Mittelstufe</span>
+          <span class="inline-flex items-center gap-2"><LevelDots level="Fortgeschritten" />Fortgeschritten</span>
+        </div>
       </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-7xl mx-auto">
-        {testimonials.map((t) => (
-          <div class="group bg-white/5 backdrop-blur-xl p-8 rounded-2xl border border-white/10 flex flex-col items-center text-center shadow-glass hover:border-brand-rose/50 transition-all duration-500 hover:-translate-y-2">
-            <div class="w-20 h-20 mb-6 rounded-full border-4 border-brand-rose/30 group-hover:border-brand-rose overflow-hidden transition-colors shadow-glow-rose">
-              <Image src={t.data.image} alt={t.data.name} width={80} height={80} loading="lazy" decoding="async" class="w-full h-full object-cover" />
+      <div class="grid gap-6 lg:grid-cols-2">
+        {[
+          { tag: 'Dienstag', ort: 'Fortuna Regensburg', adresse: 'Isarstraße 85', kurse: dienstag },
+          { tag: 'Mittwoch', ort: 'Raum für Engagement', adresse: 'D.-Martin-Luther-Str. 19, am Bahnhof', kurse: mittwoch },
+        ].map((abend) => (
+          <div class="flex flex-col gap-2 rounded-3xl bg-brand-surface px-[clamp(22px,3vw,36px)] py-[clamp(22px,3vw,36px)]">
+            <div class="flex flex-wrap items-baseline justify-between gap-2 pb-4">
+              <h3 class="font-display text-[34px] font-extrabold tracking-[-0.02em] text-brand-paper">{abend.tag}</h3>
+              <span class="inline-flex items-center gap-1.5 text-[15px] text-brand-paper/80">
+                <Icon name="ort" size={18} strokeWidth={1.75} class="shrink-0 text-brand-gold" />
+                {abend.ort} &middot; {abend.adresse}
+              </span>
             </div>
-            
-            <div class="flex gap-1 mb-4">
-              {[...Array(t.data.rating)].map(() => (
-                <span class="text-brand-glow text-xs">★</span>
-              ))}
-            </div>
-
-            <p class="text-white/80 text-sm italic leading-relaxed mb-6 flex-grow">
-              "{t.data.text}"
-            </p>
-
-            <div class="mt-auto">
-              <p class="text-brand-rose-bright font-bold uppercase tracking-widest text-[10px] mb-1">{t.data.name}</p>
-              <p class="text-white/55 text-[9px] uppercase tracking-wider">{t.data.role}</p>
-              
-              {t.data.videoUrl && (
-                <a href={t.data.videoUrl} target="_blank" rel="noopener noreferrer" class="mt-4 inline-flex items-center gap-2 text-[10px] font-bold text-brand-glow hover:text-white transition-colors uppercase tracking-widest">
-                  Video Message <span class="text-xs">▶</span>
-                </a>
-              )}
-            </div>
+            {abend.kurse.map((kurs) => (
+              <div class="grid grid-cols-[74px_minmax(0,1fr)_auto] items-center gap-4 border-t border-brand-paper/15 py-[18px]">
+                <span class="font-display text-2xl font-bold text-brand-gold">{kurs.zeit}</span>
+                <div>
+                  <div class="text-[19px] font-bold text-brand-paper">{kurs.kurs}</div>
+                  {'level' in kurs && kurs.level ? <div class="text-[15px] text-brand-muted">{kurs.level}</div> : null}
+                </div>
+                {'level' in kurs && kurs.level ? <LevelDots level={kurs.level} /> : null}
+              </div>
+            ))}
           </div>
         ))}
       </div>
+
+      {/* Preise */}
+      <div class="flex flex-wrap items-center justify-between gap-5 rounded-3xl border-[1.5px] border-brand-gold px-[clamp(20px,3vw,32px)] py-[clamp(20px,3vw,32px)]">
+        <div class="flex flex-wrap items-baseline gap-x-7 gap-y-2.5">
+          <span class="font-display text-[40px] font-extrabold tracking-[-0.02em] text-brand-paper">
+            39 €<span class="text-lg font-medium text-brand-paper/80"> im Monat</span>
+          </span>
+          <span class="font-display text-[40px] font-extrabold tracking-[-0.02em] text-brand-gold">
+            19 €<span class="text-lg font-medium text-brand-paper/80"> für Studierende, Schüler, Azubis</span>
+          </span>
+          <span class="text-[15px] text-brand-muted">Aufnahmegebühr 11 € &middot; Mindestlaufzeit 3 Monate &middot; danach monatlich kündbar</span>
+        </div>
+        <a
+          href="/mitglied-werden/"
+          class="inline-flex min-h-[52px] items-center rounded-full bg-brand-gold px-6 font-bold text-brand-ink transition-colors hover:bg-brand-gold-soft"
+        >
+          Mitglied werden
+        </a>
+      </div>
     </div>
   </section>
 
-  {/* Kontakt */}
-  <section id="fast-contact" class="py-24 bg-brand-dark relative overflow-hidden text-white">
-    <div class="container mx-auto px-4 max-w-2xl relative z-10 text-center">
-      <h2 class="font-display text-4xl font-bold mb-8">Gratis <span class="text-brand-glow">Probestunde</span></h2>
-      <form 
-        name="home-probestunde" 
-        method="POST" 
-        data-netlify="true" 
-        netlify-honeypot="bot-field"
-        class="space-y-4"
-      >
-        <p class="hidden">
-          <label>Don’t fill this out if you’re human: <input name="bot-field" /></label>
+  {/* Workshop */}
+  {workshop && (
+    <section id="workshop" class="bg-brand-surface px-[clamp(20px,5vw,80px)] py-[clamp(56px,8vw,112px)]">
+      <div class="mx-auto grid max-w-[1280px] items-start gap-[clamp(24px,4vw,64px)] lg:grid-cols-[0.85fr_1.15fr]">
+        <div class="flex flex-col gap-[18px]">
+          <p class="inline-flex items-center gap-2.5 text-sm font-semibold uppercase tracking-[0.14em] text-brand-gold">
+            <Icon name="workshop" size={22} strokeWidth={1.75} />
+            Workshop &middot; {workshop.data.date}
+          </p>
+          <h2 class="font-display text-[clamp(34px,4.4vw,60px)] font-extrabold leading-none tracking-[-0.025em] text-brand-paper">{workshop.data.title}</h2>
+          <p class="text-base text-brand-muted">Mit {workshop.data.instructor}.</p>
+        </div>
+        <div class="flex flex-col gap-[22px]">
+          <ul class="flex list-none flex-col gap-3 p-0 text-[19px] text-brand-paper/90">
+            <li class="flex gap-3">
+              <span aria-hidden="true" class="mt-2.5 size-2.5 shrink-0 rounded-full bg-brand-gold"></span>
+              10 Stunden Partnerwork mit internationalen Top Artists
+            </li>
+            <li class="flex gap-3">
+              <span aria-hidden="true" class="mt-2.5 size-2.5 shrink-0 rounded-full bg-brand-gold"></span>
+              4 Stunden Styling Bootcamp mit Lynn, inklusive Showauftritt
+            </li>
+            <li class="flex gap-3">
+              <span aria-hidden="true" class="mt-2.5 size-2.5 shrink-0 rounded-full border-[1.5px] border-brand-gold"></span>
+              Social Party inklusive
+            </li>
+          </ul>
+          <p class="text-[19px] text-brand-paper/90">
+            Level {workshop.data.level} &middot; {workshop.data.location}
+          </p>
+          <div class="flex flex-wrap items-center gap-5">
+            <a
+              href={workshop.data.ticketUrl}
+              class="inline-flex min-h-[56px] items-center gap-2.5 rounded-full bg-brand-rose px-7 text-lg font-bold text-white transition-colors hover:bg-brand-rose-bright"
+            >
+              Tickets sichern
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+  )}
+
+  {/* Team */}
+  <section id="team" class="bg-brand-paper px-[clamp(20px,5vw,80px)] py-[clamp(56px,8vw,112px)] text-brand-ink">
+    <div class="mx-auto grid max-w-[1280px] items-center gap-[clamp(32px,5vw,72px)] lg:grid-cols-2">
+      <div class="flex flex-col gap-[22px]">
+        <p class="text-sm font-bold uppercase tracking-[0.14em] text-brand-rose">Das Team</p>
+        <h2 class="font-display text-[clamp(34px,4.4vw,60px)] font-extrabold leading-none tracking-[-0.025em]">Menschen, die Bachata und Salsa leben.</h2>
+        <p class="max-w-[46ch] text-[19px] text-brand-line">
+          Hinter Idiomadanza steht ein Team, das selbst auf Festivals tanzt, sich weiterbildet und sein Wissen ehrenamtlich weitergibt.
         </p>
-        <input type="hidden" name="form-name" value="home-probestunde" />
-        
-        <label for="home-name" class="text-xs font-bold uppercase tracking-widest opacity-60">Name</label>
-              <input type="text" id="home-name" name="name" required minlength="2" placeholder="Dein Name" class="w-full bg-white/10 border border-white/20 rounded-xl px-6 py-4 outline-none focus:ring-2 focus:ring-brand-rose focus:border-transparent transition-colors">
-        <label for="home-email" class="text-xs font-bold uppercase tracking-widest opacity-60">E-Mail</label>
-              <input type="email" id="home-email" name="email" required placeholder="E-Mail Adresse" pattern="^[^\s@]+@[^\s@]+\.[^\s@]+$" class="w-full bg-white/10 border border-white/20 rounded-xl px-6 py-4 outline-none focus:ring-2 focus:ring-brand-rose focus:border-transparent transition-colors">
-        <button type="submit" class="w-full bg-brand-rose py-4 rounded-xl font-bold shadow-glow-rose hover:-translate-y-1 focus:outline-none focus:ring-2 focus:ring-brand-rose focus:ring-offset-2 focus:ring-offset-brand-dark transition-all">Anfrage senden</button>
-      </form>
+        <ul class="flex list-none flex-wrap gap-2 p-0">
+          {team.map((person) => (
+            <li class="rounded-full bg-brand-ink px-4 py-2 text-[15px] font-semibold text-brand-paper">{person.data.name}</li>
+          ))}
+        </ul>
+        <a href="/ueber-uns/" class="inline-flex min-h-[48px] items-center gap-2.5 text-lg font-bold text-brand-rose">
+          Das ganze Team kennenlernen
+          <span aria-hidden="true">&rarr;</span>
+        </a>
+      </div>
+      <div class="grid grid-cols-2 gap-4">
+        <Image
+          src={teamGruppe}
+          alt="Gruppenfoto des Trainerteams von Idiomadanza in Vereins-Shirts"
+          width={1200}
+          height={675}
+          widths={[480, 768, 1200]}
+          sizes="(min-width: 1024px) 46vw, 92vw"
+          format="webp"
+          loading="lazy"
+          decoding="async"
+          class="col-span-2 block aspect-video w-full rounded-3xl object-cover"
+        />
+        <Image
+          src={teamPaare}
+          alt="Drei Tanzpaare in einer Dip-Figur, synchron vor der Fassade"
+          width={800}
+          height={800}
+          widths={[320, 480, 800]}
+          sizes="(min-width: 1024px) 23vw, 46vw"
+          format="webp"
+          loading="lazy"
+          decoding="async"
+          class="block aspect-square w-full rounded-3xl object-cover"
+        />
+        <Image
+          src={teamRuecken}
+          alt="Das Team von hinten in Vereins-Shirts, Arm in Arm"
+          width={800}
+          height={800}
+          widths={[320, 480, 800]}
+          sizes="(min-width: 1024px) 23vw, 46vw"
+          format="webp"
+          loading="lazy"
+          decoding="async"
+          class="block aspect-square w-full rounded-3xl object-cover"
+        />
+      </div>
+    </div>
+  </section>
+
+  {/* Stimmen */}
+  <section class="bg-brand-ink px-[clamp(20px,5vw,80px)] py-[clamp(56px,8vw,112px)]">
+    <div class="mx-auto grid max-w-[1280px] gap-6 md:grid-cols-2">
+      {stimmen.map((stimme) => (
+        <figure class="flex flex-col gap-5 border-t-2 border-brand-gold pt-7">
+          <blockquote class="font-display text-[clamp(24px,2.6vw,34px)] font-medium leading-[1.2] tracking-[-0.01em] text-brand-paper">
+            „{stimme.data.text}“
+          </blockquote>
+          <figcaption class="text-brand-muted">
+            <strong class="text-brand-paper">{stimme.data.name}</strong> &middot; {stimme.data.role}
+          </figcaption>
+        </figure>
+      ))}
+    </div>
+  </section>
+
+  {/* Probestunde */}
+  <section class="bg-brand-ink px-[clamp(20px,5vw,80px)] pb-[clamp(56px,8vw,112px)]">
+    <div class="mx-auto flex max-w-[1280px] flex-col gap-[18px] rounded-[36px] bg-brand-gold px-[clamp(28px,5vw,72px)] py-[clamp(28px,5vw,72px)] text-brand-ink">
+      <h2 class="font-display text-[clamp(38px,5vw,72px)] font-extrabold leading-[0.96] tracking-[-0.03em]">Komm einfach vorbei. Die erste Stunde ist gratis.</h2>
+      <p class="max-w-[40ch] text-[19px]">
+        Allein oder zu zweit, ohne Vorkenntnisse. Wir melden uns mit dem passenden Kurs und dem nächsten Termin.
+      </p>
+      <div class="flex flex-wrap items-center gap-5">
+        <a
+          href="/kontakt/"
+          class="inline-flex min-h-[56px] items-center gap-2.5 rounded-full bg-brand-ink px-8 text-lg font-bold text-brand-paper transition-colors hover:bg-brand-surface"
+        >
+          Probestunde anfragen
+        </a>
+        <a href="/kurse/" class="inline-flex min-h-[44px] items-center font-semibold underline underline-offset-4">
+          Erst den Kursplan ansehen
+        </a>
+      </div>
     </div>
   </section>
 </Layout>
