@@ -3,6 +3,7 @@ import Layout from '../layouts/Layout.astro';
 import { getCollection } from 'astro:content';
 import { Image } from 'astro:assets';
 import HeroSection from '../components/blocks/HeroSection.astro';
+import Icon from '../components/Icon.astro';
 
 // 1. Daten holen
 // Blogdaten liegen als deutsche Textdaten vor ("16. November 2026") – für die
@@ -69,7 +70,7 @@ const carouselImages = [
   <div class="relative z-20 -mt-10 px-4">
     <div class="max-w-4xl mx-auto bg-brand-dark/85 backdrop-blur-2xl p-6 rounded-2xl border border-white/20 shadow-glow-rose flex flex-col md:flex-row items-center gap-6 group text-white">
       <p class="font-medium flex items-center gap-2">
-        <span class="text-brand-glow">🔥</span> <strong>Wöchentliche Kurse</strong> – Einstieg jederzeit möglich
+        <span class="text-brand-glow"><Icon name="termin" size={22} /></span> <strong>Wöchentliche Kurse</strong> – Einstieg jederzeit möglich
       </p>
       <a href="/kurse/" aria-label="Details ansehen – wöchentliche Kurse" class="text-white hover:text-brand-rose transition-colors text-xs font-bold uppercase tracking-widest flex items-center gap-2 whitespace-nowrap">
         Details ansehen →
