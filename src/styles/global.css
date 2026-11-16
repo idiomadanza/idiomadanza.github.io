@@ -10,6 +10,8 @@
   --color-brand-rose: #7c3aed;
   --color-brand-rose-bright: #a78bfa;
   --color-brand-glow: #fcd34d;
+  /* Gold als TEXT auf heller Fläche (7,09:1 auf Weiß, 6,32:1 auf gold/20) */
+  --color-brand-gold-ink: #92400e;
 
   /* Fluid Typography Scale */
   --text-fluid-sm: clamp(0.75rem, 0.7rem + 0.25vw, 1rem);
