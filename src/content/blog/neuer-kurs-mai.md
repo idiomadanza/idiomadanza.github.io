@@ -7,7 +7,7 @@ image: ../../assets/images/testimonials/bg.png
 author: "Idiomadanza Vorstand"
 ---
 
-Du möchtest Bachata lernen und weißt nicht, wann der richtige Moment ist? Bei uns gibt es keinen Kursstart, auf den du warten musst: Unser Foundations-Kurs läuft **jeden Dienstag um 20:00 Uhr** im Fortuna Regensburg – und du steigst einfach ein, wenn es für dich passt.
+Du möchtest Bachata lernen und weißt nicht, wann der richtige Moment ist? Bei uns gibt es keinen Kursstart, auf den du warten musst. Falls du Anfänger bist, empfehlen wir dir aber einen der **drei Kursstarts pro Jahr** – der nächste ist **Dienstag, 12. Januar 2027, 20 Uhr: Bachata Foundations**. Dazwischen steigst du jederzeit ein: Der Kurs läuft jeden Dienstag um 20:00 Uhr im Fortuna Regensburg, und du kommst dazu, wenn es für dich passt.
 
 ## Was dich im Kurs erwartet
 

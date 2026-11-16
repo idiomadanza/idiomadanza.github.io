@@ -19,6 +19,12 @@
   "upcomingWorkshopTexts": [
     "28. - 29. November 2026"
   ],
+  "allowedStartDates": [
+    "12. Januar 2027"
+  ],
+  "_belege_startDates": {
+    "12. Januar 2027": "Anfänger-Einstieg, Bachata Foundations 20 Uhr — Stephan 16.11.2026; dreimal jährlich ein anfängerfreundlicher Reihenstart"
+  },
   "priceTexts": [
     "19€",
     "39€"
