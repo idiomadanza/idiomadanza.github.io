@@ -100,11 +100,23 @@ else {
 }
 
 // 5) Veraltete Kursstart-Werbung (Fehlerklasse aus der Vergangenheit)
+// Erlaubt ist eine Nennung nur, wenn sie als Negation ("keinen Kursstart"),
+// als "jederzeit"-Aussage oder mit einem belegten Starttermin aus
+// content-facts.json (allowedStartDates) auftritt. Sonst gilt sie als veraltet.
+const allowedStartDates = (facts.allowedStartDates || []).map((d) => d.replace(/(\d{1,2})\.\s/g, '$1 '));
 for (const page of all) {
-  const t = text(page);
-  const m = t.match(/Kursstart[^.]{0,60}/i);
-  if (m && !/jederzeit/i.test(m[0])) {
-    errors.push(`${page.replace(DIST, '')}: "Kursstart"-Werbung gefunden — Kurse laufen ohne festen Start`);
+  // Datumspunkte ("12. Januar") würden den Satz-Schnitt unten zerlegen — vorher neutralisieren
+  const t = text(page).replace(/(\d{1,2})\.\s/g, '$1 ');
+  for (const m of t.matchAll(/Kursstart\w*[^.]{0,160}/gi)) {
+    const before = t.slice(Math.max(0, m.index - 40), m.index);
+    const window = before + m[0];
+    const ok =
+      /jederzeit/i.test(window) ||
+      /(keinen?|ohne)\s*$/i.test(before) ||
+      allowedStartDates.some((d) => window.includes(d));
+    if (!ok) {
+      errors.push(`${page.replace(DIST, '')}: "Kursstart"-Werbung gefunden — Kurse laufen ohne festen Start (oder Termin fehlt in allowedStartDates)`);
+    }
   }
 }
 
