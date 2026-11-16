@@ -1,8 +1,68 @@
 @import "tailwindcss";
 
+/* Schriften selbst gehostet — kein Google-Abruf, kein Consent-Thema */
+@font-face {
+  font-family: "Bricolage Grotesque";
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("/fonts/Bricolage-Grotesque-500.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Bricolage Grotesque";
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("/fonts/Bricolage-Grotesque-700.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Bricolage Grotesque";
+  font-style: normal;
+  font-weight: 800;
+  font-display: swap;
+  src: url("/fonts/Bricolage-Grotesque-800.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Golos Text";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("/fonts/Golos-Text-400.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Golos Text";
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("/fonts/Golos-Text-500.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Golos Text";
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url("/fonts/Golos-Text-600.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Golos Text";
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("/fonts/Golos-Text-700.woff2") format("woff2");
+}
+
 @theme {
-  --font-display: "Golos Text", "Playfair Display", serif;
+  --font-display: "Bricolage Grotesque", "Golos Text", "Playfair Display", serif;
   --font-sans: "Golos Text", sans-serif;
+
+  /* Palette aus dem Design-Set (Fable) */
+  --color-brand-ink: #0f0a1f;
+  --color-brand-surface: #1a1432;
+  --color-brand-line: #4f4870;
+  --color-brand-gold: #e6b866;
+  --color-brand-gold-soft: #f5d9a0;
+  --color-brand-paper: #f5f1ff;
+  --color-brand-muted: #b4adcf;
 
   --color-brand-dark: #020617;
   --color-brand-darker: #010411;
