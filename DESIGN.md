@@ -22,6 +22,7 @@
 | `--color-brand-light` | `#f8fafc` | Fläche hell (Light-Mode-Basis) |
 | `--color-brand-rose` | `#8b5cf6` | Primär — CTAs, Akzente, Links |
 | `--color-brand-glow` | `#fcd34d` | Sekundär — nur auf dunkler Fläche |
+| `--color-brand-gold-ink` | `#92400e` | Gold als **Text auf heller Fläche** (Deko/Flächen bleiben `brand-glow`) |
 
 ### Typografie
 
@@ -67,12 +68,15 @@ Radius: `1.5rem` für Karten und Flächen. Kein anderer Radius-Wert ohne Änderu
 | **`#8b5cf6` auf `#f8fafc`** | **4,05:1** | ⚠️ **nur ≥18,7 px fett / ≥24 px** — nicht für Fließtext und kleine Links |
 | **`#ffffff` auf `#8b5cf6`** | **4,23:1** | ⚠️ **knapp unter 4,5** — nur für ≥18,7 px fett zulässig |
 | **`#fcd34d` auf `#f8fafc`** | **1,38:1** | ❌ **verboten** — Glow ist ausschließlich Dark-Fläche |
+| **`#92400e` auf `#f8fafc`** | **6,78:1** | ✅ AAA — Gold-**Text** auf heller Fläche |
+| **`#92400e` auf `#f9f2d9`** (gold/20) | **6,32:1** | ✅ AAA — Gold-Chips auf hell |
+| **`#92400e` auf `#020617`** | **2,85:1** | ❌ verboten — auf Dark bleibt `#fcd34d` |
 
 ### Daraus folgen drei harte Regeln
 
 1. **Kleiner Text in Rose auf heller Fläche braucht `#7c3aed`** (5,45:1) oder dunkler — nicht `#8b5cf6`.
 2. **CTA-Text auf Rose:** entweder `#020617` auf `#fcd34d`, oder `#ffffff` auf `#7c3aed` (5,70:1). Weiß auf `#8b5cf6` nur, wenn die Beschriftung ≥18,7 px fett ist.
-3. **Glow niemals auf heller Fläche.** Kein `text-brand-glow` in Light-Mode-Abschnitten.
+3. **Glow niemals auf heller Fläche.** Kein `text-brand-glow` in Light-Mode-Abschnitten — dort `text-brand-gold-ink` (auf Karten, die per `dark:` dunkel werden: `text-brand-gold-ink dark:text-brand-glow`).
 
 ---
 
