@@ -1,5 +1,6 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import Icon from '../components/Icon.astro';
 import SafeMail from '../components/ui/SafeMail.astro';
 ---
 
@@ -17,85 +18,89 @@ import SafeMail from '../components/ui/SafeMail.astro';
     "publisher": { "@type": "Organization", "name": "Idiomadanza e.V." }
   })} />
 
-  <div class="container mx-auto px-4 py-20 max-w-4xl">
-    <div class="text-center mb-12">
-      <h1 class="font-display text-4xl md:text-5xl font-bold text-brand-dark dark:text-brand-light mb-4">
-        Sicher <span class="text-brand-rose">tanzen</span>
+  {/* HERO */}
+  <section class="bg-brand-ink px-[clamp(20px,5vw,80px)] pb-[clamp(32px,4vw,56px)] pt-[clamp(40px,6vw,88px)]">
+    <div class="mx-auto flex max-w-[1280px] flex-col gap-7">
+      <p class="inline-flex items-center gap-2.5 text-sm font-semibold uppercase tracking-[0.14em] text-brand-gold">
+        <Icon name="sicher-tanzen" size={22} strokeWidth={1.75} />
+        Schutzkonzept
+      </p>
+      <h1 class="font-display text-[clamp(42px,6.8vw,96px)] font-extrabold leading-[0.94] tracking-[-0.03em] text-brand-paper">
+        Sicher <span class="text-brand-gold">tanzen</span>
       </h1>
-      <div class="w-24 h-1 bg-brand-glow mx-auto rounded-full mb-6"></div>
-      <p class="opacity-80">Respekt, Grenzen und was du tun kannst</p>
+      <p class="max-w-[44ch] text-[clamp(18px,1.6vw,22px)] text-brand-paper/85">Respekt, Grenzen und was du tun kannst</p>
     </div>
+  </section>
 
-    <div class="bg-white/70 dark:bg-brand-dark/50 backdrop-blur-md rounded-idioma p-8 md:p-12 shadow-glass border border-white/20 dark:border-white/10 legal-content">
+  <section class="bg-brand-paper px-[clamp(20px,5vw,80px)] py-[clamp(48px,7vw,96px)] text-brand-ink">
+    <div class="mx-auto flex max-w-[860px] flex-col gap-12">
 
-      <section class="mb-12">
-        <p class="text-lg">
-          Beim Tanzen kommt man sich nah. Das ist gewollt — und es braucht klare Grenzen.
-          Bei uns hat niemand das Recht, deine Grenzen zu überschreiten. Wenn dir etwas
-          unangenehm war, musst du nichts beweisen: wir hören zu und nehmen jede Meldung ernst.
-        </p>
-      </section>
+      <p class="text-[clamp(19px,1.7vw,23px)] leading-relaxed text-brand-line">
+        Beim Tanzen kommt man sich nah. Das ist gewollt — und es braucht klare Grenzen.
+        Bei uns hat niemand das Recht, deine Grenzen zu überschreiten. Wenn dir etwas
+        unangenehm war, musst du nichts beweisen: wir hören zu und nehmen jede Meldung ernst.
+      </p>
 
-      <section class="mb-12">
-        <h2>1. An wen du dich wenden kannst</h2>
-        <p>
+      <section class="flex flex-col gap-4">
+        <h2 class="font-display text-[clamp(24px,3vw,36px)] font-extrabold leading-[1.1] tracking-[-0.02em]">1. An wen du dich wenden kannst</h2>
+        <p class="text-[17px] leading-relaxed text-brand-line">
           Zwei Personen im Verein sind dafür benannt, Meldungen aufzunehmen. Du kannst dich an
           beide wenden — auch dann, wenn deine Meldung eine der beiden Personen betrifft.
         </p>
-        <div class="mt-4 p-6 bg-brand-rose/5 border border-brand-rose/10 rounded-lg">
-          <p>
-            <strong>Patricia Lopez</strong><br />
-            <strong>Stephan Lopez</strong><br />
-            E-Mail: <SafeMail email="mail+sichertanzen@idiomadanza.de" class="text-brand-rose" />
+        <div class="rounded-3xl bg-white p-6">
+          <p class="leading-relaxed">
+            <strong class="block font-bold">Patricia Lopez</strong>
+            <strong class="block font-bold">Stephan Lopez</strong>
+            <span class="mt-2 block">E-Mail: <SafeMail email="mail+sichertanzen@idiomadanza.de" class="font-bold text-brand-rose underline underline-offset-4" /></span>
           </p>
         </div>
-        <p class="mt-4 text-sm opacity-80">
+        <p class="text-[15px] leading-relaxed text-brand-line">
           Beide sehen eine Meldung, die an diese Adresse geht. Alles bleibt vertraulich und
           verlässt den Kreis der Ansprechpersonen nicht.
         </p>
       </section>
 
-      <section class="mb-12">
-        <h2>2. Was du melden kannst</h2>
-        <ul>
-          <li>Unangemessene Berührungen oder Übergriffigkeit — im Kurs, beim Social oder danach</li>
-          <li>Grenzüberschreitende Bemerkungen, Sprüche, Nachrichten</li>
-          <li>Druck durch Trainerinnen, Trainer oder andere Mitglieder</li>
-          <li>Machtmissbrauch, Ausnutzen einer Vorbildrolle</li>
-          <li>Alles, was sich für dich falsch angefühlt hat — auch wenn du es nicht benennen kannst</li>
+      <section class="flex flex-col gap-4">
+        <h2 class="font-display text-[clamp(24px,3vw,36px)] font-extrabold leading-[1.1] tracking-[-0.02em]">2. Was du melden kannst</h2>
+        <ul class="flex list-none flex-col gap-3 p-0 text-[17px] leading-relaxed text-brand-line">
+          <li class="flex items-start gap-3"><span aria-hidden="true" class="mt-2 size-2.5 shrink-0 rounded-full bg-brand-rose"></span>Unangemessene Berührungen oder Übergriffigkeit — im Kurs, beim Social oder danach</li>
+          <li class="flex items-start gap-3"><span aria-hidden="true" class="mt-2 size-2.5 shrink-0 rounded-full bg-brand-rose"></span>Grenzüberschreitende Bemerkungen, Sprüche, Nachrichten</li>
+          <li class="flex items-start gap-3"><span aria-hidden="true" class="mt-2 size-2.5 shrink-0 rounded-full bg-brand-rose"></span>Druck durch Trainerinnen, Trainer oder andere Mitglieder</li>
+          <li class="flex items-start gap-3"><span aria-hidden="true" class="mt-2 size-2.5 shrink-0 rounded-full bg-brand-rose"></span>Machtmissbrauch, Ausnutzen einer Vorbildrolle</li>
+          <li class="flex items-start gap-3"><span aria-hidden="true" class="mt-2 size-2.5 shrink-0 rounded-full bg-brand-rose"></span>Alles, was sich für dich falsch angefühlt hat — auch wenn du es nicht benennen kannst</li>
         </ul>
-        <p class="mt-4">
+        <p class="text-[17px] leading-relaxed text-brand-line">
           Du musst nicht einschätzen, ob es „schlimm genug" ist. Das ist unsere Aufgabe, nicht deine.
         </p>
       </section>
 
-      <section class="mb-12">
-        <h2>3. Wie eine Meldung abläuft</h2>
-        <ol>
-          <li><strong>Du meldest</strong> — per E-Mail an die Ansprechpersonen, mit Namen oder anonym.</li>
-          <li><strong>Wir melden uns</strong> — bei einer Meldung mit Kontaktdaten innerhalb weniger Tage.</li>
-          <li><strong>Wir hören beide Seiten an</strong> — getrennt, vertraulich, ohne Vorverurteilung.</li>
-          <li><strong>Wir entscheiden und handeln</strong> — von einem klärenden Gespräch bis zum Ausschluss.</li>
-          <li><strong>Wir bleiben dran</strong> — du erfährst, was geschehen ist, soweit wir es dürfen.</li>
+      <section class="flex flex-col gap-4">
+        <h2 class="font-display text-[clamp(24px,3vw,36px)] font-extrabold leading-[1.1] tracking-[-0.02em]">3. Wie eine Meldung abläuft</h2>
+        <ol class="flex list-none flex-col gap-4 p-0 text-[17px] leading-relaxed text-brand-line">
+          <li class="flex items-start gap-4"><span class="flex size-8 shrink-0 items-center justify-center rounded-full bg-brand-ink font-display font-bold text-brand-gold">1</span><span><strong class="font-bold text-brand-ink">Du meldest</strong> — per E-Mail an die Ansprechpersonen, mit Namen oder anonym.</span></li>
+          <li class="flex items-start gap-4"><span class="flex size-8 shrink-0 items-center justify-center rounded-full bg-brand-ink font-display font-bold text-brand-gold">2</span><span><strong class="font-bold text-brand-ink">Wir melden uns</strong> — bei einer Meldung mit Kontaktdaten innerhalb weniger Tage.</span></li>
+          <li class="flex items-start gap-4"><span class="flex size-8 shrink-0 items-center justify-center rounded-full bg-brand-ink font-display font-bold text-brand-gold">3</span><span><strong class="font-bold text-brand-ink">Wir hören beide Seiten an</strong> — getrennt, vertraulich, ohne Vorverurteilung.</span></li>
+          <li class="flex items-start gap-4"><span class="flex size-8 shrink-0 items-center justify-center rounded-full bg-brand-ink font-display font-bold text-brand-gold">4</span><span><strong class="font-bold text-brand-ink">Wir entscheiden und handeln</strong> — von einem klärenden Gespräch bis zum Ausschluss.</span></li>
+          <li class="flex items-start gap-4"><span class="flex size-8 shrink-0 items-center justify-center rounded-full bg-brand-ink font-display font-bold text-brand-gold">5</span><span><strong class="font-bold text-brand-ink">Wir bleiben dran</strong> — du erfährst, was geschehen ist, soweit wir es dürfen.</span></li>
         </ol>
       </section>
 
-      <section class="mb-12">
-        <h2>4. Anonym melden</h2>
-        <p>
+      <section class="flex flex-col gap-4">
+        <h2 class="font-display text-[clamp(24px,3vw,36px)] font-extrabold leading-[1.1] tracking-[-0.02em]">4. Anonym melden</h2>
+        <p class="text-[17px] leading-relaxed text-brand-line">
           Du kannst eine Meldung ohne Namen und ohne Kontaktdaten schicken. Wir lesen sie
           genauso ernst — aber wir können nicht nachfragen und dir nicht zurückmelden, was
           daraus geworden ist.
         </p>
-        <p class="mt-4">
+        <p class="text-[17px] leading-relaxed text-brand-line">
           Wenn du anonym bleibst, schreib bitte so genau wie möglich: was passiert ist, wann,
           wo und in welchem Kurs. Das hilft uns, dem nachzugehen, ohne dich zu kennen.
         </p>
       </section>
 
-      <section class="mb-12">
-        <h2>5. Was wir tun</h2>
-        <p>
+      <section class="flex flex-col gap-4">
+        <h2 class="font-display text-[clamp(24px,3vw,36px)] font-extrabold leading-[1.1] tracking-[-0.02em]">5. Was wir tun</h2>
+        <p class="text-[17px] leading-relaxed text-brand-line">
           Wir haben uns im Schutzkonzept auf Null-Toleranz verpflichtet: Schulungen für
           Trainerinnen und Trainer, erweiterte Führungszeugnisse, benannte Ansprechpersonen.
           Meldungen werden dokumentiert, damit Fälle nicht verloren gehen und Entscheidungen
@@ -103,24 +108,23 @@ import SafeMail from '../components/ui/SafeMail.astro';
         </p>
       </section>
 
-      <section class="mb-12 p-6 border border-brand-rose/20 rounded-lg">
-        <h2 class="mt-0">Außerhalb des Vereins</h2>
-        <p class="text-sm opacity-80">
-          <strong>[zu ergänzen]</strong> Hier entstehen Verweise auf Beratungs- und
+      <section class="flex flex-col gap-3 rounded-3xl bg-white p-6">
+        <h2 class="font-display text-[clamp(22px,2.6vw,30px)] font-extrabold leading-[1.1] tracking-[-0.02em]">Außerhalb des Vereins</h2>
+        <p class="text-[15px] leading-relaxed text-brand-line">
+          <strong class="font-bold text-brand-ink">[zu ergänzen]</strong> Hier entstehen Verweise auf Beratungs- und
           Beschwerdestellen außerhalb des Vereins — für den Fall, dass du dich nicht an uns
           wenden möchtest. Bis dahin gilt: Bei einer Straftat kannst du dich jederzeit direkt
           an die Polizei wenden.
         </p>
       </section>
 
-      <section class="p-6 border border-white/10 rounded-lg">
-        <h2 class="mt-0">Schutzkonzept</h2>
-        <p class="text-sm opacity-80">
-          <strong>[zu ergänzen]</strong> Das vollständige Schutzkonzept des Vereins wird hier
+      <section class="flex flex-col gap-3 rounded-3xl bg-brand-surface p-6">
+        <h2 class="font-display text-[clamp(22px,2.6vw,30px)] font-extrabold leading-[1.1] tracking-[-0.02em] text-brand-paper">Schutzkonzept</h2>
+        <p class="text-[15px] leading-relaxed text-brand-muted">
+          <strong class="font-bold text-brand-paper">[zu ergänzen]</strong> Das vollständige Schutzkonzept des Vereins wird hier
           als PDF hinterlegt (Vereinsordnung Teil VIII).
         </p>
       </section>
-
     </div>
-  </div>
+  </section>
 </Layout>
