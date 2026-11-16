@@ -48,38 +48,47 @@ const courseSchema = [
   },
   {
     "@type": "Course",
-    "name": "Bachata Fusion",
-    "description": "Bachata Fusion (Moderna, Urban, Influence & BachaZouk) am Mittwoch ab 18:15 Uhr in Regensburg.",
+    "name": "Bachata Influence 1",
+    "description": "Bachata Influence 1 am Mittwoch von 18:00 bis 19:00 Uhr in Regensburg.",
     "provider": { "@type": "Organization", "name": "Idiomadanza e.V.", "url": siteUrl },
     "hasCourseInstance": {
       "@type": "CourseInstance",
-      "courseSchedule": { "@type": "Schedule", "byDay": "Wednesday", "startTime": "18:15", "endTime": "20:00", "repeatFrequency": "P1W" },
+      "courseSchedule": { "@type": "Schedule", "byDay": "Wednesday", "startTime": "18:00", "endTime": "19:00", "repeatFrequency": "P1W" },
       "location": { "@type": "Place", "name": "Raum für Engagement – Bahnhof", "address": { "@type": "PostalAddress", "addressLocality": "Regensburg", "addressCountry": "DE" } }
     }
   },
   {
     "@type": "Course",
-    "name": "Salsa Advanced",
-    "description": "Salsa Advanced Tanzkurs in Regensburg: Fortgeschrittene Salsa-Technik, Styling & Musicality ab 20:00 Uhr.",
+    "name": "Bachata Influence 2",
+    "description": "Bachata Influence 2 am Mittwoch von 19:00 bis 20:00 Uhr in Regensburg.",
+    "provider": { "@type": "Organization", "name": "Idiomadanza e.V.", "url": siteUrl },
+    "hasCourseInstance": {
+      "@type": "CourseInstance",
+      "courseSchedule": { "@type": "Schedule", "byDay": "Wednesday", "startTime": "19:00", "endTime": "20:00", "repeatFrequency": "P1W" },
+      "location": { "@type": "Place", "name": "Raum für Engagement – Bahnhof", "address": { "@type": "PostalAddress", "addressLocality": "Regensburg", "addressCountry": "DE" } }
+    }
+  },
+  {
+    "@type": "Course",
+    "name": "Salsa Combinations",
+    "description": "Salsa Combinations am Mittwoch von 20:00 bis 21:00 Uhr in Regensburg.",
     "provider": { "@type": "Organization", "name": "Idiomadanza e.V.", "url": siteUrl },
     "hasCourseInstance": {
       "@type": "CourseInstance",
       "courseSchedule": { "@type": "Schedule", "byDay": "Wednesday", "startTime": "20:00", "endTime": "21:00", "repeatFrequency": "P1W" },
       "location": { "@type": "Place", "name": "Raum für Engagement – Bahnhof", "address": { "@type": "PostalAddress", "addressLocality": "Regensburg", "addressCountry": "DE" } }
-    },
-    "audience": { "@type": "Audience", "audienceType": "Fortgeschrittene" }
+    }
   },
   {
     "@type": "Course",
-    "name": "Salsa Beginner",
-    "description": "Salsa Beginner Tanzkurs in Regensburg: Grundlagen und Rhythmusgefühl ohne Vorkenntnisse ab 21:00 Uhr.",
+    "name": "Salsa Foundations",
+    "description": "Salsa Foundations am Mittwoch von 21:00 bis 22:00 Uhr in Regensburg.",
     "provider": { "@type": "Organization", "name": "Idiomadanza e.V.", "url": siteUrl },
     "hasCourseInstance": {
       "@type": "CourseInstance",
       "courseSchedule": { "@type": "Schedule", "byDay": "Wednesday", "startTime": "21:00", "endTime": "22:00", "repeatFrequency": "P1W" },
       "location": { "@type": "Place", "name": "Raum für Engagement – Bahnhof", "address": { "@type": "PostalAddress", "addressLocality": "Regensburg", "addressCountry": "DE" } }
-    },
-    "audience": { "@type": "Audience", "audienceType": "Anfänger" }
+    }
   }
 ];
 
@@ -244,46 +253,46 @@ const workshopSchema = workshops.map(w => ({
           </div>
 
           <div class="space-y-4">
-            <!-- 18:15: Bachata Fusion -->
+            <!-- 18:00: Bachata Influence 1 -->
             <div class="group p-6 bg-white/70 dark:bg-white/5 backdrop-blur-md rounded-idioma border border-white/20 dark:border-white/10 shadow-glass hover:shadow-glow-amber transition-all duration-300">
               <div class="flex justify-between items-center">
                 <div>
-                  <span class="text-brand-gold-ink dark:text-brand-glow font-bold text-xl block mb-1">ab 18:15 Uhr</span>
-                  <h3 class="text-2xl font-bold dark:text-white">Bachata Fusion</h3>
-                  <p class="text-sm opacity-70 mt-2 dark:text-white/70">Moderna · Urban · Influence · BachaZouk</p>
-                  <div class="flex flex-wrap gap-2 mt-3">
-                    <span class="px-2.5 py-0.5 rounded-md bg-brand-glow/15 text-brand-gold-ink dark:text-brand-glow text-xs font-medium">Moderna</span>
-                    <span class="px-2.5 py-0.5 rounded-md bg-brand-glow/15 text-brand-gold-ink dark:text-brand-glow text-xs font-medium">Urban</span>
-                    <span class="px-2.5 py-0.5 rounded-md bg-brand-rose/10 text-brand-rose text-xs font-medium">Influence</span>
-                    <span class="px-2.5 py-0.5 rounded-md bg-brand-glow/15 text-brand-gold-ink dark:text-brand-glow text-xs font-medium">BachaZouk</span>
-                  </div>
+                  <span class="text-brand-gold-ink dark:text-brand-glow font-bold text-xl block mb-1">18:00 Uhr</span>
+                  <h3 class="text-2xl font-bold dark:text-white">Bachata Influence 1</h3>
                 </div>
               </div>
             </div>
 
-            <!-- 20:00: Salsa Advanced -->
+            <!-- 19:00: Bachata Influence 2 -->
+            <div class="group p-6 bg-white/70 dark:bg-white/5 backdrop-blur-md rounded-idioma border border-white/20 dark:border-white/10 shadow-glass hover:shadow-glow-amber transition-all duration-300">
+              <div class="flex justify-between items-center">
+                <div>
+                  <span class="text-brand-gold-ink dark:text-brand-glow font-bold text-xl block mb-1">19:00 Uhr</span>
+                  <h3 class="text-2xl font-bold dark:text-white">Bachata Influence 2</h3>
+                </div>
+              </div>
+            </div>
+
+            <!-- 20:00: Salsa Combinations -->
             <div class="group p-6 bg-white/70 dark:bg-white/5 backdrop-blur-md rounded-idioma border border-white/20 dark:border-white/10 shadow-glass hover:shadow-glow-amber transition-all duration-300">
               <div class="flex justify-between items-center">
                 <div>
                   <span class="text-brand-gold-ink dark:text-brand-glow font-bold text-xl block mb-1">20:00 Uhr</span>
-                  <h3 class="text-2xl font-bold dark:text-white">Salsa Advanced</h3>
-                  <p class="text-sm opacity-60 mt-2 dark:text-white/60">Fortgeschrittene Salsa-Technik, Styling & Musicality.</p>
+                  <h3 class="text-2xl font-bold dark:text-white">Salsa Combinations</h3>
+                  <p class="text-sm opacity-60 mt-2 dark:text-white/60">Salsa-Technik vertiefen – Kombinationen, Styling und Musicality.</p>
                 </div>
                 <div class="hidden sm:block">
-                   <span class="px-4 py-1 rounded-full bg-brand-glow/20 text-brand-gold-ink dark:text-brand-glow text-xs font-bold uppercase tracking-widest">Fortgeschritten</span>
+                   <span class="px-4 py-1 rounded-full bg-brand-glow/20 text-brand-gold-ink dark:text-brand-glow text-xs font-bold uppercase tracking-widest">Mittelstufe</span>
                 </div>
               </div>
             </div>
 
-            <!-- 21:00: Salsa Beginner -->
-            <div class="group p-6 bg-white/70 dark:bg-white/5 backdrop-blur-md rounded-idioma border border-white/20 dark:border-white/10 shadow-glass hover:shadow-glow-amber transition-all duration-300 relative overflow-hidden">
-              <!-- HIGHLIGHT RIBBON -->
-              <div class="absolute top-0 right-0 bg-brand-rose text-white text-[10px] font-bold px-4 py-1.5 rounded-bl-lg tracking-widest uppercase">Einstieg jederzeit möglich</div>
-              
+            <!-- 21:00: Salsa Foundations -->
+            <div class="group p-6 bg-white/70 dark:bg-white/5 backdrop-blur-md rounded-idioma border border-white/20 dark:border-white/10 shadow-glass hover:shadow-glow-amber transition-all duration-300">
               <div class="flex justify-between items-center">
                 <div>
                   <span class="text-brand-gold-ink dark:text-brand-glow font-bold text-xl block mb-1">21:00 Uhr</span>
-                  <h3 class="text-2xl font-bold dark:text-white">Salsa Beginner</h3>
+                  <h3 class="text-2xl font-bold dark:text-white">Salsa Foundations</h3>
                   <p class="text-sm opacity-60 mt-2 dark:text-white/60">Unser Anfängerkurs – Salsa-Grundlagen und Rhythmusgefühl ohne Vorkenntnisse.</p>
                 </div>
                 <div class="hidden sm:block">
