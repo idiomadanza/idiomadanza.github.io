@@ -1,6 +1,6 @@
 ---
 title: "Anfänger-Einstieg im Januar 2027: neue Foundations-Reihe ab Dienstag, 12. Januar"
-excerpt: "Dreimal im Jahr beginnt bei uns eine neue anfängerfreundliche Kursreihe – im Januar 2027 ist es wieder so weit: Dienstag, 20 Uhr, Bachata Foundations. Dazwischen kannst du jederzeit kostenlos schnuppern."
+excerpt: "Dreimal im Jahr beginnt bei uns eine neue anfängerfreundliche Kursreihe – im Januar 2027 ist es wieder so weit: Dienstag, 20 Uhr, Bachata Foundations im Fortuna. Dazwischen kannst du jederzeit kostenlos schnuppern."
 category: "Kurse"
 date: "16. November 2026"
 image: ../../assets/images/testimonials/bg.png
@@ -13,7 +13,7 @@ Du willst mit Bachata anfangen und fragst dich, wann der richtige Moment ist? Be
 
 Wir starten **dreimal im Jahr** eine neue, anfängerfreundliche Kursreihe. Diese Termine sind für alle gedacht, die von der ersten Stunde an dabei sein und die Grundlagen in einer festen Gruppe von Anfang an mitgehen wollen.
 
-Die nächste Gelegenheit: **Dienstag, 12. Januar 2027, 20 Uhr – Bachata Foundations.**
+Die nächste Gelegenheit: **Dienstag, 12. Januar 2027, 20 Uhr – Bachata Foundations im Fortuna, Isarstraße 85, 93057 Regensburg.**
 
 ## Schnuppern geht immer
 
@@ -33,7 +33,7 @@ Zur Fairness gegenüber allen Mitgliedern: Bei Kursausfällen gibt es keine Nach
 
 ## Termin im Blick behalten
 
-- **Anfänger-Einstieg:** Dienstag, 12. Januar 2027, 20 Uhr · Bachata Foundations
+- **Anfänger-Einstieg:** Dienstag, 12. Januar 2027, 20 Uhr · Bachata Foundations · Fortuna, Isarstraße 85, 93057 Regensburg
 - **Schnupperstunde:** jederzeit kostenlos möglich
 - **Alle Kurse und Zeiten:** [Kursplan](/kurse/)
 - **Mitglied werden:** [Flatrate und Aufnahme](/mitglied-werden/)
