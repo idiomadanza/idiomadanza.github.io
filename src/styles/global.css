@@ -52,7 +52,7 @@
 }
 
 @theme {
-  --font-display: "Bricolage Grotesque", "Golos Text", "Playfair Display", serif;
+  --font-display: "Bricolage Grotesque", "Golos Text", serif;
   --font-sans: "Golos Text", sans-serif;
 
   /* Palette aus dem Design-Set (Fable) */
@@ -103,31 +103,6 @@
   animation: pulse-glow 4s ease-in-out infinite;
 }
 
-
-/* Lokal gehostete Fonts (DSGVO-konform) */
-@font-face {
-  font-family: 'Golos Text';
-  font-style: normal;
-  font-weight: 400;
-  font-display: swap;
-  src: url('/fonts/golos-text-v7-latin_latin-ext-regular.woff2') format('woff2');
-}
-
-@font-face {
-  font-family: 'Golos Text';
-  font-style: normal;
-  font-weight: 700;
-  font-display: swap;
-  src: url('/fonts/golos-text-v7-latin_latin-ext-700.woff2') format('woff2');
-}
-
-@font-face {
-  font-family: 'Playfair Display';
-  font-style: normal;
-  font-weight: 400 700;
-  font-display: swap;
-  src: url('/fonts/playfair-400.woff2') format('woff2');
-}
 
 @layer base {
   html, body {
