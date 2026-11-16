@@ -10,7 +10,6 @@ import heroTeam from '../assets/images/startseite/hero-team-sechs.jpg';
 import teamGruppe from '../assets/images/startseite/team-gruppe-sieben.jpg';
 import teamPaare from '../assets/images/startseite/team-paare-dip.jpg';
 import teamRuecken from '../assets/images/startseite/team-rueckenansicht.jpg';
-import workshopPlakat from '../assets/images/startseite/workshop-bailabachata-plakat.jpg';
 
 // Inhalte: Quelle ist /opt/SecondBrain/2-Bereiche/Verein/Stammdaten.md
 // (Kursplan, Preise, Standorte) und src/content/* (Team, Workshops, Stimmen).
@@ -250,29 +249,20 @@ const stimmen = (await getCollection('testimonials')).filter((t) =>
   {/* Workshop */}
   {workshop && (
     <section id="workshop" class="bg-brand-surface px-[clamp(20px,5vw,80px)] py-[clamp(56px,8vw,112px)]">
-      <div class="mx-auto grid max-w-[1280px] items-center gap-[clamp(32px,5vw,72px)] lg:grid-cols-[0.85fr_1.15fr]">
-        <Image
-          src={workshopPlakat}
-          alt={`Plakat zum ${workshop.data.title}, ${workshop.data.date}`}
-          width={960}
-          height={1200}
-          widths={[360, 480, 960]}
-          sizes="(min-width: 1024px) 38vw, 86vw"
-          format="webp"
-          loading="lazy"
-          decoding="async"
-          class="mx-auto block aspect-[4/5] w-full max-w-[480px] rounded-[28px] object-cover"
-        />
-        <div class="flex flex-col gap-[22px]">
+      <div class="mx-auto grid max-w-[1280px] items-start gap-[clamp(24px,4vw,64px)] lg:grid-cols-[0.85fr_1.15fr]">
+        <div class="flex flex-col gap-[18px]">
           <p class="inline-flex items-center gap-2.5 text-sm font-semibold uppercase tracking-[0.14em] text-brand-gold">
             <Icon name="workshop" size={22} strokeWidth={1.75} />
             Workshop &middot; {workshop.data.date}
           </p>
           <h2 class="font-display text-[clamp(34px,4.4vw,60px)] font-extrabold leading-none tracking-[-0.025em] text-brand-paper">{workshop.data.title}</h2>
+          <p class="text-base text-brand-muted">Mit {workshop.data.instructor}.</p>
+        </div>
+        <div class="flex flex-col gap-[22px]">
           <ul class="flex list-none flex-col gap-3 p-0 text-[19px] text-brand-paper/90">
             <li class="flex gap-3">
               <span aria-hidden="true" class="mt-2.5 size-2.5 shrink-0 rounded-full bg-brand-gold"></span>
-              8 Stunden Partnerwork mit internationalen Artists
+              10 Stunden Partnerwork mit internationalen Top Artists
             </li>
             <li class="flex gap-3">
               <span aria-hidden="true" class="mt-2.5 size-2.5 shrink-0 rounded-full bg-brand-gold"></span>
@@ -283,7 +273,9 @@ const stimmen = (await getCollection('testimonials')).filter((t) =>
               Social Party inklusive
             </li>
           </ul>
-          <p class="text-base text-brand-muted">Mit {workshop.data.instructor}.</p>
+          <p class="text-[19px] text-brand-paper/90">
+            Level {workshop.data.level} &middot; {workshop.data.location}
+          </p>
           <div class="flex flex-wrap items-center gap-5">
             <a
               href={workshop.data.ticketUrl}
@@ -291,7 +283,6 @@ const stimmen = (await getCollection('testimonials')).filter((t) =>
             >
               Tickets sichern
             </a>
-            <span class="font-display text-[32px] font-extrabold text-brand-paper">{workshop.data.price}</span>
           </div>
         </div>
       </div>
