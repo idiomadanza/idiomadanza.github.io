@@ -45,8 +45,8 @@ Bachata ist nicht gleich Bachata. Bei **Idiomadanza e.V.** legen wir großen Wer
 * **Die Fusion:** BachaZouk vereint die Musikalität und den Rhythmus von Bachata mit den atemberaubenden Head Movements und Circular Motions des Brazilian Zouk.
 * **Unsere Zertifizierung:** Offiziell zertifiziert nach **Masa & Polina**.
 
-### ⚡ Bachata Fusion & Moderna
-Am Mittwochabend bündeln wir diese Vielfalt: Moderne Drehfiguren (Moderna), urbane Einflüsse (Urban), Musikalität und Zouk-Elemente verschmelzen zu einem vielseitigen Social-Dance-Repertoire.
+### ⚡ Bachata Moderna & Einflüsse
+Am Mittwochabend bündeln wir diese Vielfalt in unseren Bachata-Kursen: Moderne Drehfiguren (Moderna), urbane Einflüsse (Urban), Musikalität und Zouk-Elemente verschmelzen zu einem vielseitigen Social-Dance-Repertoire.
 
 ---
 
@@ -100,9 +100,10 @@ Unsere Kurse finden an zwei optimal erreichbaren Standorten in Regensburg statt:
 * **20:00 Uhr:** Bachata Foundations *(Anfänger – Einstieg jederzeit möglich)*
 
 ### Mittwoch: Raum für Engagement
-* **ab 18:15 Uhr:** Bachata Fusion *(Moderna · Urban · Influence · BachaZouk)*
-* **20:00 Uhr:** Salsa Advanced *(Fortgeschritten)*
-* **21:00 Uhr:** Salsa Beginner *(Anfänger – Einstieg jederzeit möglich)*
+* **18:00 Uhr:** Bachata Influence 1
+* **19:00 Uhr:** Bachata Influence 2
+* **20:00 Uhr:** Salsa Combinations
+* **21:00 Uhr:** Salsa Foundations
 
 ---
 
