@@ -12,7 +12,18 @@ import SafeMail from '../components/ui/SafeMail.astro';
   <!-- HERO SECTION -->
   <section class="relative py-20 overflow-hidden bg-brand-dark">
     <div class="absolute inset-0 z-0">
-      <Image src={aboutBg} alt="Mitgliedschaft" class="w-full h-full object-cover opacity-20 blur-[2px]" />
+      <Image
+        src={aboutBg}
+        alt="Mitgliedschaft"
+        widths={[320, 480, 640, 768, 1024, 1280]}
+        sizes="100vw"
+        quality={45}
+        width={1280}
+        height={1920}
+        loading="eager"
+        fetchpriority="high"
+        class="w-full h-full object-cover opacity-20 blur-[2px]"
+      />
       <div class="absolute inset-0 bg-gradient-to-b from-brand-dark/90 via-brand-dark/40 to-brand-dark"></div>
     </div>
     
