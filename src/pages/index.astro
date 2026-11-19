@@ -43,22 +43,6 @@ const stimmen = (await getCollection('testimonials')).filter((t) =>
   title="Idiomadanza e.V. | Bachata & Salsa Tanzkurse in Regensburg"
   description="Bachata und Salsa in Regensburg: zwei Abende, sieben Kurse, eine Flatrate. Gemeinnütziger Tanzverein mit zertifizierten Trainerinnen und Trainern."
 >
-  {/* Aktuelle Kursplan-Änderung */}
-  <div role="status" class="bg-brand-gold text-brand-ink px-[clamp(20px,5vw,80px)] py-3">
-    <div class="mx-auto flex max-w-[1280px] flex-col gap-2 md:flex-row md:items-center md:gap-6">
-      <p class="text-sm font-semibold leading-snug md:text-base">
-        <span class="mb-1 block text-xs font-bold uppercase tracking-[0.14em] md:mb-0 md:inline md:mr-3">Änderung im Kursplan</span>
-        Dienstag, 17.11.: nur 20 Uhr (Bachata Foundations) &middot; Mittwoch, 18.11.: alle Kurse entfallen &middot; ab Di, 24.11. wieder regulär
-      </p>
-      <a
-        href="/kurse/"
-        class="inline-flex min-h-[44px] items-center text-xs font-bold uppercase tracking-[0.14em] underline decoration-brand-ink/50 underline-offset-4 hover:decoration-brand-ink"
-      >
-        Zum Kursplan
-      </a>
-    </div>
-  </div>
-
   {/* Hero */}
   <section class="bg-brand-ink px-[clamp(20px,5vw,80px)] pb-[clamp(32px,4vw,56px)] pt-[clamp(40px,6vw,88px)]">
     <div class="mx-auto max-w-[1280px]">
